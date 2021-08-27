@@ -1,0 +1,10 @@
+*.nc
+*.csv
+*DS_Store*
+*.h5
+*.mat
+*.xls*
+*.doc*
+*.ppt*
+*.png*
+*.jp*
