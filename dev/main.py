@@ -10,7 +10,7 @@ Path:           ~
 import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
 ''' Data access - LiDAR '''
-def data_access_lidar(temp_freq='5S'):
+def data_access_lidar(temp_freq='1H'):
     '''
     Method accesses raw data and returns xArray Datasets for processing.
 
@@ -18,7 +18,7 @@ def data_access_lidar(temp_freq='5S'):
     ----------
     temp_freq : str
         Temporal frequency for upsampling of time axis, allowing for uniform timestamps across all data.
-        See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects for reference on how to format this string. Default value of '5S', or 5 seconds, provided.
+        See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects for reference on how to format this string. Default value of '1H', or 1 hour, provided.
 
     Returns
     -------
@@ -134,4 +134,6 @@ if __name__ == '__main__':
     timer = time.time()
     lidar_data = data_access_lidar(temp_freq='1H')
     mwr_data = data_access_mwr(temp_freq='1H')
+    # Merge lidar and radiometer data
+    data = xr.merge([mwr_data, lidar_data])
     print(time.time() - timer)
