@@ -7,23 +7,33 @@ Path:           ~
 """
 
 ''' Imports '''
-import netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
+import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
-''' Data access '''
-def data_access():
+''' Data access - LiDAR '''
+def data_access_lidar(temp_freq='5S'):
     '''
     Method accesses raw data and returns xArray Datasets for processing.
+
+    Parameters
+    ----------
+    temp_freq : str
+        Temporal frequency for upsampling of time axis, allowing for uniform timestamps across all data.
+        See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects for reference on how to format this string. Default value of '5S', or 5 seconds, provided.
+
+    Returns
+    -------
+    lidar_data : xArray Dataset
+        Contains xArray Dataset of compiled data from the netCDF4 files identified with the os.walk script.
+
     '''
     
-    # Temporal frequency for downsampling
-    temp_freq = '5S'
     # Access all data in the directory containing lidar data.
-    lidar_data_fpath = os.path.join(os.getcwd(), 'data/lidar')
+    data_fpath = os.path.join(os.getcwd(), 'data/lidar')
     # Store all lidar files in list. Required for temporal file sorting and mass read-in (xArray open_mfdataset()).
-    lidar_file_list = []
+    file_list = []
     # Iterate through all folders in the directory. Aggregate all netCDF file data for future processing.
     # Assume file structure is 'lidar' > 'PROF_[SITE]' > '[YYYY]' > '[MM]', where text between brackets is variable.
-    for subdir, dirs, files in os.walk(lidar_data_fpath):
+    for subdir, dirs, files in os.walk(data_fpath):
         for file in files:
             # Define universal file path
             fpath = subdir + os.sep + file
@@ -31,7 +41,9 @@ def data_access():
             # This allows the use of xr.open_mfdataset with the list. 
             # This is convoluted, but is ~15x faster than using xr.concat.
             if fpath.endswith('.nc') and 'processed' not in fpath:
-                timer = time.time()
+                # Remove file if it exists
+                if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
+                    os.remove(fpath.split('.')[0]+'_processed.nc')
                 # Get site location
                 site = subdir.split('_')[-1].split('/')[0]
                 # Define processed file path
@@ -42,6 +54,8 @@ def data_access():
                 group_id = list(temp_nc['radial'].groups.keys())[0]
                 # Store temporary xArray dataset
                 temp_xr = xr.open_dataset(xr.backends.NetCDF4DataStore(temp_nc['radial'][group_id]))
+                # Rename dimensions for consistency
+                temp_xr = temp_xr.rename({'range': 'height'})
                 # Resample time to ensure common time axis
                 temp_xr = temp_xr.resample(time=temp_freq).interpolate('linear')
                 # Add site label
@@ -51,19 +65,73 @@ def data_access():
                 # Write netCDF file
                 ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
                 # Append dataset to list for future concatenation
-                lidar_file_list.append(proc_fpath)
-                print(time.time()-timer)
+                file_list.append(proc_fpath)
     
     # Concatenate all data into singular xArray Dataset
-    lidar_data = xr.open_mfdataset(lidar_file_list, concat_dim='site')
-    # Delete all generated files from directory
-    for file in lidar_file_list:
-        if os.path.isfile(file):
-            os.remove(file)
+    data = xr.open_mfdataset(file_list, concat_dim='site')
     
-    return lidar_data
+    return data
     
+''' Data access - Microwave radiometer '''
+def data_access_mwr(temp_freq):
+    
+    # Access all data in the directory containing radiometer data.
+    data_fpath = os.path.join(os.getcwd(), 'data/mwr')
+    # Store all radiometer files in list. Required for temporal file sorting and mass read-in (xArray open_mfdataset()).
+    file_list = []
+    # Iterate through all folders in the directory. Aggregate all netCDF file data for future processing.
+    # Assume file structure is 'mwr' > 'PROF_[SITE]' > '[YYYY]' > '[MM]', where text between brackets is variable.
+    for subdir, dirs, files in os.walk(data_fpath):
+        for file in files:
+            # Define universal file path
+            fpath = subdir + os.sep + file
+            # Process netCDF files, extract xArray Dataset, write to .nc file, and compile new .nc files into list. 
+            # This allows the use of xr.open_mfdataset with the list. 
+            # This is convoluted, but is much faster than using xr.concat.
+            if fpath.endswith('.nc') and 'processed' not in fpath:
+                # Remove file if it exists
+                if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
+                    os.remove(fpath.split('.')[0]+'_processed.nc')
+                # Get site location
+                site = fpath.split('_')[-1].split('.')[0]
+                # Define processed file path
+                proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
+                # Store temporary xArray dataset
+                temp_xr = xr.open_dataset(fpath)
+                # Rename dimensions for consistency
+                temp_xr = temp_xr.rename({'range': 'height'})
+                # Average across radiometer angles
+                temp_xr = temp_xr.mean(dim='lv2_processor')
+                # Time interpolations for each time axis
+                temp_xr = temp_xr.resample(time_integrated=temp_freq).interpolate('linear')
+                temp_xr = temp_xr.resample(time_surface=temp_freq).interpolate('linear')
+                temp_xr = temp_xr.resample(time_vertical=temp_freq).interpolate('linear')
+                # Create singular time axis spanning 1 day, since each file is daily
+                time = list(temp_xr.time_surface.values)
+                # Merge time axes into singular time axis
+                temp_xr = temp_xr.reset_index(['time_vertical', 'time_integrated', 'time_surface'], drop=True).assign_coords(time=time).rename({'time_vertical': 'time', 'time_integrated': 'time', 'time_surface': 'time'}).reindex({'time': time})
+                # Add site label
+                temp_xr.coords['site'] = site
+                # Add site dimension
+                temp_xr = temp_xr.expand_dims(dim='site')
+                # Add height dimension to all data variables without it (these are surface quantities)
+                for varname in temp_xr.data_vars:
+                    if 'height' not in temp_xr[varname].coords:
+                        temp_xr[varname] = temp_xr[varname].expand_dims(height=temp_xr.height.values, axis=2)
+                        # Set all values for above-surface heights to nan
+                        temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
+                # Write netCDF file
+                ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
+                # Append dataset to list for future concatenation
+                file_list.append(proc_fpath)
+    
+    # Concatenate all data into singular xArray Dataset
+    data = xr.open_mfdataset(file_list, concat_dim='site')
+    
+    return data
+            
 if __name__ == '__main__':
     timer = time.time()
-    data = data_access()
+    lidar_data = data_access_lidar(temp_freq='1H')
+    mwr_data = data_access_mwr(temp_freq='1H')
     print(time.time() - timer)
