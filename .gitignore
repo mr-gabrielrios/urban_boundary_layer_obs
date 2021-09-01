@@ -8,3 +8,7 @@
 *.ppt*
 *.png*
 *.jp*
+*.dat*
+*.pyc*
+*.html*
+*.gif*

@@ -11,6 +11,8 @@ import numpy as np
 import os
 import pandas as pd
 import requests
+import ssl
+import urllib
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -46,16 +48,36 @@ def processor(date_range, data_type='flux', data_access='online'):
         years = np.arange(start=int(dates[0][0:4]), stop=int(dates[1][0:4])+1)
         # Iterate through years to access all relevant files
         for year in years:
+            # Certificate access workaround
+            ssl._create_default_https_context = ssl._create_unverified_context
             # Define year-specific URL
             url = os.path.join(dirpath, str(year))
             # Generate BeautifulSoup for this HTML page
             soup = BeautifulSoup(requests.get(url, verify=False).content, features='html.parser')
-            # Get all file paths
+            # Get all file paths. Use the icon image as the relevant child tag.
             for img in soup.find_all('img', alt='[TXT]'):
+                # Build path to relevant files
                 href = os.path.join(url, img.find_parent('a')['href'])
-                print(href)
+                # Only grab files that match the desired data type
+                if href.split('MFT')[-1].split('.')[0][1:] == data_type:
+                    # Build header from pre-defined CSV
+                    header = pd.read_csv('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/flux/MANH/{0}_header.csv'.format(data_type))
+                    # Remove all quotation marks
+                    header = [s.strip('"') for s in list(header.columns)]
+                    # Read in raw data
+                    data = pd.read_csv(href)
+                    # Re-assign headers
+                    data.columns = header
+                    # These 5 lines build a timestamp column from separate numeric columns
+                    data['M'] = data['M'].astype(str).apply(lambda x: x.zfill(4))
+                    data['H'] = data['M'].str[0:2]
+                    data['M'] = data['M'].str[2:]
+                    data = data.apply(pd.to_numeric)
+                    data['timestamp'] = pd.to_datetime(data['Y']*1000000000+data['DOY']*1000000+data['H']*10000+data['M']*100+data['S'], format='%Y%j%H%M%S')
+                    # Re-index to allow for future data manipulation
+                    data = data.set_index('timestamp', drop=False)
+                    print(data['Ts_Uz_cov'])
             
-        
     '''
     # Read data into Pandas DataFrame.
     data = pd.read_csv(fpath, header=1, skiprows=[2, 3])
