@@ -41,8 +41,8 @@ def processor(date_range, data_type='flux', data_access='online'):
     '''
     
     # Define range of dates in datetime format
-    date_range = pd.date_range(start=date_range[0], end=date_range[1], freq='D').to_pydatetime()
-    
+    date_range = pd.date_range(start=date_range[0], end=date_range[1], freq='S').to_pydatetime()
+    print(date_range)
     # Access data from NOAA-CREST database
     if data_access == 'online':
         # Initialize data list
@@ -69,6 +69,7 @@ def processor(date_range, data_type='flux', data_access='online'):
                     date = datetime.datetime.strptime(href.split('MFT')[0].split('/')[-1], '%Y%m%d')
                     # Ensure file reports data in selected date range:
                     if (date >= date_range[0]) & (date < date_range[-1]):
+                        print(href)
                         # Build header from pre-defined CSV
                         header = pd.read_csv('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/flux/MANH/{0}_header.csv'.format(data_type))
                         # Remove all quotation marks
@@ -110,7 +111,7 @@ def processor(date_range, data_type='flux', data_access='online'):
             
     return data
 
-def plotter(data, param='QH', date_range=None):
+def plotter(data, param='H', date_range=None):
     '''
     This function plots data for a user-defined parameter between given dates.
 
@@ -130,13 +131,13 @@ def plotter(data, param='QH', date_range=None):
     '''
     
     # Plot formatting
-    fig, ax = plt.subplots(dpi=144)
-    im = sns.lineplot(data=data, x='TIMESTAMP', y=data[param], ax=ax)
+    fig, ax = plt.subplots(dpi=300)
+    im = sns.lineplot(data=data, x='timestamp', y=data[param], ax=ax)
     fig.autofmt_xdate(bottom=0.2, rotation=30, ha='right')
 
 
 if __name__ == '__main__':
     # Temporary file path  
     fpath = r'/Users/gabriel/Documents/ufo_ccny/flux_tower/data/TOA5_10560.flux.dat'
-    dates = ['2021-08-16 00:00:00', '2021-08-18 00:00:00']
-    data = processor(dates, data_type='flux', data_access='online')
+    dates = ['2020-07-16 00:00:00', '2020-07-16 00:05:00']
+    data_new = processor(dates, data_type='ts_data', data_access='online')

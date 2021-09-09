@@ -120,6 +120,8 @@ def data_access_mwr(temp_freq):
                         temp_xr[varname] = temp_xr[varname].expand_dims(height=temp_xr.height.values, axis=2)
                         # Set all values for above-surface heights to nan
                         temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
+                # Set height coordinate to floats (converts to object datatype as default)
+                temp_xr['height'] = temp_xr['height'].astype('float')
                 # Write netCDF file
                 ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
                 # Append dataset to list for future concatenation
@@ -136,4 +138,4 @@ if __name__ == '__main__':
     mwr_data = data_access_mwr(temp_freq='1H')
     # Merge lidar and radiometer data
     data = xr.merge([mwr_data, lidar_data])
-    print(time.time() - timer)
+    print('Elapsed time: {0} s'.format(time.time() - timer))
