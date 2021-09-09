@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
+import logging
 import numpy as np
 import os
 import pandas as pd
@@ -16,7 +17,10 @@ import requests
 import ssl
 import urllib
 import warnings
+
+# Suppress warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
+logging.captureWarnings(True)
 
 def processor(date_range, data_type='flux', data_access='online'):
     '''
@@ -41,8 +45,7 @@ def processor(date_range, data_type='flux', data_access='online'):
     '''
     
     # Define range of dates in datetime format
-    date_range = pd.date_range(start=date_range[0], end=date_range[1], freq='S').to_pydatetime()
-    print(date_range)
+    date_range = pd.date_range(start=date_range[0], end=date_range[-1], freq='S').to_pydatetime()
     # Access data from NOAA-CREST database
     if data_access == 'online':
         # Initialize data list
@@ -68,8 +71,8 @@ def processor(date_range, data_type='flux', data_access='online'):
                     # Get full date string of each file
                     date = datetime.datetime.strptime(href.split('MFT')[0].split('/')[-1], '%Y%m%d')
                     # Ensure file reports data in selected date range:
-                    if (date >= date_range[0]) & (date < date_range[-1]):
-                        print(href)
+                    if ((date >= date_range[0]) & (date < date_range[-1])) | (date.date() == date_range[0].date()):
+                        print('Currently accessing: {0}'.format(href))
                         # Build header from pre-defined CSV
                         header = pd.read_csv('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/flux/MANH/{0}_header.csv'.format(data_type))
                         # Remove all quotation marks
@@ -108,7 +111,10 @@ def processor(date_range, data_type='flux', data_access='online'):
         # Calculate turbulent sensible heat flux
         # Method reference: Stull, R. Introduction to Boundary Layer Meteorology, 1988.
         data['H'] = data['amb_press_mean'] * data['Ts_Uz_cov']
-            
+    
+    # Clip data according to date range
+    data = data[(data.index >= date_range[0]) & (data.index < date_range[-1])]
+    
     return data
 
 def plotter(data, param='H', date_range=None):
