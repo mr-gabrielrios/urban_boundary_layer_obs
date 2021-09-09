@@ -131,14 +131,39 @@ def data_access_mwr(temp_freq):
                 file_list.append(proc_fpath)
     
     # Concatenate all data into singular xArray Dataset
-    data = xr.open_mfdataset(file_list, concat_dim='site')
+    data = xr.open_mfdataset(file_list, concat_dim='site')\
     
     return data
-            
+
+def interp(data, dim='height'):
+    '''
+    Interpolate data within an xArray Dataset.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        xArray Dataset containing data with nans along the given dimension.
+    dim : str
+        String containing dimension name along which to perform interpolation.
+
+    Returns
+    -------
+    data : xArray Dataset
+        xArray Dataset containing data without nans along the given dimension.
+
+    '''
+    
+    for varname in data.data_vars:
+        data[varname] = data[varname].interpolate_na(dim=dim, method='linear')
+        
+    return data
+        
 if __name__ == '__main__':
     timer = time.time()
     lidar_data = data_access_lidar(temp_freq='1H')
     mwr_data = data_access_mwr(temp_freq='1H')
     # Merge lidar and radiometer data
     data = xr.merge([mwr_data, lidar_data])
+    # Interpolate data linearly on missing height intervals
+    data = interp(data)
     print('Elapsed time: {0} s'.format(time.time() - timer))
