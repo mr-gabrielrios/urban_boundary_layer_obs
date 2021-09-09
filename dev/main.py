@@ -62,6 +62,9 @@ def data_access_lidar(temp_freq='1H'):
                 temp_xr.coords['site'] = site
                 # Add site dimension
                 temp_xr = temp_xr.expand_dims(dim='site')
+                # Ensure time dimension is only 24 entries long
+                if len(temp_xr.time) != 24:
+                    continue
                 # Write netCDF file
                 ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
                 # Append dataset to list for future concatenation
