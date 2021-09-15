@@ -149,10 +149,13 @@ def to_netcdf():
     files = [os.path.join(fpath, f) for f in os.listdir(fpath) if f.split('.')[-1] == 'csv']
     
     # Iterate through generated list of .csv files and convert them to netCDF files
-    for file in files:
+    for file in sorted(files):
+        print(file)
         raw_data = pd.read_csv(file)
+        # Get number of rows to clip based on number of repeat values
+        clip_num = raw_data['Date/Time'].str.count('Date*').sum()
         # Delete the first 3 rows
-        raw_data = raw_data.iloc[3:]
+        raw_data = raw_data.iloc[(clip_num-1):]
         # Re-define column names to temporary values
         raw_data.columns = raw_data.iloc[0]
         # Remove columns only containing nans
@@ -170,11 +173,18 @@ def to_netcdf():
         # Iterate through keys and values to dynamically construct xArrays
         for key, value in param_dict.items():
             # Format DataFrame corresponding to the current iterand by dropping certain columns and re-indexing
-            df = raw_data.loc[raw_data[400].isin([value])].drop(columns=['Record', 400, 'LV2 Processor']).set_index('time').astype(float)
+            df = raw_data.loc[raw_data[400].isin([value])].drop(columns=['Record', 400, 'LV2 Processor']).set_index('time')
+            # Eliminate any blank cells in the DataFrame (assume one blank cell per DataFrame)
+            df.iloc[np.where(df.applymap(lambda x: x == '  '))[0], np.where(df.applymap(lambda x: x == '  '))[1]] = np.nan
+            # Make columns with data types of 'object' to numeric types
+            df = df.apply(pd.to_numeric)
             # Create height range based on DataFrame column names
             heights = [float(i) for i in df.columns]
-            # Construct temporary xArray using times and heights as dimensions and coordinates
-            temp_xr = xr.Dataset(data_vars={key: (['time', 'height'], df.values)}, coords={'time': times, 'height': heights})
+            # Ensure no DataFrames with mismatching data values are incorporated to the xArray
+            if df.values.shape[0] == len(times):
+                temp_xr = xr.Dataset(data_vars={key: (['time', 'height'], df.values)}, coords={'time': times, 'height': heights})
+            else:
+                continue
             # Append temporary xArray to list of xArrays for future merging
             params.append(temp_xr)
         # Merge all xArrays into singular xArray
