@@ -64,14 +64,11 @@ def processor(data_type='flux'):
                 # Only grab files that match the desired data type
                 if href.split('MFT')[-1].split('.')[0][1:] == data_type:
                     print('Currently accessing: {0}'.format(href))
-                    if live:
-                        # Get remote response for current file
-                        response = requests.get(href, verify=False)
-                        # Write contents of remote file to local file
-                        with open(fpath, 'wb') as f:
-                            f.write(response.content)
-                        # Delete file for now
-                        os.remove(fpath)
+                    # Prevent re-reading and re-writing files
+                    if live and not os.path.isfile(fpath):
+                        # Use Pandas to read and save a .csv locally
+                        df = pd.read_csv(href, sep=',', skiprows=2)
+                        df.to_csv(fpath)
             
     # Access microwave radiometer data
     if data_type == 'mwr':
@@ -99,12 +96,11 @@ def processor(data_type='flux'):
                     # Build file path to save .csv contents to locally
                     fpath = os.path.join(os.getcwd(), 'data', 'mwr', href.split('/')[-1].split('_')[0].replace('-', '') + '_lv2_PROF_MANH.csv')
                     print('Currently accessing: {0}'.format(href))
-                    if live:
+                    # Prevent re-reading and re-writing files
+                    if live and not os.path.isfile(fpath):
                         # Use Pandas to read and save a .csv locally
                         df = pd.read_csv(href, sep=',', skiprows=2)
                         df.to_csv(fpath)
-                        # Delete file for now
-                        os.remove(fpath)
             else:
                 # 2019, 2020, and 2021 have .csv files organized by day-specific directories
                 if year == 2019:
@@ -131,8 +127,9 @@ def processor(data_type='flux'):
                             # Build file path to save .csv contents to locally
                             fpath = os.path.join(os.getcwd(), 'data', 'mwr', href.split('/')[-1].split('_')[0].replace('-', '') + '_lv2_PROF_MANH.csv')
                             print('Currently accessing: {0}'.format(href))
-                            # Use Pandas to read and save a .csv locally
+                            # Prevent re-reading and re-writing files
                             if live and not os.path.isfile(fpath):
+                                # Use Pandas to read and save a .csv locally
                                 df = pd.read_csv(href, sep=',', skiprows=2)
                                 df.to_csv(fpath)
 
