@@ -12,7 +12,9 @@ import logging
 import numpy as np
 import os
 import pandas as pd
+import py7zr
 import requests
+import shutil
 import ssl
 import urllib
 import warnings
@@ -132,6 +134,63 @@ def processor(data_type='flux'):
                                 # Use Pandas to read and save a .csv locally
                                 df = pd.read_csv(href, sep=',', skiprows=2)
                                 df.to_csv(fpath)
+
+    # Access lidar data - fixed scan data only for vertical velocity due to temporal frequency requirements for turbulence spectral analysis. Assume only the Leosphere WindCube WLS200S is being used.
+    if data_type == 'lidar':
+        # Override date range - lidar data only currently available for 2021
+        date_range = [2021]
+        # Define data type parent URL
+        dirpath = 'https://datadb.noaacrest.org/public/ORSL/Archived_Lidar/200S'
+        # Hold container for temporary directory to be accessed later
+        tmpdir = ''
+        # Iterate through each year in the directory
+        for year in date_range:
+            # Certificate access workaround
+            ssl._create_default_https_context = ssl._create_unverified_context
+            # Define year-specific URL
+            url = os.path.join(dirpath, str(year))
+            # Generate BeautifulSoup for this HTML page
+            soup = BeautifulSoup(requests.get(url, verify=False).content, features='html.parser')
+            # Iterate through each directory
+            for img in soup.find_all('img', alt='[DIR]'):
+                # Build path to relevant daily directory
+                url_day = os.path.join(url, img.find_parent('a')['href'])
+                # Generate BeautifulSoup for this day
+                soup_day = BeautifulSoup(requests.get(url_day, verify=False).content, features='html.parser')
+                # Iterate through each  in the daily directory
+                for img in soup_day.find_all('img', alt='[   ]'):
+                    # Select only the fixed scan files with substring 'FXD' in them
+                    if 'FXD' in os.path.join(url_day, img.find_parent('a')['href']):
+                        # Build path to relevant file
+                        href = os.path.join(url_day, img.find_parent('a')['href'])
+                        # Create lidar directory reference
+                        dirpath = os.path.join(os.getcwd(), 'data', 'lidar')
+                        # Create Manhattan-specific directory to hold lidar data, if it doesn't exist
+                        if not os.path.isdir(os.path.join(dirpath, 'PROF_MANH')):
+                            os.mkdir(os.path.join(dirpath, 'PROF_MANH'))
+                        # Build file path to save .7z to local directory
+                        fpath = os.path.join(dirpath, 'PROF_MANH', href.split('/')[-1].split('_')[0])
+                        # Extract file from URl and save to defined file path
+                        # urllib.request.urlretrieve(url=href, filename=fpath)
+                        print('Currently accessing: {0}'.format(href))
+                        print('\t Saving file to {0}'.format(fpath))
+                        # Define file path for a temporary directory to hold extracted archives
+                        tmpdir = os.path.join(dirpath, 'PROF_MANH', 'tmp')
+                        # Extract all files from .7z to the Manhattan lidar directory
+                        # with py7zr.SevenZipFile(fpath, 'r') as archive:
+                        #     # Extract .7z contents into a temporary directory
+                        #     archive.extractall(path=tmpdir)
+                        # # Remove archive
+                        # os.remove(fpath)
+        # Move all files to the top-level directory
+        dirpath = os.path.join(dirpath, 'PROF_MANH')
+        # Walk through all files and pull netCDF files
+        file_list = [os.path.join(r,file) for r,d,f in os.walk(tmpdir) for file in f if file.split('.')[-1] == 'nc']
+        # Move all the files to the top-level directory if the file doesn't already exist there
+        [shutil.move(file, dirpath) for file in file_list if not os.path.isfile(os.path.join(dirpath, file.split('/')[-1]))]
+        # Remove temporary directory
+        shutil.rmtree(tmpdir)
+            
 
 def to_netcdf():
     '''
