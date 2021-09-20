@@ -79,17 +79,21 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                 mask = temp['radial_wind_speed_ci'].data > 99
                 # Obtain masked array of vertical velocity
                 w = np.ma.array(temp['radial_wind_speed'].data, mask=~mask)
+                # Create time vector from 'seconds since Unix time' array
+                times = [datetime.datetime.utcfromtimestamp(float(t)).strftime('%Y-%m-%d %H:%M:%S') for t in temp.time]
                 # Create custom xArray
                 temp = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
                                              'ci': (['time', 'height'], temp['radial_wind_speed_ci'].data)}, 
-                                  coords={'time': temp.time.values, 
+                                  coords={'time': times, 
                                           'height': temp.range.values})
+                # Assign the current file location to the xArray Dataset
+                temp = temp.assign_coords(site=key).expand_dims('site')
                 # Masked data
                 data_list.append(temp)
             # Concatenate data and sort by time
-            data = xr.concat(data_list, dim='time').sortby('time')
-            # Assign the current file location to the xArray Dataset
-            data = data.assign_coords(site=key).expand_dims('site')
+            temp = xr.concat(data_list, dim='time').sortby('time')
+            ds_list.append(temp)
+            
         else:
             for file in file_dict[key]:
                 print('\t ', file)
@@ -104,21 +108,22 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                 # Get date corresponding to current file
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
-                times = [datetime.timedelta(milliseconds=float(t)) + date for t in temp['radial'][group]['time'][:].data]
+                times = [(datetime.timedelta(milliseconds=float(t)) + date).strftime('%Y-%m-%d %H:%M:%S') for t in temp['radial'][group]['time'][:].data]
                 # Get height vector from array in the netCDF 'height' variable
-                heights = temp['radial'][group]['range'][:].data
+                heights = [float(i) for i in temp['radial'][group]['range'][:].data]
                 # Create custom xArray
-                data = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
+                temp = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
                                              'ci': (['time', 'height'], temp['radial'][group]['confidence'][:, :].data)}, 
                                   coords={'time': times, 
                                           'height': heights})
-                
-                data = data.assign_coords(site=key).expand_dims('site')
-                ds_list.append(data)
-        data = xr.concat(ds_list, dim='time')    
+                # Assign the current file location to the xArray Dataset
+                temp = temp.assign_coords(site=key).expand_dims('site')
+                ds_list.append(temp)
+    print(ds_list)
+    data = xr.concat(ds_list, dim='time')    
     
-    return data
+    return data, ds_list
 
 if __name__ == '__main__':
     date_range = pd.date_range(start='2021-08-01', end='2021-08-02', freq='D')
-    data = processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT'])
+    data, datasets = processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT'])
