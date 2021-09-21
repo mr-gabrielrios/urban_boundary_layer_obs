@@ -139,10 +139,88 @@ def accessor(date_range=[2021080100], data_access='online'):
                                 data_list.append(temp)
                     else:
                         continue
-               
-    data = xr.concat(data_list, dim='time')
+                    
+        data = xr.concat(data_list, dim='time')
+        return data
     
-    return data
+    elif data_access == 'local':
+        # Define temporal frequency for data interpolation
+        freq = '5T'
+         # Access all data in the directory containing radiometer data.
+        data_fpath = '/Volumes/UBL Data/data/mwr'
+        # Store all radiometer files in list. Required for temporal file sorting and mass read-in (xArray open_mfdataset()).
+        file_list = []
+        # Iterate through all folders in the directory. Aggregate all netCDF file data for future processing.
+        # Assume file structure is 'mwr' > 'PROF_[SITE]' > '[YYYY]' > '[MM]', where text between brackets is variable.
+        for subdir, dirs, files in os.walk(data_fpath):
+            for file in files:
+                # Define universal file path
+                fpath = subdir + os.sep + file
+                # Process netCDF files, extract xArray Dataset, write to .nc file, and compile new .nc files into list. 
+                # This allows the use of xr.open_mfdataset with the list. 
+                # This is convoluted, but is much faster than using xr.concat.
+                if fpath.endswith('.nc') and 'processed' not in fpath:
+                    # Remove file if it exists
+                    if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
+                        os.remove(fpath.split('.')[0]+'_processed.nc')
+                    # Get site location
+                    site = fpath.split('_')[-1].split('.')[0]
+                    # Define processed file path
+                    proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
+                    # Store temporary xArray dataset
+                    temp_xr = xr.open_dataset(fpath)
+                    # Rename dimensions for consistency
+                    temp_xr = temp_xr.rename({'range': 'height'})
+                    # Average across radiometer angles
+                    temp_xr = temp_xr.mean(dim='lv2_processor')
+                    # Time interpolations for each time axis
+                    temp_xr = temp_xr.resample(time_integrated=freq).interpolate('linear')
+                    temp_xr = temp_xr.resample(time_surface=freq).interpolate('linear')
+                    temp_xr = temp_xr.resample(time_vertical=freq).interpolate('linear')
+                    # Get set of data that is in all 3 time axes
+                    setlist = [list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_vertical.values))),
+                            list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_integrated.values))),
+                            list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_integrated.values)))]
+                    # Flatten list and get unique values
+                    setlist = list(set([item for sublist in setlist for item in sublist]))
+                    # Identify the time axis that is out of order for future dropping
+                    if not np.logical_and((len(temp_xr.time_surface.values) == len(temp_xr.time_integrated.values)), (len(temp_xr.time_integrated.values) == len(temp_xr.time_vertical.values))):
+                        # Construct dictionary to hold times where there are discrepancies between axes
+                        times = {}
+                        for key, value in temp_xr.dims.items():
+                           times[key] = value
+                        drop_dim = [key for key, value in times.items() if value == max(times.values())][0]
+                        for item in setlist:
+                            temp_xr = temp_xr.drop_sel({drop_dim : item})
+                    # Create singular time axis spanning 1 day, since each file is daily
+                    time = list(temp_xr.time_integrated.values)
+                    # Merge time axes into singular time axis
+                    temp_xr = temp_xr.reset_index(['time_vertical', 'time_integrated', 'time_surface'], drop=True).assign_coords(time=time).rename({'time_vertical': 'time', 'time_integrated': 'time', 'time_surface': 'time'}).reindex({'time': time})
+                    
+                    # Add site label
+                    temp_xr.coords['site'] = site
+                    # Add site dimension
+                    temp_xr = temp_xr.expand_dims(dim='site')
+                    print(temp_xr)
+                    # Add height dimension to all data variables without it (these are surface quantities)
+                    for varname in temp_xr.data_vars:
+                        if 'height' not in temp_xr[varname].coords:
+                            temp_xr[varname] = temp_xr[varname].expand_dims(height=temp_xr.height.values, axis=2)
+                            # Set all values for above-surface heights to nan
+                            temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
+                    # Set height coordinate to floats (converts to object datatype as default)
+                    temp_xr['height'] = temp_xr['height'].astype('float')
+                    # Write netCDF file
+                    ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
+                    # Append dataset to list for future concatenation
+                    file_list.append(proc_fpath)
+    
+        # Concatenate all data into singular xArray Dataset
+        data = xr.open_mfdataset(file_list, concat_dim='site')
+        
+        return data
+        
+    
                
 def processor(url):
     '''
@@ -181,7 +259,6 @@ def processor(url):
     df = ''
     # Iterate through keys and values to dynamically construct xArrays
     for key, value in param_dict.items():
-        print(key)
         # Format DataFrame corresponding to the current iterand by dropping certain columns and re-indexing
         df = raw_data.loc[raw_data[400].isin([value])].drop(columns=['Record', 400, 'LV2 Processor']).set_index('time')
         # Handle blank DataFrame entries by filling them with nans
@@ -218,8 +295,38 @@ def processor(url):
     data = xr.merge(params)
     
     return data
+
+def nc_write(root, data):
+    '''
+    Saves data from xArray Dataset to a netCDF file to remove need for accessing NOAA-CREST database.
+
+    Parameters
+    ----------
+    root : str
+        String defining root directory for storage of the netCDF file.
+    data : xArray Dataset
+        xArray Dataset containing data within date range specified by user.
+
+    Returns
+    -------
+    None.
+
+    '''
+    
+    # Get bounding dates for use in filename string
+    dates = [pd.to_datetime(data.time[0].values), pd.to_datetime(data.time[-1].values)]
+    # Convert datetimes into strings
+    dates = [date.strftime('%Y%m%d%H%M%S') for date in dates]
+    # Define filename string
+    filename = 'MWR_MANH_s{0}_e{1}.nc'.format(dates[0], dates[-1])
+    # Write netCDF file
+    data.to_netcdf(os.path.join(root, 'mwr', filename))
                 
 if __name__ == '__main__':
-    date_range = pd.date_range(start='2021-08-10', end='2021-08-20', freq='D')
-    data = accessor(date_range, data_access='online')
+    root_dir = '/Volumes/UBL Data/data'
+    date_range = pd.date_range(start='2020-08-10', end='2020-08-20', freq='D')
+    # data = accessor(date_range, data_access='online')
+    data = accessor(date_range, data_access='local')
+    nc_write(root_dir, data)
+    
  
