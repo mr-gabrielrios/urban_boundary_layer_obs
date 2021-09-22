@@ -154,69 +154,83 @@ def accessor(date_range=[2021080100], data_access='online'):
         # Assume file structure is 'mwr' > 'PROF_[SITE]' > '[YYYY]' > '[MM]', where text between brackets is variable.
         for subdir, dirs, files in os.walk(data_fpath):
             for file in files:
-                # Define universal file path
-                fpath = subdir + os.sep + file
-                # Process netCDF files, extract xArray Dataset, write to .nc file, and compile new .nc files into list. 
-                # This allows the use of xr.open_mfdataset with the list. 
-                # This is convoluted, but is much faster than using xr.concat.
-                if fpath.endswith('.nc') and 'processed' not in fpath:
-                    # Remove file if it exists
-                    if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
-                        os.remove(fpath.split('.')[0]+'_processed.nc')
-                    # Get site location
-                    site = fpath.split('_')[-1].split('.')[0]
-                    # Define processed file path
-                    proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
-                    # Store temporary xArray dataset
-                    temp_xr = xr.open_dataset(fpath)
-                    # Rename dimensions for consistency
-                    temp_xr = temp_xr.rename({'range': 'height'})
-                    # Average across radiometer angles
-                    temp_xr = temp_xr.mean(dim='lv2_processor')
-                    # Time interpolations for each time axis
-                    temp_xr = temp_xr.resample(time_integrated=freq).interpolate('linear')
-                    temp_xr = temp_xr.resample(time_surface=freq).interpolate('linear')
-                    temp_xr = temp_xr.resample(time_vertical=freq).interpolate('linear')
-                    # Get set of data that is in all 3 time axes
-                    setlist = [list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_vertical.values))),
-                            list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_integrated.values))),
-                            list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_integrated.values)))]
-                    # Flatten list and get unique values
-                    setlist = list(set([item for sublist in setlist for item in sublist]))
-                    # Identify the time axis that is out of order for future dropping
-                    if not np.logical_and((len(temp_xr.time_surface.values) == len(temp_xr.time_integrated.values)), (len(temp_xr.time_integrated.values) == len(temp_xr.time_vertical.values))):
-                        # Construct dictionary to hold times where there are discrepancies between axes
-                        times = {}
-                        for key, value in temp_xr.dims.items():
-                           times[key] = value
-                        drop_dim = [key for key, value in times.items() if value == max(times.values())][0]
-                        for item in setlist:
-                            temp_xr = temp_xr.drop_sel({drop_dim : item})
-                    # Create singular time axis spanning 1 day, since each file is daily
-                    time = list(temp_xr.time_integrated.values)
-                    # Merge time axes into singular time axis
-                    temp_xr = temp_xr.reset_index(['time_vertical', 'time_integrated', 'time_surface'], drop=True).assign_coords(time=time).rename({'time_vertical': 'time', 'time_integrated': 'time', 'time_surface': 'time'}).reindex({'time': time})
-                    
-                    # Add site label
-                    temp_xr.coords['site'] = site
-                    # Add site dimension
-                    temp_xr = temp_xr.expand_dims(dim='site')
-                    print(temp_xr)
-                    # Add height dimension to all data variables without it (these are surface quantities)
-                    for varname in temp_xr.data_vars:
-                        if 'height' not in temp_xr[varname].coords:
-                            temp_xr[varname] = temp_xr[varname].expand_dims(height=temp_xr.height.values, axis=2)
-                            # Set all values for above-surface heights to nan
-                            temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
-                    # Set height coordinate to floats (converts to object datatype as default)
-                    temp_xr['height'] = temp_xr['height'].astype('float')
-                    # Write netCDF file
-                    ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
-                    # Append dataset to list for future concatenation
-                    file_list.append(proc_fpath)
+                # Scrape file date from file name
+                date = datetime.datetime.strptime(file.split('_')[0], '%Y%m%d')
+                # Filter out dates outside of date range
+                if date_range[0] <= date < date_range[-1]:
+                    # Define universal file path
+                    fpath = subdir + os.sep + file
+                    # Process netCDF files, extract xArray Dataset, write to .nc file, and compile new .nc files into list. 
+                    # This allows the use of xr.open_mfdataset with the list. 
+                    # This is convoluted, but is much faster than using xr.concat.
+                    if fpath.endswith('.nc') and 'processed' not in fpath:
+                        print(file)
+                        # Remove file if it exists
+                        if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
+                            os.remove(fpath.split('.')[0]+'_processed.nc')
+                        # Get site location
+                        site = fpath.split('_')[-1].split('.')[0]
+                        # Store temporary xArray dataset
+                        temp_xr = xr.open_dataset(fpath)
+                        if 'MANH' not in file.split('_')[-1]:
+                            # Define processed file path
+                            proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
+                            # Rename dimensions for consistency
+                            temp_xr = temp_xr.rename({'range': 'height'})
+                            # Average across radiometer angles
+                            temp_xr = temp_xr.mean(dim='lv2_processor')
+                            # Time interpolations for each time axis
+                            temp_xr = temp_xr.resample(time_integrated=freq).interpolate('linear')
+                            temp_xr = temp_xr.resample(time_surface=freq).interpolate('linear')
+                            temp_xr = temp_xr.resample(time_vertical=freq).interpolate('linear')
+                            # Get set of data that is in all 3 time axes
+                            setlist = [list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_vertical.values))),
+                                    list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_integrated.values))),
+                                    list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_integrated.values)))]
+                            # Flatten list and get unique values
+                            setlist = list(set([item for sublist in setlist for item in sublist]))
+                            # Identify the time axis that is out of order for future dropping
+                            if not np.logical_and((len(temp_xr.time_surface.values) == len(temp_xr.time_integrated.values)), (len(temp_xr.time_integrated.values) == len(temp_xr.time_vertical.values))):
+                                # Construct dictionary to hold times where there are discrepancies between axes
+                                times = {}
+                                # Create accessible dictionary (dims.items() produces a FrozenDict)
+                                for key, value in temp_xr.dims.items():
+                                   times[key] = value
+                                # Identify the time axis with the mismatching value
+                                drop_dim = [key for key, value in times.items() if value == max(times.values())][0]
+                                # For each mismatching value, drop it and its corresponding data from the Dataset
+                                for item in setlist:
+                                    temp_xr = temp_xr.drop_sel({drop_dim : item})
+                            # Create singular time axis spanning 1 day, since each file is daily
+                            time = list(temp_xr.time_integrated.values)
+                            # Merge time axes into singular time axis
+                            temp_xr = temp_xr.reset_index(['time_vertical', 'time_integrated', 'time_surface'], drop=True).assign_coords(time=time).rename({'time_vertical': 'time', 'time_integrated': 'time', 'time_surface': 'time'}).reindex({'time': time})
+                        else:
+                            proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
+                            temp_xr = temp_xr.isel(height=range(1, len(temp_xr.height)))
+                            temp_xr['height'] = temp_xr['height']*1000
+                        # Add site label
+                        temp_xr.coords['site'] = site
+                        # Add site dimension
+                        temp_xr = temp_xr.expand_dims(dim='site')
+                        # Add height dimension to all data variables without it (these are surface quantities)
+                        for varname in temp_xr.data_vars:
+                            if 'height' not in temp_xr[varname].coords:
+                                temp_xr[varname] = temp_xr[varname].expand_dims(height=temp_xr.height.values, axis=2)
+                                # Set all values for above-surface heights to nan
+                                temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
+                        # Set height coordinate to floats (converts to object datatype as default)
+                        temp_xr['height'] = temp_xr['height'].astype('float')
+                        # print(list(temp_xr.height.values))
+                        # Write netCDF file
+                        ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
+                        # Append dataset to list for future concatenation
+                        file_list.append(proc_fpath)
     
         # Concatenate all data into singular xArray Dataset
         data = xr.open_mfdataset(file_list, concat_dim='site')
+        
+        print(data)
         
         return data
         
@@ -269,7 +283,6 @@ def processor(url):
         for i, item in enumerate(df.dtypes):
             col = df.columns[i]
             if item == 'object':
-                print(col)
                 df[col] = df[col].str.replace(' ', '').astype(float)
         # Create height range based on DataFrame column names and convert km to m
         heights = [float(i)*1000 for i in df.columns]
@@ -327,6 +340,6 @@ if __name__ == '__main__':
     date_range = pd.date_range(start='2020-08-10', end='2020-08-20', freq='D')
     # data = accessor(date_range, data_access='online')
     data = accessor(date_range, data_access='local')
-    nc_write(root_dir, data)
+    # nc_write(root_dir, data)
     
  
