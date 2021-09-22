@@ -5,10 +5,11 @@ This repo holds scripts used to collect and process data to support the observat
 | Abbreviation  | Borough       | Location                  | Coordinates         |
 | ------------- | ------------- | ------------------------- | ------------------- |
 | BKLN          | Brooklyn      | Brooklyn College          | 40.6311, -73.9524   |
-| BRON          | Brooklyn      | Lehman College            | 40.8729, -73.8945   |
-| MANH          | Brooklyn      | City College              | 40.8200, -73.9493   |
-| QUEE          | Brooklyn      | Queens College            | 40.7282, -73.7949   |
-| STAT          | Brooklyn      | College of Staten Island  | 40.6021, -74.1504   |
+| BRON          | Bronx         | Lehman College            | 40.8729, -73.8945   |
+| MANH          | Manhattan     | City College              | 40.8200, -73.9493   |
+| QUEE          | Queens        | Queens College            | 40.7282, -73.7949   |
+| STAT          | Staten Island | College of Staten Island  | 40.6021, -74.1504   |
+
 
 ## Data Sources
 ### Flux Towers
