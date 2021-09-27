@@ -38,16 +38,14 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
         for directory in dirs:
             # Catch the loop and skip to next location if the site was not requested
             if directory not in sites:
-                print('Skipping ', directory)
+                continue
             else:
-                print('Processing ', directory)
                 # Build temporary list of files for each location
                 temp = []
                 # Iterate through files for each location
                 for file in os.listdir(os.path.join(root, directory)):
                     # Only select netCDF files
                     if file.split('.')[-1] == 'nc':
-                        print('\t Accessing ', file)
                         filename = file.split('.')[0]
                         # Handle date formatting for different lidar networks
                         # Manhattan: City College of New York
@@ -65,7 +63,6 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
     # Aggregate lidar data into single xArray by iterating through the dictionary of files
     ds_list = []
     for key in file_dict.keys():
-        print(key)
         if key == 'MANH':
             # Initialize dictionary to hold sweep names that correspond to each file
             sweeps = {}
@@ -74,6 +71,7 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
             for file in file_dict[key]:
                 sweeps[file] = list(nc.Dataset(file).groups.keys())[1]
             for file in file_dict['MANH']:
+                print('\t', file)
                 temp = xr.open_dataset(file, group=sweeps[file], decode_times=False)
                 # Quality mask using confidence interval > 99%
                 mask = temp['radial_wind_speed_ci'].data > 99
@@ -90,28 +88,39 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                 temp = temp.assign_coords(site=key).expand_dims('site')
                 # Masked data
                 data_list.append(temp)
-            # Concatenate data and sort by time
-            temp = xr.concat(data_list, dim='time').sortby('time')
-            ds_list.append(temp)
-            
+            # Concatenate data and sort by time, if data found
+            if data_list:
+                temp = xr.concat(data_list, dim='time').sortby('time')
+                ds_list.append(temp)
+                
         else:
             for file in file_dict[key]:
+                print('\t', file)
                 # Open netCDF file
                 temp = nc.Dataset(file)
-                # Get group name where data is stored
+                # Get group name where data is stored. Skip file if there's nothing in there.
+                if 'radial' not in temp.groups:
+                    continue
                 group = list(temp['radial'].groups.keys())[0]
                 # Quality mask using confidence interval > 99%
                 mask = temp['radial'][group]['confidence'][:, :].data > 99
-                # Obtain masked array of vertical velocity
-                w = np.ma.array(temp['radial'][group]['w'][:, :].data, mask=~mask)
+                # Obtain masked array of velocity components
+                u = np.ma.masked_values(np.ma.array(temp['radial'][group]['u'][:, :].data, mask=~mask), np.nan)
+                v = np.ma.masked_values(np.ma.array(temp['radial'][group]['v'][:, :].data, mask=~mask), np.nan)
+                w = np.ma.masked_values(np.ma.array(temp['radial'][group]['w'][:, :].data, mask=~mask), np.nan)
+                # Obtain wind direction array
+                direction = np.ma.masked_values(np.ma.array(temp['radial'][group]['direction'][:, :].data, mask=~mask), np.nan)
                 # Get date corresponding to current file
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
-                times = [(datetime.timedelta(milliseconds=float(t)) + date).strftime('%Y-%m-%d %H:%M:%S') for t in temp['radial'][group]['time'][:].data]
+                times = [(datetime.timedelta(milliseconds=float(t)) + date) for t in temp['radial'][group]['time'][:].data]
                 # Get height vector from array in the netCDF 'height' variable
                 heights = [float(i) for i in temp['radial'][group]['range'][:].data]
                 # Create custom xArray and ensure time sorting
-                temp = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
+                temp = xr.Dataset(data_vars={'u': (['time', 'height'], u.data),
+                                             'v': (['time', 'height'], v.data),
+                                             'w': (['time', 'height'], w.data), 
+                                             'wind_direction': (['time', 'height'], direction.data), 
                                              'ci': (['time', 'height'], temp['radial'][group]['confidence'][:, :].data)}, 
                                   coords={'time': times, 
                                           'height': heights}).sortby('time')
@@ -120,10 +129,10 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                 ds_list.append(temp)
                 
     # Concatenate data and sort by time            
-    data = xr.concat(ds_list, dim='time')    
+    data = xr.concat(ds_list, dim='time')  
     
     return data
 
 if __name__ == '__main__':
-    date_range = pd.date_range(start='2021-08-10', end='2021-08-11', freq='D')
+    date_range = pd.date_range(start='2020-08-10', end='2020-08-11', freq='D')
     data = processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT'])
