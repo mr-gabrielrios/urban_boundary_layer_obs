@@ -25,7 +25,7 @@ def gamma(data):
     '''
     
     # Calculate lapse rate in (K km^-1) from 50m up. Convert height dimensions (m) to (km)
-    gamma = -data['temperature'].diff(dim='time') / (data['height'].diff(dim='height') / 1000)
+    gamma = data['temperature'].diff(dim='height') / (data['height'].diff(dim='height') / 1000)
     # Prepand empty lapse rate entry for 0m full of nans
     temp = gamma.sel(height=50)
     temp['height'] = 0
