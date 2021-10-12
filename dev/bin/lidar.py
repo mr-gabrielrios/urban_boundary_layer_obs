@@ -103,13 +103,13 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                     continue
                 group = list(temp['radial'].groups.keys())[0]
                 # Quality mask using confidence interval > 99%
-                mask = temp['radial'][group]['confidence'][:, :].data > 99
+                mask = temp['radial'][group]['confidence'][:, :].data <= 95
                 # Obtain masked array of velocity components
-                u = np.ma.masked_values(np.ma.array(temp['radial'][group]['u'][:, :].data, mask=~mask), np.nan)
-                v = np.ma.masked_values(np.ma.array(temp['radial'][group]['v'][:, :].data, mask=~mask), np.nan)
-                w = np.ma.masked_values(np.ma.array(temp['radial'][group]['w'][:, :].data, mask=~mask), np.nan)
+                u = np.ma.array(temp['radial'][group]['u'][:, :].data, mask=mask, fill_value=np.nan)
+                v = temp['radial'][group]['v'][:, :].data
+                w = temp['radial'][group]['w'][:, :].data
                 # Obtain wind direction array
-                direction = np.ma.masked_values(np.ma.array(temp['radial'][group]['direction'][:, :].data, mask=~mask), np.nan)
+                direction = temp['radial'][group]['direction'][:, :].data
                 # Get date corresponding to current file
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
@@ -126,13 +126,59 @@ def processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
                                           'height': heights}).sortby('time')
                 # Assign the current file location to the xArray Dataset
                 temp = temp.assign_coords(site=key).expand_dims('site')
+                # Drop data below 95% confidence interval
+                # temp = temp.where(temp.ci >= 95, drop=True)
                 ds_list.append(temp)
                 
     # Concatenate data and sort by time            
     data = xr.concat(ds_list, dim='time')  
+    data = data.sortby('time')
+    
+    return data
+
+def quality_filter(data):
+    # Initialize empty data array to hold mask values
+    arrs = np.full(shape=data['ci'].shape, fill_value=np.nan)
+    # Iterate to filter at each location
+    for site_index, site in enumerate(list(data.site.values)):
+        site_data = data.sel(site=site)
+        # Get data confidence intervals
+        arr = site_data['ci'].values
+        # Round to prevent floating point issues
+        arr = np.round(arr, 2)
+        div = 100
+        arr = np.around(arr/div, decimals=0)*div
+        # Define boundary layer height search sequence
+        sequence = np.array([100, 0]) 
+        # 
+        for i, row in enumerate(arr):
+            # Check if row is all nans or zeroes
+            null_row = np.isnan(row).all()
+            zero_row = ((row == 0).all())
+            # Initialize null index value
+            index = ''
+            # Set all-zero row to nan
+            if not null_row and zero_row:
+                arr[i, :] = np.nan
+            # Identify non-zero and non-nan rows
+            if not null_row and not zero_row:
+                # Use NumPy sliding window algorithm to find match for sequence array in each time entry
+                index = np.all(np.lib.stride_tricks.sliding_window_view(row, len(sequence)) == sequence, axis=1).nonzero()
+            # If there's a hit, set all values above identified first index to nan.
+            if index:
+                if len(index[0]) > 0:
+                    value = index[0][0]
+                    arr[i, value:] = np.nan
+                    
+        arr = np.expand_dims(arr, axis=0)
+        arrs[site_index] = arr
+    
+    data = data.assign(ci=(list(data.coords), arrs))
+    data = data.where(~np.isnan(data['ci']))
     
     return data
 
 if __name__ == '__main__':
-    date_range = pd.date_range(start='2020-08-10', end='2020-08-11', freq='D')
+    date_range = pd.date_range(start='2020-08-10', end='2020-08-15', freq='D')
     data = processor(date_range, sites=['BRON', 'MANH', 'QUEE', 'STAT'])
+    data = quality_filter(data)
