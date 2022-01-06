@@ -8,6 +8,30 @@ Description:    This script contains functions to derive certain meteorological 
 # Imports
 import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
+import bin.spectral
+
+def mean_horizontal_wind(data):
+    '''
+    Calculate mean horizontal wind given a zonal and meridional wind vector.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        xArray Dataset with all information from input data sources.
+
+    Returns
+    -------
+    U : xArray DataArray
+        xArray Dataset containing a new data variable for horizontal wind.
+
+    '''
+    
+    if 'u' in data.data_vars and 'v' in data.data_vars:
+        data = data.assign(U=np.sqrt(data['u']**2 + data['v']**2))
+    
+    return data
+    
+
 def lapse_rate(data):
     '''
     Calculate lapse rate in K km^-1.
@@ -38,6 +62,38 @@ def lapse_rate(data):
     
     return data
 
+def saturation_vapor_pressure(data):
+    
+    T = data['temperature'] - 273.15
+    es = np.exp(34.494 - 4924.99/(T + 237.1))/(T + 105)**1.57
+    data['saturation_vapor_pressure'] = es/100
+    
+    return data
+
+'''
+def pressure(data):
+    
+    # degC
+    T = data['temperature'] - 273.15
+    # -
+    RH = data['relative_humidity']
+    # -
+    A, B = 17.625, 243.04
+    # degC
+    Td = B*(np.log(RH/100) + A*T/(B+T))/(A - np.log(RH/100) - A*T/(B+T))
+    # hPa
+    e = 6.11*(np.exp(17.27*Td/(237.3+Td)))
+    # hPa
+    es = 6.11*(np.exp(17.27*T/(237.3+T)))
+    
+    ws = (0.622*es - 0.622*e*100/RH)/(e-es)
+    p = e*(1 - 100/RH)/(1 - 100*e/(RH*es))
+    print(p) 
+    data['pressure'] = p
+    
+    return data
+'''
+
 def pressure(data):
     '''
     Calculate atmospheric pressure over all given times and heights.
@@ -51,38 +107,17 @@ def pressure(data):
     -------
     data : xArray Dataset
          xArray Dataset containing all observed data AND derived pressure estimates.
-
     '''
     
-    # Copy 0m pressure data to 50m pressure data
-    data['pressure'].loc[{'height': 50}] = data['pressure'].loc[{'height': 0}]
+    # Assuming as isothermal atmosphere
+    H = 287 * data['temperature'].sel(height=0) / 9.81
+    data['pressure'] = data['pressure'].sel(height=0) * np.exp(-data.height/H)
     
-    # Initialize empty list of DataArrays to concatenate after iteration
-    pressures = []
-    # Iterate over all height values to calculate pressure at all levels.
-    for i in range(0, len(data.height.values)):
-        # Get current iteration height
-        curr_ht = data.height.values[i]
-        # Preload values into concatenated xArray Dataset
-        if i < 2:
-            temp = data['pressure'].loc[{'height': curr_ht}]
-        # Derive pressure for heights above 100m
-        # Current model: https://home.chpc.utah.edu/~hallar/Thermo/Lectures/Lecture6.pdf
-        else:
-            prev_ht = data.height.values[i-1]
-            # Re-use "temp" to reduce computation time
-            temp = temp * (data['temperature'].loc[{'height': curr_ht}]/data['temperature'].loc[{'height': prev_ht}])**(9.81/(287 * data['lapse_rate'].loc[{'height': prev_ht}]))
-        # Adjust height of "temp" to current iteration height value
-        temp['height'] = curr_ht
-        # Append to list of DataArrays to concatenate
-        pressures.append(temp)
-    # Concatenate data and assign as a data variable to main Dataset
-    data['pressure'] = xr.concat(pressures, dim='height')
     # Assign units
     data['pressure'].attrs = {'units': 'hPa'}
     
-    return data    
-    
+    return data  
+
 def potential_temperature(data):
     '''
     Calculates potential temperature for given Dataset.
@@ -94,7 +129,7 @@ def potential_temperature(data):
 
     Returns
     -------
-    data : TYPE
+    data : xArray Dataset
         xArray Dataset containing potential temperature in addition to pre-existing variables.
 
     '''
@@ -123,12 +158,81 @@ def virtual_potential_temperature(data):
     '''
     
     # Calculate partial pressure of water vapor in hPa
-    e = (data['vapor_density']/1000 * 461.5 * data['temperature'])/100
+    q = data['mixing_ratio']/(1 + data['mixing_ratio'])
     # Calculate virtual potential temperature, using a mixing ratio of 0.622
-    data['virtual_potential_temperature'] = data['temperature']/(1 - (1-0.622)*e/data['pressure'])
+    data['virtual_potential_temperature'] = data['potential_temperature'] * (1 + 0.61*q)
     # Assign units
     data['virtual_potential_temperature'].attrs = {'units': 'K'}
     
     return data
+
+def mixing_ratio(data):
+    '''
+    Calculates mixing ratio for given Dataset.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        xArray Dataset containing all observed data, water vapor density data, and pressure data.
+
+    Returns
+    -------
+    data : xArray Dataset
+        xArray Dataset containing mixing ratio in addition to pre-existing variables.
+
+    '''
     
+    # Calculate partial pressure of water vapor in hPa 
+    # e = (1/100) * (relative humidity) * (saturation vapor pressure)
+    e = (1/100) * data['relative_humidity'] * (0.61 * np.exp(17.27*(data['temperature']-273.15)/((data['temperature']-273.15)+237.3))) * 10
+    # Calculate virtual potential temperature, using a mixing ratio of 0.622
+    data['mixing_ratio'] = 0.622*e/(data['pressure'] - e)
     
+    return data
+    
+def bulk_richardson_number(data, mode='surface'):
+    
+    g = 9.81
+    if mode == 'surface':
+        buoyancy_param = g/data['virtual_potential_temperature'].sel(height=0)
+        num = data['virtual_potential_temperature'] - data['virtual_potential_temperature'].sel(height=0)
+        den = data['u']**2 + data['v']**2
+        ri = buoyancy_param * data.height * num/den
+    else:
+        buoyancy_param = g/data['virtual_potential_temperature']
+        dz = data['height'].diff(dim='height', n=1)
+        du = data['u'].diff(dim='height', n=1)
+        dv = data['v'].diff(dim='height', n=1)
+        num = dz * data['virtual_potential_temperature'].diff(dim='height', n=1)
+        den = du**2 + dv**2
+        ri = buoyancy_param * num/den
+        
+    data['ri'] = ri
+    
+    return data
+
+def stability_parameter(data):
+    
+    windows = bin.spectral.rolling_window(data, data.time, 10, 30, overlap=0)
+    
+    groups = []
+    for group in windows:
+        # Height of Marshak eddy covariance system above ground level (m)
+        z = 50
+        
+        '''
+        w_mask = ~np.isnan(group['w'])
+        T_mask = ~np.isnan(group['sonic_temperature'])
+        w = group['w'].values[w_mask][T_mask]
+        T = group['sonic_temperature'].values[w_mask][T_mask]
+        '''
+        
+        # Calculate w'T' covariance
+        wT = np.cov(group['w'], group['sonic_temperature'])[0, 1]
+        # Calculate friction velocity (see Stull, Section 2.10)
+        u_star = (np.cov(group['u'], group['w'])[0, 1]**2 + np.cov(group['v'], group['w'])[0, 1]**2)**(1/4)
+        # Calculate zeta (see Stull, Section 5.7, Equation 5.7b)
+        zeta = -0.4*z*9.81*(wT)/(group['sonic_temperature'].mean() * u_star**3)
+        groups.append(zeta)
+    
+    return groups

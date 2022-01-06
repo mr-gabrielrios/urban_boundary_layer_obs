@@ -192,7 +192,7 @@ def processor(data_type='flux'):
         shutil.rmtree(tmpdir)
             
 
-def to_netcdf():
+def to_netcdf(fpath):
     '''
     Generates netCDF files from all .csv files in the given directory. Meant to be a one-time run for downloaded .csv files from the NOAA-CREST database.
 

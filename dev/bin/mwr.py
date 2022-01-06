@@ -45,7 +45,8 @@ def accessor(date_range=[2021080100], data_access='online'):
     '''
     
     # Define range of dates in datetime format
-    date_range = pd.date_range(start=date_range[0], end=date_range[-1], freq='S').to_pydatetime()
+    # date_range = pd.date_range(start=date_range[0], end=date_range[-1], freq='S').to_pydatetime()
+    print(date_range)
     # Access data from NOAA-CREST database
     if data_access == 'online':
         # Initialize data list
@@ -69,7 +70,6 @@ def accessor(date_range=[2021080100], data_access='online'):
                 url = os.path.join(dirpath, str(year), 'data-lv2')
                 # Generate BeautifulSoup for this HTML page
                 soup = BeautifulSoup(requests.get(url, verify=False).content, features='html.parser')
-                print(url)
                 # Get all file paths. Use the icon image as the relevant child tag.
                 for img in soup.find_all('img', alt='[TXT]'):
                     # Build path to relevant files
@@ -78,7 +78,6 @@ def accessor(date_range=[2021080100], data_access='online'):
                     date = datetime.datetime.strptime(href.split('MFT')[0].split('/')[-1].split('_')[0], '%Y-%m-%d')
                     # Filter file by date range. If file not in date range, skip it
                     if date_range[0] <= date < date_range[-1]:
-                        print('\t', href)
                         # Process data from the selected .csv file and return an xArray Dataset
                         temp = processor(href)
                         # Append this Dataset to a list for future concatenation
@@ -98,7 +97,6 @@ def accessor(date_range=[2021080100], data_access='online'):
                     date = datetime.datetime.strptime(href.split('MFT')[0].split('/')[-1].split('_')[0], '%Y-%m-%d')
                     # Filter file by date range. If file not in date range, skip it
                     if date_range[0] <= date < date_range[-1]:
-                        print('\t', href)
                         # Process data from the selected .csv file and return an xArray Dataset
                         temp = processor(href)
                         # Append this Dataset to a list for future concatenation
@@ -108,8 +106,8 @@ def accessor(date_range=[2021080100], data_access='online'):
                 # Build path to directory containing all data for the given year
                 if year in [2019, 2020]:
                     url = os.path.join(dirpath, str(year))
+                    print(url)
                 else:
-                    
                     url = os.path.join(dirpath, str(year), str(year))
                 # Generate BeautifulSoup for this HTML page
                 soup = BeautifulSoup(requests.get(url, verify=False).content, features='html.parser')
@@ -132,7 +130,6 @@ def accessor(date_range=[2021080100], data_access='online'):
                             day_href = os.path.join(href, img.find_parent('a')['href'])
                             # Only select the level 2 data
                             if 'lv2' in day_href:
-                                print('\t', day_href)
                                 # Process data from the selected .csv file and return an xArray Dataset
                                 temp = processor(day_href)
                                 # Append this Dataset to a list for future concatenation
@@ -157,14 +154,15 @@ def accessor(date_range=[2021080100], data_access='online'):
                 # Scrape file date from file name
                 date = datetime.datetime.strptime(file.split('_')[0], '%Y%m%d')
                 # Filter out dates outside of date range
+                # Note: "if date in date_range" being trialed to work with specific dates
                 if date_range[0] <= date < date_range[-1]:
+                # if date in date_range:
                     # Define universal file path
                     fpath = subdir + os.sep + file
                     # Process netCDF files, extract xArray Dataset, write to .nc file, and compile new .nc files into list. 
                     # This allows the use of xr.open_mfdataset with the list. 
                     # This is convoluted, but is much faster than using xr.concat.
                     if fpath.endswith('.nc') and 'processed' not in fpath:
-                        print(file)
                         # Remove file if it exists
                         if os.path.isfile(fpath.split('.')[0]+'_processed.nc'):
                             os.remove(fpath.split('.')[0]+'_processed.nc')
@@ -172,6 +170,7 @@ def accessor(date_range=[2021080100], data_access='online'):
                         site = fpath.split('_')[-1].split('.')[0]
                         # Store temporary xArray dataset
                         temp_xr = xr.open_dataset(fpath)
+                        print('\t', fpath)
                         if 'MANH' not in file.split('_')[-1]:
                             # Define processed file path
                             proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
@@ -180,31 +179,40 @@ def accessor(date_range=[2021080100], data_access='online'):
                             # Average across radiometer angles
                             temp_xr = temp_xr.mean(dim='lv2_processor')
                             # Time interpolations for each time axis
-                            temp_xr = temp_xr.resample(time_integrated=freq).interpolate('linear')
-                            temp_xr = temp_xr.resample(time_surface=freq).interpolate('linear')
-                            temp_xr = temp_xr.resample(time_vertical=freq).interpolate('linear')
+                            if len(temp_xr.time_vertical) > 1:
+                                temp_xr = temp_xr.resample(time_integrated=freq).interpolate('linear')
+                                temp_xr = temp_xr.resample(time_surface=freq).interpolate('linear')
+                                temp_xr = temp_xr.resample(time_vertical=freq).interpolate('linear')
                             # Get set of data that is in all 3 time axes
                             setlist = [list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_vertical.values))),
+                                       list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_surface.values))),
                                     list(set(list(temp_xr.time_surface.values)) - set(list(temp_xr.time_integrated.values))),
-                                    list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_integrated.values)))]
+                                    list(set(list(temp_xr.time_integrated.values)) - set(list(temp_xr.time_surface.values))),
+                                    list(set(list(temp_xr.time_vertical.values)) - set(list(temp_xr.time_integrated.values))),
+                                    list(set(list(temp_xr.time_integrated.values)) - set(list(temp_xr.time_vertical.values)))]
                             # Flatten list and get unique values
                             setlist = list(set([item for sublist in setlist for item in sublist]))
-                            # Identify the time axis that is out of order for future dropping
-                            if not np.logical_and((len(temp_xr.time_surface.values) == len(temp_xr.time_integrated.values)), (len(temp_xr.time_integrated.values) == len(temp_xr.time_vertical.values))):
+                            # Identify the time axis that is out of order for future dropping. If there is more than one mismatch, this loop iteratively removes the nonconforming items
+                            while not np.logical_and((len(temp_xr.time_surface.values) == len(temp_xr.time_integrated.values)), (len(temp_xr.time_integrated.values) == len(temp_xr.time_vertical.values))):
                                 # Construct dictionary to hold times where there are discrepancies between axes
                                 times = {}
                                 # Create accessible dictionary (dims.items() produces a FrozenDict)
                                 for key, value in temp_xr.dims.items():
-                                   times[key] = value
+                                    # Ensure only temporal axes are selected
+                                    if 'time' in key:
+                                        times[key] = value
                                 # Identify the time axis with the mismatching value
                                 drop_dim = [key for key, value in times.items() if value == max(times.values())][0]
                                 # For each mismatching value, drop it and its corresponding data from the Dataset
                                 for item in setlist:
-                                    temp_xr = temp_xr.drop_sel({drop_dim : item})
+                                    # Only remove the item if it is in the axis of the corresponding dimension
+                                    if item in temp_xr[drop_dim]:
+                                        temp_xr = temp_xr.drop_sel({drop_dim : item})
                             # Create singular time axis spanning 1 day, since each file is daily
                             time = list(temp_xr.time_integrated.values)
                             # Merge time axes into singular time axis
                             temp_xr = temp_xr.reset_index(['time_vertical', 'time_integrated', 'time_surface'], drop=True).assign_coords(time=time).rename({'time_vertical': 'time', 'time_integrated': 'time', 'time_surface': 'time'}).reindex({'time': time})
+                            
                         else:
                             proc_fpath = os.path.splitext(fpath)[0] + '_processed.nc'
                             temp_xr = temp_xr.isel(height=range(1, len(temp_xr.height)))
@@ -221,20 +229,31 @@ def accessor(date_range=[2021080100], data_access='online'):
                                 temp_xr[varname] = temp_xr[varname].where(temp_xr.height == 0, np.nan)
                         # Set height coordinate to floats (converts to object datatype as default)
                         temp_xr['height'] = temp_xr['height'].astype('float')
-                        # print(list(temp_xr.height.values))
+                        if min(list(dict(temp_xr.dims).values())) <= 0:
+                            continue
+                        # Assign site to xArray
                         # Write netCDF file
+                        temp_xr = temp_xr.resample(time='30T').mean()
+                        temp_xr_std = temp_xr.resample(time='30T').std()
+                        # Assign standard deviation for resampling operation (average 2-min sampling rate)
+                        for var in temp_xr.data_vars:
+                            temp_xr = temp_xr.assign({'{0}_std'.format(var): temp_xr_std[var]})
                         ds = temp_xr.to_netcdf(path=proc_fpath, mode='w', format='netcdf4')
                         # Append dataset to list for future concatenation
                         file_list.append(proc_fpath)
-    
         # Concatenate all data into singular xArray Dataset
-        data = xr.open_mfdataset(file_list, concat_dim='site')
-        
-        print(data)
+        if file_list:
+            data = xr.open_mfdataset(file_list, concat_dim='site')
+            # Rename pressure data variable
+            if 'surface_pressure' in data.data_vars:
+                data = data.rename({'surface_pressure': 'pressure'})
+            # Drop irrelevant columns
+            if 'QUEE' in data.site:
+                data = data.drop(['surface_relative_humidity', 'integrated_qc', 'surface_qc', 'integrated_liquid', 'liquid_qc', 'temperature_qc', 'integrated_vapor', 'ir_temperature', 'relative_humidity_qc', 'surface_temperature', 'vapor_density_qc'])
+        else:
+            data = ''
         
         return data
-        
-    
                
 def processor(url):
     '''
@@ -270,6 +289,11 @@ def processor(url):
     times = [i.to_pydatetime() for i in raw_data.loc[raw_data[400] == 401]['time']]
     # Initialize empty list to hold temporary xArrays before merging to final xArray
     params = []
+    # Define vector for surface pressure
+    pressure = raw_data.loc[raw_data[400] == 201][' 0.05'].values.astype(float)
+    # Pad the vector into a 2D array such that all heights above 0 are nan
+    pressure = np.pad(np.expand_dims(pressure, axis=1), ((0, 0), (0, 57)), 'constant', constant_values=np.nan)
+    # Define arbitrary variable for Pandas Dataframe
     df = ''
     # Iterate through keys and values to dynamically construct xArrays
     for key, value in param_dict.items():
@@ -306,8 +330,10 @@ def processor(url):
         params.append(temp_xr)
     # Merge all xArrays into singular xArray
     data = xr.merge(params)
+    data['pressure'] = (('time', 'height'), pressure)
     
-    return data
+    
+    return raw_data, data
 
 def nc_write(root, data):
     '''
@@ -334,12 +360,23 @@ def nc_write(root, data):
     filename = 'MWR_MANH_s{0}_e{1}.nc'.format(dates[0], dates[-1])
     # Write netCDF file
     data.to_netcdf(os.path.join(root, 'mwr', filename))
-                
+         
 if __name__ == '__main__':
+    '''
     root_dir = '/Volumes/UBL Data/data'
-    date_range = pd.date_range(start='2020-08-10', end='2020-08-20', freq='D')
+    date_range = pd.date_range(start='2019-01-01', end='2019-12-31', freq='D')
     # data = accessor(date_range, data_access='online')
     data = accessor(date_range, data_access='local')
     # nc_write(root_dir, data)
+    '''
     
- 
+    dates = pd.date_range(start='2016-12-31', end='2021-10-01', freq='M', closed='left')
+    
+    directory = '/Volumes/UBL Data/data/storage/mwr'
+    for i in range(0, len(dates)-1):
+        date_range = [dates[i], dates[i+1]]      
+        print('Processing: ', date_range)
+        data = accessor(date_range=date_range, data_access='local')
+        if len(data) != 0:
+            filename = 'mwr_data_{0}-{1:02d}.nc'.format(date_range[-1].date().year, date_range[-1].date().month)
+            data.to_netcdf(os.path.join(directory, filename))
