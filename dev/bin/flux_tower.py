@@ -121,11 +121,42 @@ def processor(date_range, data_type='flux', data_access='online', height=np.nan,
         # Filter by date
         data_list = [pd.read_csv(file, names=header) for file in data_list 
                      if (date_range[0] <= 
-                         datetime.datetime.strptime(file.split('/')[-1][0:8], '%Y%m%d') <
-                         date_range[-1])]
+                         datetime.datetime.strptime(file.split('/')[-1][0:8], '%Y%m%d') < date_range[-1])]
+        
+        # Boolean that is true when data from 2021-07-31 to 2021-08-10 is read
+        dat_file = False
         if not data_list:
-            return None
-        else: 
+            # Supplement the missing dates with consolidated flux data
+            try:
+                directory = '/Users/gabriel/Downloads/converted'
+                header = ['TIMESTAMP', 'RECORD', 'Ux', 'Uy', 
+                          'Uz', 'Ts', 'diag_sonic', 'CO2', 
+                          'H2O', 'diag_irga', 'amb_tmpr', 'amb_press', 
+                          'CO2_sig_strgth', 'H2O_sig_strgth']
+                # Get all files in the directory
+                data_list = [os.path.join(directory, file) 
+                             for file in os.listdir(directory)
+                             if file.split('.')[-1] == 'dat']
+                # Filter by date
+                data_list = [pd.read_csv(file, 
+                                         names=header, 
+                                         header=1, 
+                                         skiprows=[2, 3], 
+                                         na_values=['NAN', -9999]) 
+                             for file in data_list]
+                # Rename columns
+                data = pd.concat(data_list)
+                data = data.rename(columns={'RECORD': 'Record', 'TIMESTAMP': 'time'})
+                # Reformat time string
+                data['time'] = pd.to_datetime(data['time'])
+                # Switch Boolean
+                dat_file = True
+            except:
+                return None
+        
+        # This conditional block handles data outside of the period
+        # 2021-07-31 to 2021-08-11
+        if not dat_file:
             # Concatenate all DataFrames into single DataFrame
             data = pd.concat(data_list)
             # These 5 lines build a timestamp column from separate numeric columns
@@ -140,64 +171,25 @@ def processor(date_range, data_type='flux', data_access='online', height=np.nan,
                 data['time'] = data['timestamp'].apply(lambda x: datetime.datetime.strptime(str(x), '%Y%j%H%M%S'))
             # Remove datetime columns
             data = data.drop(columns=['Y', 'DOY', 'H', 'M', 'S', 'timestamp'])
-            # Re-index to allow for future data manipulation
-            data = data.set_index('time', drop=False)
-            # Correct timestamp from UTC+5 to UTC
-            # data['time'] = pd.to_datetime(data['time']) - datetime.timedelta(hours=5)
-            # Replace all invalid data with nans
-            data = data.replace(-7999, np.nan)
-            
-            # Only use ts_data for the time being. 30-min 'flux' data is somewhat useless, since relevant parameters can be calculated from 1 Hz meteorological data.
+       
+        # Re-index to allow for future data manipulation
+        data = data.set_index('time', drop=False)
+        # Replace all invalid data with nans
+        data = data.replace(-7999, np.nan)
+        # Drop irrelevant data
+        data = data.drop(columns=['Record', 'diag_sonic', 'CO2', 'H2O', 'diag_irga', 'amb_tmpr', 'amb_press', 'CO2_sig_strgth', 'H2O_sig_strgth'])
+        # Rename data columns to match NYS Mesonet convention
+        data = data.rename(columns={'Ux': 'u', 'Uy': 'v', 'Uz': 'w', 'Ts': 'sonic_temperature'})
+        # Clip data according to date range
+        data = data[(data.index >= date_range[0]) & (data.index < date_range[-1])]
+        # Convert Dataframe to xArray Dataset
+        data = xr.Dataset.from_dataframe(data)
+        # Add height dimension to the Dataset
+        data = data.assign_coords(height=height).expand_dims('height')
+        # Add site information to Dataset
+        data = data.assign_coords(site='MANH').expand_dims('site')
         
-            # Drop irrelevant data
-            data = data.drop(columns=['Record', 'diag_sonic', 'CO2', 'H2O', 'diag_irga', 'amb_tmpr', 'amb_press', 'CO2_sig_strgth', 'H2O_sig_strgth'])
-            # Rename data columns to match NYS Mesonet convention
-            data = data.rename(columns={'Ux': 'u', 'Uy': 'v', 'Uz': 'w', 'Ts': 'sonic_temperature'})
-            # Clip data according to date range
-            data = data[(data.index >= date_range[0]) & (data.index < date_range[-1])]
-            # Convert Dataframe to xArray Dataset
-            data = xr.Dataset.from_dataframe(data)
-            # Add height dimension to the Dataset
-            data = data.expand_dims(dim={'height': height})
-            # Add site information to Dataset
-            data = data.assign_coords(site='MANH').expand_dims('site')
-            if not spectral_analysis:
-                data = data.sortby('time').resample(time='30T').mean()
-            else:
-                data = data.sortby('time')
-            return data
-
-        
-def short_term_processor():
-    '''
-    Function to output DataFrame based on flux tower data from Marshak Building flux tower. Data used from 2021-07-31 to 2021-08-10 because it is the union of valid dates of 1 Hz Steinman lidar data and Marshak flux tower operation.
-
-    Returns
-    -------
-    ts_data: Pandas DataFrame
-
-    '''
-
-    # List of valid flux tower files
-    files = ['/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210720_e20210802_flux.dat', '/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210802_e20210818_flux.dat']
-    # Initialize list of DataFrames to be concatenated
-    ts_data = []
-    for file in files:
-        # Read in .dat file while skipping rows 3 and 4 with unnecessary metadata
-        temp = pd.read_table(file, sep=',', header=[1], skiprows=[2, 3], na_values='NAN') 
-        ts_data.append(temp)
-    # Concatenate the DataFrames
-    ts_data = pd.concat(ts_data)
-    # Adjust for Daylight Savings Time (UTC-4)
-    ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['TIMESTAMP']) - datetime.timedelta(hours=4)
-    # See https://data.cityofnewyork.us/Housing-Development/Building-Footprints/nqwf-w8eh for building height data
-    ts_data['z'] = 50.6
-    # Calculate Obukhov length (see Stull, 1988, Equation 5.7)
-    ts_data['L'] = -ts_data['Ts_Avg'].to_numpy().flatten()*ts_data['u_star'].to_numpy().flatten()/(0.4*9.81*ts_data['Ts_Uz_cov'].to_numpy().flatten())
-    # Calculate atmospheric stability parameter
-    ts_data['zeta'] = ts_data['z']/ts_data['L']
-
-    return ts_data
+        return data
 
 def plotter(data, param='H', date_range=None):
     '''
@@ -225,5 +217,13 @@ def plotter(data, param='H', date_range=None):
 
 
 if __name__ == '__main__':
-    print('Running...')
+    ts_data = processor(['20210731', '20210811'], data_type='ts_data', data_access='local', height=0)
+    
+    # Boolean to trigger file saving line. 
+    # Normally used for the period between 2021-07-31 to 2021-08-10
+    save_file = False
+    if save_file:
+        dir_ = '/Volumes/UBL Data/data/flux/MANH'
+        file = 'ts_data_s202107310000_e202108110000_r202201180830.nc'
+        ts_data.to_netcdf(os.path.join(dir_, file))
     
