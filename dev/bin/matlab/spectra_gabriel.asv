@@ -1,0 +1,26 @@
+% This function intends to generate average spectra based on a given amount
+% of data. It will chunk the data into windows and get subwindows from each
+% window. 
+
+% Input parameters:
+% x: a vector representing a high-frequency quantity, typically 'w'
+% Fs: a sampling frequency in Hertz
+% window: a window of time over which spectra will be averaged, in minutes
+% subwindow: the window will be chunked this many times
+
+function [spectra] = spectra_gabriel(x, Fs, window, subwindows)
+    % Get number of minutes per window. Will be used for indexing data.
+    window_size = window * 60 / (1/Fs);
+    % Get number of minutes per window. Will be used for indexing data.
+    subwindow_size = window_size / subwindows;
+    % Define number of windows
+    num_windows = ceil(length(x)/window_size);
+    % Chunk given data into windows
+    for index = 1:num_windows
+        % Define start and stop indices for vector slicing
+        window_start = (index - 1) * window_size + 1;
+        window_end = index * window_size;
+        % 
+        vec = x(window_start:window_end);
+        disp(vec(1))
+    end

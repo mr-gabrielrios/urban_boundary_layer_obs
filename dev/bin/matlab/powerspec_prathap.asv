@@ -1,0 +1,13 @@
+% Modified by G. Rios on 2021/01/18
+
+%Input the vector x and the sampling frequency Fs
+function [Pxx,f] = powerspec_prathap(x,Fs)
+% Get 
+nfft = 2^nextpow2(length(x));
+NumUniquePts = ceil((nfft+1)/2); 
+f = (0:NumUniquePts-1)*Fs/nfft; 
+
+
+Pxx = abs(fft(x,nfft)).^2/length(x)/Fs;
+Pxx=2.*Pxx(1:length(f));
+Pxx=runmean(Pxx,21);
