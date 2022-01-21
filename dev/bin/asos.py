@@ -8,7 +8,7 @@ Description:    Use local ASOS data to identify heat wave events in New York Cit
 import calendar, datetime, numpy as np, os, pandas as pd, re, shutil, sys, time, urllib.request
     
 # Boolean to control print statements for script diagnostics.
-str_switch = True
+str_switch = False
 
 def KTtoMS(u):
     return u*0.51444
@@ -156,7 +156,7 @@ def data_read(date_range, crd, utc_offset):
                 datetime.datetime.strftime(end_date, '%Y%m%d%H%M')]
     
     # Initialize DataFrame here to return nan DataFrame in case of failed FTP connection
-    df = pd.DataFrame(np.nan, index=date_range, columns=['sky_cover', 'station'])
+    df = pd.DataFrame(np.nan, index=date_range, columns=['sky_cover', 'station', 'precip', 'wind_direction'])
     # Set up URL to appropriate data file
     if str_switch:
         print(date_str)
@@ -173,14 +173,15 @@ def data_read(date_range, crd, utc_offset):
     # Air temperature regex: string of 6 characters "(0-9)(0-9)/(0-9)(0-9)" bounded by 2 spaces
     T_pattern = r'\s.?\d\d[+-/].?\d\d\s'
     # Wind speed regex: string of 6 characters "(0-9)(0-9)KT " bounded by 2 numbers and a space
-    # Note: This definition ignores gusts
     u_pattern = r"\s\d\d\d\d\d\D"
-    # Note: This definition allows the gust becomes the effective wind speed
-    # u_pattern = r"\d\d[K][T]\s\d"
+    # Wind direction regex
+    wd_pattern = r"\s[\d]{3}[//]"
     # Air pressure regex: string of 6 characters "SLP(0-9)(0-9)"
     p_pattern = r"[S][L][P]\d\d\d"
     # Sky cover regex: string of variable number of characters "SM (variable number of characters and digits) (0-9)(0-9)/"
     cover_pattern = r"[S][M]\s(.*)\s\d\d(/)"
+    # Precipitation regex: string of variable number of characters "(+, -, or nothing) [variable number of letters that are set of strings 'RA', 'FZRA', or 'SN', whitespace"
+    precip_pattern = r"[-|+]?[RAFZSN]{2,4}\s"
     
     # Iterate through all rows in ASOS data file. For dates in file that are within date range, extract data.
     for row in asos_data.iloc[:, 0]:
@@ -197,13 +198,29 @@ def data_read(date_range, crd, utc_offset):
                     df.loc[date, 'sky_cover'] = True
                 else:
                     df.loc[date, 'sky_cover'] = np.nan
+                # Extract precipitation information. If precipitation is detected, set to True, otherwise, False.
+                try:
+                    precip_string = re.findall(precip_pattern, row)[0] 
+                    if 'RA' in precip_string or 'FZRA' in precip_string or 'SN' in precip_string:
+                        df.loc[date, 'precip'] = True
+                    else:
+                        df.loc[date, 'precip'] = False
+                except:
+                    df.loc[date, 'precip'] = False
+                # Extract wind direction information
+                try:
+                    wind_direction_string = re.findall(wd_pattern, row)[0]
+                    df.loc[date, 'wind_direction'] = wind_direction_string[1:-1]
+                except:
+                    df.loc[date, 'wind_direction'] = np.nan
+                    
     
     # Average over all observations to produce hourly, then re-index to set dates to proper indices.
     dates = pd.date_range(start=date_range[0], end=date_range[-1], freq=freq[0])
     df = df.reindex(dates, fill_value=np.nan)
     
     # Delete ASOS data folder created locally
-    shutil.rmtree(os.path.join(os.path.dirname(__file__), data_url.split('/')[-2]))
+    # shutil.rmtree(os.path.join(os.path.dirname(__file__), data_url.split('/')[-2]))
 
     return df
 
@@ -277,9 +294,9 @@ def heat_wave_finder(data):
     
     return heat_wave_days
 
-def clear_sky_finder(date_range, locs, threshold=0.5):
+def sky_props_finder(date_range, locs, threshold=0.5):
     '''
-    Return list of dates with predominantly clear skies.
+    Return list of dates with predominantly clear skies and days with a precipitation event.
 
     Parameters
     ----------
@@ -292,8 +309,10 @@ def clear_sky_finder(date_range, locs, threshold=0.5):
 
     Returns
     -------
-    days : list
+    clear_sky_days : list
         List of days that meet the clear sky threshold.
+    precip_days : list
+        List of days that contain a precipitation event.
 
     '''
     
@@ -311,11 +330,15 @@ def clear_sky_finder(date_range, locs, threshold=0.5):
     dfs = pd.concat(dfs)
     
     dfs['date'] = dfs.index
+    # Get list of days if precipitation is recorded at any period during the day
+    precip_days = [date for date, data in dfs.groupby([dfs.date.dt.date]) if sum(data['precip'] > 0)]
+    # Get list of days if clear sky cover is recorded over the given threshold for each given day
     grouped_df = dfs.groupby([dfs.date.dt.date]).count()
-    grouped_df = grouped_df.where(grouped_df['sky_cover'] / grouped_df['station'] >= 0.5).dropna()
-    days = grouped_df.index
+    grouped_df = grouped_df.where(grouped_df['sky_cover'] / grouped_df['station'] >= threshold).dropna()
+    clear_sky_days = grouped_df.index
+    clear_sky_days = [day for day in clear_sky_days]
     
-    return days
+    return clear_sky_days, precip_days
 
 def main(date_range, dirpath='/Volumes/UBL Data/data/ncei'):
     # Read in data from directory
@@ -326,8 +349,9 @@ def main(date_range, dirpath='/Volumes/UBL Data/data/ncei'):
     return heat_wave_days
     
 if __name__ == '__main__':
-    date_range = pd.date_range(start='2021-06-01', end='2021-06-30', freq='MS')
+    date_range = pd.date_range(start='2021-06-01', end='2021-07-31', freq='MS')
     
     # Troubleshooting
+    clear_sky_days_test, precip_days_test = sky_props_finder(date_range, locs=[(0, 0)], threshold=0.5)
     
     
