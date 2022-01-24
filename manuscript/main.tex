@@ -11,6 +11,8 @@
 \usepackage{enumitem}
 % Handle colors
 \usepackage{xcolor}
+% Handle tables
+\usepackage{tabularx, caption}
 
 %%%%%% Reference files
 \addbibresource{references.bib}
@@ -29,7 +31,7 @@
 Gabriel Rios \textsuperscript{1*, 2*}, Prathap Ramamurthy \textsuperscript{1, 2}, Mark Arend \textsuperscript{2, 3}
 
 \small{
-\begin{enumerate}[leftmargin=0cm, itemsep=0mm]
+\begin{enumerate}[leftmargin=0.5cm, itemsep=0mm]
 	\item Department of Mechanical Engineering, CUNY City College, New York, New York
 	\item NOAA Center for Earth System Sciences and Remote Sensing Technologies, New York, New York
 	\item Department of Electrical Engineering, CUNY City College, New York, New York
@@ -38,7 +40,10 @@ Gabriel Rios \textsuperscript{1*, 2*}, Prathap Ramamurthy \textsuperscript{1, 2}
 
 \textbf{Corresponding author}: Gabriel Rios (\href{mailto:grios001@citymail.cuny.edu}{grios001@citymail.cuny.edu})
 
-\textbf{* Current affiliation(s)}: Department of Mechanical Engineering, CUNY City College, New York, New York; NOAA Center for Earth System Sciences and Remote Sensing Technologies, New York, New York
+\textbf{* Current affiliation(s)}: Department of Mechanical Engineering, CUNY City College, New York, New York; NOAA Center for Earth System Sciences and Remote Sensing Technologies, New York, New York \\
+
+\small{For submission to the Quarterly Journal of the Royal Meteorological Society.} \\
+\small{\textit{Last updated}: \today.}
 
 % Divider line
 \noindent\rule{\textwidth}{1pt}
@@ -56,10 +61,27 @@ Understanding the planetary boundary layer over urban areas, also called the urb
 
 \section{Data collection and analysis}
 
-\subsection{Observation site}
-The UBL over New York City is observed and analyzed in this study.
+\subsection{Study site}
+The UBL over New York City is observed and analyzed in this study. Observational data was captured at four locations within New York City (Table \ref{tab:observation_sites}).
+
+% Table displaying site information
+
+\captionof{table}{Locations and details of observations sites.}
+\begin{center}
+	\label{tab:observation_sites}
+	\begin{tabularx}{\textwidth}{l X X X X}
+ 		 \hline
+ 		  & Bronx & Manhattan & Queens & Staten Island \\
+ 		 \hline
+ 		Coordinates & 40.87248\textdegree N, -73.89352\textdegree E & 40.82044\textdegree N, -73.94836\textdegree E & 40.73433\textdegree N, -73.81585\textdegree E & 40.60401\textdegree N, -74.14850\textdegree E \\
+ 		Elevation (m a.g.l.) & 57.8 & 90.6 & 56.3 & 32.4 \\
+	\end{tabularx}
+\end{center}
 
 \subsection{Observational instruments}
+Observations of the UBL were made using a synthesis of microwave radiometers, lidars, sonic anemometers, and surface weather stations. 
+
+Vertical profiles of temperature and vapor density were captured using microwave radiometers (Radiometrics MP-3000A). Profiles are captured at 58 height levels starting at 50 m and ending at 10 km above ground level, with vertical steps of 50 m from 50 to 500 m, 100 m from 500 m to 2 km, and 250 m steps above 2 km. 
 
 \subsubsection{Data availability}
 
