@@ -5,6 +5,7 @@ Path:           ~/bin/plotting.py
 Description:    This script contains functions to plot data.
 """
 
+import calendar
 import cartopy.crs as ccrs
 import cartopy.io.img_tiles as cimgt
 import copy
@@ -20,11 +21,33 @@ from adjustText import adjust_text
 from cycler import cycler
 from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
+from mpl_toolkits.axes_grid1 import make_axes_locatable 
 from metpy.plots import Hodograph as hodo
 from windrose import WindroseAxes
 
 # Change font
 mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+# Letter strings for subplots
+subplot_letters = ['a', 'b', 'c', 'd']
+
+def reject_outliers(data, m=5):
+    '''
+    Remove outliers by choosing a range within -m-sigma and +m-sigma from the mean.
+
+    Parameters
+    ----------
+    data : NumPy array
+        Some NumPy array.
+    m : int, optional
+        Sigma number. The default is 5.
+
+    Returns
+    -------
+    data
+        NumPy array.
+
+    '''
+    return data[abs(data - np.nanmean(data)) < m * np.nanstd(data)]
 
 def colormaps(param, mode):
     '''
@@ -49,11 +72,13 @@ def colormaps(param, mode):
               'virtual_potential_temperature': 'Reds',
               'mixing_ratio': 'Greens',
               'relative_humidity': 'Greens',
+              'specific_humidity': 'Greens',
               'pressure': 'cividis',
               'U': 'Blues',
               'u': 'Blues',
               'v': 'Blues',
-              'w': 'Blues'}
+              'w': 'Blues',
+              'ri': 'binary'}
         return cs[param]
     elif mode == 'divergent':
         cs = {'temperature': 'RdBu_r',
@@ -61,7 +86,9 @@ def colormaps(param, mode):
               'virtual_potential_temperature': 'RdBu_r',
               'mixing_ratio': 'BrBG',
               'relative_humidity': 'BrBG',
+              'specific_humidity': 'BrBG',
               'pressure': 'RdBu_r',
+              'ri': 'RdBu_r',
               'U': 'RdBu_r',
               'u': 'RdBu_r',
               'v': 'RdBu_r',
@@ -192,122 +219,6 @@ def hodograph(data, sites='all', mode='hourly', time=0, single_site='QUEE'):
 
         fig.tight_layout()
 
-
-def lst_sst_plot(data):
-
-    # Set up imports for custom function
-    import bin.goes_data_processing
-    import cartopy
-    import cartopy.crs as ccrs
-    import matplotlib.pyplot as plt
-    import sys
-    from bin.goes_data_processing import main as goes_data_processing_main
-    import scipy.ndimage
-    from scipy.interpolate import griddata 
-    # Add a GOES data processing package to the local path
-    sys.path.insert(
-        0, '/Users/gabriel/Documents/urban_boundary_layer_obs/dev/bin/goes_data_processing')
-    # Get date range and format it to pass extremes as arguments to the GOES data processing script
-    date_range = [int(pd.to_datetime(date).strftime('%Y%m%d%H'))
-                  for date in data.time.values]
-
-    max_temp = 400
-
-    # Get land surface temperature data
-    lsts = goes_data_processing_main.main(-74.0060, 40.7128, 0.5,
-                                          goes_product='LSTC', date_range=[date_range[0], date_range[-1]])
-    # Get sea surface temperature data
-    ssts = goes_data_processing_main.main(-74.0060, 40.7128, 0.5,
-                                          goes_product='SSTF', date_range=[date_range[0], date_range[-1]])
-
-    # Get list of temperature extremes from all datasets for future colorbar limits
-    lst_temps = [[np.nanmin(np.where(data[3] > max_temp, np.nan, data[3])),
-                  np.nanmax(np.where(data[3] > max_temp, np.nan, data[3]))] for data in lsts]
-    sst_temps = [[np.nanmin(np.where(data[3] > max_temp, np.nan, data[3])),
-                  np.nanmax(np.where(data[3] > max_temp, np.nan, data[3]))] for data in ssts]
-    # Calculate minimum and maximum values. Escape if data is not available.
-    try:
-        vmin, vmax = [min([subitem for item in (lst_temps + sst_temps) for subitem in item]),
-                      max([subitem for item in (lst_temps + sst_temps) for subitem in item])]
-    except:
-        return None
-
-    lat, lon, combined, time, extent = None, None, None, None, None
-    
-    # Iterate through data and plot for each timestamp
-    for i in range(len(lsts)):
-        print(i, np.shape(lsts))
-        # Get land surface temperature data
-        lat, lon, lst, time, extent = lsts[i][1], lsts[i][2], lsts[i][3], lsts[i][7], lsts[i][8]
-        print(extent)
-        # Trim data to match SST data size
-        lst = lst[:, :-1]
-        # Get sea surface temperature data
-        _, _, sst = ssts[i][1], ssts[i][2], ssts[i][3]
-        # Get combined LST and SST data by placing SST data where LST data is empty
-        combined = np.where(np.isnan(lst), sst, lst)
-        # Additional safeguard to remove potentially erroneous data
-        combined = np.where(combined > max_temp, np.nan, combined)
-        
-        # Attempt interpolation using scipy.interpolate.griddata using nearest neighbor
-        combined_ = np.ma.masked_invalid(combined)
-        lon_ = lon[:, :-1][~combined_.mask]
-        lat_ = lat[:, :-1][~combined_.mask]
-        combined_ = combined_[~combined_.mask]
-        coord_zip = [list(i) for i in zip(lon_.flatten(), lat_.flatten())]
-        grid_interp = griddata(coord_zip, combined_.ravel(), (lon[:, :-1], lat[:, :-1]), method='cubic')
-    
-        # Store point data for SST and LST
-        lst_storage, sst_storage = [], []
-
-        # Begin plotting
-        proj = ccrs.Orthographic(central_longitude=-74, central_latitude=40.5)
-        try:
-            fig, ax = plt.subplots(dpi=300, subplot_kw={'projection': proj})
-            cmap = mpl.cm.plasma
-            ax.set_extent(extent)
-            # Set up colorbar levels
-            levels = np.linspace(np.around(vmin/5, decimals=0)*5,
-                                 np.around(vmax/5, decimals=0)*5,
-                                 11)
-            # Plot contour
-            # im = ax.pcolormesh(lon[:, :-1], lat[:, :-1], combined, zorder=3, transform=ccrs.PlateCarree(), vmin=vmin, vmax=vmax, shading='gouraud')
-            im = ax.contourf(lon[:, :-1], lat[:, :-1], grid_interp, zorder=3, transform=ccrs.PlateCarree(), 
-                             cmap=cmap, levels=levels, extend='both', interpolate='nearest', alpha=1)
-
-            # Create darkened contour values based on colormap (0 --> black, 1 --> original colors)
-            darken_factor = 0.8
-            cmap_dark = cmap(np.linspace(0, 1, len(levels))) * \
-                [darken_factor, darken_factor, darken_factor, 1]
-
-            im_c = ax.contour(lon[:, :-1], lat[:, :-1], grid_interp, levels=im.levels,
-                              zorder=5, linewidth=0.5, colors=cmap_dark, transform=ccrs.PlateCarree())
-            ax.clabel(im_c, levels=im.levels[::2],
-                      fmt='%2.0f', fontsize=8, colors='k')
-            # Plot coastlines
-            ax.coastlines('10m', zorder=6)
-            # Add colorbar
-            cax = fig.add_axes(
-                [ax.get_position().x1+0.01, ax.get_position().y0, 0.02, ax.get_position().height])
-            cb = plt.colorbar(im, cax=cax)
-            
-            cb.set_label('Temperature [K]', rotation=270, labelpad=15)
-            
-            # Grab LST data from Queens (28, 18)
-            lst_storage.append(grid_interp[28, 18])
-            # Grab SST data from the ocean (28, 30)
-            sst_storage.append(grid_interp[28, 30])
-            
-            ax.set_title(time, loc='left')
-        except:
-            continue
-
-    fig, ax = plt.subplots(dpi=300)
-    print(lst_storage, sst_storage)
-    # ax.plot(data.time, lst_storage-sst_storage, 'ko')
-    
-    return lat, lon, combined, time, extent
-
 def colorbar_limits(data):
     '''
     Calculate minimum and maxmimum colorbar values.
@@ -340,12 +251,17 @@ def colorbar_limits(data):
 
 def quiver(data, event=None, site='QUEE', mode='hourly', param='w', limits=None):
 
+    try:
+        units = data[param].units    
+    except:
+        units = ''
+
     if mode == 'hourly':
         data = data.sel(site=site).groupby('time.hour').mean()
         data = data.transpose("height", "hour")
         data = data.coarsen(height=3, boundary='trim').mean()
-
-        cmap = 'viridis'
+        
+        cmap = colormaps(param, 'sequential')
         if not limits:
             vmin, vmax = colorbar_limits(data[param])
             if data[param].min() < 0 and data[param].max() > 0:
@@ -356,8 +272,8 @@ def quiver(data, event=None, site='QUEE', mode='hourly', param='w', limits=None)
                 cmap = 'RdBu_r'
 
         fig, ax = plt.subplots(dpi=300)
-        im = ax.pcolormesh(data.hour.values, data.height.values,
-                           data[param].values, alpha=0.75, cmap=cmap, vmin=vmin, vmax=vmax)
+        im = ax.contourf(data.hour.values, data.height.values,
+                         data[param].values, cmap=cmap, levels=16)
         vectors = ax.quiver(data.hour.values, data.height.values,
                             data['u'].values, data['v'].values, scale=200, cmap=cmap, pivot='mid', width=0.004, zorder=1)
 
@@ -377,8 +293,8 @@ def quiver(data, event=None, site='QUEE', mode='hourly', param='w', limits=None)
                 cmap = 'RdBu_r'
 
         fig, ax = plt.subplots(dpi=300)
-        im = ax.pcolormesh(data.hour.values, data.height.values,
-                           data[param].values, alpha=0.75, cmap=cmap, vmin=vmin, vmax=vmax)
+        im = ax.pcontourf(data.hour.values, data.height.values,
+                           data[param].values, cmap=cmap, vmin=vmin, vmax=vmax)
         vectors = ax.quiver(data.hour.values, data.height.values,
                             data['u'].values, data['v'].values, scale=200, pivot='mid', width=0.004, zorder=1)
 
@@ -406,11 +322,13 @@ def quiver(data, event=None, site='QUEE', mode='hourly', param='w', limits=None)
         ax.xaxis.set_major_formatter(myFmt)
         fig.autofmt_xdate()
 
-    colorbar = fig.colorbar(im)
-    colorbar.set_label('{0} [$\mathregular{{{1}}}$]'.format(param.replace('_', ' ').title(), data[param].units), rotation=270, labelpad=15)
-    ax.set_ylabel('Height [m]')
+    cax = make_axes_locatable(ax).append_axes('right', size='3%', pad=0.1)
+    colorbar = fig.colorbar(im, cax=cax, cmap=cmap, extend='both')
+    print(units)
+    colorbar.set_label('{0} [$\mathregular{{{1}}}$]'.format(param.replace('_', ' ').title(), units), rotation=270, labelpad=20)
+    ax.set_ylabel('Height [m]', labelpad=10)
 
-    qk = ax.quiverkey(vectors, X=0.85, Y=1.04, U=10,
+    qk = ax.quiverkey(vectors, X=0.88, Y=1.04, U=10,
                       label='{0} m/s'.format(10), coordinates='axes', zorder=2, labelpos='E')
 
     if event:
@@ -531,28 +449,80 @@ def cum_wind_rose(data, site, height, ax=None):
     
     return ax
 
-def cum_wind_rose_grouped(data, site, height):
+def cum_wind_rose_grouped(data, site, height, hours=[0, 24]):
+    '''
+    Plot frequency of a parameter over all wind directions for a given site, height, and time range.
 
-    data = data.sel(site=site, height=height)
+    Parameters
+    ----------
+    data : xArray Dataset
+        Dataset with typical information.
+    site : str
+        Site name.
+    height : int
+        Height of desired observations.
+    hours : list or tuple, optional
+        List or tuple with 2 elements, with the first and last hour of the range desired. End non-inclusive. The default is [0, 24].
 
+    '''
+
+    # Filter data by the given parameters
+    data = data.sel(site=site, 
+                    height=height, 
+                    time=((data.time.dt.hour >= hours[0]) &
+                          (data.time.dt.hour < hours[-1])))
+    # Initialize a DataFrame to hold grouped data
     df = pd.DataFrame()
+    # Define the relevant groupby parameters
     params = ['zeta', 'wind_direction']
+    # Define the secondary groupby labels
     labels = ['Highly unstable', 'Unstable', 'Slightly unstable',
               'Slightly stable', 'Stable', 'Highly stable']
-    bins = {'zeta': [-100, -1, -0.5, 0, 0.5, 1, 100],
-            'wind_direction': np.linspace(0, 360, num=25, endpoint=True)}
-    data_grouped = data.groupby_bins(
-        params[1], bins=bins[params[1]], right=False, include_lowest=True)
+    # Define the groupby bins
+    n_bins = 25
+    bins = {'zeta': [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf],
+            'wind_direction': np.linspace(0, 360, num=n_bins, endpoint=True)}
+    # Group by primary parameter
+    data_grouped = data.groupby_bins(params[1], 
+                                     bins=bins[params[1]], 
+                                     right=False, 
+                                     include_lowest=True)
+    # Iterate over each primary grouping
     for key in data_grouped.groups.keys():
+        # Initialize a dictionary to hold grouped data
         s = {}
-        temp = data_grouped[key].groupby_bins(
-            params[0], bins=bins[params[0]], labels=labels, right=False, include_lowest=True)
-        for subkey in temp.groups.keys():
-            s[subkey] = len(temp[subkey].unstack().time.values)
-        s['wind_direction'] = key.left
-        df = df.append(s, ignore_index=True)
+        # If there is data in the group, store it. Else, continue.
+        try:
+            # Perform secondary grouping
+            temp = data_grouped[key].groupby_bins(params[0], 
+                                                  bins=bins[params[0]], 
+                                                  labels=labels, 
+                                                  right=False, 
+                                                  include_lowest=True)
+            # Iterate over every secondary group
+            for subkey in temp.groups.keys():
+                # Count number of occurrences in this secondary group
+                s[subkey] = len(temp[subkey].unstack().time.values)
+                # Attach corresponding primary group
+                s['wind_direction'] = key.left
+                # Append to DataFrame
+                df = df.append(s, ignore_index=True)
+        except:
+            for subkey in labels:
+                # Count number of occurrences in this secondary group
+                s[subkey] = 0
+                # Attach corresponding primary group
+                s['wind_direction'] = key.left
+                # Append to DataFrame
+                df = df.append(s, ignore_index=True)
+                
+    # Reset the index to primary group.
     df = df.set_index('wind_direction', drop=True)
+    # Consolidate all primary groupings to ensure they are aggregated
+    df = df.groupby(df.index).sum()
+    # Create column with sum of occurrences per primary group.
     df['sum'] = df.sum(axis=1)
+    # Divide all occurrence columns by the sum to calculate percentage.
     df = df.iloc[:, :-1].div(df['sum'], axis=0)
     df = df.sort_index()
 
@@ -560,34 +530,57 @@ def cum_wind_rose_grouped(data, site, height):
     df = df.fillna(0)
 
     df_ = df.copy()
-    cols = ['Highly unstable', 'Unstable', 'Slightly unstable',
-            'Slightly stable', 'Stable', 'Highly stable']
-    for col in cols:
+    # Iterate over columns to find missing secondary group values
+    for col in labels:
+        # If missing, fill with zeroes
         if col not in df_.columns:
             df_[col] = 0
-    df_ = df_[cols]
+    # Keep only the columns with labels
+    df_ = df_[labels]
+    # Convert wind directions to radians
     df_.index = df_.index.array * np.pi/180
-    bottom = 1.5
-
-    theta = df.index.array * np.pi/180
-    width = (2*np.pi) / len(theta)
-
+    
+    # Define the inner radius
+    bottom = 1
+    # Define the theta values on the r-theta plane
+    theta = df_.index.array
+    # Define the width of each bar based on number of primary group bins
+    width = (2*np.pi) / (n_bins-1)
+    
+    # Initialize figure
     ax = plt.subplot(111, polar=True)
+    # Reorient the figure
     ax.set_theta_zero_location('N')
     ax.set_theta_direction(-1)
     summation = []
     cmap = mpl.cm.RdBu
+    
+    # Iterate over every secondary grouping
     for i in range(0, len(df_.columns)):
+        # For the first iteration, the base radius will be the predefined inner radius
         if i == 0:
-            summation = [bottom]*len(df_.iloc[:, i])
+            summation = [bottom] * len(df_.iloc[:, i])
+        # Add from there
         else:
             summation = summation + df_.iloc[:, i-1]
-        ax.bar(theta, df_.iloc[:, i], width=width, bottom=summation, label=df_.columns[i], color=cmap(
-            i/len(df_.columns)), edgecolor=(0, 0, 0, 0.8))
-    ax.set_yticklabels([])
-    ax.grid(False)
-    ax.legend(loc="lower left", bbox_to_anchor=(1, 0))
-    ax.set_title('{0} at {1} m'.format(site, height))
+        # Plot it
+        ax.bar(theta, df_.iloc[:, i], 
+               width=width, 
+               bottom=summation, 
+               label=df_.columns[i], 
+               color=cmap(i/len(df_.columns)), 
+               linewidth=1, edgecolor='k')
+        
+    ax.grid(True, linestyle=':')
+    ax.xaxis.grid(False)
+    ax.set_yticks([1, 1.5, 2],)
+    ax.set_yticklabels(['0%', '50%', '100%'], zorder=10)
+    
+    ax.legend(loc="upper left", bbox_to_anchor=(1.2, 1), frameon=False)
+    ax.set_title('{0} at {1} m from {2}:00 to {3}:00 LST'.format(site,
+                                                                 height, 
+                                                                 hours[0], 
+                                                                 hours[1]))
 
 def wind_rose(data, sites=['QUEE'], heights=[100], hours=[0, 24]):
 
@@ -625,9 +618,11 @@ def wind_rose(data, sites=['QUEE'], heights=[100], hours=[0, 24]):
         [l.set_visible(False) for (i,l) in enumerate(ax.yaxis.get_ticklabels()) if i == 0]
         ax.set_title('{0} at {1} m'.format(sites[j], heights[k]))
         
+        '''
         if (j+1 == ncols) and k == 0:
             ax.legend(frameon=False, bbox_to_anchor=(1.2, 0.5))
-
+        '''
+        
         # Subplot formatting
         if k == 0:
             # Ensure only top row of place labels is plotted
@@ -641,10 +636,14 @@ def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
     
     ''' Provide side-by-side comparison between datasets. '''
 
-    # Filter times based on user input (end non-inclusive)
-    for dataset in data:
+    # Initialize list to store datasets
+    datas = []
+    for dataset in data:    
+        # Filter times based on user input (end non-inclusive)
         dataset = dataset.sel(time=((dataset.time.dt.hour >= hours[0]) & (dataset.time.dt.hour < hours[1])))
-
+        datas.append(dataset)
+        
+        
     nrows, ncols, szf = len(heights), len(data), 3
     fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=(szf*ncols, szf*nrows), dpi=300, subplot_kw={'projection': 'polar'})
 
@@ -653,7 +652,7 @@ def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
         # Create indices for rows and columns
         j, k = i % ncols, np.floor(i // ncols).astype('int')
         
-        ax = cum_wind_rose(data[j], site, heights[k], ax=ax)
+        ax = cum_wind_rose(datas[j], site, heights[k], ax=ax)
         
         data_type = ['Normal', 'Heat wave']
 
@@ -669,7 +668,8 @@ def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
     names = ['{0} m s⁻¹'.format(s) for s in by_label.keys()]
-    fig.legend(by_label.values(), names, frameon=False, loc='upper center', bbox_to_anchor=(0.5, 1.06), ncol=3)
+    fig.legend(by_label.values(), names, frameon=False, loc='upper center', bbox_to_anchor=(0.5, 1.02), ncol=3)
+    fig.suptitle('{0} from {1} to {2} LST'.format(site, hours[0], hours[1]), y=1.05)
     fig.tight_layout()
 
 def mean_profiles(data, sites=['QUEE'], data_std=None, param='U', hours=[0, 6, 12, 18], plot_std=False):
@@ -724,10 +724,8 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
         return None
 
     norm, hw = data
-    n_avg, n_std = norm.groupby(
-        'time.hour').mean(), norm.groupby('time.hour').std()
-    hw_avg, hw_std = hw.groupby(
-        'time.hour').mean(), hw.groupby('time.hour').std()
+    n_avg, n_std = norm.groupby('time.hour').mean(), norm.groupby('time.hour').std()
+    hw_avg, hw_std = hw.groupby('time.hour').mean(), hw.groupby('time.hour').std()
 
     # Define cyclic properties
     plt_cycler = cycler(color=['b', 'r', 'g', 'm'])
@@ -741,10 +739,13 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
         j, k = i % ncols, np.floor(i // ncols).astype('int')
 
         # Subplot formatting
+        print(j, params[k])
         if k == 0:
             # Ensure only top row of place labels is plotted
             ax.set_title(sites[j])
-        ax.set_ylabel('{0} [$\mathregular{{{1}}}$]'.format(params[k].replace('_', ' ').title(), norm[params[k]].attrs['units']))
+        unit = norm[params[k]].attrs['units']
+        unit_str = r'$\mathregular{{%s}}$' %unit
+        ax.set_ylabel('{0} [{1}]'.format(params[k].replace('_', ' ').title(), unit_str))
         ax.label_outer()
         # Define formatting cycle for axis
         ax.set_prop_cycle(plt_cycler)
@@ -789,6 +790,7 @@ def contour_timeseries(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperatur
         return None
 
     norm, hw = data
+    
     n_avg, n_std = norm.groupby(
         'time.hour').mean(), norm.groupby('time.hour').std('time')
     hw_avg, hw_std = hw.groupby(
@@ -808,45 +810,70 @@ def contour_timeseries(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperatur
         anom = hw_avg[params[k]].sel(
             site=sites[j]).T - n_avg[params[k]].sel(site=sites[j]).T
         
-        print(hw_avg.height)
-        print(n_avg.height)
-        print(n_std.height)
         
         anom = xr.apply_ufunc(
             lambda x, m, s: (x-m)/s,
             hw_avg[params[k]].sel(site=sites[j]).T,
             n_avg[params[k]].sel(site=sites[j]).T,
             n_std[params[k]].sel(site=sites[j]).T)
+    
+        # Define colorbar extension direction(s)
+        min_val, max_val, extend = None, None, None
 
         # If anomaly has both positive and negative data, use a divergent colormap. Else, use sequential.
         if np.nanmin(anom) < 0 and np.nanmax(anom) > 0:
+            # Define colormap
             cmap = colormaps(params[k], 'divergent')
-            norm = colors.TwoSlopeNorm(
-                vmin=np.nanmin(np.ma.masked_invalid(anom)), 
-                vcenter=0., 
-                vmax=np.nanmax(np.ma.masked_invalid(anom)))
+            # Get the minimum and maximum values from the anomaly dataset
+            min_val, max_val = [np.nanmin(np.ma.masked_invalid(anom)), 
+                                np.nanmax(np.ma.masked_invalid(anom))]
+            # Cap the bounds at 2-sigma to ensure normalization of data
+            if min_val < -2:
+                min_val = -2
+                extend = 'both'
+            if max_val > 2:
+                max_val = 2
+                extend = 'both'
+            # Define normalization about 0
+            norm = colors.TwoSlopeNorm(vmin=min_val, vcenter=0., vmax=max_val)
         else:
+            # Define colormap
             cmap = colormaps(params[k], 'sequential')
-            norm = None
-
+            # Get the minimum and maximum values from the anomaly dataset
+            min_val, max_val = [np.nanmin(np.ma.masked_invalid(anom)), 
+                                np.nanmax(np.ma.masked_invalid(anom))]
+            # Cap the bounds between 0 and the extreme value
+            norm = colors.Normalize(vmin=min_val, vmax=max_val)
+            if min_val >= 0 and max_val >= 0:
+                extend = 'max'
+            else:
+                extend = 'min'
+            
         # Get colorbar limits at 2-sigma and levels
-        levels = 10
+        levels = 12
 
-        im = ax.contourf(x, y, anom, cmap=cmap, levels=levels, norm=norm)
+        im = ax.contourf(x, y, anom, cmap=cmap, norm=norm, extend=extend, levels=levels)
 
         # Subplot formatting
         if k == 0:
             # Ensure only top row of place labels is plotted
             ax.set_title('{0} \n \n {1} '.format(sites[j], params[k].replace('_', ' ').title()), fontsize=10)
         else:
-            ax.set_title('{0}'.format(params[k].replace('_', ' ').title(), hw[params[k]].attrs['units']), fontsize=10)
+            ax.set_title('{0}'.format(params[k].replace('_', ' ').title()), fontsize=10)
         ax.set_xlabel('Hour [LST]')
-        ax.set_ylabel('Height [m]')
+        ax.set_ylabel('Height [m]', labelpad=10)
         ax.label_outer()
+
+        # Add subplot text identifier
+        ax.annotate(xy=(0, 0), xytext=(0.06, 0.88), text=subplot_letters[j], 
+                    xycoords='axes fraction', fontsize=12)
 
         # Place colorbar at the end of each row
         if j == ncols-1:
-            colorbar = fig.colorbar(im, ax=axs[k, j], cmap=cmap)
+            cax = make_axes_locatable(ax).append_axes('right', 
+                                                      size='5%', 
+                                                      pad=0.1)
+            colorbar = fig.colorbar(im, cax=cax, extend=extend)
             colorbar_label = colorbar.set_label('$\sigma$', rotation=270, labelpad=20)
 
     # Figure formatting
@@ -963,56 +990,56 @@ def vertical_profiles_daily(data, sites=['BRON', 'QUEE', 'STAT'], hours=[6, 12, 
         
         # Main data
         for c, site in enumerate(sites):
+            
+            mc = 0
             im_n1 = ax.plot(
                 n_avg[params[0]].sel(site=site, hour=hours[j]), 
                 n_avg.height, 
                 label=params[0], 
-                marker=markers[c % 2], markevery=4, markersize=4, 
+                marker='o', markevery=4, markersize=4, 
                 color='b', zorder=3)
-            '''
+            
             im_n1_std = ax.fill_betweenx(
                 n_avg.height,
                 n_avg[params[0]].sel(site=site, hour=hours[j]) - n_std[params[0]].sel(site=site, hour=hours[j]),
                 n_avg[params[0]].sel(site=site, hour=hours[j]) + n_std[params[0]].sel(site=site, hour=hours[j]),
                 color='b',
                 alpha=0.1)
-            '''
+            
             im_hw1 = ax.plot(
                 hw_avg[params[0]].sel(site=site, hour=hours[j]), 
                 hw_avg.height, 
-                marker=markers[c % 2], markevery=4, markersize=4, 
+                marker='s', markevery=4, markersize=4, 
                 label=params[0], 
                 color='r', 
                 zorder=3)
-            '''
+            
             im_hw1_std = ax.fill_betweenx(
                 hw_avg.height,
                 hw_avg[params[0]].sel(site=site, hour=hours[j]) - hw_std[params[0]].sel(site=site, hour=hours[j]),
                 hw_avg[params[0]].sel(site=site, hour=hours[j]) + hw_std[params[0]].sel(site=site, hour=hours[j]),
                 color='r',
                 alpha=0.1)
-            '''
             
-            im_n2 = ax_.plot(n_avg[params[1]].sel(site=site, hour=hours[j]), n_avg.height, label=params[1], marker=markers[c % 2], markevery=4, markersize=4, linestyle='dotted', color='steelblue', zorder=2, fillstyle='none')
-            '''
+            im_n2 = ax_.plot(n_avg[params[1]].sel(site=site, hour=hours[j]), n_avg.height, label=params[1], marker='o', markevery=4, markersize=4, linestyle='dotted', color='steelblue', zorder=2, fillstyle='none')
+            
             im_n2_std = ax_.fill_betweenx(
                 n_avg.height,
                 n_avg[params[1]].sel(site=site, hour=hours[j]) - n_std[params[1]].sel(site=site, hour=hours[j]),
                 n_avg[params[1]].sel(site=site, hour=hours[j]) + n_std[params[1]].sel(site=site, hour=hours[j]),
                 color='steelblue',
-                alpha=0.2)
-            '''
-            im_hw2 = ax_.plot(hw_avg[params[1]].sel(site=site, hour=hours[j]), hw_avg.height, marker=markers[c % 2], markevery=4, markersize=4, label=params[1], linestyle='dotted', color='firebrick', zorder=2, fillstyle='none')
-            '''
+                alpha=0.1)
+            
+            im_hw2 = ax_.plot(hw_avg[params[1]].sel(site=site, hour=hours[j]), hw_avg.height, marker='s', markevery=4, markersize=4, label=params[1], linestyle='dotted', color='firebrick', zorder=2, fillstyle='none')
+            
             im_hw2_std = ax_.fill_betweenx(
                 hw_avg.height,
                 hw_avg[params[1]].sel(site=site, hour=hours[j]) - hw_std[params[1]].sel(site=site, hour=hours[j]),
                 hw_avg[params[1]].sel(site=site, hour=hours[j]) + hw_std[params[1]].sel(site=site, hour=hours[j]),
                 color='firebrick',
-                alpha=0.2)
-            '''
-
-        text = ax.text(0.89, 0.04, '{0:02d}:00 LST'.format(hours[j]), fontsize=9, ha='left', transform=ax.transAxes, bbox=dict(facecolor=(1, 1, 1, 1), edgecolor='none'), rotation=90)
+                alpha=0.1)
+            
+        text = ax.text(0.07, 0.93, '{0}'.format(subplot_letters[j]), fontsize=12, ha='left', transform=ax.transAxes)
         
         # Only plot one y-axis label. 
         # I'm sure there's a better way to do this using 'sharey'
@@ -1043,6 +1070,51 @@ def vertical_profiles_daily(data, sites=['BRON', 'QUEE', 'STAT'], hours=[6, 12, 
     
     fig.legend(handles=lines, frameon=False, bbox_to_anchor=(0.5, 1.1), loc='center', ncol=4)
     fig.subplots_adjust(top=0.9)
+
+def boxplot(data, param='temperature'):
+    '''
+    Generate boxplot for given data over a year. Typically used for temperature data.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        Complete dataset in raw form.
+
+    '''
+    
+    # Remove Manhattan data
+    data = data.drop_sel(site='MANH')
+    # Generate list of month letters for future plotting
+    month_strs = [calendar.month_name[month][0] for month in 
+                  data.groupby('time.month').mean().month.values]
+    # Initialize the figure
+    fig, ax = plt.subplots(ncols=len(data.site), 
+                           dpi=300, figsize=(8, 3), sharey=True)
+    # Iterate over each site
+    for i, site in enumerate(data.site):
+        # Iterate over each month-averaged dataset
+        for month, subdata in data.groupby('time.month'):
+            # Set current axis to a variable
+            ax_ = ax[i]
+            ax_data = subdata.sel(height=0).to_dataframe()[param]
+            # Filter for nans
+            ax_data = ax_data[~np.isnan(ax_data)]
+            print(subdata[param])
+            # Plot data
+            ax_.boxplot(ax_data, positions=[month], sym='', 
+                        widths=0.5,  
+                        patch_artist=True, 
+                        medianprops={'color': 'k'}, 
+                        boxprops={'facecolor': (0, 0, 0, 0.1)})
+            ax_.set_title(site.values)
+            # Set custom x-ticks and labels
+            ax_.set_xticks(range(1, 13))
+            ax_.set_xticklabels(month_strs)
+            # Set y-label for the first subplot
+            if i == 0:
+                ax_.set_ylabel('{0} [{1}]'.format(param.replace('_', ' ').title(), 
+                                                  subdata[param].units))
+    fig.tight_layout()
 
 if __name__ == '__main__':
     print('Run test...')
