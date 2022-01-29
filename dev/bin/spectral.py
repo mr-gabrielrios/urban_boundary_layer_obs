@@ -10,6 +10,7 @@ import datetime, math, matplotlib.pyplot as plt, numpy as np, os, pandas as pd, 
 import bin.functions, bin.lidar
 from scipy.fft import fft, fftfreq
 from scipy.optimize import curve_fit
+from cycler import cycler
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -38,83 +39,8 @@ def rolling_mean(arr, n=10):
     
     return arr
 
-def testing(dfs):
-    '''
-    Test method to evaluate spectral properties from lidar data.
-    '''
-    
-    # Group all data into 30-minute bins
-    dfs_grouped = dfs.groupby(pd.Grouper(key='time', freq='30T'))
-    # Sample data
-    sample = pd.concat([data for group, data in dfs_grouped])
-    # Define stability groups
-    bins = [-np.inf, -2, -1, -0.1, 0, 0.1, 1, np.inf]
-    # Group the matched DataFrames by stability classification
-    dfs_grouped_zeta = sample.groupby(pd.cut(sample['zeta'], bins))
-    # Limiter for iteration
-    c = 0
-    # Iterate over every 30-minute bin
-    for group, data in dfs_grouped:
-        # Grab the first bin
-        sample_df = data
-        # Create NumPy arrays for frequencies and spectra
-        bin_freq, bin_spectra, bin_std, xs, ys = [], [], [], [], []
-        # Initialize figure
-        fig, ax = plt.subplots(figsize=(6, 6))
-        # Iterate over every 5-minute sub-bin in the 30-minute bin
-        for subgroup, data in sample_df.groupby(pd.Grouper(key='time', freq='5T')):
-            # Get sampling interval
-            dt = np.nanmean(np.diff(data['time']) / np.timedelta64(1, 's'))
-            # Drop nan values
-            data = data[data['w_prime'].notna()]
-            # Get number of samples
-            N = len(data['w_prime'])
-            # Get average sampling frequency
-            T = 0.1
-            # Check to ensure data is available
-            if len(data) == 0:
-                continue
-            # Get FFT frequencies
-            x = fftfreq(N, T)
-            # Get FFT spectra
-            y = 2*np.abs(np.fft.fft(data['w_prime'].values).real)**2/N/10
-            # Normalize frequency and spectra, respectively
-            x_norm = (x * data['z'] / data['U'])[:N//2]
-            y_norm = np.abs(x * fft(data['w_prime'].values) / (data['U']**2).values)[:N//2]
-            # Define number of frequency bands over which averaging will be performed
-            n_bands = 64
-            # Define the averaged frequency bands
-            freq_bands = np.logspace(np.log10(sorted(x_norm)[1]), np.log10(np.nanmax(x_norm)), n_bands)
-            # Average frequency over defined frequency bands
-            freq_avgd = [np.nanmean(x_norm[(x_norm >= freq_bands[i]) & (x_norm < freq_bands[i+1])]) for i in np.arange(0, len(freq_bands)-1)]
-            # Average spectra over the average frequency bands
-            arr_avgd = [np.nanmean(y_norm[(x_norm >= freq_bands[i]) & (x_norm < freq_bands[i+1])]) for i in np.arange(0, len(freq_bands)-1)]
-            # Spectra std over defined frequency bands
-            arr_std = [np.nanstd(y_norm[(x_norm >= freq_bands[i]) & (x_norm < freq_bands[i+1])]) for i in np.arange(0, len(freq_bands)-1)]
-            # Append frequencies and spectra
-            bin_freq.append(freq_avgd)
-            bin_spectra.append(arr_avgd)
-            bin_std.append(arr_std)
-            xs.append(x)
-            ys.append(y)
-        # Get bin averages by averaging over each sub-bin
-        bin_freq = np.nanmean(np.array(bin_freq), axis=0)
-        xs = np.nanmean(np.array(xs), axis=0)
-        ys = np.nanmean(np.array(ys), axis=0)
-        for row in bin_spectra:
-            ax.loglog(xs, ys, lw=0.5, color='tab:blue')
-            #ax.set_aspect('equal')
-        bin_spectra = np.nanmean(np.array(bin_spectra), axis=0)
-        bin_std = np.nanmean(np.array(bin_std), axis=0)
-        # Plot spectrum
-        # if np.nansum(bin_spectra) != 0:
-        #     ax.loglog(bin_freq, bin_spectra, marker='o', markersize=4, lw=0, color='tab:blue')
-        #     ax.set_title('{0}, {1:.2f}'.format(data['time'].min(), data['zeta'].mean()))
-        
-        return ys
 
-
-def proc(height=200, site='MANH'):
+def processor(height=200, site='MANH'):
     '''
     Perform spectral analysis for a given set of lidar and flux tower data.
     Note that data is pre-selected (lidar data from 2021-07-31 to 08-31, flux tower data from 2021-07-31 to 08-10)
@@ -141,7 +67,7 @@ def proc(height=200, site='MANH'):
             sonic_anemometer = True
             
     if ccny_data:
-        # List files containing relevant data
+        # List pre-saved files containing relevant data
         files = ['/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210720_e20210802_flux.dat', '/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210802_e20210818_flux.dat']
         
         # Initialize list to hold DataFrames that will later be concatenated
@@ -178,11 +104,21 @@ def proc(height=200, site='MANH'):
             df = df.reset_index()
         else:    
             # Get lidar data from the August lidar file dedicated for spectral analysis
-            lidar_data = xr.open_mfdataset(['/Volumes/UBL Data/data/storage/lidar/lidar_data_2021-08_spectral.nc']).sel(site='MANH', height=height)
+            lidar_data_fixed = xr.open_mfdataset(['/Volumes/UBL Data/data/storage/lidar/lidar_data_2021-08_spectral.nc']).sel(site='MANH', height=height)
             # Select lidar data for dates of interest and convert to DataFrame
-            df = lidar_data.sel(time=slice('2021-07-31', '2021-08-10')).to_dataframe()
+            df_fixed = lidar_data_fixed.sel(time=slice('2021-07-31', '2021-08-10')).to_dataframe()
+            
+            # Get Doppler-beam swinging data from the lidar files dedicated for turbulence analysis
+            dbs_dir_ = '/Volumes/UBL Data/data/storage/lidar'
+            # Get file list corresponding to DBS lidar data
+            dbs_files = [os.path.join(dbs_dir_, file) for file in os.listdir(dbs_dir_) if 'MANH_DBS' in file]
+            # Get DBS lidar data
+            df_dbs = xr.open_mfdataset(dbs_files).sel(site=site, height=height).drop_vars(['ci']).to_dataframe()
+            
+            # Concatenate DataFrames
+            df = pd.concat([df_fixed, df_dbs])
             # Remove MultiIndex to allow for time and height indices to become columns
-            df = df.reset_index()
+            df = df.reset_index().sort_values('time')
             
     else:
         # List files containing Queens data
@@ -224,10 +160,7 @@ def proc(height=200, site='MANH'):
         # Remove MultiIndex to allow for time and height indices to become columns
         df = df.reset_index()
     
-    # Output DataFram
-    df_out = df.copy()
-    
-    ''' De-trend data to obtain w fluctuations '''
+    ''' De-trend data to obtain velocity fluctuations '''
     # Initialize temporary container list
     dfs_ = []
     # De-trend period
@@ -238,16 +171,21 @@ def proc(height=200, site='MANH'):
         data['w_mean'] = data['w'].mean()
         # Calculate fluctuating velocity quantity
         data['w_prime'] = data['w'] - data['w_mean']
+        # If u is in the DataFrame, get the mean and fluctuating quantities
+        if 'u' in data.columns:
+            data['u_mean'] = data['u'].mean()
+            # Calculate fluctuating velocity quantity
+            data['u_prime'] = data['u'] - data['u_mean']
+        # If u is in the DataFrame, get the mean and fluctuating quantities
+        if 'v' in data.columns:
+            data['v_mean'] = data['v'].mean()
+            # Calculate fluctuating velocity quantity
+            data['v_prime'] = data['v'] - data['v_mean']
         dfs_.append(data)
     df = pd.concat(dfs_).sort_values('time')
     
     # Group DataFrame into 30-minute intervals. This allows for matching with 30-minute-averaged ts_data
     df_grouped = df.groupby(pd.Grouper(key='time', freq='30T'))
-    # Get averaged lidar data sampling frequency in Hz
-    if sonic_anemometer:
-        dt = 10
-    else:
-        dt = 1
     
     ''' Match the lidar and flux tower data to permit grouping by stability. '''
     # Initialize list of modified DataFrames to be concatenated.
@@ -275,13 +213,44 @@ def proc(height=200, site='MANH'):
         # Append the matched DataFrame to the list of DataFrames
         dfs.append(data)
     # Concatenate the matched DataFrames
-    dfs = pd.concat(dfs)
+    dfs = pd.concat(dfs).sort_values('time')
     
     # Filter out by wind direction - northerlies filtered out
     if site == 'MANH':
         dfs = dfs.where((dfs['wind_direction'] >= 90) & (dfs['wind_direction'] <= 270))
     elif site == 'QUEE':
         dfs = dfs.where((dfs['wind_direction'] >= 180) & (dfs['wind_direction'] <= 360))
+    
+    # Remove null times to save data
+    dfs = dfs.dropna(subset=['time'])
+        
+    return dfs
+
+def spectral_analysis(dfs, param='w', sonic_anemometer=False):
+    '''
+    Perform spectral analysis on a DataFrame containing 
+
+    Parameters
+    ----------
+    dfs : Pandas Dataframe
+        Dataframe containing directional wind, the fluctuating quantity, height, and stability - at least.
+    param : str, optional
+        Name of the direction the analysis is in. The default is w.
+    sonic_anemometer : bool, optional
+        Boolean to control sampling frequency. The default is False.
+
+    Returns
+    -------
+    spectra : NumPy arrays
+        Fourier-transformed arrays containing spectral data from velocities.
+
+    '''
+    
+    # Get averaged lidar data sampling frequency in Hz
+    if sonic_anemometer:
+        dt = 10
+    else:
+        dt = 1
     
     # Define stability groups
     bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
@@ -301,6 +270,8 @@ def proc(height=200, site='MANH'):
         # Get averaged lidar data sampling frequency
         T = 1/dt
         # Get fast Fourier transform frequencies (negative frequencies filtered out)
+        if N <= 0:
+            continue
         x = fftfreq(N, T)
         y = 2*(fft(data['w_prime'].values)**2)/N/dt
         # Get normalized frequencies. 
@@ -356,7 +327,7 @@ def proc(height=200, site='MANH'):
         
         n += 1
     
-    return spectra, dfs, df_out
+    return spectra
 
 def plotter(data, heights):
     '''
@@ -381,7 +352,6 @@ def plotter(data, heights):
     
     # Curve fitting - Kaimal spectrum per Larsen (2016) as written in Cheynet (2017)
     def func(x, a, b, c, d):
-        print(a, b, c, d)
         return a*x/((1+b*x)**(5/3)) + c*x/(1+d*x**(5/3))
     
     # Curve fitting - implementation
@@ -390,15 +360,14 @@ def plotter(data, heights):
         x_ = x[~np.isnan(x) & ~np.isnan(y)]
         y_ = y[~np.isnan(x) & ~np.isnan(y)]
         # Get curve fitting metadata
-        popt, pcov = curve_fit(func, x_, y_, maxfev=10000)
+        popt, pcov = curve_fit(func, x_, y_, maxfev=100000)
         return x_, y_, popt, pcov
-    
     
     # Define figure parameters
     ncols = 3
     nrows = len(data[0]) // ncols
     # Initialize figure
-    fig, ax = plt.subplots(figsize=(10, 10), dpi=300, nrows=nrows, ncols=ncols, sharex=True, sharey=True)
+    fig, ax = plt.subplots(figsize=(7, 5), dpi=300, nrows=nrows, ncols=ncols, sharex=True, sharey=True)
     # Iterate over subplot to plot.
     # Outer loop iterates over stability groups.
     for i, ax in enumerate(ax.reshape(-1)):
@@ -409,22 +378,31 @@ def plotter(data, heights):
             # Obtain frequency-averaged frequency bins and spectra
             x, y, s, f = data[j][key][2], data[j][key][3], data[j][key][4], data[j][key][-2]
             # Plot the data
-            im = ax.loglog(f, y, marker='o', markersize=4, lw=0, label='{0} m'.format(heights[j]))
-            std = ax.fill_between(f, np.array(y)-np.array(s), np.array(y)+np.array(s), alpha=0.1)
+            im = ax.loglog(x, y, lw=3, label='{0} m'.format(heights[j]))
+            std = ax.fill_between(x, np.array(y)-0.75*np.array(s), np.array(y)+0.75*np.array(s), alpha=0.1)
             # Plot spectral reference data for lowest level
-            # if j == 0:
-                # im_kaimal = ax.loglog(x_, func(x_, *popt), color='k', linestyle='--', lw=2)
-                # im_kaimal = ax.loglog(x, x**(-5/3), color='r', linestyle='--', lw=2)
+            if ((i+1) != nrows*ncols) and j == 0:
+                # Inertial subrange frequency range
+                x_is = np.linspace(10e-1, 10e0, 2)
+                y_is = 0.6*(x_is ** (-5/3))
+                im_is = ax.loglog(x_is, y_is, 
+                                  color='k', linestyle='--', lw=2, 
+                                  zorder=10, label='_nolegend_')
             
-            ax.grid()
-            # For u* normalization
-            # ax.set_xlim([10e-3, 10e2])
-            # ax.set_ylim([10e-3, 10e3])
-            # For w normalization
-            ax.set_xlabel('$f z / \overline{U}$')
-            ax.set_ylabel('$f S_w / \overline{U}^2$')
+            xlim, ylim = [10e-4, 10e1], [10e-7, 10e1]
+            ax.set_xlim(xlim)
+            ax.set_ylim(ylim)
+            ax.grid(which='both', linestyle=':')
+            
             ax.set_title('$\zeta$ = {0}'.format(key))
-        ax.legend()
+            # Control where y-label is set
+            if i % ncols == 0:
+                ax.set_ylabel('$f S_w / \overline{U}^2$')
+            if i // ncols > 0:
+                ax.set_xlabel('$f z / \overline{U}$')
+    
+    hand, labl = ax.get_legend_handles_labels()
+    fig.legend(labels=labl, loc='upper center', ncol=len(heights), bbox_to_anchor=(0.5, 1.1), fontsize=12, frameon=False)
         
     fig.tight_layout()
 
@@ -468,22 +446,95 @@ def stats(df, spectra):
     
     return dfs
 
+def turbulence_stats(data):
+    '''
+    Calculate common turbulence statistics for a DataFrame of high-resolution data.
+    '''
+    
+    # Clean the data
+    try:
+        data = data.drop(columns=['ci', 'u_std', 'v_std', 'w_std', 'wind_direction_std', 'ci_std'])
+        data = data.dropna()
+    except:
+        pass
+    
+    # Define interval for time grouping
+    interval = '30T'
+    # Generate grouped data based on interval
+    grouped = data.groupby(pd.Grouper(key='time', freq=interval))
+    # Generate list of DataFrames to be rejoined
+    dfs = []
+    # Iterate through each group, calculating defined turbulence statistics
+    for group, subdata in grouped:
+        # Calculate std for zonal wind
+        subdata['u_std'] = np.sqrt(np.nansum((subdata['u'] - subdata['u_mean'])**2)/len(subdata))
+        # Generate turbulent intensity, per Stull (1988)
+        subdata['I_u'] = subdata['u_std'] / np.nanmean(subdata['U'])
+        # Calculate std for meridional wind
+        subdata['v_std'] = np.sqrt(np.nansum((subdata['v'] - subdata['v_mean'])**2)/len(subdata))
+        # Generate turbulent intensity, per Stull (1988)
+        subdata['I_v'] = subdata['v_std'] / np.nanmean(subdata['U'])
+        # Calculate std for vertical wind
+        subdata['w_std'] = np.sqrt(np.nansum((subdata['w'] - subdata['w_mean'])**2)/len(subdata))
+        # Generate turbulent intensity, per Stull (1988)
+        subdata['I_w'] = subdata['w_std'] / np.nanmean(subdata['U'])
+        # Append to list
+        dfs.append(subdata)
+    # Concatenate all the groups
+    data = pd.concat(dfs).sort_values('time')
+    
+    # Store dictionary of turbulent intensity values
+    intensity_means, intensity_stds = {}, {}
+    # Group by zeta
+    bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
+    # Group the matched DataFrames by stability classification
+    stability_groups = data.groupby(pd.cut(data['zeta'], bins))
+    # Iterate over the DataFrames and get averages by stability group
+    for group, data_ in stability_groups:
+        # Group by height
+        height_groups = data_.groupby(['height'])
+        for subgroup, subdata in height_groups:
+            if group in intensity_means.keys():
+                intensity_means[group].append(np.nanmean(subdata['I_u']))
+            else:
+                intensity_means[group] = [np.nanmean(subdata['I_u'])]
+                
+            if group in intensity_stds.keys():
+                intensity_stds[group].append(np.nanstd(subdata['I_u']))
+            else:
+                intensity_stds[group] = [np.nanstd(subdata['I_u'])]
+    
+    return data
+
+def main(heights=[200, 500], plot_spectra=False):
+    
+    # Initialize list of DataFrames that will be concatenated
+    data, spectra = [], {}
+    # Iterate over list of heights
+    for height in heights:
+        # Load lidar and/or anemometer data
+        df = processor(height=height)
+        data.append(df)
+        spectra[height] = spectral_analysis(df)
+        
+    # Concatenate data
+    data = pd.concat(data)
+    # Plot spectra
+    if plot_spectra:
+        plotter(list(spectra.values()), list(spectra.keys()))
+        
+    turbulence_analysis = turbulence_stats(data)
+    
+    return data, turbulence_analysis
+
 if __name__ == '__main__':
     
-    calculate = False
-    if calculate:
-        spectra, dfs, heights = [], [], [0, 200, 500]
-        for height in heights:
-            temp, df, df_ = proc(height=height, site='MANH')
-            spectra.append(temp)
-            dfs.append(df)
-        plotter(spectra, heights)
-        dfs = pd.concat(dfs)
+    data, turbulence_analysis = main()
     
     # MATLAB analysis
     save_mat = False
-    dfs_ = dfs.copy().reset_index()
     if save_mat:
+        dfs_ = dfs.copy().reset_index()
         df_ = dfs_[['time', 'w', 'w_prime', 'zeta']]
         scipy.io.savemat('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/bin/matlab/sonic_data_ccny_extremely_unstable.mat', {name: col.values for name, col in df_.items()})
     
