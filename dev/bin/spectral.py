@@ -5,15 +5,21 @@ Path:           ~/bin/spectral.py
 Description:    Perform spectral analysis on data collected by the flux tower atop the Marshak Building at The City College of New York.
 """
 
-import datetime, math, matplotlib.pyplot as plt, numpy as np, os, pandas as pd, xarray as xr, scipy, seaborn as sns
+import datetime, math, matplotlib as mpl, matplotlib.pyplot as plt, numpy as np, os, pandas as pd, xarray as xr, scipy, seaborn as sns
 
 import bin.functions, bin.lidar
 from scipy.fft import fft, fftfreq
 from scipy.optimize import curve_fit
 from cycler import cycler
 
+# Suppress warnings
 import warnings
 warnings.filterwarnings("ignore")
+# Change font
+mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+
+# Define storage path for data
+storage_dir = '/Volumes/UBL Data'
 
 def rolling_mean(arr, n=10):
     '''
@@ -40,7 +46,7 @@ def rolling_mean(arr, n=10):
     return arr
 
 
-def processor(height=200, site='MANH'):
+def processor(height=200, site='MANH', dbs=True):
     '''
     Perform spectral analysis for a given set of lidar and flux tower data.
     Note that data is pre-selected (lidar data from 2021-07-31 to 08-31, flux tower data from 2021-07-31 to 08-10)
@@ -68,7 +74,9 @@ def processor(height=200, site='MANH'):
             
     if ccny_data:
         # List pre-saved files containing relevant data
-        files = ['/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210720_e20210802_flux.dat', '/Volumes/UBL Data/data/flux/MANH/TOA5_10560_s20210802_e20210818_flux.dat']
+        files = ['{0}/data/flux/MANH/TOA5_10560_s20210707_e20210720_flux.dat'.format(storage_dir), 
+                 '{0}/data/flux/MANH/TOA5_10560_s20210720_e20210802_flux.dat'.format(storage_dir), 
+                 '{0}/data/flux/MANH/TOA5_10560_s20210802_e20210818_flux.dat'.format(storage_dir)]
         
         # Initialize list to hold DataFrames that will later be concatenated
         ts_data = []
@@ -95,7 +103,7 @@ def processor(height=200, site='MANH'):
         ''' Pull high-frequency data - lidar or sonic anemometer. '''
         if sonic_anemometer:
             # Access pre-saved netCDF file containing an xArray of the sonic anemometer data
-            sonic_data = xr.open_dataset('/Volumes/UBL Data/data/flux/MANH/ts_data_s202107310000_e202108110000_r202201180830.nc')
+            sonic_data = xr.open_dataset('{0}/data/flux/MANH/ts_data_s202107310000_e202108110000_r202201180830.nc'.format(storage_dir))
             # Select data for dates of interest and convert to DataFrame
             df = sonic_data.sel(time=slice('2021-07-31', '2021-08-10')).to_dataframe()
             # Sort by time
@@ -104,19 +112,22 @@ def processor(height=200, site='MANH'):
             df = df.reset_index()
         else:    
             # Get lidar data from the August lidar file dedicated for spectral analysis
-            lidar_data_fixed = xr.open_mfdataset(['/Volumes/UBL Data/data/storage/lidar/lidar_data_2021-08_spectral.nc']).sel(site='MANH', height=height)
+            lidar_data_fixed = xr.open_mfdataset(['{0}/data/storage/lidar/lidar_data_2021-08_spectral.nc'.format(storage_dir)]).sel(site='MANH', height=height)
             # Select lidar data for dates of interest and convert to DataFrame
-            df_fixed = lidar_data_fixed.sel(time=slice('2021-07-31', '2021-08-10')).to_dataframe()
+            df = lidar_data_fixed.sel(time=slice('2021-08-01', '2021-08-10')).to_dataframe()
             
             # Get Doppler-beam swinging data from the lidar files dedicated for turbulence analysis
-            dbs_dir_ = '/Volumes/UBL Data/data/storage/lidar'
-            # Get file list corresponding to DBS lidar data
-            dbs_files = [os.path.join(dbs_dir_, file) for file in os.listdir(dbs_dir_) if 'MANH_DBS' in file]
-            # Get DBS lidar data
-            df_dbs = xr.open_mfdataset(dbs_files).sel(site=site, height=height).drop_vars(['ci']).to_dataframe()
-            
-            # Concatenate DataFrames
-            df = pd.concat([df_fixed, df_dbs])
+            if dbs:
+                dbs_dir_ = '{0}/data/storage/lidar'.format(storage_dir)
+                # Get file list corresponding to DBS lidar data
+                dbs_files = [os.path.join(dbs_dir_, file) for file in os.listdir(dbs_dir_) if 'MANH_DBS' in file]
+                # Get DBS lidar data
+                df_dbs = xr.open_mfdataset(dbs_files).sel(site=site,
+                                                          height=height).drop_vars(['ci']).to_dataframe()
+                
+                # Concatenate DataFrames
+                df = pd.concat([df, df_dbs])
+                
             # Remove MultiIndex to allow for time and height indices to become columns
             df = df.reset_index().sort_values('time')
             
@@ -124,7 +135,7 @@ def processor(height=200, site='MANH'):
         # List files containing Queens data
         date_range = [datetime.datetime(year=2021, month=8, day=1),
                       datetime.datetime(year=2021, month=9, day=1)]
-        file_dir = '/Volumes/UBL Data/data/flux/QUEE'
+        file_dir = '{0}/data/flux/{1}'.format(storage_dir, site)
         files = [file for file in os.listdir(file_dir) 
                  if file.split('.')[-1] == 'csv']
         files = [file for file in files if '._' not in file]
@@ -153,8 +164,13 @@ def processor(height=200, site='MANH'):
         ts_data = ts_data.rename(columns={'WD': 'wnd_dir_compass', 'USTAR': 'u_star', 'ZL': 'zeta', 'WS': 'U'})
         
         ''' Pull lidar data. '''
-        # Get lidar data from the August lidar file dedicated for spectral analysis
-        lidar_data = xr.open_dataset('/Volumes/UBL Data/data/storage/lidar/lidar_data_2021-08_spectral_STAT.nc').sel(site='STAT', height=height)
+        # Get lidar files dedicated for turbulence analysis
+        lidar_dir_ = '{0}/data/storage/lidar'.format(storage_dir)
+        # Get file list corresponding to DBS lidar data
+        lidar_files = [os.path.join(lidar_dir_, file) 
+                       for file in os.listdir(lidar_dir_) if '{0}_DBS'.format(site) in file]
+        # Get lidar data from the lidar files dedicated for spectral analysis
+        lidar_data = xr.open_mfdataset(lidar_files).sel(site=site, height=height)
         # Select lidar data for dates of interest and convert to DataFrame
         df = lidar_data.sel(time=slice('2021-08-01', '2021-09-01')).to_dataframe()
         # Remove MultiIndex to allow for time and height indices to become columns
@@ -193,7 +209,7 @@ def processor(height=200, site='MANH'):
     # For the 30-minute binned DataFrames, add columns with data from the flux tower data.
     for label, data in df_grouped:
         # Match lidar and flux tower data by timestamp
-        match = ts_data.loc[ts_data['TIMESTAMP'] == label]
+        match = ts_data.loc[ts_data['TIMESTAMP'] == label].drop_duplicates()
         # Filter out necessary columns for spectra normalization
         match = match[['z', 'U', 'u_star', 'zeta', 'wnd_dir_compass']]
         # If the matched DataFrame column is empty, fill with np.nan
@@ -201,12 +217,11 @@ def processor(height=200, site='MANH'):
             if match[col].empty:
                 match[col] = [np.nan]
         # Append the matching value to the DataFrame as a column for each parameter needed for normalization.
-        
         data['z'] = np.repeat(match['z'].values, len(data))
         data['U'] = np.repeat(match['U'].values, len(data))
         data['u_star'] = np.repeat(match['u_star'].values, len(data))
         data['zeta'] = np.repeat(match['zeta'].values, len(data))
-        data['wind_direction'] = np.repeat(match['wnd_dir_compass'].values, len(data))
+        data['wind_direction_surface'] = np.repeat(match['wnd_dir_compass'].values, len(data))
         # Calculate variance
         variance = np.nansum((data['w'] - data['w_mean']))**2/len(data['w'])
         data['w_var'] = variance
@@ -217,10 +232,9 @@ def processor(height=200, site='MANH'):
     
     # Filter out by wind direction - northerlies filtered out
     if site == 'MANH':
-        dfs = dfs.where((dfs['wind_direction'] >= 90) & (dfs['wind_direction'] <= 270))
+        dfs = dfs.where((dfs['wind_direction_surface'] >= 90) & (dfs['wind_direction_surface'] <= 270))
     elif site == 'QUEE':
-        dfs = dfs.where((dfs['wind_direction'] >= 180) & (dfs['wind_direction'] <= 360))
-    
+        dfs = dfs.where((dfs['wind_direction_surface'] >= 180) & (dfs['wind_direction_surface'] < 360))
     # Remove null times to save data
     dfs = dfs.dropna(subset=['time'])
         
@@ -451,90 +465,177 @@ def turbulence_stats(data):
     Calculate common turbulence statistics for a DataFrame of high-resolution data.
     '''
     
-    # Clean the data
+    # Clean the data by removing unnecessary columns
     try:
         data = data.drop(columns=['ci', 'u_std', 'v_std', 'w_std', 'wind_direction_std', 'ci_std'])
-        data = data.dropna()
     except:
         pass
     
     # Define interval for time grouping
     interval = '30T'
-    # Generate grouped data based on interval
-    grouped = data.groupby(pd.Grouper(key='time', freq=interval))
+    # Generate grouped data based on height
+    height_groups = data.groupby('height')
     # Generate list of DataFrames to be rejoined
     dfs = []
     # Iterate through each group, calculating defined turbulence statistics
-    for group, subdata in grouped:
-        # Calculate std for zonal wind
-        subdata['u_std'] = np.sqrt(np.nansum((subdata['u'] - subdata['u_mean'])**2)/len(subdata))
-        # Generate turbulent intensity, per Stull (1988)
-        subdata['I_u'] = subdata['u_std'] / np.nanmean(subdata['U'])
-        # Calculate std for meridional wind
-        subdata['v_std'] = np.sqrt(np.nansum((subdata['v'] - subdata['v_mean'])**2)/len(subdata))
-        # Generate turbulent intensity, per Stull (1988)
-        subdata['I_v'] = subdata['v_std'] / np.nanmean(subdata['U'])
-        # Calculate std for vertical wind
-        subdata['w_std'] = np.sqrt(np.nansum((subdata['w'] - subdata['w_mean'])**2)/len(subdata))
-        # Generate turbulent intensity, per Stull (1988)
-        subdata['I_w'] = subdata['w_std'] / np.nanmean(subdata['U'])
-        # Append to list
-        dfs.append(subdata)
+    for height, height_data in height_groups:
+        # Group by given time interval
+        time_groups = height_data.groupby(pd.Grouper(key='time', freq=interval))
+        # Iterate through each time interval
+        for group, subdata in time_groups:
+            # Calculate std for zonal wind
+            subdata['u_std'] = subdata['u_prime'].std()
+            # Generate turbulent intensity, per Stull (1988)
+            subdata['I_u'] = subdata['u_std'] / np.nanmean(subdata['U'])
+            # Calculate std for meridional wind
+            subdata['v_std'] = subdata['v_prime'].std()
+            # Generate turbulent intensity, per Stull (1988)
+            subdata['I_v'] = subdata['v_std'] / np.nanmean(subdata['U'])
+            # Calculate std for vertical wind
+            subdata['w_std'] = subdata['w_prime'].std()
+            # Generate turbulent intensity, per Stull (1988)
+            subdata['I_w'] = subdata['w_std'] / np.nanmean(subdata['U'])
+            # Append to list
+            dfs.append(subdata)
     # Concatenate all the groups
     data = pd.concat(dfs).sort_values('time')
     
-    # Store dictionary of turbulent intensity values
-    intensity_means, intensity_stds = {}, {}
-    # Group by zeta
-    bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
-    # Group the matched DataFrames by stability classification
-    stability_groups = data.groupby(pd.cut(data['zeta'], bins))
-    # Iterate over the DataFrames and get averages by stability group
-    for group, data_ in stability_groups:
-        # Group by height
-        height_groups = data_.groupby(['height'])
-        for subgroup, subdata in height_groups:
-            if group in intensity_means.keys():
-                intensity_means[group].append(np.nanmean(subdata['I_u']))
-            else:
-                intensity_means[group] = [np.nanmean(subdata['I_u'])]
-                
-            if group in intensity_stds.keys():
-                intensity_stds[group].append(np.nanstd(subdata['I_u']))
-            else:
-                intensity_stds[group] = [np.nanstd(subdata['I_u'])]
-    
     return data
 
-def main(heights=[200, 500], plot_spectra=False):
+def turbulent_intensity_plotter(datasets, component='u'):
+    '''
+    Function to plot turbulence intensity data from a DataFrame with pre-calculated turbulent properties.
+
+    Parameters
+    ----------
+    data : list
+        List of Pandas DataFrames with pre-calculated turbulent properties. This input should come from output from 'turbulence_stats'.
+    direction : str, optional
+        Wind component desired for analysis. The default is 'u'.
+    '''
+    
+    if type(datasets) is not list:
+        datasets = [datasets]
+    
+    # Define stability group bins
+    bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
+    # Define colors and markers for plotting
+    colors = ['blue', 'red']
+    markers = ['o', 's']
+    # Initialize figures
+    fig, axs = plt.subplots(ncols=len(bins)-1, sharey=True)
+    
+    # Initialize plot x-limits
+    vmin, vmax = 0, 0
+    
+    for i, data in enumerate(datasets):
+    
+        ''' Calculate turbulent intensities. '''
+        # Initialize dictionaries for intensity mean, standard deviation values, and stability group names
+        means, stds, groups = {}, {}, None
+        # Group by height and iterate over each height
+        for height, height_data in data.groupby('height'):
+            # Group by zeta
+            # Group the matched DataFrames by stability classification
+            stability_groups = height_data.groupby(pd.cut(height_data['zeta'], bins))
+            # Save group labels for stability groupings
+            groups = list(stability_groups.groups.keys())
+            # Collect means and standard deviations at each height
+            mean, std = [], []
+            # Iterate over the stability groups
+            for stability, subdata in stability_groups:
+                # Append mean and standard deviatio to respective dictionaries
+                mean.append(subdata['I_{0}'.format(component)].mean())
+                std.append(subdata['I_{0}'.format(component)].std())
+            # Append to dict
+            means[height], stds[height] = mean, std
+        # Generate DataFrame for mean and standard deviations
+        intensities_mean = pd.DataFrame.from_dict(means, 
+                                                  orient='index', 
+                                                  columns=groups)
+        intensities_std = pd.DataFrame.from_dict(stds,
+                                                 orient='index', 
+                                                 columns=groups)
+        
+        # Get x-axis extrema
+        if (np.nanmin(intensities_mean + intensities_std)) < vmin:
+            vmin = np.nanmin(intensities_mean) + np.nanmin(intensities_std)
+        if (np.nanmax(intensities_mean + intensities_std)) > vmax:
+            vmax = np.nanmax(intensities_mean) + np.nanmax(intensities_std)
+            
+        # Plot the turbulent intensities by stability group
+        for j, group in enumerate(groups):
+            # Plot the intensity mean values
+            axs[j].plot(intensities_mean[group], intensities_mean.index, 
+                        marker=markers[i], color=colors[i])
+            # Plot the intensity standard deviations
+            axs[j].errorbar(intensities_mean[group], 
+                            intensities_std.index, 
+                            xerr=intensities_std[group],
+                            fmt='none',
+                            capsize=3, 
+                            ecolor=colors[i])
+            axs[j].set_title(group)
+            axs[j].set_xlim([vmin, vmax])
+            axs[j].set_ylim([0, data.height.max() + 100])
+            # Set the x-label
+            axs[j].set_xlabel(r'$\sigma_{0} / \bar{{U}}$'.format(component))
+            # Only print the y-label on the first subplot
+            if j == 0:
+                axs[j].set_ylabel('Height [m]')
+    
+    fig.suptitle(data['site'].unique()[0])
+    fig.tight_layout()
+    return intensities_mean, intensities_std
+
+def main(site='MANH', heights=[200, 400, 600, 800], plot_spectra=False):
     
     # Initialize list of DataFrames that will be concatenated
     data, spectra = [], {}
     # Iterate over list of heights
     for height in heights:
         # Load lidar and/or anemometer data
-        df = processor(height=height)
+        df = processor(height=height, site=site)
         data.append(df)
         spectra[height] = spectral_analysis(df)
         
-    # Concatenate data
+    # Concatenate datanp.nan
     data = pd.concat(data)
     # Plot spectra
     if plot_spectra:
         plotter(list(spectra.values()), list(spectra.keys()))
         
-    turbulence_analysis = turbulence_stats(data)
+    # Define heat wave and normal dates for turbulence analysis
+    normal_dates = pd.date_range('2021-08-01', '2021-08-31', freq='1D')
+    heat_wave_dates = [pd.date_range('2021-08-11', '2021-08-14', freq='1D'),
+                       pd.date_range('2021-08-24', '2021-08-28', freq='1D')]
     
-    return data, turbulence_analysis
+    # Generate turbulence data for the whole time range given
+    turbulence_normal = turbulence_stats(data[(data['time'] >= normal_dates[0]) & 
+                                              (data['time'] <= normal_dates[-1])])
+    # Initialize empty list of heat wave turbulence data that will later be concatenated
+    turbulence_hw = []
+    # Iterate over date ranges of interest
+    for dates in heat_wave_dates:
+        # Extract data from date range of interest
+        temp_data = turbulence_normal.loc[(turbulence_normal['time'] >= dates[0]) &
+                                          (turbulence_normal['time'] <= dates[-1])]
+        # Append data to the list
+        turbulence_hw.append(temp_data)
+        # Remove data from the overall DataFrame
+        turbulence_normal = turbulence_normal[(turbulence_normal['time'] < dates[0]) |
+                                              (turbulence_normal['time'] > dates[-1])]
+    # Concatenate data
+    turbulence_hw = pd.concat(turbulence_hw)
+    
+    # Plot turbulent intensities
+    for component in ['u', 'v', 'w']:
+        turbulent_intensity_plotter([turbulence_normal], component=component)
+    
+    return data
 
 if __name__ == '__main__':
-    
-    data, turbulence_analysis = main()
-    
-    # MATLAB analysis
-    save_mat = False
-    if save_mat:
-        dfs_ = dfs.copy().reset_index()
-        df_ = dfs_[['time', 'w', 'w_prime', 'zeta']]
-        scipy.io.savemat('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/bin/matlab/sonic_data_ccny_extremely_unstable.mat', {name: col.values for name, col in df_.items()})
+
+    # Generate data for a given site and heights
+    data = main(site='MANH', heights=[200, 300, 400, 500, 700, 900, 1100, 1500], plot_spectra=False)
     
