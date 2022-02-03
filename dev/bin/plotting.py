@@ -23,6 +23,7 @@ from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
 from mpl_toolkits.axes_grid1 import make_axes_locatable 
 from metpy.plots import Hodograph as hodo
+from scipy.ndimage.filters import gaussian_filter
 from windrose import WindroseAxes
 
 # Change font
@@ -73,6 +74,7 @@ def colormaps(param, mode):
               'mixing_ratio': 'Greens',
               'relative_humidity': 'Greens',
               'specific_humidity': 'Greens',
+              'vapor_density': 'Greens',
               'pressure': 'cividis',
               'U': 'Blues',
               'u': 'Blues',
@@ -87,6 +89,7 @@ def colormaps(param, mode):
               'mixing_ratio': 'BrBG',
               'relative_humidity': 'BrBG',
               'specific_humidity': 'BrBG',
+              'vapor_density': 'BrBG',
               'pressure': 'RdBu_r',
               'ri': 'RdBu_r',
               'U': 'RdBu_r',
@@ -370,85 +373,6 @@ def multi_plot(data, param):
     fig.tight_layout()
 
 
-def cum_wind_rose(data, site, height, ax=None):
-
-    data = data.sel(site=site, height=height)
-
-    df = pd.DataFrame()
-    param = 'U'
-    params = [param, 'wind_direction']
-    
-    bins = {'U': [0, 5, 10, 20, 50, 100],
-            'wind_direction': np.linspace(0, 360, num=25, endpoint=True)}
-    
-    labels = ['{0} to {1}'.format(bins[param][i], bins[param][i+1]) for i in range(0, len(bins[param])-1)]
-    
-    # Group data into pre-defined bins
-    data_grouped = data.groupby_bins(params[1], bins=bins[params[1]], right=False, include_lowest=True)
-    for key in data_grouped.groups.keys():
-        s = {}
-        temp = data_grouped[key].groupby_bins(params[0], bins=bins[params[0]], labels=labels, right=False, include_lowest=True)
-        for subkey in temp.groups.keys():
-            s[subkey] = len(temp[subkey].unstack().time.values)
-        s['wind_direction'] = key.left
-        df = df.append(s, ignore_index=True)
-    df = df.set_index('wind_direction', drop=True)
-    df['sum'] = df.sum(axis=1)
-    # df = df.iloc[:, :-1].div(df['sum'], axis=0)
-    df = df.sort_index()
-
-    # Fill nans with 0, since nan values indicating no occurences, which is equivalent to 0%
-    df = df.fillna(0)
-
-    df_ = df.copy()
-    cols = labels
-    for col in cols:
-        if col not in df_.columns:
-            df_[col] = 0
-    df_ = df_[cols]
-    df_.index = df_.index.array * np.pi/180
-    df_ = df_ / sum(df['sum'])
-    bottom = 0.02
-
-    theta = df.index.array * np.pi/180
-    width = (2*np.pi) / len(theta)
-
-    ax.set_theta_zero_location('N')
-    ax.set_theta_direction(-1)
-    
-    summation = []
-    cmap = mpl.cm.Blues.from_list('Blues_mod', mpl.cm.Blues(np.linspace(0.2, 1, 5)), N=256)
-    # Loop through columns in the DataFrame
-    for i in range(0, len(df_.columns)):
-        # For initial category, start the bar at some position ('bottom') and make it into a list, with one item per radial bar
-        if i == 0:
-            summation = [bottom]*len(df_.iloc[:, i])
-        # Else, use the values from the bars
-        else:
-            summation = summation + df_.iloc[:, i-1]
-        ax.bar(theta, df_.iloc[:, i], width=width, bottom=summation, label=df_.columns[i], color=cmap(
-            i/len(df_.columns)))
-    ax.set_yticklabels([])
-    ax.grid(which='both', color='k', linestyle=':', linewidth=1, axis='x', alpha=0.01, visible=True)
-    
-    # Create percentages
-    tick_vals = 100*df.iloc[:, -1]/df_.iloc[:, :-1].to_numpy().sum()
-    num, roundto = 5, 0.05
-    radial_ticks = np.linspace(bottom, df_.sum(axis=1).max()+bottom, num)
-    radial_ticks = np.append(radial_ticks, radial_ticks[-1] + np.diff(radial_ticks)[0])
-    radial_ticks = [roundto * round(s/roundto) for s in radial_ticks]
-    radial_ticks = np.linspace(0, 0.2, num)
-    ax.set_rticks(radial_ticks)
-    
-    radial_tick_labels = ax.set_yticklabels(['{0:2d}%'.format(int(s)) for s in 100*radial_ticks], fontsize=8)
-    radial_tick_labels[0].set_visible(False)
-    ax.set_rlabel_position(67.5)
-    
-    theta_ticks = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
-    ax.set_xticklabels(theta_ticks)
-    
-    return ax
-
 def cum_wind_rose_grouped(data, site, height, hours=[0, 24]):
     '''
     Plot frequency of a parameter over all wind directions for a given site, height, and time range.
@@ -575,6 +499,7 @@ def cum_wind_rose_grouped(data, site, height, hours=[0, 24]):
     ax.xaxis.grid(False)
     ax.set_yticks([1, 1.5, 2],)
     ax.set_yticklabels(['0%', '50%', '100%'], zorder=10)
+    ax.set_rlabel_position(70)
     
     ax.legend(loc="upper left", bbox_to_anchor=(1.2, 1), frameon=False)
     ax.set_title('{0} at {1} m from {2}:00 to {3}:00 LST'.format(site,
@@ -582,55 +507,87 @@ def cum_wind_rose_grouped(data, site, height, hours=[0, 24]):
                                                                  hours[0], 
                                                                  hours[1]))
 
-def wind_rose(data, sites=['QUEE'], heights=[100], hours=[0, 24]):
 
-    # Filter times based on user input (end non-inclusive)
-    data = data.sel(time=((data.time.dt.hour >= hours[0]) & (data.time.dt.hour < hours[1])))
+def cum_wind_rose(data, site, height, ax=None):
 
-    nrows, ncols, szf = len(heights), len(sites), 2.5
-    fig = plt.figure(figsize=(szf*ncols, szf*nrows), dpi=300)
-    plt.axis('off')
+    data = data.sel(site=site, height=height)
 
-    for i in range(0, nrows*ncols):
+    df = pd.DataFrame()
+    param = 'U'
+    params = [param, 'wind_direction']
+    
+    n_bins = 25
+    bins = {'U': [0, 5, 10, 20, 50, 100],
+            'wind_direction': np.linspace(0, 360, num=n_bins, endpoint=True)}
+    
+    labels = ['{0} to {1}'.format(bins[param][i], bins[param][i+1]) for i in range(0, len(bins[param])-1)]
+    
+    # Group data into pre-defined bins
+    data_grouped = data.groupby_bins(params[1], bins=bins[params[1]], right=False, include_lowest=True)
+    for key in data_grouped.groups.keys():
+        s = {}
+        temp = data_grouped[key].groupby_bins(params[0], bins=bins[params[0]], labels=labels, right=False, include_lowest=True)
+        for subkey in temp.groups.keys():
+            s[subkey] = len(temp[subkey].unstack().time.values)
+        s['wind_direction'] = key.left
+        df = df.append(s, ignore_index=True)
+    df = df.set_index('wind_direction', drop=True)
+    df['sum'] = df.sum(axis=1)
+    # df = df.iloc[:, :-1].div(df['sum'], axis=0)
+    df = df.sort_index()
 
-        # Create indices for rows and columns
-        j, k = i % ncols, np.floor(i // ncols).astype('int')
+    # Fill nans with 0, since nan values indicating no occurences, which is equivalent to 0%
+    df = df.fillna(0)
 
-        ax = fig.add_subplot(nrows, ncols, i+1, projection='windrose')
+    df_ = df.copy()
+    cols = labels
+    for col in cols:
+        if col not in df_.columns:
+            df_[col] = 0
+    df_ = df_[cols]
+    df_.index = df_.index.array * np.pi/180
+    df_ = df_ / sum(df['sum'])
+    bottom = 0.02
 
-        ax.set_theta_zero_location('E')
+    theta = df.index.array * np.pi/180
+    width = (2*np.pi) / (n_bins-1)
 
-        # Initialize data for wind direction
-        wd = data['wind_direction'].sel(site=sites[j],
-                                        height=heights[k]).values.ravel()
-        # Initialize data for wind speed
-        ws = data['U'].sel(site=sites[j],
-                           height=heights[k]).values.ravel()
-
-        # Bar plot data
-        bins = np.arange(0, 20, 5)
-        im = ax.bar(wd, ws, bins=bins, normed=True,
-                    opening=1, edgecolor='#222222', cmap=plt.cm.Blues)
-        
-        norm_bins = np.linspace(0, 30, num=4)
-        ax.set_yticks(norm_bins)
-        ax.set_yticklabels(['{:2.0f}%'.format(i) for i in norm_bins])
-        [l.set_visible(False) for (i,l) in enumerate(ax.yaxis.get_ticklabels()) if i == 0]
-        ax.set_title('{0} at {1} m'.format(sites[j], heights[k]))
-        
-        '''
-        if (j+1 == ncols) and k == 0:
-            ax.legend(frameon=False, bbox_to_anchor=(1.2, 0.5))
-        '''
-        
-        # Subplot formatting
-        if k == 0:
-            # Ensure only top row of place labels is plotted
-            ax.set_title('{0} \n {1} m'.format(sites[j], heights[k]))
+    ax.set_theta_zero_location('N')
+    ax.set_theta_direction(-1)
+    
+    summation = []
+    cmap = mpl.cm.Blues.from_list('Blues_mod', mpl.cm.Blues(np.linspace(0.2, 1, 5)), N=256)
+    # Loop through columns in the DataFrame
+    for i in range(0, len(df_.columns)):
+        # For initial category, start the bar at some position ('bottom') and make it into a list, with one item per radial bar
+        if i == 0:
+            summation = [bottom]*len(df_.iloc[:, i])
+        # Else, use the values from the bars
         else:
-            ax.set_title('{0} m'.format(heights[k]))
-
-    fig.tight_layout()
+            summation = summation + df_.iloc[:, i-1]
+        ax.bar(theta, df_.iloc[:, i], width=width, bottom=summation, label=df_.columns[i], color=cmap(
+            i/len(df_.columns)), 
+               linewidth=1, edgecolor='k')
+    ax.set_yticklabels([])
+    ax.grid(which='both', color='k', linestyle=':', linewidth=1, axis='x', alpha=0.01, visible=True)
+    
+    # Create percentages
+    tick_vals = 100*df.iloc[:, -1]/df_.iloc[:, :-1].to_numpy().sum()
+    num, roundto = 5, 0.05
+    radial_ticks = np.linspace(bottom, df_.sum(axis=1).max()+bottom, num)
+    radial_ticks = np.append(radial_ticks, radial_ticks[-1] + np.diff(radial_ticks)[0])
+    radial_ticks = [roundto * round(s/roundto) for s in radial_ticks]
+    radial_ticks = np.linspace(0, 0.2, num)
+    ax.set_rticks(radial_ticks)
+    
+    radial_tick_labels = ax.set_yticklabels(['{0:2d}%'.format(int(s)) for s in 100*radial_ticks], fontsize=8)
+    radial_tick_labels[0].set_visible(False)
+    ax.set_rlabel_position(67.5)
+    
+    theta_ticks = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+    ax.set_xticklabels(theta_ticks)
+    
+    return ax
 
 def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
     
@@ -642,7 +599,6 @@ def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
         # Filter times based on user input (end non-inclusive)
         dataset = dataset.sel(time=((dataset.time.dt.hour >= hours[0]) & (dataset.time.dt.hour < hours[1])))
         datas.append(dataset)
-        
         
     nrows, ncols, szf = len(heights), len(data), 3
     fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=(szf*ncols, szf*nrows), dpi=300, subplot_kw={'projection': 'polar'})
@@ -659,7 +615,7 @@ def wind_rose_comparison(data, site='QUEE', heights=[100], hours=[0, 24]):
         # Subplot formatting
         if k == 0:
             # Ensure only top row of place labels is plotted
-            ax.set_title('{0}'.format(data_type[j]))
+            ax.set_title('{0}'.format(data_type[j]), pad=15)
         if j == 0:
             ax.set_ylabel('{0} m'.format(heights[k]))
             ax.yaxis.set_label_coords(-0.2,0.5)
@@ -710,7 +666,7 @@ def mean_profiles(data, sites=['QUEE'], data_std=None, param='U', hours=[0, 6, 1
 
     ax.set_xlim([vmin, vmax])
     ax.set_ylim([min(data.height.values), max(data.height.values)])
-    ax.set_title(param, loc='left')
+    ax.set_title(param, loc='left', pad=20)
     ax.set_ylabel('Height [m]')
     ax.legend()
 
@@ -730,8 +686,8 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
     # Define cyclic properties
     plt_cycler = cycler(color=['b', 'r', 'g', 'm'])
 
-    nrows, ncols, szf = len(params), len(sites), 2.5
-    fig, axs = plt.subplots(figsize=(szf*ncols, szf*nrows), nrows=nrows, ncols=ncols, dpi=300)
+    nrows, ncols, szf = len(params), len(sites), 2
+    fig, axs = plt.subplots(figsize=(szf*ncols, szf*nrows*1.3), nrows=nrows, ncols=ncols, dpi=300, sharex=True, sharey=True)
 
     for i, ax in enumerate(fig.axes):
 
@@ -739,12 +695,12 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
         j, k = i % ncols, np.floor(i // ncols).astype('int')
 
         # Subplot formatting
-        print(j, params[k])
         if k == 0:
             # Ensure only top row of place labels is plotted
             ax.set_title(sites[j])
         unit = norm[params[k]].attrs['units']
         unit_str = r'$\mathregular{{%s}}$' %unit
+        ax.set_xlabel('Hour [LST]')
         ax.set_ylabel('{0} [{1}]'.format(params[k].replace('_', ' ').title(), unit_str))
         ax.label_outer()
         # Define formatting cycle for axis
@@ -752,9 +708,9 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
 
         # Main data
         im_n = ax.plot(n_avg.hour, n_avg[params[k]].sel(
-            site=sites[j], height=height), label='Normal', lw=2)
+            site=sites[j], height=height), label='Normal', lw=2, marker='o', markersize=3)
         im_hw = ax.plot(hw_avg.hour, hw_avg[params[k]].sel(
-            site=sites[j], height=height), label='Heat Wave', lw=2)
+            site=sites[j], height=height), label='Heat Wave', lw=2, marker='s', markersize=3)
 
         # Standard deviations
         im_n_std = ax.fill_between(n_avg.hour,
@@ -776,12 +732,97 @@ def timeseries(data, sites=['BRON', 'QUEE', 'STAT'], height=0, params=['temperat
     # Legend formatting
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    fig.legend(by_label.values(), by_label.keys(), frameon=False, ncol=2, loc='upper center')
-    fig.subplots_adjust(bottom=0, top=0.93)
-    fig.align_ylabels(axs[:, 0])
+    fig.legend(by_label.values(), by_label.keys(), frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5, 1.1))
+    try:
+        fig.align_ylabels(axs[:, 0])
+    except:
+        pass
 
 
-def contour_timeseries(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperature']):
+def contour_timeseries(data, site='QUEE', param='ri'):
+    
+    # Redefine data with given parameters
+    data = data[param].sel(site=site)
+    # If data is a timeseries, keep time. If it's a groupby, get hours.
+    if 'time' in data.dims:
+        times = data.time.values
+    elif 'hour' in data.dims:
+        times = data.hour.values
+    
+    ''' Eliminate outliers. '''
+    # Get mean and standard deviation
+    mean, std = [data.mean(), data.std()] 
+    # Define sigma level for filtering
+    sigma = 4
+    # Remove outliers based on sigmas from mean
+    data = data.where((data > (mean - sigma*std)) & (data < (mean + sigma*std)))
+    
+    ''' Plotting. '''
+    # Define units
+    try:
+        units = data.units    
+    except:
+        units = ''
+    # Define colorbar extension direction(s)
+    min_val, max_val, extend = None, None, None
+    # If anomaly has both positive and negative data, use a divergent colormap. Else, use sequential.
+    if np.nanmin(data) < 0 and np.nanmax(data) > 0:
+        # Define colormap
+        cmap = colormaps(param, 'divergent')
+    else:
+        # Define colormap
+        cmap = colormaps(param, 'sequential')
+    
+    
+    # Get colorbar limits
+    levels = 12
+    
+    norm = None
+    # Custom processing for bulk Richardson number
+    if param == 'ri':
+        cmap = 'RdBu'
+        
+        # Smooths noisy data to provide clean contours    
+        v = data.values.copy()
+        v[np.isnan(data.values)] = 0
+        v = gaussian_filter(v, sigma=1, truncate=6)
+        
+        w = 0*data.values.copy() + 1
+        w[np.isnan(data.values)] = 0
+        w = gaussian_filter(w, sigma=1, truncate=6)
+        
+        values = v/w
+        
+        levels = [-1, -0.5, 0, 0.25, 0.5, 1, 2]
+        norm = mpl.colors.BoundaryNorm(levels, 256)
+    
+    # Initialize plot
+    fig, ax = plt.subplots(figsize=(5, 3), dpi=300)
+    im = ax.contourf(times, data.height.values, values.T, 
+                     norm=norm, cmap=cmap, levels=levels, extend='both')
+    ax.contour(times, data.height, values.T, 
+               colors='k', levels=[0.25], linewidths=2.5)
+
+    # Subplot formatting
+    fig.autofmt_xdate(bottom=0.2, rotation=30, ha='right')
+    ax.set_ylabel('Height [m]', labelpad=10)
+    ax.label_outer()
+    
+    # Custom y-limits for Richardson plotting
+    if param == 'ri':
+        ax.set_ylim([100, data.height.max()])
+
+    # Place colorbar at the end of each row
+    cax = make_axes_locatable(ax).append_axes('right', 
+                                                size='3%', 
+                                                pad=0.1)
+    colorbar = fig.colorbar(im, cax=cax, extend=extend)
+    colorbar_label = colorbar.set_label('$\mathregular{{{1}}}$'.format(param.replace('_', ' ').title(), units), rotation=270, labelpad=20)
+
+    # Figure formatting
+    fig.tight_layout()
+    
+def contour_timeseries_anomaly(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperature']):
     '''
     Plot contour timeseries for averaged data.
     '''
@@ -816,7 +857,12 @@ def contour_timeseries(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperatur
             hw_avg[params[k]].sel(site=sites[j]).T,
             n_avg[params[k]].sel(site=sites[j]).T,
             n_std[params[k]].sel(site=sites[j]).T)
-    
+        
+        # Curb potential infs or -infs in the data for wind components
+        if params[k] in ['u', 'w', 'U']:
+            sigma = 2
+            anom = anom.where((anom < sigma) & (anom > -sigma))
+        
         # Define colorbar extension direction(s)
         min_val, max_val, extend = None, None, None
 
@@ -883,7 +929,6 @@ def contour_timeseries(data, sites=['BRON', 'QUEE', 'STAT'], params=['temperatur
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
     fig.legend(by_label.values(), by_label.keys(), frameon=False)
-
 
 def vertical_profiles(data, sites=['BRON', 'QUEE', 'STAT'], hour=[0], params=['temperature']):
     '''
@@ -984,9 +1029,10 @@ def vertical_profiles_daily(data, sites=['BRON', 'QUEE', 'STAT'], hours=[6, 12, 
         # Define formatting cycle for axis
         # ax.set_prop_cycle(plt_cycler)
 
-        ax_ = ax.twiny()
-        ax_.set_xlim([np.nanmin(n_avg[params[1]]), np.nanmax(hw_avg[params[1]])])
-        ax_.set_ylim([np.nanmin(n_avg.height), np.nanmax(n_avg.height)])
+        if len(params) > 1:
+            ax_ = ax.twiny()
+            ax_.set_xlim([np.nanmin(n_avg[params[1]]), np.nanmax(hw_avg[params[1]])])
+            ax_.set_ylim([np.nanmin(n_avg.height), np.nanmax(n_avg.height)])
         
         # Main data
         for c, site in enumerate(sites):
@@ -1021,23 +1067,24 @@ def vertical_profiles_daily(data, sites=['BRON', 'QUEE', 'STAT'], hours=[6, 12, 
                 color='r',
                 alpha=0.1)
             
-            im_n2 = ax_.plot(n_avg[params[1]].sel(site=site, hour=hours[j]), n_avg.height, label=params[1], marker='o', markevery=4, markersize=4, linestyle='dotted', color='steelblue', zorder=2, fillstyle='none')
-            
-            im_n2_std = ax_.fill_betweenx(
-                n_avg.height,
-                n_avg[params[1]].sel(site=site, hour=hours[j]) - n_std[params[1]].sel(site=site, hour=hours[j]),
-                n_avg[params[1]].sel(site=site, hour=hours[j]) + n_std[params[1]].sel(site=site, hour=hours[j]),
-                color='steelblue',
-                alpha=0.1)
-            
-            im_hw2 = ax_.plot(hw_avg[params[1]].sel(site=site, hour=hours[j]), hw_avg.height, marker='s', markevery=4, markersize=4, label=params[1], linestyle='dotted', color='firebrick', zorder=2, fillstyle='none')
-            
-            im_hw2_std = ax_.fill_betweenx(
-                hw_avg.height,
-                hw_avg[params[1]].sel(site=site, hour=hours[j]) - hw_std[params[1]].sel(site=site, hour=hours[j]),
-                hw_avg[params[1]].sel(site=site, hour=hours[j]) + hw_std[params[1]].sel(site=site, hour=hours[j]),
-                color='firebrick',
-                alpha=0.1)
+            if len(params) > 1:
+                im_n2 = ax_.plot(n_avg[params[1]].sel(site=site, hour=hours[j]), n_avg.height, label=params[1], marker='o', markevery=4, markersize=4, linestyle='dotted', color='steelblue', zorder=2, fillstyle='none')
+                
+                im_n2_std = ax_.fill_betweenx(
+                    n_avg.height,
+                    n_avg[params[1]].sel(site=site, hour=hours[j]) - n_std[params[1]].sel(site=site, hour=hours[j]),
+                    n_avg[params[1]].sel(site=site, hour=hours[j]) + n_std[params[1]].sel(site=site, hour=hours[j]),
+                    color='steelblue',
+                    alpha=0.1)
+                
+                im_hw2 = ax_.plot(hw_avg[params[1]].sel(site=site, hour=hours[j]), hw_avg.height, marker='s', markevery=4, markersize=4, label=params[1], linestyle='dotted', color='firebrick', zorder=2, fillstyle='none')
+                
+                im_hw2_std = ax_.fill_betweenx(
+                    hw_avg.height,
+                    hw_avg[params[1]].sel(site=site, hour=hours[j]) - hw_std[params[1]].sel(site=site, hour=hours[j]),
+                    hw_avg[params[1]].sel(site=site, hour=hours[j]) + hw_std[params[1]].sel(site=site, hour=hours[j]),
+                    color='firebrick',
+                    alpha=0.1)
             
         text = ax.text(0.07, 0.93, '{0}'.format(subplot_letters[j]), fontsize=12, ha='left', transform=ax.transAxes)
         
@@ -1054,13 +1101,14 @@ def vertical_profiles_daily(data, sites=['BRON', 'QUEE', 'STAT'], hours=[6, 12, 
                  norm[params[0]].attrs['units'])), 
              ha='center')
     # Secondary axis label
-    fig.text(0.5, 1, 
-             ('{0} [$\mathregular{{{1}}}$]'.format(
-                 params[1].replace('_', ' ').title(), 
-                 norm[params[1]].attrs['units'])), 
-             ha='center')
-    # fig.suptitle('{0}'.format(param.replace('_', ' ').title()))
-    fig.tight_layout()
+    if len(params) > 1:
+        fig.text(0.5, 1, 
+                 ('{0} [$\mathregular{{{1}}}$]'.format(
+                     params[1].replace('_', ' ').title(), 
+                     norm[params[1]].attrs['units'])), 
+                 ha='center')
+        # fig.suptitle('{0}'.format(param.replace('_', ' ').title()))
+        fig.tight_layout()
    
     # Legend formatting
     lines = [mpl.lines.Line2D([0], [0], color='b', label='Normal'),
