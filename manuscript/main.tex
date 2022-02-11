@@ -2,7 +2,7 @@
 
 %%%%%% Packages
 % Handles references
-\usepackage[backend=biber, style=authoryear, natbib=true]{biblatex}  
+\usepackage[backend=biber, bibencoding=utf8, style=authoryear, natbib=true]{biblatex}  
 % Handle page formatting
 \usepackage[margin=1in,footskip=0.25in]{geometry}
 % Handle links
@@ -13,28 +13,49 @@
 \usepackage{xcolor}
 % Handle tables
 \usepackage{tabularx, caption}
+% Handle figures
+\usepackage{graphicx}
+% Handle paragraph formatting
+\usepackage{parskip}
+% Add line numbers
+\usepackage{lineno}
+% Handle units
+\usepackage{siunitx}
+% Provide subsubsubsections
+\usepackage{titlesec}
+% To accommodate UTF encoding
+\usepackage[utf8]{inputenc} 
 
 %%%%%% Reference files
 \addbibresource{references.bib}
 
 %%%%%% Other commands
+% Fix Unicode formatting
+\DeclareUnicodeCharacter{2218}{\textdegree}
 % Remove indents
-\setlength{\parindent}{0pt}
+% \setlength{\parindent}{0pt}
 % Set page spacing
-\renewcommand{\baselinestretch}{1.2} 
+\renewcommand{\baselinestretch}{1.15} 
+% Reduce reference sizing
+\renewcommand*{\bibfont}{\footnotesize}
+% Set paragraph spacing
+\setlength{\parskip}{1em}
+% Subsubsubsection production
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 
 \begin{document}
 
 %%%%% Heading and author information
 
-\textbf{Observations and analysis of an urban boundary layer during extreme heat episodes}
-Gabriel Rios \textsuperscript{1*, 2*}, Prathap Ramamurthy \textsuperscript{1, 2}, Mark Arend \textsuperscript{2, 3}
+\textbf{Observations and analysis of an urban boundary layer during extreme heat events}
+Gabriel Rios \textsuperscript{1*, 2*}, Prathap Ramamurthy \textsuperscript{1, 2}
 
 \small{
 \begin{enumerate}[leftmargin=0.5cm, itemsep=0mm]
 	\item Department of Mechanical Engineering, CUNY City College, New York, New York
 	\item NOAA Center for Earth System Sciences and Remote Sensing Technologies, New York, New York
-	\item Department of Electrical Engineering, CUNY City College, New York, New York
 \end{enumerate}
 }
 
@@ -48,14 +69,40 @@ Gabriel Rios \textsuperscript{1*, 2*}, Prathap Ramamurthy \textsuperscript{1, 2}
 % Divider line
 \noindent\rule{\textwidth}{1pt}
 
+% Insert line numbers
+\linenumbers
+
 %%%%% Abstract
 
 \section*{Abstract}
 
-%%%%% Introduction
+Extreme heat presents a significant risk to human health and infrastructure in cities. Several studies have been conducted in the past two decades to understand the interaction between the synoptic-scale extreme heat events and local-scale urban heat island effects. However, observations of boundary layer characteristics during these periods have been relatively rare. Our current understanding of boundary layer dynamics is incomplete, particularly in coastal urban environments where the local climatology is highly influenced by land-sea thermal gradients. Here we analyze the evolution and structure of the urban boundary layer during regular and extreme heat periods. Our primary goal is to understand how boundary layer dynamics during extreme heat events regulate near-surface transport of mass, momentum, and heat. The analysis will also focus on how the urban surface layer interacts with the mixed layer during these events. Our analysis focuses on the New York City metropolitan area and relies on observations from vertical profilers (Doppler lidar, microwave radiometer) and quantities derived by analytical methods. Additionally, satellite and reanalysis data are used to supplement observational data. 
 
+%%%%% Introduction
 \section{Introduction}
-Understanding the planetary boundary layer over urban areas, also called the urban boundary layer (UBL), is critical as the conditions in this layer directly affect human activity.
+
+Extreme heat poses a major risk to life and property. The effects of extreme heat are expected to impact cities especially, which presents a significant hazard for vulnerable populations and infrastructure. With regards to effects on public health, studies have shown that extreme and prolonged heat increases mortality and exacerbates existing health conditions in high-risk populations \citep{anderson2011, frumkin2016, heaviside2017, madrigano2015}. With regards to effects on infrastructure, studies have shown that extreme heat subjects networks critical to urban areas (e.g., electrical grid, public transportation) under significant stresses and/or failure \citep{mcevoy2012, zuo2015}. These events are projected to increase in frequency due to the effects of climate change. Projections indicate that the impacts of future climate will cause adverse effects of extreme heat to become more frequent and severe \citep{burillo2019, forzieri2018, peng2011}.
+
+% Comment: try to couple the local and the mesoscale here
+The meteorology of extreme heat events and its impacts on urban areas can be observed from the synoptic and local scales. From a synoptic scale, extreme heat events are often caused by the sustained presence of a high-pressure system over an area, resulting in lower wind speeds and warm air subsidence, promoting higher surface temperatures \citep{black2004, miralles2014}. From a local perspective, the amplified impact of extreme heat events on cities is a result of the urban heat island (UHI) effect, which occurs as a result of the modification of land surface properties due to the built environment. The modification of surface properties has been shown to increase near-surface air temperatures due to factors such as radiation entrapment, increased heat storage, and lower evapotranspirative cooling \citep{chen2014, li2013, ramamurthy2017, zhao2018}. Additionally, urban areas near large bodies of water experience effects from the sea breeze, which has been shown to play a moderating influence on the intensity of the UHI effect \citep{hu2016, jiang2019, stefanon2014}. The processes on these two scales can be connected by understanding the structure and dynamics of the urban boundary layer (UBL), which is the lowest part of the troposphere in which surface-atmosphere exchanges occur that directly affect human activity. There have been a large number of numerical studies performed to improve our understanding of UBL processes during extreme heat events, which have been important for conceptualizing the role of synoptic-scale and surface forcings on urban climate. Something about the vertical structure of the UBL and coupling these
+
+However, detailed observational analyses of UBL structure and dynamics are somewhat limited, especially in the vertical direction. Over the last 20 years, microwave radiometers, lidars, and radiosondes have been shown to be essential for accomplishing this. Microwave radiometers have been used to determine vertical profiles of temperature and water vapor \citep{rose2005, wang2012}, while lidars being used to observe three-dimensional wind fields and aerosol concentrations \citep{grund2001}. Although radiosondes provide direct measurements of the aforementioned properties in the boundary layer as it moves vertically through it, they present greater difficulties (e.g., cost, shorter supply) and are unable to observe at the temporal resolution of microwave radiometers and lidars. 
+
+Although somewhat limited in spatiotemporal scale, numerous observational campaigns have been performed to better our understanding of UBL structure and dynamics. \citet{barlow2011} provides an in-depth study of boundary layer dynamics above London over a month-long period using a combination of a sonic anemometer and Doppler lidar, allowing for high-resolution vertical observations of a complex UBL and a better understanding of turbulent structures and vertical mixing processes. Similarly, \citet{pelliccioni2012} employs a sonic anemometer and a sodar system at a site in Rome to observe and analyze the lower \SI{200}{\meter} of the UBL to determine UBL characteristics and explore the validity of Monin-Obukhov similarity theory in the surface layer. Additionally, \citet{dearrudamoreira2020} evaluates the ability of lidar and microwave radiometer systems to observe turbulence over a variety of atmospheric conditions, including the effects of significant dust concentrations, in the region around Granada, Spain. Studies such as those performed by \citet{banks2015, quan2013, wang2012} further demonstrate the ability of vertical profiling instruments to analyze the boundary layer structure by deriving UBL heights and its diurnal evolution. Expanding upon UBL structure, \citet{anurose2018} details a long-term observational campaign over an urban location in southern India that chronicles UBL height through monsoon season, annual averages of near-surface quantities, and the dynamics and effects of the sea breeze circulation. 
+
+Observations of the UBL during extreme heat events are even more limited. \citet{ramamurthy2017} used microwave radiometers to observe the UBL over New York City in July 2016 to find that the UHI effect was amplified during heat wave events and that spatial variability throughout the city was significant throughout the observation period. \citet{jiang2019} explores the effects of heat waves on rural and urban areas for several cities in China using ground-based observations with a focus on the UHI effect, finding that the effect was amplified during heat waves due to greater surface solar radiation and shifts in wind direction contributing to advection of heated air masses over the studied cities. \citep{wu2019} uses a combination of a ceilometer and multiple lidars to observe the evolution of UBL structure, air quality, and pollutant transport during a heat wave in New York City, demonstrating sharp rates of UBL growth due to convective activity and an increase of pollutant concentration and regional transport. \citet{zhang2020} uses aircraft-based observations to provide a comprehensive analysis of UBL structure during heat wave events over cities in the United States throughout a 10-year period, providing insights into the 'heat dome' thermodynamic structure over cities and the variability between heat wave events due to local (such as surface properties in urban areas) and large-scale (such as synoptic meteorological conditions) forcings. 
+
+% But why do we care? Add something about the point of this study.
+
+New York City represents a complex case for urban meteorology given its diverse array of land cover types (deciduous forest to supertall skyscrapers) and its proximity to multiple major bodies of water (Lower New York Bay and the New York Bight to the south and east, Long Island Sound to the north and east). Due to these factors, the effects of the surface energy budget \citep{hrisko2021, ramamurthy2014, tewari2019} and sea breezes \citep{childs2005, colle2010, frizzola1963, gedzelman2003, melecio2018, thompson2007} on the mesoscale meteorology have been studied extensively. However, similar to studies of other urban areas mentioned previously, much of this research has involved numerical simulations of these meteorological processes. In this study, we attempt to further our understanding of the UBL over a coastal urban area by compiling observations from multiple locations within New York City and analyzing the UBL using derived quantities.
+
+This study attempts to use observations and analytical methods to provide insight into the following questions:
+
+\begin{enumerate}
+  \item How do UBL structure and dynamics depart from the climatology during extreme heat events?
+  \item How does the UBL structure impact the transport of scalars?
+  \item What effect does the sea breeze have on a coastal urban area during extreme heat events?
+\end{enumerate}
 
 %%%%% Data collection and analysis
 
@@ -65,43 +112,315 @@ Understanding the planetary boundary layer over urban areas, also called the urb
 The UBL over New York City is observed and analyzed in this study. Observational data was captured at four locations within New York City (Table \ref{tab:observation_sites}).
 
 % Table displaying site information
-
 \captionof{table}{Locations and details of observations sites.}
 \begin{center}
 	\label{tab:observation_sites}
 	\begin{tabularx}{\textwidth}{l X X X X}
  		 \hline
- 		  & Bronx & Manhattan & Queens & Staten Island \\
+ 		  & Bronx & Queens & Staten Island \\
  		 \hline
- 		Coordinates & 40.87248\textdegree N, -73.89352\textdegree E & 40.82044\textdegree N, -73.94836\textdegree E & 40.73433\textdegree N, -73.81585\textdegree E & 40.60401\textdegree N, -74.14850\textdegree E \\
- 		Elevation (m a.g.l.) & 57.8 & 90.6 & 56.3 & 32.4 \\
+ 		Coordinates & 40.87248\textdegree N, -73.89352\textdegree E & 40.73433\textdegree N, -73.81585\textdegree E & 40.60401\textdegree N, -74.14850\textdegree E \\
+ 		Elevation (m a.g.l.) & 57.8 & 56.3 & 32.4 \\
+ 		Element roughness height (m a.g.l.) & & & \\
+ 		Instruments used & Lidar, microwave radiometer & Lidar, microwave radiometer, sonic anemometer & Lidar, microwave radiometer, sonic anemometer \\
+ 		Valid wind directions & N/A & 180 to 360\textdegree & None \\
+ 		\hline
 	\end{tabularx}
 \end{center}
 
 \subsection{Observational instruments}
-Observations of the UBL were made using a synthesis of microwave radiometers, lidars, sonic anemometers, and surface weather stations. 
+Observations of the UBL were made using a synthesis of microwave radiometers, lidars, and satellites. 
+\\ \\
+Vertical profiles of temperature and vapor density were captured using a network of Radiometrics MP-3000A microwave radiometers \citep{hewison2003} operated by the New York State Mesonet \citep{brotzge2020}. Profiles for water vapor are retrieved using 21 channels in the 22-30.0 GHz (K-band) range, while profiles for temperature are retrieved using 14 channels in the 51-59.0 GHz (V-band) range. Profile accuracy (relative to radiosonde soundings) determined by performance studies at various locations reported an annually-averaged water vapor accuracy within \SI{1.0}{\gram\per\cubic\meter} below \SI{2}{\kilo\meter} and an annually-averaged temperature accuracy within \SI{1.6}{\kelvin} below \SI{4}{\kilo\meter} \citep{guldner2001, sanchez2013}. Quantities are captured at 58 height levels starting at ground level and ending at \SI{10}{\kilo\meter} above ground level, with vertical steps of \SI{50}{\meter} from ground level to \SI{500}{\meter}, \SI{100}{\meter} from \SI{500}{\meter} to \SI{2}{\kilo\meter}, and \SI{250}{\meter} steps above \SI{2}{\kilo\meter}. Observation integration times range from 0.01 to \SI{2.50}{\second}. Vertical profiles are generated every \SI{10}{\second} and averaged over \SI{10}{\minute} periods.
+\\ \\
+Wind measurements were measured using a network of Leosphere WindCube 100S Doppler lidars operated by the New York State Mesonet \citep{brotzge2020}. Measurements of wind motion using the Doppler beam swinging scan mode in three directions: zonal ($u$), meridional ($v$), and vertical ($w$) over \SI{20}{\second} cycles, with measurements averaged over \SI{10}{\minute} intervals \citep{shrestha2021}. The vertical range of the WindCube 100S is \SI{7}{\kilo\meter} above ground level with wind speed and direction accuracies of \SI{0.5}{\meter\per\second} and \SI{2}{\degree}, respectively. The WindCube 100S has also been shown to perform with a high degree of accuracy relative to radiosonde soundings, especially above \SI{500}{\meter} \citep{kumer2014}.
+\\ \\ 
+Land and sea surface temperatures were estimated using derived products from the NOAA/NASA GOES-16 Advanced Baseline Imager (ABI) \citep{ignatov2010, yu2008}. The GOES-16 ABI provides a spatial resolution of \SI{2}{\kilo\meter} with real-time data available to the public on an hourly basis. The spatial extent of the Land Surface Temperature (LST) product ranges from the continental United States (CONUS) to the majority of the Western Hemisphere (known as \textit{full disk}), whereas the Sea Surface Temperature (SST) product has a full disk spatial extent. The LST product has been found to have an error relative to surface observations of \SI{2.5}{K} over all land cover types, while sea surface temperatures (SSTs) estimated using the GOES-16 ABI have been found to have an error relative to shipborne radiometers $\leq$ \SI{1}{\kelvin} in the New York Bight \citep{luo2021}.
 
-Vertical profiles of temperature and vapor density were captured using microwave radiometers (Radiometrics MP-3000A). Profiles are captured at 58 height levels starting at 50 m and ending at 10 km above ground level, with vertical steps of 50 m from 50 to 500 m, 100 m from 500 m to 2 km, and 250 m steps above 2 km. 
+\subsubsection{Data criteria \& availability}
+Dates selected for this study are categorized into three groups: (1) normal days, (2) extreme heat days, and (3) sea breeze days. For the purposes of this study, \textit{extreme heat events} are defined as 3 or more consecutive days with maximum daily temperatures exceeding 90\textdegree F (\SI{305}{\kelvin}), per the New York branch of NOAA National Weather Service \citep{robinson2001, nws2018}, while \textit{normal days} are defined as days that do not meet these criteria. Because the aim of this study is to observe the effect of extreme heat on the UBL, normal day selection was restricted to months in which extreme heat events occurred (May through September), as well as days in which 50\% or more of the day featured clear-sky conditions below \SI{3.65}{\kilo\meter} above ground level due to the association of extreme heat events with reduced daytime cloud coverage and precipitation \citep{stefanon2014, thomas2020}. Clear-sky conditions were identified by using an average of 5-minute surface-based observations from three airports in the Automated Surface Observation System (ASOS) \citep{asos1998} network within the New York City metropolitan area: Newark Liberty International Airport (EWR), John F. Kennedy International Airport, and LaGuardia Airport. \textit{Sea breeze events} are identified as times during normal and extreme heat days in which the low-level ($\leq$ \SI{200}{\meter}) mean horizontal wind speed ($U$) is less than \SI{5}{\meter\per\second} and low-level wind direction has a primarily easterly component, due to the presence of the Atlantic Ocean to the east of New York City.
 
-\subsubsection{Data availability}
+
+
+- Discuss quality filtering
+- Plots showing sampling counts per hour per site per day
+
 
 \subsection{Derived quantities}
-
-\section{Results}
-
-%%%%% Discuss UBL turbulence
-\subsection{Mean and turbulent boundary layer properties}
-
 %%%%% Discuss the differences between normal and extreme heat days
-\subsection{Normal and extreme heat boundary layer properties}
+\section{Normal and extreme heat boundary layer properties}
+This section discusses the differences in boundary layer structure and properties between normal days and extreme heat events. Results are presented from the averages over all identified normal and heat event days.
+
+\subsection{Temperature}
+On average, extreme heat events increase the temperature at the surface, as expected (see Figure \ref{fig:extreme_heat_normal_0m_comparison_T}). This is consistent across all observed locations in New York City, with the extreme heat event temperature exceeding normal temperatures by approximately 1-$\sigma$ over the entire day. An increase in the difference is observed during daytime hours, with the difference peaking in magnitude around 13:00 LST at the hottest time of day. The surface temperature variability is significantly lower during heat events ($ \sigma = \SI{1.77}{\kelvin} $) than during normal temperatures ($ \sigma = \SI{4.57}{\kelvin} $).
+\\ \\
+Above the surface, extreme heat events similarly increase the temperature significantly over the lowest \SI{3000}{\meter} of the troposphere (see Figure \ref{fig:extreme-heat-normal-comparison-contours-theta}), with standardized anomalies of $\theta$ ranging from $\sigma = 0.88$ to $1.20$. The largest temperature anomalies shift from the surface layer in the mornings to span the entirety of the mixed layer. This is reflective of strong surface forcing resulting in convection through the surface layer, as indicated by the formation of a late morning superadiabatic layer at all locations (Figures \ref{fig:vertical_profiles-heat_wave-normal-theta-bron}, \ref{fig:vertical_profiles-heat_wave-normal-theta-quee}, \ref{fig:vertical_profiles-heat_wave-normal-theta-stat}). 
+\\ \\
+The vertical profiles of $\theta$ suggests a degree of spatial variability exists between locations. One instance of this spatial variability is vertical mixing; the Bronx site appears to have stronger vertical mixing based on Figure \ref{fig:vertical_profiles-heat_wave-normal-theta-bron}, as $\theta$ remains constant for a greater height than at the Queens and Staten Island locations. This phenomenon is more pronounced during extreme heat events, as a distinct mixed layer is apparent in the Bronx during early (12:00 LST) and late (18:00 LST) afternoon hours. While the mixed layer is also visible for the other locations, the strength of the mixed layer is emphasized by the negative $\frac{d\theta}{dz}$ values between 1000 and 1500 m.
+
+\subsection{Moisture}
+On average, extreme heat events were found to increase the moisture at the surface, as indicated by the diurnal profiles of specific humidity ($q$) (see Figure \ref{fig:extreme-heat-normal-0m-comparison-q}). This is also consistent across all observed locations in New York City, with the extreme heat event temperature exceeding normal temperatures by approximately 1-$\sigma$ over the entire day. Although a distinct diurnal profiles exists ($q$ decreases during daytime hours), the diurnal range is smaller in magnitude than temperature. It is also worth noting that the diurnal range is lower for Staten Island than for the Bronx or Queens, suggesting that degree of urbanization has a negative correlation with the diurnal range of $q$. Similar to surface temperature, the variability of $q$ is significantly lower during heat events ($ \sigma = \SI{2.14e-03}{\kilo\gram\per\kilo\gram} $) than during normal temperatures ($ \sigma = \SI{3.18e-03}{\kilo\gram\per\kilo\gram} $).
+\\ \\
+In the boundary layer, the positive $q$ anomalies subside in magnitude between 300 and \SI{600}{\meter}, but increase significantly in the mixed layer, especially during the late morning and early afternoon for all sites. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-q}, the largest anomalies occur between 10:00 and 16:00 LST in the upper mixed layer. With regards to spatial variation in $q$, the highest anomalies occur over the Bronx and Queens, whereas Staten Island demonstrates a positive $q$ anomaly with lower magnitudes during extreme heat events. This correlates with the magnitude of the difference in surface quantities shown in Figure \ref{fig:extreme-heat-normal-0m-comparison-q}. 
+\\ \\
+With regards to time, mid-morning increases in anomaly values in the lower mixed layer (\texttildelow \SI{500}{\meter}) suggest enhanced vertical transport of moisture across all sites (see Figures \ref{fig:vertical_profiles-heat_wave-normal-q-bron}, \ref{fig:vertical_profiles-heat_wave-normal-q-quee}, \ref{fig:vertical_profiles-heat_wave-normal-q-stat}). Vertical profiles of $q$ across all locations show markedly higher $q$ values at the surface during extreme heat event with $\frac{dq}{dz}$ values increasing throughout the morning in the mixed layer while low-level $q$ values decrease, indicating vertical transport of moisture and drier low-level conditions during peak insolation.
+
+\subsection{UBL dynamics}
+
+\subsubsection{Horizontal winds}
+Extreme heat events resulted in an overall reduction of horizontal wind speeds ($U$) in the UBL. More specifically, the magnitude of $U$ during extreme heat events is similar in magnitude to $U$ during normal days with the exception of early morning hours and at upper levels of the UBL. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-U}, modest reductions in $U$ ($-1.2 \leq \sigma \leq -0.4$) during extreme heat events are present throughout the UBL from early to mid-morning, with little differences throughout the rest of the day ($-0.4 \leq \sigma \leq 0.4$). Larger deviations between $U$ values are present at the top of the UBL where synoptic conditions become dominant.
+\\ \\
+Vertical profiles of $U$ for normal and extreme heat events provide a more detailed view of the differences in UBL structure. Across all sites, $U$ is similar throughout the UBL overnight, afternoon, and evenings. During early morning hours, extreme heat event $U$ values decrease by 25 to 50\% throughout the entire UBL (see Figures \ref{fig:vertical_profiles-heat_wave-normal-U-bron}, \ref{fig:vertical_profiles-heat_wave-normal-U-quee}, \ref{fig:vertical_profiles-heat_wave-normal-U-stat}), although both event types present a classical logarithmic wind profile, with surface friction effects present through \SI{500}{\meter}. Another phenomenon worth noting is the difference in $U$ profiles above \SI{2000}{\meter}; profiles of $U$ during extreme heat events are more consistent between sites and vertically than during normal days. This phenomenon may highlight the effect of synoptic meteorological conditions on $U$, as the UBL typically remains below \SI{2500}{\meter}. During extreme heat events, anticyclonic conditions produce more stable atmospheric conditions relative to normal days, resulting in less variability between heat events than during normal days.
+\\ \\
+Extreme heat events result in a southwesterly shift in $U$ throughout the UBL. This shift is present most evidently closer to the surface, as shown in Figures \ref{fig:wind_rose-bron}, \ref{fig:wind_rose-quee}, and \ref{fig:wind_rose-stat}, with winds at \SI{100}{\meter} coming primarily from the southwest quadrant. Figure \ref{fig:wind_rose-quee} shows that Queens also presents a secondary maximum with winds approaching from the south, which suggests effects from the Atlantic sea breeze (effects from the sea breeze will be further discussed in Section \ref{section:sea_breeze_effects}). At \SI{1000}{\meter}, the directionality of prevailing winds becomes more uniform between normal and extreme heat days, as winds primarily approach New York City from the west-southwest. The disparity in wind directions between 100 and \SI{1000}{\meter} suggests that localized wind fields play a major role in UBL dynamics at lower levels whereas synoptic-scale atmospheric conditions increasingly dominate with increasing height.
+\\ \\
+\subsubsection{Vertical motion}
+On average, extreme heat events do not appear to produce significant changes in vertical velocity ($w$). Figure \ref{fig:extreme-heat-normal-comparison-100m-w} shows average diurnal profiles of $w$ at all locations at \SI{100}{\meter} above ground level, with similar mean values throughout the day between normal days and extreme heat events. During extreme heat events, however, the variability of $w$ is less in the early morning hours and greater in the evening. This phenomenon is also observed in vertical profiles of $w$ at all locations as shown in Figures \ref{fig:extreme-heat-normal-vertical_profiles-w-bron},\ref{fig:extreme-heat-normal-vertical_profiles-w-quee}, and \ref{fig:extreme-heat-normal-vertical_profiles-w-stat}. At all locations, overnight and morning profiles of $w$ (0:00 and 6:00 LST) show significantly lower variability in $w$ throughout the UBL with similar magnitudes of mean $w$. Despite similar means and deviations in the early afternoon (12:00 LST), evening profiles (18:00 LST) show significantly higher variability in $w$ below \SI{500}{\meter} for all sites, with the Bronx showing this occurrence extend through the UBL.
 
 %%%%% Discuss the observed sea breeze circulation
-\subsection{Effects of the sea breeze circulation}
+\section{Effects of the sea breeze circulation} \label{section:sea_breeze_effects}
+
+- Talk about sea breeze event frequency
+- Talk about synoptic conditions that are characteristic of sea breeze events in New York
+
+
+During extreme heat events, observations show that the sea breeze plays a moderating role on surface conditions by reducing low-level temperatures and increasing low-level moisture content, as shown in Figures \ref{fig:sea_breeze_heat_wave_anomaly-T} and \ref{fig:sea_breeze_heat_wave_anomaly-q}. 
+
+Sea breezes in New York City occur as a result of land-sea temperature gradients from two arms of the Atlantic Ocean; the New York Bight to the southeast and Long Island Sound to the northeast. 
+
+During days with identified sea breeze circulations, southeasterly winds increased in occurrence frequency compared to all other days at all locations, especially after 12:00 LST. The occurrence frequency of southeasterly winds is correlated with the distance between the observation site and the largest body of water in proximity of the metropolitan area (Atlantic Ocean), as Staten Island reported 92.1\% of all winds at \SI{100}{\meter} as southeasterly between 12:00 and 20:00 LST (distance of \SI{6.50}{\kilo\meter} from Lower New York Bay), whereas Queens reported 67.4\% (distance of \SI{16.5}{\kilo\meter}), and Bronx reported 55.6\% (distance of \SI{32.9}{\kilo\meter}). 
 
 \section{Discussion}
 
 \section{Conclusions}
 
+\section*{Acknowledgments}
+This research is made possible by the New York State (NYS) Mesonet. Original funding for the NYS Mesonet was provided by Federal Emergency Management Agency grant FEMA-4085-DR-NY, with the continued support of the NYS Division of Homeland Security \& Emergency Services; the state of New York; the Research Foundation for the State University of New York (SUNY); the University at Albany, SUNY; the Atmospheric Sciences Research Center (ASRC) at SUNY Albany; and the Department of Atmospheric and Environmental Sciences (DAES) at SUNY Albany.
+
 \printbibliography
+
+\section*{Appendix}
+
+% Table displaying symbols used in the paper
+\captionof{table}{Symbols and abbreviations used in the paper.}
+\label{tab:symbols}
+\begin{center}
+	\begin{tabularx}{0.5\textwidth}{l X}
+ 		\hline
+ 		Symbol/Abbreviation & Definition \\
+ 		\hline
+ 		$\sigma$ & Standard deviation \\
+ 		$\theta$ & Potential temperature \\
+ 		$q$ & Specific humidity \\
+ 		$U$ & Horizontal wind speed \\
+ 		$w$ & Vertical velocity \\
+ 		UBL & Urban boundary layer \\
+ 		MLH & Mixed layer height \\
+ 		\hline
+	\end{tabularx}
+\end{center}
+
+\section*{Figures}
+
+% Introduction figures 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/land_cover.png}
+	\caption{Observation sites overlaid on NLCD land cover types..}
+	\label{fig:land_cover}
+\end{figure}
+ 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/building_heights.png}
+	\caption{Building heights in New York City. Taken from NYC DOB data.}
+	\label{fig:building_heights}
+\end{figure}
+
+
+% Temperature anomalies
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-theta-anomaly.png}
+	\caption{Anomalies of $\theta$ during extreme heat events relative to the climatology over the urban boundary layer.}
+	\label{fig:extreme-heat-normal-comparison-contours-theta}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-T-anomaly-0m.png}
+	\caption{Anomalies of temperature during extreme heat events relative to the climatology at the surface.}
+	\label{fig:extreme_heat_normal_0m_comparison_T}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-theta-bron.png}
+	\caption{Vertical profiles of $\theta$ in the Bronx during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-theta-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-theta-quee.png}
+	\caption{Vertical profiles of $\theta$ in Queens during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-theta-quee}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-theta-stat.png}
+	\caption{Vertical profiles of $\theta$ in Staten Island during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-theta-stat}
+\end{figure}
+
+% Moisture anomalies
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-q-anomaly.png}
+	\caption{Anomalies of $q$ during extreme heat events relative to the climatology over the urban boundary layer.}
+	\label{fig:extreme-heat-normal-comparison-contours-q}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-q-anomaly-0m.png}
+	\caption{Anomalies of $q$ during extreme heat events relative to the climatology at the surface.}
+	\label{fig:extreme-heat-normal-0m-comparison-q}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-q-bron.png}
+	\caption{Vertical profiles of $q$ in the Bronx during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-q-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-q-quee.png}
+	\caption{Vertical profiles of $q$ in Queens during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-q-quee}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-q-stat.png}
+	\caption{Vertical profiles of $q$ in Staten Island during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-q-stat}
+\end{figure}
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-U-anomaly.png}
+	\caption{Anomalies of $U$ during extreme heat events relative to the climatology over the urban boundary layer.}
+	\label{fig:extreme-heat-normal-comparison-contours-U}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-U-anomaly-100m.png}
+	\caption{Anomalies of low-level $U$ during extreme heat events relative to the climatology.}
+	\label{fig:extreme-heat-normal-100m-comparison-U}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-U-bron.png}
+	\caption{Vertical profiles of $U$ in the Bronx during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-U-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-U-quee.png}
+	\caption{Vertical profiles of $U$ in Queens during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-U-quee}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-U-stat.png}
+	\caption{Vertical profiles of $U$ in Staten Island during normal days (blue) and extreme heat events (red).}
+	\label{fig:vertical_profiles-heat_wave-normal-U-stat}
+\end{figure}
+
+% Wind roses at multiple heights for all locations
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/wind_rose-bron.png}
+	\caption{Horizontal winds in the lower-level (100 m) and mid-level of the urban boundary layer over the Bronx.}
+	\label{fig:wind_rose-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/wind_rose-quee.png}
+	\caption{Horizontal winds in the lower-level (100 m) and mid-level of the urban boundary layer over Queens.}
+	\label{fig:wind_rose-quee}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/wind_rose-stat.png}
+	\caption{Horizontal winds in the lower-level (100 m) and mid-level of the urban boundary layer over Staten Island.}
+	\label{fig:wind_rose-stat}
+\end{figure}
+
+% Diurnal evolution of wind directions
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-bron-100m.png}
+	\caption{Diurnal evolution of low-level wind directions in the Bronx during normal days.}
+	\label{fig:histogram-wind_direction-bron-normal}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-quee-100m.png}
+	\caption{Diurnal evolution of low-level wind directions in Queens during normal days.}
+	\label{fig:histogram-wind_direction-quee-normal}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-stat-100m.png}
+	\caption{Diurnal evolution of low-level wind directions in Staten Island during normal days.}
+	\label{fig:histogram-wind_direction-stat-normal}
+\end{figure}
+
+% Vertical quantity comparison timeseries, extreme heat versus normal
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-w-anomaly-100m.png}
+	\caption{Anomalies of low-level $w$ during extreme heat events relative to the climatology.}
+	\label{fig:extreme-heat-normal-comparison-100m-w}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-w-anomaly.png}
+	\caption{Anomalies of $w$ during extreme heat events relative to the climatology over the urban boundary layer.}
+	\label{fig:extreme-heat-normal-comparison-contours-w}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-w-bron.png}
+	\caption{Vertical profiles of $w$ in the Bronx during normal days (blue) and extreme heat events (red).}
+	\label{fig:extreme-heat-normal-vertical_profiles-w-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-w-quee.png}
+	\caption{Vertical profiles of $w$ in Queens during normal days (blue) and extreme heat events (red).}
+	\label{fig:extreme-heat-normal-vertical_profiles-w-quee}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/vertical_profiles-heat_wave-normal-w-stat.png}
+	\caption{Vertical profiles of $U$ in Staten Island during normal days (blue) and extreme heat events (red).}
+	\label{fig:extreme-heat-normal-vertical_profiles-w-stat}
+\end{figure}
+
+% Sea breeze data
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png}
+	\caption{Anomalies of $\theta$ for heat wave days with a sea breeze relative to heat wave days without a sea breeze.}
+	\label{fig:sea_breeze_heat_wave_anomaly-T}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png}
+	\caption{Anomalies of $q$ for heat wave days with a sea breeze relative to heat wave days without a sea breeze.}
+	\label{fig:sea_breeze_heat_wave_anomaly-q}
+\end{figure}
+
 
 \end{document}
