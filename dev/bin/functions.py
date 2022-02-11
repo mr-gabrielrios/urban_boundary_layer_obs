@@ -30,7 +30,6 @@ def mean_horizontal_wind(data):
         data = data.assign(U=np.sqrt(data['u']**2 + data['v']**2))
     
     return data
-    
 
 def lapse_rate(data):
     '''
@@ -69,30 +68,6 @@ def saturation_vapor_pressure(data):
     data['saturation_vapor_pressure'] = es/100
     
     return data
-
-'''
-def pressure(data):
-    
-    # degC
-    T = data['temperature'] - 273.15
-    # -
-    RH = data['relative_humidity']
-    # -
-    A, B = 17.625, 243.04
-    # degC
-    Td = B*(np.log(RH/100) + A*T/(B+T))/(A - np.log(RH/100) - A*T/(B+T))
-    # hPa
-    e = 6.11*(np.exp(17.27*Td/(237.3+Td)))
-    # hPa
-    es = 6.11*(np.exp(17.27*T/(237.3+T)))
-    
-    ws = (0.622*es - 0.622*e*100/RH)/(e-es)
-    p = e*(1 - 100/RH)/(1 - 100*e/(RH*es))
-    print(p) 
-    data['pressure'] = p
-    
-    return data
-'''
 
 def pressure(data):
     '''
@@ -183,12 +158,39 @@ def mixing_ratio(data):
     '''
     
     # Calculate partial pressure of water vapor in hPa 
-    # e = (1/100) * (relative humidity) * (saturation vapor pressure)
-    e = (1/100) * data['relative_humidity'] * (0.61 * np.exp(17.27*(data['temperature']-273.15)/((data['temperature']-273.15)+237.3))) * 10
+    # e = (1/100) * data['relative_humidity'] * (0.61 * np.exp(17.27*(data['temperature']-273.15)/((data['temperature']-273.15)+237.3))) * 10
+    # Gas constant, water vapor (J K^-1 kg^-1)
+    R_v = 461.51
+    # Calculate partial pressure of water vapor (Wallace and Hobbs, 2006, Section 3.1.1)
+    e = (data['vapor_density']/1000 * R_v * data['temperature'])/100
     # Calculate virtual potential temperature, using a mixing ratio of 0.622
     data['mixing_ratio'] = 0.622*e/(data['pressure'] - e)
     
     return data
+
+
+def specific_humidity(data):
+    
+    '''
+    Calculates specific humidity for given Dataset.
+    Derived from Wallace and Hobbs, 2nd ed., Equation 3.57a.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        xArray Dataset containing all observed data and mixing ratio data.
+
+    Returns
+    -------
+    data : xArray Dataset
+        xArray Dataset containing specific_humidity in addition to pre-existing variables.
+        
+    '''
+    
+    data['specific_humidity'] = data['mixing_ratio'] / (data['mixing_ratio'] + 1)
+    
+    return data
+    
     
 def bulk_richardson_number(data, mode='surface'):
     
