@@ -2401,6 +2401,17 @@
     <bcf:citekey order="29">stefanon2014</bcf:citekey>
     <bcf:citekey order="29">thomas2020</bcf:citekey>
     <bcf:citekey order="30">asos1998</bcf:citekey>
+    <bcf:citekey order="31">bornstein1981</bcf:citekey>
+    <bcf:citekey order="32">childs2005</bcf:citekey>
+    <bcf:citekey order="32">frizzola1963</bcf:citekey>
+    <bcf:citekey order="32">gedzelman2003</bcf:citekey>
+    <bcf:citekey order="33">gedzelman2003</bcf:citekey>
+    <bcf:citekey order="34">miller2003</bcf:citekey>
+    <bcf:citekey order="35">bornstein1981</bcf:citekey>
+    <bcf:citekey order="36">frizzola1963</bcf:citekey>
+    <bcf:citekey order="37">pullen2007</bcf:citekey>
+    <bcf:citekey order="38">frizzola1963</bcf:citekey>
+    <bcf:citekey order="38">meir2013</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

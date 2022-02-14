@@ -25,6 +25,8 @@
 \usepackage{titlesec}
 % To accommodate UTF encoding
 \usepackage[utf8]{inputenc} 
+% Handle math
+\usepackage{amsmath}
 
 %%%%%% Reference files
 \addbibresource{references.bib}
@@ -122,8 +124,7 @@ The UBL over New York City is observed and analyzed in this study. Observational
  		Coordinates & 40.87248\textdegree N, -73.89352\textdegree E & 40.73433\textdegree N, -73.81585\textdegree E & 40.60401\textdegree N, -74.14850\textdegree E \\
  		Elevation (m a.g.l.) & 57.8 & 56.3 & 32.4 \\
  		Element roughness height (m a.g.l.) & & & \\
- 		Instruments used & Lidar, microwave radiometer & Lidar, microwave radiometer, sonic anemometer & Lidar, microwave radiometer, sonic anemometer \\
- 		Valid wind directions & N/A & 180 to 360\textdegree & None \\
+ 		Valid wind directions & N/A & 180 to 360\textdegree & N/A \\
  		\hline
 	\end{tabularx}
 \end{center}
@@ -147,6 +148,7 @@ Dates selected for this study are categorized into three groups: (1) normal days
 
 
 \subsection{Derived quantities}
+
 %%%%% Discuss the differences between normal and extreme heat days
 \section{Normal and extreme heat boundary layer properties}
 This section discusses the differences in boundary layer structure and properties between normal days and extreme heat events. Results are presented from the averages over all identified normal and heat event days.
@@ -168,7 +170,7 @@ With regards to time, mid-morning increases in anomaly values in the lower mixed
 \subsection{UBL dynamics}
 
 \subsubsection{Horizontal winds}
-Extreme heat events resulted in an overall reduction of horizontal wind speeds ($U$) in the UBL. More specifically, the magnitude of $U$ during extreme heat events is similar in magnitude to $U$ during normal days with the exception of early morning hours and at upper levels of the UBL. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-U}, modest reductions in $U$ ($-1.2 \leq \sigma \leq -0.4$) during extreme heat events are present throughout the UBL from early to mid-morning, with little differences throughout the rest of the day ($-0.4 \leq \sigma \leq 0.4$). Larger deviations between $U$ values are present at the top of the UBL where synoptic conditions become dominant.
+Extreme heat events coincided with an overall reduction of horizontal wind speeds ($U$) in the UBL. More specifically, the magnitude of $U$ during extreme heat events is similar in magnitude to $U$ during normal days with the exception of early morning hours and at upper levels of the UBL. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-U}, modest reductions in $U$ ($-1.2 \leq \sigma \leq -0.4$) during extreme heat events are present throughout the UBL from early to mid-morning, with little differences throughout the rest of the day ($-0.4 \leq \sigma \leq 0.4$). Larger deviations between $U$ values are present at the top of the UBL where synoptic conditions become dominant.
 \\ \\
 Vertical profiles of $U$ for normal and extreme heat events provide a more detailed view of the differences in UBL structure. Across all sites, $U$ is similar throughout the UBL overnight, afternoon, and evenings. During early morning hours, extreme heat event $U$ values decrease by 25 to 50\% throughout the entire UBL (see Figures \ref{fig:vertical_profiles-heat_wave-normal-U-bron}, \ref{fig:vertical_profiles-heat_wave-normal-U-quee}, \ref{fig:vertical_profiles-heat_wave-normal-U-stat}), although both event types present a classical logarithmic wind profile, with surface friction effects present through \SI{500}{\meter}. Another phenomenon worth noting is the difference in $U$ profiles above \SI{2000}{\meter}; profiles of $U$ during extreme heat events are more consistent between sites and vertically than during normal days. This phenomenon may highlight the effect of synoptic meteorological conditions on $U$, as the UBL typically remains below \SI{2500}{\meter}. During extreme heat events, anticyclonic conditions produce more stable atmospheric conditions relative to normal days, resulting in less variability between heat events than during normal days.
 \\ \\
@@ -178,21 +180,30 @@ Extreme heat events result in a southwesterly shift in $U$ throughout the UBL. T
 On average, extreme heat events do not appear to produce significant changes in vertical velocity ($w$). Figure \ref{fig:extreme-heat-normal-comparison-100m-w} shows average diurnal profiles of $w$ at all locations at \SI{100}{\meter} above ground level, with similar mean values throughout the day between normal days and extreme heat events. During extreme heat events, however, the variability of $w$ is less in the early morning hours and greater in the evening. This phenomenon is also observed in vertical profiles of $w$ at all locations as shown in Figures \ref{fig:extreme-heat-normal-vertical_profiles-w-bron},\ref{fig:extreme-heat-normal-vertical_profiles-w-quee}, and \ref{fig:extreme-heat-normal-vertical_profiles-w-stat}. At all locations, overnight and morning profiles of $w$ (0:00 and 6:00 LST) show significantly lower variability in $w$ throughout the UBL with similar magnitudes of mean $w$. Despite similar means and deviations in the early afternoon (12:00 LST), evening profiles (18:00 LST) show significantly higher variability in $w$ below \SI{500}{\meter} for all sites, with the Bronx showing this occurrence extend through the UBL.
 
 %%%%% Discuss the observed sea breeze circulation
-\section{Effects of the sea breeze circulation} \label{section:sea_breeze_effects}
+\section{Effects of the sea breeze circulation} \label{section:sea_breeze_effects} 
+Sea breezes in New York City occur as a result of land-sea temperature gradients from two arms of the Atlantic Ocean; the New York Bight to the southeast and Long Island Sound to the northeast. Sea breezes from both bodies increase the complexity of UBL dynamics over New York City due to the coalescence of opposing fronts over a complex topography \citep{bornstein1981}. A typical sea breeze event in New York City is defined by calm ambient low-level winds ($\leq$ \SI{5}{\meter\per\second}, the formation of a large land-sea temperature gradient in the mid- to late morning, strong late-morning thermals that promote low-level convergence, and afternoon to early-evening onshore moisture transport and reduction in surface air temperatures (especially in areas closest to the shore) \citep{childs2005, frizzola1963, gedzelman2003}. 
+\\
+Sea breeze events occurred on approximately 56\% of all days observed. The high frequency of occurrence is likely attributable to the large land-sea temperature gradient that is common during warmer months \citep{gedzelman2003}, as days were chosen exclusively between May and September. Maximum land-sea surface temperature differences during days with identifiable sea breeze events averaged at \SI{12}{\kelvin}, with a strong diurnal profile with the peak difference occurring around midday (see Figure \ref{fig:sea_breeze-lst_sst-diff}). The frequency of occurrence increases when observing days during extreme heat events, as the lack of a strong synoptic wind allows for the sea breeze circulation to become dominant in the metropolitan area \citep{miller2003}. 
 
-- Talk about sea breeze event frequency
-- Talk about synoptic conditions that are characteristic of sea breeze events in New York
+\subsection{UBL structure during sea breeze events}
+During normal days, observations show that the sea breeze reduces temperatures and increases moisture content throughout the UBL after 12:00 LST. In Figure \ref{fig:sea_breeze_normal-normal-anomaly-theta}, the standardized anomalies of $\theta$ between normal days with and without a sea breeze are shown, averaged over all days for each set of days. Overnight and in the early morning, positive anomalies of $\theta$ are present above the UBL ($\leq$ \SI{1}{\kilo\meter}) until mid-morning, with the Bronx having the most significant anomaly and Staten Island the least. This suggests a decreasing degree of anomalous $\theta$ with decreasing urbanization. This anomaly pattern coincides with a positive $q$ anomaly trend in both the spatiotemporal aspect (peak anomaly occurs above \SI{1}{\kilo\meter} before 8:00 LST) and the magnitude aspect (the Bronx has the most significant early morning anomaly, Staten Island has the least). Later in the day, all sites observe a negative $\theta$ anomaly throughout the UBL despite a negative $q$ anomaly, indicating that sea breeze events during normal days coincide with a cooler and drier daytime UBL. Sea breeze effects become apparent during the mid-afternoon with the presence of a significant negative $\theta$ and positive $q$ anomaly in the lower UBL, with Staten Island experiencing effects first (approximately 16:00 LST) and the Bronx experiencing effects last. It is worth noting that the $q$ anomaly is weakest in the Bronx, indicating that the sea breeze front weakens as it travels inland over New York City.
+\\ \\
+During extreme heat events, observations show that the sea breeze plays a moderating role on surface conditions by reducing low-level temperatures and increasing low-level moisture content, similar to phenomena observed during normal days. In Figure \ref{fig:sea_breeze_heat_wave_anomaly-T}, the standardized anomalies of $\theta$ between extreme heat days with and without a sea breeze are shown, averaged over all days. All sites shown that extreme heat days with a sea breeze possess slightly higher values of $\theta$ in the mid-morning, with significant low-level reduction in $\theta$ in the afternoon and evening. On average, the onset of the low-level cooling occurs in Staten Island first at approximately 12:00 LST, with Queens following at approximately 14:00 LST, and the Bronx at about 18:00 LST. This disparity in times appears to represent the passage of the southeasterly sea breeze front through New York City, where the onset time correlates with the distance from the New York Bight \citep{bornstein1981}. A similar phenomenon is observed by the transport of $q$ as shown in Figure \ref{fig:sea_breeze_heat_wave_anomaly-q}, with drier conditions throughout the UBL before 12:00 LST and increasing low-level moisture as the day progresses. With regards to onset, $q$ follows a similar pattern to $\theta$ in that the onset time is dependent from distance to the shore. These anomalies present most significantly in the lowest \SI{1000}{\meter} of the UBL after 12:00 LST, which aligns with sea breeze circulation characteristics observed in \citet{frizzola1963}.
 
+\subsection{UBL dynamics during sea breeze events}
+Days with identifiable sea breeze events had lower $U$ throughout the majority of the UBL, with the most significant decreases during the nighttime, potentially due to the lessening of onshore flow due to the reduction of the land-sea temperature gradient \citep{pullen2007}, as shown in Figure \ref{fig:sea_breeze-lst_sst-diff}. Vertical motions, however, increased significantly in the Bronx and Queens during the late morning and early afternoon, as shown in Figure \ref{fig:sea_breeze_heat_wave_anomaly-w}. These anomalies likely indicate the increased presence of updrafts in urbanized areas.
 
-During extreme heat events, observations show that the sea breeze plays a moderating role on surface conditions by reducing low-level temperatures and increasing low-level moisture content, as shown in Figures \ref{fig:sea_breeze_heat_wave_anomaly-T} and \ref{fig:sea_breeze_heat_wave_anomaly-q}. 
+During days with identified sea breeze circulations, easterly winds increase in frequency in the lower levels of the UBL, as shown in Figures \ref{fig:wind_direction-heat_wave-sea_breeze-histogram-bron}, \ref{fig:wind_direction-heat_wave-sea_breeze-histogram-quee}, and \ref{fig:wind_direction-heat_wave-sea_breeze-histogram-stat}. Southeasterly winds (due to sea breezes from the New York Bight) increased in frequency compared to all other days at all locations. The occurrence frequency of southeasterly winds is correlated with the distance between the observation site and the largest body of water in proximity of the metropolitan area (Atlantic Ocean), as Staten Island reported 92.1\% of all winds at \SI{100}{\meter} as southeasterly between 12:00 and 20:00 LST (distance of \SI{6.50}{\kilo\meter} from Lower New York Bay), whereas Queens reported 67.4\% (distance of \SI{16.5}{\kilo\meter}), and Bronx reported 55.6\% (distance of \SI{32.9}{\kilo\meter}). 
 
-Sea breezes in New York City occur as a result of land-sea temperature gradients from two arms of the Atlantic Ocean; the New York Bight to the southeast and Long Island Sound to the northeast. 
-
-During days with identified sea breeze circulations, southeasterly winds increased in occurrence frequency compared to all other days at all locations, especially after 12:00 LST. The occurrence frequency of southeasterly winds is correlated with the distance between the observation site and the largest body of water in proximity of the metropolitan area (Atlantic Ocean), as Staten Island reported 92.1\% of all winds at \SI{100}{\meter} as southeasterly between 12:00 and 20:00 LST (distance of \SI{6.50}{\kilo\meter} from Lower New York Bay), whereas Queens reported 67.4\% (distance of \SI{16.5}{\kilo\meter}), and Bronx reported 55.6\% (distance of \SI{32.9}{\kilo\meter}). 
-
-\section{Discussion}
+For sites near Long Island Sound (the Bronx and Queens), northeasterly winds increased in frequency as well, though not to the same magnitude as southeasterly winds. This disparity in magnitude suggests that the Long Island Sound sea breeze front is weaker than the New York Bight sea breeze front, which aligns with previous studies of sea breeze fronts over New York City \citep{frizzola1963, meir2013}. 
 
 \section{Conclusions}
+
+\begin{itemize}
+	\item How do UBL structure and dynamics depart from the climatology during extreme heat events?	
+	\item How does the UBL structure impact the transport of scalars?
+	\item The sea breeze reduces temperatures throughout the UBL after the onset of the sea breeze, which typically occurs in the mid-afternoon in immediate coastal areas and in the evening for areas further inland. The sea breeze also results in nocturnal low-level onshore moisture transport.
+\end{itemize}
 
 \section*{Acknowledgments}
 This research is made possible by the New York State (NYS) Mesonet. Original funding for the NYS Mesonet was provided by Federal Emergency Management Agency grant FEMA-4085-DR-NY, with the continued support of the NYS Division of Homeland Security \& Emergency Services; the state of New York; the Research Foundation for the State University of New York (SUNY); the University at Albany, SUNY; the Atmospheric Sciences Research Center (ASRC) at SUNY Albany; and the Department of Atmospheric and Environmental Sciences (DAES) at SUNY Albany.
@@ -200,6 +211,22 @@ This research is made possible by the New York State (NYS) Mesonet. Original fun
 \printbibliography
 
 \section*{Appendix}
+
+\begin{equation*}\label{eqn:pressure}
+	p = p_0 \exp{\frac{-g z}{R T_0}}
+\end{equation*}
+
+\begin{equation*}\label{eqn:potential_temperature}
+	\theta = T \left(\frac{p_0}{p} \right)^{\frac{R}{c_p}}
+\end{equation*}
+
+\begin{equation*}\label{eqn:specific_humidity}
+	q = \frac{w}{1+w} = \frac{\frac{\varepsilon \rho_v' R_v T}{p - \rho_v' R_v T}}{1+\frac{\varepsilon \rho_v' R_v T}{p - \rho_v' R_v T}} 
+\end{equation*}
+
+\begin{equation*}
+	Ri_b = \frac{g \Delta \bar{\theta_v} \Delta z}{\bar{\theta_v} \left[ (\Delta \bar{U}^2) + (\Delta \bar{V}^2) \right] }
+\end{equation*}
 
 % Table displaying symbols used in the paper
 \captionof{table}{Symbols and abbreviations used in the paper.}
@@ -354,28 +381,7 @@ This research is made possible by the New York State (NYS) Mesonet. Original fun
 	\label{fig:wind_rose-stat}
 \end{figure}
 
-% Diurnal evolution of wind directions
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-bron-100m.png}
-	\caption{Diurnal evolution of low-level wind directions in the Bronx during normal days.}
-	\label{fig:histogram-wind_direction-bron-normal}
-\end{figure}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-quee-100m.png}
-	\caption{Diurnal evolution of low-level wind directions in Queens during normal days.}
-	\label{fig:histogram-wind_direction-quee-normal}
-\end{figure}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-normal-stat-100m.png}
-	\caption{Diurnal evolution of low-level wind directions in Staten Island during normal days.}
-	\label{fig:histogram-wind_direction-stat-normal}
-\end{figure}
-
 % Vertical quantity comparison timeseries, extreme heat versus normal
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-w-anomaly-100m.png}
@@ -411,6 +417,26 @@ This research is made possible by the New York State (NYS) Mesonet. Original fun
 % Sea breeze data
 \begin{figure}[ht]
 	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze-lst_sst-diff.png}
+	\caption{Temperature difference between Queens and New York Bight.}
+	\label{fig:sea_breeze-lst_sst-diff}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_normal-normal-anomaly-theta.png}
+	\caption{Anomalies of $\theta$ for normal days with a sea breeze relative to normal days without a sea breeze.}
+	\label{fig:sea_breeze_normal-normal-anomaly-theta}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_normal-normal-anomaly-q.png}
+	\caption{Anomalies of $q$ for normal days with a sea breeze relative to normal days without a sea breeze.}
+	\label{fig:sea_breeze_normal-normal-anomaly-q}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
 	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png}
 	\caption{Anomalies of $\theta$ for heat wave days with a sea breeze relative to heat wave days without a sea breeze.}
 	\label{fig:sea_breeze_heat_wave_anomaly-T}
@@ -420,6 +446,32 @@ This research is made possible by the New York State (NYS) Mesonet. Original fun
 	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png}
 	\caption{Anomalies of $q$ for heat wave days with a sea breeze relative to heat wave days without a sea breeze.}
 	\label{fig:sea_breeze_heat_wave_anomaly-q}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png}
+	\caption{Anomalies of $w$ for heat wave days with a sea breeze relative to heat wave days without a sea breeze.}
+	\label{fig:sea_breeze_heat_wave_anomaly-w}
+\end{figure}
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png}
+	\caption{Occurrence frequency of wind directions at \SI{100}{\meter} in the Bronx.}
+	\label{fig:wind_direction-heat_wave-sea_breeze-histogram-bron}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png}
+	\caption{Occurrence frequency of wind directions at \SI{100}{\meter} in Queens.}
+	\label{fig:wind_direction-heat_wave-sea_breeze-histogram-quee}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png}
+	\caption{Occurrence frequency of wind directions at \SI{100}{\meter} in Staten Island.}
+	\label{fig:wind_direction-heat_wave-sea_breeze-histogram-stat}
 \end{figure}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  11 FEB 2022 09:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  14 FEB 2022 08:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -603,33 +603,82 @@ Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks23
 \inpenc@posthook=\toks24
 )
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip81
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen191
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count422
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count423
+\leftroot@=\count424
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count425
+\DOTSCASE@=\count426
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box60
+\strutbox@=\box61
+\big@size=\dimen192
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count427
+\c@MaxMatrixCols=\count428
+\dotsspace@=\muskip21
+\c@parentequation=\count429
+\dspbrk@lvl=\count430
+\tag@help=\toks25
+\row@=\count431
+\column@=\count432
+\maxfields@=\count433
+\andhelp@=\toks26
+\eqnshift@=\dimen193
+\alignsep@=\dimen194
+\tagshift@=\dimen195
+\tagwidth@=\dimen196
+\totwidth@=\dimen197
+\lineht@=\dimen198
+\@envbody=\toks27
+\multlinegap=\skip82
+\multlinetaggap=\skip83
+\mathdisplay@stack=\toks28
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
    defining Unicode char U+2218 (decimal 8728)
-\@quotelevel=\count422
-\@quotereset=\count423
+\@quotelevel=\count434
+\@quotereset=\count435
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
-
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
@@ -651,8 +700,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 48.
-Package biblatex Info: Reference segment=0 on input line 48.
+Package biblatex Info: Reference section=0 on input line 50.
+Package biblatex Info: Reference segment=0 on input line 50.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -688,7 +737,7 @@ Package biblatex Info: Reference segment=0 on input line 48.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 48.
+Package hyperref Info: Link coloring ON on input line 50.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -699,11 +748,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count424
+\c@section@level=\count436
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 50.
+LaTeX Info: Redefining \pageref on input line 50.
+LaTeX Info: Redefining \nameref on input line 50.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -711,17 +760,17 @@ LaTeX Info: Redefining \nameref on input line 48.
 
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count425
-\scratchdimen=\dimen191
-\scratchbox=\box60
-\nofMPsegments=\count426
-\nofMParguments=\count427
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count428
-\MPscratchDim=\dimen192
-\MPnumerator=\count429
-\makeMPintoPDFobject=\count430
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count437
+\scratchdimen=\dimen199
+\scratchbox=\box62
+\nofMPsegments=\count438
+\nofMParguments=\count439
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count440
+\MPscratchDim=\dimen256
+\MPnumerator=\count441
+\makeMPintoPDFobject=\count442
+\everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -741,406 +790,402 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 onary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 48.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 48.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 48.
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
 
  []
 
 [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 91.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 91.
-
 [2]
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 115.
+(caption)                outside box or environment on input line 117.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 115.
+(caption)                particular \caption on input line 117.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--128
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
 []|\OT1/cmr/m/n/10 40.87248\TS1/cmr/m/n/10 °\OT1/cmr/m/n/10 N, -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--128
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
 []|\OT1/cmr/m/n/10 40.73433\TS1/cmr/m/n/10 °\OT1/cmr/m/n/10 N, -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--128
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
 []|\OT1/cmr/m/n/10 40.60401\TS1/cmr/m/n/10 °\OT1/cmr/m/n/10 N, -
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 128--128
-[]|\OT1/cmr/m/n/10 Lidar, mi-crowave
- []
-
-
-Underfull \hbox (badness 5533) in paragraph at lines 128--128
-[]|\OT1/cmr/m/n/10 Lidar, mi-crowave
- []
-
-
-Underfull \hbox (badness 5133) in paragraph at lines 128--128
-\OT1/cmr/m/n/10 ra-diome-ter, sonic
- []
-
-
-Underfull \hbox (badness 5533) in paragraph at lines 128--128
-[]|\OT1/cmr/m/n/10 Lidar, mi-crowave
- []
-
-
-Underfull \hbox (badness 5133) in paragraph at lines 128--128
-\OT1/cmr/m/n/10 ra-diome-ter, sonic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 132--139
+Underfull \hbox (badness 10000) in paragraph at lines 133--140
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--139
+Underfull \hbox (badness 10000) in paragraph at lines 133--140
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--139
+Underfull \hbox (badness 10000) in paragraph at lines 133--140
 
  []
 
 [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 155--160
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--160
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--167
+Underfull \hbox (badness 10000) in paragraph at lines 164--169
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--167
+Underfull \hbox (badness 10000) in paragraph at lines 164--169
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
+Underfull \hbox (badness 10000) in paragraph at lines 173--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
+Underfull \hbox (badness 10000) in paragraph at lines 173--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
+Underfull \hbox (badness 10000) in paragraph at lines 173--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
+Underfull \hbox (badness 10000) in paragraph at lines 173--179
 
  []
 
-[6] [7]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 200.
- [8]
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 189--192
+
+ []
+
+[7] [8] [9] [10]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 205.
+(caption)                particular \caption on input line 232.
 See the caption package documentation for explanation.
 
-[9]
-<figs/land_cover.png, id=295, 271.4943pt x 252.945pt>
+<figs/land_cover.png, id=326, 271.4943pt x 252.945pt>
 File: figs/land_cover.png Graphic file (type png)
 <use figs/land_cover.png>
-Package pdftex.def Info: figs/land_cover.png  used on input line 228.
+Package pdftex.def Info: figs/land_cover.png  used on input line 255.
 (pdftex.def)             Requested size: 339.72592pt x 316.54327pt.
-<figs/building_heights.png, id=297, 271.4943pt x 252.945pt>
+<figs/building_heights.png, id=328, 271.4943pt x 252.945pt>
 File: figs/building_heights.png Graphic file (type png)
 <use figs/building_heights.png>
-Package pdftex.def Info: figs/building_heights.png  used on input line 235.
+Package pdftex.def Info: figs/building_heights.png  used on input line 262.
 (pdftex.def)             Requested size: 339.72592pt x 316.54327pt.
-<figs/heat_wave-normal-theta-anomaly.png, id=298, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-theta-anomaly.png, id=329, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-theta-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-theta-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-theta-anomaly.png  used on input
- line 244.
+ line 271.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
-<figs/heat_wave-normal-T-anomaly-0m.png, id=299, 426.1521pt x 205.2468pt>
+<figs/heat_wave-normal-T-anomaly-0m.png, id=330, 426.1521pt x 205.2468pt>
 File: figs/heat_wave-normal-T-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-T-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-T-anomaly-0m.png  used on input 
-line 250.
+line 277.
 (pdftex.def)             Requested size: 339.72592pt x 163.63078pt.
-<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=300, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=331, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-bron.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-bron.png
-  used on input line 256.
+  used on input line 283.
 (pdftex.def)             Requested size: 339.72592pt x 191.45744pt.
-<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=301, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=332, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-quee.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-quee.png
-  used on input line 262.
+  used on input line 289.
 (pdftex.def)             Requested size: 339.72592pt x 191.45744pt.
-<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=302, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=333, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-stat.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-stat.png
-  used on input line 268.
+  used on input line 295.
 (pdftex.def)             Requested size: 339.72592pt x 191.45744pt.
-<figs/heat_wave-normal-q-anomaly.png, id=303, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-q-anomaly.png, id=334, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-q-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly.png  used on input lin
-e 276.
+e 303.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
-<figs/heat_wave-normal-q-anomaly-0m.png, id=304, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-q-anomaly-0m.png, id=335, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-q-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly-0m.png  used on input 
-line 282.
+line 309.
 (pdftex.def)             Requested size: 339.72592pt x 163.53369pt.
-<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=305, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=336, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-bron.png  us
-ed on input line 288.
+ed on input line 315.
 (pdftex.def)             Requested size: 339.72592pt x 190.74274pt.
-<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=306, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=337, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-quee.png  us
-ed on input line 294.
+ed on input line 321.
 (pdftex.def)             Requested size: 339.72592pt x 190.74274pt.
-<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=307, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=338, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-stat.png  us
-ed on input line 300.
+ed on input line 327.
 (pdftex.def)             Requested size: 339.72592pt x 190.74274pt.
-<figs/heat_wave-normal-U-anomaly.png, id=308, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-U-anomaly.png, id=339, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-U-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-U-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-U-anomaly.png  used on input lin
-e 308.
+e 335.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
-<figs/heat_wave-normal-U-anomaly-100m.png, id=309, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-U-anomaly-100m.png, id=340, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-U-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-U-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-U-anomaly-100m.png  used on inpu
-t line 314.
+t line 341.
 (pdftex.def)             Requested size: 339.72592pt x 163.53369pt.
-<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=310, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=341, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-bron.png  us
-ed on input line 320.
+ed on input line 347.
 (pdftex.def)             Requested size: 339.72592pt x 189.34161pt.
-<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=311, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=342, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-quee.png  us
-ed on input line 326.
+ed on input line 353.
 (pdftex.def)             Requested size: 339.72592pt x 189.34161pt.
-<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=312, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=343, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-stat.png  us
-ed on input line 332.
+ed on input line 359.
 (pdftex.def)             Requested size: 339.72592pt x 189.34161pt.
-<figs/wind_rose-bron.png, id=313, 423.5022pt x 500.3493pt>
+<figs/wind_rose-bron.png, id=344, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-bron.png Graphic file (type png)
 <use figs/wind_rose-bron.png>
-Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 340.
+Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 367.
 (pdftex.def)             Requested size: 339.72592pt x 401.37175pt.
-<figs/wind_rose-quee.png, id=314, 423.5022pt x 500.3493pt>
+<figs/wind_rose-quee.png, id=345, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-quee.png Graphic file (type png)
 <use figs/wind_rose-quee.png>
-Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 346.
+Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 373.
 (pdftex.def)             Requested size: 339.72592pt x 401.37175pt.
-<figs/wind_rose-stat.png, id=315, 423.5022pt x 500.3493pt>
+<figs/wind_rose-stat.png, id=346, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-stat.png Graphic file (type png)
 <use figs/wind_rose-stat.png>
-Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 352.
+Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 379.
 (pdftex.def)             Requested size: 339.72592pt x 401.37175pt.
-<figs/histogram-wind_direction-normal-bron-100m.png, id=316, 440.3652pt x 242.8
-272pt>
-File: figs/histogram-wind_direction-normal-bron-100m.png Graphic file (type png
-)
-<use figs/histogram-wind_direction-normal-bron-100m.png>
-Package pdftex.def Info: figs/histogram-wind_direction-normal-bron-100m.png  us
-ed on input line 360.
-(pdftex.def)             Requested size: 339.72592pt x 187.34062pt.
-<figs/histogram-wind_direction-normal-quee-100m.png, id=317, 440.3652pt x 242.8
-272pt>
-File: figs/histogram-wind_direction-normal-quee-100m.png Graphic file (type png
-)
-<use figs/histogram-wind_direction-normal-quee-100m.png>
-Package pdftex.def Info: figs/histogram-wind_direction-normal-quee-100m.png  us
-ed on input line 366.
-(pdftex.def)             Requested size: 339.72592pt x 187.34062pt.
-<figs/histogram-wind_direction-normal-stat-100m.png, id=318, 440.3652pt x 242.8
-272pt>
-File: figs/histogram-wind_direction-normal-stat-100m.png Graphic file (type png
-)
-<use figs/histogram-wind_direction-normal-stat-100m.png>
-Package pdftex.def Info: figs/histogram-wind_direction-normal-stat-100m.png  us
-ed on input line 372.
-(pdftex.def)             Requested size: 339.72592pt x 187.34062pt.
-<figs/heat_wave-normal-w-anomaly-100m.png, id=319, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-w-anomaly-100m.png, id=347, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-w-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly-100m.png  used on inpu
-t line 381.
+t line 387.
 (pdftex.def)             Requested size: 339.72592pt x 163.53369pt.
-<figs/heat_wave-normal-w-anomaly.png, id=320, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-w-anomaly.png, id=348, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-w-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly.png  used on input lin
-e 387.
+e 393.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
-<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=321, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=349, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-bron.png  us
-ed on input line 393.
+ed on input line 399.
 (pdftex.def)             Requested size: 339.72592pt x 191.27528pt.
-<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=322, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=350, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-quee.png  us
-ed on input line 399.
+ed on input line 405.
 (pdftex.def)             Requested size: 339.72592pt x 191.27528pt.
-<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=323, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=351, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-stat.png  us
-ed on input line 406.
+ed on input line 412.
 (pdftex.def)             Requested size: 339.72592pt x 191.27528pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=324, 540.5796pt x 179.22
+<figs/sea_breeze-lst_sst-diff.png, id=352, 281.853pt x 281.853pt>
+File: figs/sea_breeze-lst_sst-diff.png Graphic file (type png)
+<use figs/sea_breeze-lst_sst-diff.png>
+Package pdftex.def Info: figs/sea_breeze-lst_sst-diff.png  used on input line 4
+20.
+(pdftex.def)             Requested size: 339.72592pt x 339.73576pt.
+<figs/sea_breeze_normal-normal-anomaly-theta.png, id=353, 540.5796pt x 179.2296
+pt>
+File: figs/sea_breeze_normal-normal-anomaly-theta.png Graphic file (type png)
+<use figs/sea_breeze_normal-normal-anomaly-theta.png>
+Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-theta.png  used 
+on input line 427.
+(pdftex.def)             Requested size: 339.72592pt x 112.639pt.
+<figs/sea_breeze_normal-normal-anomaly-q.png, id=354, 540.5796pt x 179.2296pt>
+File: figs/sea_breeze_normal-normal-anomaly-q.png Graphic file (type png)
+<use figs/sea_breeze_normal-normal-anomaly-q.png>
+Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-q.png  used on i
+nput line 433.
+(pdftex.def)             Requested size: 339.72592pt x 112.639pt.
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=355, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png  use
-d on input line 414.
+d on input line 440.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=325, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=356, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png  use
-d on input line 420.
+d on input line 446.
 (pdftex.def)             Requested size: 339.72592pt x 112.639pt.
- [10 <./figs/land_cover.png>] [11 <./figs/building_heights.png> <./figs/heat_wa
-ve-normal-theta-anomaly.png>] [12 <./figs/heat_wave-normal-T-anomaly-0m.png> <.
-/figs/vertical_profiles-heat_wave-normal-theta-bron.png> <./figs/vertical_profi
-les-heat_wave-normal-theta-quee.png>] [13 <./figs/vertical_profiles-heat_wave-n
-ormal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.png> <./figs/heat_wave
--normal-q-anomaly-0m.png>] [14 <./figs/vertical_profiles-heat_wave-normal-q-bro
-n.png> <./figs/vertical_profiles-heat_wave-normal-q-quee.png>] [15 <./figs/vert
-ical_profiles-heat_wave-normal-q-stat.png> <./figs/heat_wave-normal-U-anomaly.p
-ng> <./figs/heat_wave-normal-U-anomaly-100m.png>] [16 <./figs/vertical_profiles
--heat_wave-normal-U-bron.png> <./figs/vertical_profiles-heat_wave-normal-U-quee
-.png>] [17 <./figs/vertical_profiles-heat_wave-normal-U-stat.png> <./figs/wind_
-rose-bron.png>] [18 <./figs/wind_rose-quee.png>] [19 <./figs/wind_rose-stat.png
-> <./figs/histogram-wind_direction-normal-bron-100m.png>] [20 <./figs/histogram
--wind_direction-normal-quee-100m.png> <./figs/histogram-wind_direction-normal-s
-tat-100m.png> <./figs/heat_wave-normal-w-anomaly-100m.png>] [21 <./figs/heat_wa
-ve-normal-w-anomaly.png> <./figs/vertical_profiles-heat_wave-normal-w-bron.png>
- <./figs/vertical_profiles-heat_wave-normal-w-quee.png>] [22 <./figs/vertical_p
-rofiles-heat_wave-normal-w-stat.png> <./figs/sea_breeze_heat_wave-heat_wave_ano
-maly-T.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png>]
-(./main.aux)
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png, id=357, 540.5796pt x 179.22
+96pt>
+File: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png Graphic file (type png)
+
+<use figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png>
+Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png  use
+d on input line 452.
+(pdftex.def)             Requested size: 339.72592pt x 112.639pt.
+<figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png, id=358, 440.3652pt 
+x 233.4321pt>
+File: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png Graphic file (t
+ype png)
+<use figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png>
+Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.
+png  used on input line 460.
+(pdftex.def)             Requested size: 339.72592pt x 180.09233pt.
+<figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png, id=359, 440.3652pt 
+x 233.4321pt>
+File: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png Graphic file (t
+ype png)
+<use figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png>
+Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.
+png  used on input line 466.
+(pdftex.def)             Requested size: 339.72592pt x 180.09233pt.
+<figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png, id=360, 440.3652pt 
+x 233.4321pt>
+File: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png Graphic file (t
+ype png)
+<use figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png>
+Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.
+png  used on input line 472.
+(pdftex.def)             Requested size: 339.72592pt x 180.09233pt.
+[11] [12 <./figs/land_cover.png> <./figs/building_heights.png>] [13 <./figs/hea
+t_wave-normal-theta-anomaly.png> <./figs/heat_wave-normal-T-anomaly-0m.png> <./
+figs/vertical_profiles-heat_wave-normal-theta-bron.png>] [14 <./figs/vertical_p
+rofiles-heat_wave-normal-theta-quee.png> <./figs/vertical_profiles-heat_wave-no
+rmal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.png>] [15 <./figs/heat_
+wave-normal-q-anomaly-0m.png> <./figs/vertical_profiles-heat_wave-normal-q-bron
+.png> <./figs/vertical_profiles-heat_wave-normal-q-quee.png>] [16 <./figs/verti
+cal_profiles-heat_wave-normal-q-stat.png> <./figs/heat_wave-normal-U-anomaly.pn
+g> <./figs/heat_wave-normal-U-anomaly-100m.png>] [17 <./figs/vertical_profiles-
+heat_wave-normal-U-bron.png> <./figs/vertical_profiles-heat_wave-normal-U-quee.
+png>] [18 <./figs/vertical_profiles-heat_wave-normal-U-stat.png> <./figs/wind_r
+ose-bron.png>] [19 <./figs/wind_rose-quee.png>] [20 <./figs/wind_rose-stat.png>
+ <./figs/heat_wave-normal-w-anomaly-100m.png>] [21 <./figs/heat_wave-normal-w-a
+nomaly.png> <./figs/vertical_profiles-heat_wave-normal-w-bron.png> <./figs/vert
+ical_profiles-heat_wave-normal-w-quee.png>] [22 <./figs/vertical_profiles-heat_
+wave-normal-w-stat.png> <./figs/sea_breeze-lst_sst-diff.png>] [23 <./figs/sea_b
+reeze_normal-normal-anomaly-theta.png> <./figs/sea_breeze_normal-normal-anomaly
+-q.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png> <./figs/sea_breez
+e_heat_wave-heat_wave_anomaly-q.png>] [24 <./figs/sea_breeze_heat_wave-heat_wav
+e_anomaly-w.png> <./figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png> 
+<./figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png>] [25 <./figs/hist
+ogram-wind_direction-hw-sea_breeze-stat-100m.png>] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9EACF13C9FC65AEFAD7342D8BE4021B1;2329.
+(rerunfilecheck)             Checksum: 7EA4F5E73B0AD794F1AF0EFCF010FC5C;2756.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21025 strings out of 478994
- 393563 string characters out of 5858185
- 1105494 words of memory out of 5000000
- 38132 multiletter control sequences out of 15000+600000
- 414540 words of font info for 66 fonts, out of 8000000 for 9000
+ 21658 strings out of 478994
+ 402150 string characters out of 5858185
+ 1120986 words of memory out of 5000000
+ 38737 multiletter control sequences out of 15000+600000
+ 415893 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,75p,1717b,1726s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,13n,75p,1717b,1726s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
 /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
-al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texli
-ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/
-texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/te
-xmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (22 pages, 6222789 bytes).
+/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
+/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
+texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
+e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/
+2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf
+-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (25 pages, 6664649 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 396 compressed objects within 4 object streams
- 126 named destinations out of 1000 (max. 500000)
- 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 563 PDF objects out of 1000 (max. 8388607)
+ 443 compressed objects within 5 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 299 words of extra memory for PDF output out of 10000 (max. 10000000)
 
