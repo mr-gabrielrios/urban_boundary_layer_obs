@@ -12,12 +12,20 @@
 % Use "alpha-refs" option for author-year citation and references style.
 
 \documentclass[num-refs]{wiley-article}
+% \documentclass[blind,alpha-refs]{wiley-article}
 
-%%%%%% Packages
-% Handles references
+\usepackage{color}
+\usepackage{ulem}
+
+ % Uncomment to display with annotation; comment out otherwise
+\newcommand{\add}[1]{\textcolor{blue}{#1}}
+\newcommand{\delete}[1]{\textcolor{red}{\sout{#1}}}
+\newcommand{\edit}[2]{\textcolor{red}{\sout{#1}} \textcolor{blue}{#2}}
+\newcommand{\mnote}[1]{\marginpar{\textcolor{green}{\textbf{#1}}}}
+
+% Add additional packages here if required
 \usepackage[backend=biber, bibencoding=utf8, style=authoryear, natbib=true]{biblatex}  
-% Handle page formatting
-\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{siunitx}
 % Handle links
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 % Handle lists
@@ -25,7 +33,7 @@
 % Handle colors
 \usepackage{xcolor}
 % Handle tables
-\usepackage{tabularx, caption}
+\usepackage{tabularx, caption, subfigure}
 % Handle figures
 \usepackage{graphicx}
 % Handle paragraph formatting
@@ -40,9 +48,6 @@
 \usepackage[utf8]{inputenc} 
 % Handle math
 \usepackage{amsmath}
-
-%%%%%% Reference files
-\addbibresource{references.bib}
 
 %%%%%% Other commands
 % Fix Unicode formatting
@@ -60,46 +65,51 @@
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% JDT:  Annotation Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Reference files
+\addbibresource{sample.bib}
 
-\usepackage{color}
-\usepackage{ulem}
+%%%%%% Other commands
+% Fix Unicode formatting
+\DeclareUnicodeCharacter{2218}{\textdegree}
+% Remove indents
+% \setlength{\parindent}{0pt}
+% Set page spacing
+\renewcommand{\baselinestretch}{1.15} 
+% Reduce reference sizing
+\renewcommand*{\bibfont}{\footnotesize}
+% Set paragraph spacing
+\setlength{\parskip}{1em}
+% Subsubsubsection production
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 
- % Uncomment to display with annotation; comment out otherwise
-\newcommand{\add}[1]{\textcolor{blue}{#1}}
-\newcommand{\delete}[1]{\textcolor{red}{\sout{#1}}}
-\newcommand{\edit}[2]{\textcolor{red}{\sout{#1}} \textcolor{blue}{#2}}
-\newcommand{\mnote}[1]{\marginpar{\textcolor{green}{\textbf{#1}}}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
 \papertype{Original Article}
 % Include section in journal if known, otherwise delete
 \paperfield{Journal Section}
 
+\title{Observations and analysis of an urban boundary layer and sea breezes during extreme heat events}
+
 % Include full author names and degrees, when required by the journal.
 % Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
 \author[1\authfn{1}]{Gabriel Rios}
 \author[2\authfn{1}]{Prathap Ramamurthy}
 
+\contrib[\authfn{1}]{Equally contributing authors.}
+
 % Include full affiliation details for all authors
 \affil[1]{Department of Mechanical Engineering, CUNY City College, New York, New York}
 \affil[2]{NOAA Center for Earth System Sciences and Remote Sensing Technologies, New York, New York}
 
-\corraddress{Gabriel Rios, Department of Mechanical Engineering, CUNY City College, New York, New York}
+\corraddress{Gabriel Rios, epartment of Mechanical Engineering, CUNY City College, New York, New York}
 \corremail{grios001@citymail.cuny.edu}
-
-\presentadd[\authfn{2}]{Gabriel Rios, Department of Mechanical Engineering, CUNY City College, New York, New York}
 
 \fundinginfo{}
 
 % Include the name of the author that should appear in the running header
-\runningauthor{Rios et al.}
+\runningauthor{Rios \& Ramamurthy}
 
 \begin{document}
 
@@ -107,23 +117,23 @@
 
 \begin{abstract}
 Extreme heat presents a significant risk to human health and infrastructure in cities. Several studies have been conducted in the past several decades to understand the interaction between the synoptic-scale extreme heat events and local-scale urban heat island effects. However, observations of boundary layer characteristics during these periods have been relatively rare. Our current understanding of urban boundary layer structure is incomplete, particularly in coastal environments where the local climatology is highly influenced by land-sea thermal gradients. In this study, we analyze the evolution and structure of the urban boundary layer during regular and extreme heat periods with the goal of better understanding the effect of extreme heat and sea breezes on the boundary layer over a coastal urban area. Our analysis focuses on the New York City metropolitan area and relies on observations from vertical profilers (Doppler lidar, microwave radiometer) and quantities derived by analytical methods. Additionally, satellite and reanalysis data are used to supplement observational data. Extreme heat events present a mean peak surface temperature increase of \SI{7}{\kelvin}, an increase of site-averaged specific humidity at the surface by 39.4\%, and a marked southwesterly shift in winds at all sites. In addition, sea breeze events during heat extreme heat events are found to reduce temperatures and increase low-level moisture content from the early evening through nighttime hours, with strong variability between sites. The study also finds that extreme heat events unify horizontal wind directions throughout the boundary layer, and promote nocturnal onshore moisture transport. 
-
-% Please include a maximum of seven keywords
-% \keywords{keyword 1, \emph{keyword 2}, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7}
 \end{abstract}
 
+Extreme heat presents a significant risk to human health and infrastructure in cities. Several studies have been conducted in the past several decades to understand the interaction between the synoptic-scale extreme heat events and local-scale urban heat island effects. However, observations of boundary layer characteristics during these periods have been relatively rare. Our current understanding of urban boundary layer structure is incomplete, particularly in coastal environments where the local climatology is highly influenced by land-sea thermal gradients. In this study, we analyze the evolution and structure of the urban boundary layer during regular and extreme heat periods with the goal of better understanding the effect of extreme heat and sea breezes on the boundary layer over a coastal urban area. Our analysis focuses on the New York City metropolitan area and relies on observations from vertical profilers (Doppler lidar, microwave radiometer) and quantities derived by analytical methods. Additionally, satellite and reanalysis data are used to supplement observational data. Extreme heat events present a mean peak surface temperature increase of \SI{7}{\kelvin}, an increase of site-averaged specific humidity at the surface by 39.4\%, and a marked southwesterly shift in winds at all sites. In addition, sea breeze events during heat extreme heat events are found to reduce temperatures and increase low-level moisture content from the early evening through nighttime hours, with strong variability between sites. The study also finds that extreme heat events unify horizontal wind directions throughout the boundary layer, and promote nocturnal onshore moisture transport. 
+
+%%%%% Introduction
 \section{Introduction}
 
 Extreme heat poses a major risk to life and property. The effects of extreme heat are expected to impact cities especially, which presents a significant hazard for vulnerable populations and infrastructure. With regards to effects on public health, studies have shown that extreme and prolonged heat increases mortality and exacerbates existing health conditions in high-risk populations \citep{anderson2011, frumkin2016, heaviside2017, madrigano2015}. With regards to effects on infrastructure, studies have shown that extreme heat subjects networks critical to urban areas (e.g., electrical grid, public transportation) under significant stresses and/or failure \citep{mcevoy2012, zuo2015}. These events are projected to increase in frequency due to the effects of climate change. Projections indicate that the impacts of future climate will cause adverse effects of extreme heat to become more frequent and severe \citep{burillo2019, forzieri2018, peng2011}.
 
 % Comment: try to couple the local and the mesoscale here
-The meteorology of extreme heat events and its impacts on urban areas can be observed from the synoptic and local scales. From a synoptic scale, extreme heat events are often caused by the sustained presence of a high-pressure system over an area, resulting in lower wind speeds and warm air subsidence, promoting higher surface temperatures \citep{black2004, miralles2014}. From a local perspective, the amplified impact of extreme heat events on cities is a result of the urban heat island (UHI) effect, which occurs as a result of the modification of land surface properties due to the built environment. The modification of surface properties has been shown to increase near-surface air temperatures due to factors such as radiation entrapment, increased heat storage, and lower evapotranspirative cooling \citep{chen2014, li2013, ramamurthy2017, zhao2018}. Additionally, urban areas near large bodies of water experience effects from the sea breeze, which has been shown to play a moderating influence on the intensity of the UHI effect \citep{hu2016, jiang2019, stefanon2014}. The processes on these two scales can be connected by understanding the structure and dynamics of the urban boundary layer (UBL), which is the lowest part of the troposphere in which surface-atmosphere exchanges occur that directly affect human activity. There have been a large number of numerical studies performed to improve our understanding of UBL processes during extreme heat events, which have been important for conceptualizing the role of synoptic-scale and surface forcings on urban climate. Something about the vertical structure of the UBL and coupling these
+The meteorology of extreme heat events and its impacts on urban areas can be observed from the synoptic and local scales. From a synoptic scale, extreme heat events are often caused by the sustained presence of a high-pressure system over an area, resulting in lower wind speeds and warm air subsidence, promoting higher surface temperatures \citep{black2004, miralles2014}. From a local perspective, the amplified impact of extreme heat events on cities is a result of the urban heat island (UHI) effect, which occurs as a result of the modification of land surface properties due to the built environment. The modification of surface properties has been shown to increase near-surface air temperatures due to factors such as radiation entrapment, increased heat storage, and lower evapotranspirative cooling \citep{chen2014, li2013, ramamurthy2017a, zhao2018}. Additionally, urban areas near large bodies of water experience effects from the sea breeze, which has been shown to play a moderating influence on the intensity of the UHI effect \citep{hu2016, jiang2019, stefanon2014}. The processes on these two scales can be connected by understanding the structure and dynamics of the urban boundary layer (UBL), which is the lowest part of the troposphere in which surface-atmosphere exchanges occur that directly affect human activity. There have been a large number of numerical studies performed to improve our understanding of UBL processes during extreme heat events, which have been important for conceptualizing the role of synoptic-scale and surface forcings on urban climate. Something about the vertical structure of the UBL and coupling these
 
 However, detailed observational analyses of UBL structure and dynamics are somewhat limited, especially in the vertical direction. Over the last 20 years, microwave radiometers, lidars, and radiosondes have been shown to be essential for accomplishing this. Microwave radiometers have been used to determine vertical profiles of temperature and water vapor \citep{rose2005, wang2012}, while lidars being used to observe three-dimensional wind fields and aerosol concentrations \citep{grund2001}. Although radiosondes provide direct measurements of the aforementioned properties in the boundary layer as it moves vertically through it, they present greater difficulties (e.g., cost, shorter supply) and are unable to observe at the temporal resolution of microwave radiometers and lidars. 
 
 Although somewhat limited in spatiotemporal scale, numerous observational campaigns have been performed to better our understanding of UBL structure and dynamics. \citet{barlow2011} provides an in-depth study of boundary layer dynamics above London over a month-long period using a combination of a sonic anemometer and Doppler lidar, allowing for high-resolution vertical observations of a complex UBL and a better understanding of turbulent structures and vertical mixing processes. Similarly, \citet{pelliccioni2012} employs a sonic anemometer and a sodar system at a site in Rome to observe and analyze the lower \SI{200}{\meter} of the UBL to determine UBL characteristics and explore the validity of Monin-Obukhov similarity theory in the surface layer. Additionally, \citet{dearrudamoreira2020} evaluates the ability of lidar and microwave radiometer systems to observe turbulence over a variety of atmospheric conditions, including the effects of significant dust concentrations, in the region around Granada, Spain. Studies such as those performed by \citet{banks2015, quan2013, wang2012} further demonstrate the ability of vertical profiling instruments to analyze the boundary layer structure by deriving UBL heights and its diurnal evolution. Expanding upon UBL structure, \citet{anurose2018} details a long-term observational campaign over an urban location in southern India that chronicles UBL height through monsoon season, annual averages of near-surface quantities, and the dynamics and effects of the sea breeze circulation. 
 
-Observations of the UBL during extreme heat events are even more limited. \citet{ramamurthy2017} used microwave radiometers to observe the UBL over New York City in July 2016 to find that the UHI effect was amplified during heat wave events and that spatial variability throughout the city was significant throughout the observation period. \citet{jiang2019} explores the effects of heat waves on rural and urban areas for several cities in China using ground-based observations with a focus on the UHI effect, finding that the effect was amplified during heat waves due to greater surface solar radiation and shifts in wind direction contributing to advection of heated air masses over the studied cities. \citep{wu2019} uses a combination of a ceilometer and multiple lidars to observe the evolution of UBL structure, air quality, and pollutant transport during a heat wave in New York City, demonstrating sharp rates of UBL growth due to convective activity and an increase of pollutant concentration and regional transport. \citet{zhang2020} uses aircraft-based observations to provide a comprehensive analysis of UBL structure during heat wave events over cities in the United States throughout a 10-year period, providing insights into the 'heat dome' thermodynamic structure over cities and the variability between heat wave events due to local (such as surface properties in urban areas) and large-scale (such as synoptic meteorological conditions) forcings. 
+Observations of the UBL during extreme heat events are even more limited. \citet{ramamurthy2017a} used microwave radiometers to observe the UBL over New York City in July 2016 to find that the UHI effect was amplified during heat wave events and that spatial variability throughout the city was significant throughout the observation period. \citet{jiang2019} explores the effects of heat waves on rural and urban areas for several cities in China using ground-based observations with a focus on the UHI effect, finding that the effect was amplified during heat waves due to greater surface solar radiation and shifts in wind direction contributing to advection of heated air masses over the studied cities. \citep{wu2019} uses a combination of a ceilometer and multiple lidars to observe the evolution of UBL structure, air quality, and pollutant transport during a heat wave in New York City, demonstrating sharp rates of UBL growth due to convective activity and an increase of pollutant concentration and regional transport. \citet{zhang2020} uses aircraft-based observations to provide a comprehensive analysis of UBL structure during heat wave events over cities in the United States throughout a 10-year period, providing insights into the 'heat dome' thermodynamic structure over cities and the variability between heat wave events due to local (such as surface properties in urban areas) and large-scale (such as synoptic meteorological conditions) forcings. 
 
 % But why do we care? Add something about the point of this study.
 
@@ -133,7 +143,7 @@ This study attempts to use observations and analytical methods to provide insigh
 
 \begin{enumerate}
   \item How do UBL structure and dynamics depart from the climatology during extreme heat events?
-  \item How does the UBL structure impact the transport of scalars?
+  \item How do extreme heat events impact the transport of scalars?
   \item What effect does the sea breeze have on a coastal urban area during extreme heat events?
 \end{enumerate}
 
@@ -143,6 +153,25 @@ This study attempts to use observations and analytical methods to provide insigh
 
 \subsection{Study site}
 The UBL over New York City is observed and analyzed in this study. Observational data was captured at four locations within New York City (Table \ref{tab:observation_sites}).
+
+\begin{figure*}[t!]
+	\centering
+	\subfigure[Figure A]{
+		\includegraphics[width=0.45\textwidth]{figs/building_heights.png}
+	}
+	\subfigure[Figure A]{
+		\includegraphics[width=0.45\textwidth]{figs/land_cover.png}
+	}
+	\label{fig:study_site}
+	\caption{A caption}
+\end{figure*}
+ 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/building_heights.png}
+	\caption{Building heights in New York City. Taken from NYC DOB data.}
+	\label{fig:building_heights}
+\end{figure}
 
 % Table displaying site information
 \captionof{table}{Locations and details of observations sites.}
@@ -172,6 +201,12 @@ Land and sea surface temperatures were estimated using derived products from the
 \subsubsection{Data criteria \& availability}
 Dates selected for this study are categorized into three groups: (1) normal days, (2) extreme heat days, and (3) sea breeze days. For the purposes of this study, \textit{extreme heat events} are defined as 3 or more consecutive days with maximum daily temperatures exceeding 90\textdegree F (\SI{305}{\kelvin}), per the New York branch of NOAA National Weather Service \citep{robinson2001, nws2018}, while \textit{normal days} are defined as days that do not meet these criteria. Because the aim of this study is to observe the effect of extreme heat on the UBL, normal day selection was restricted to months in which extreme heat events occurred (May through September), as well as days in which 50\% or more of the day featured clear-sky conditions below \SI{3.65}{\kilo\meter} above ground level due to the association of extreme heat events with reduced daytime cloud coverage and precipitation \citep{stefanon2014, thomas2020}. Clear-sky conditions were identified by using an average of 5-minute surface-based observations from three airports in the Automated Surface Observation System (ASOS) \citep{asos1998} network within the New York City metropolitan area: Newark Liberty International Airport (EWR), John F. Kennedy International Airport, and LaGuardia Airport. \textit{Sea breeze events} are identified as times during normal and extreme heat days in which the low-level ($\leq$ \SI{200}{\meter}) mean horizontal wind speed ($U$) is less than \SI{5}{\meter\per\second} and low-level wind direction has a primarily easterly component, due to the presence of the Atlantic Ocean to the east of New York City.
 
+
+
+- Discuss quality filtering
+- Plots showing sampling counts per hour per site per day
+
+
 \subsection{Derived quantities}
 
 %%%%% Discuss the differences between normal and extreme heat days
@@ -195,11 +230,11 @@ This is supported by Figures \ref{fig:vertical_profiles-heat_wave-normal-q-bron}
 \subsection{UBL dynamics}
 
 \subsubsection{Horizontal winds}
-Extreme heat events coincided with an overall reduction of horizontal wind speeds ($U$) in the UBL. More specifically, the magnitude of $U$ during extreme heat events is similar in magnitude to $U$ during normal days with the exception of early morning hours and at upper levels of the UBL. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-U}, modest reductions in $U$ ($-1.2 \leq \sigma \leq -0.4$) during extreme heat events are present throughout the UBL from early to mid-morning, with little differences throughout the rest of the day ($-0.4 \leq \sigma \leq 0.4$). Larger deviations between $U$ values are present at the top of the UBL where synoptic conditions become dominant.
+Extreme heat events coincided with an overall reduction of horizontal wind speeds ($U$) in the UBL (Figure \ref{fig:extreme-heat-normal-100m-comparison-U}. More specifically, the magnitude of $U$ during extreme heat events is similar in magnitude to $U$ during normal days with the exception of early morning hours and at upper levels of the UBL. As shown in Figure \ref{fig:extreme-heat-normal-comparison-contours-U}, modest reductions in $U$ ($-1.2 \leq \sigma \leq -0.4$) during extreme heat events are present throughout the UBL from early to mid-morning, with little difference throughout the rest of the day ($-0.4 \leq \sigma \leq 0.4$). Larger deviations between $U$ values are present at the top of the UBL where synoptic conditions become dominant.
 \\ \\
-Vertical profiles of $U$ for normal and extreme heat events provide a more detailed view of the differences in UBL structure. Across all sites, $U$ is similar throughout the UBL overnight, afternoon, and evenings. During early morning hours, extreme heat event $U$ values decrease by 25 to 50\% throughout the entire UBL (see Figures \ref{fig:vertical_profiles-heat_wave-normal-U-bron}, \ref{fig:vertical_profiles-heat_wave-normal-U-quee}, \ref{fig:vertical_profiles-heat_wave-normal-U-stat}), although both event types present a classical logarithmic wind profile, with surface friction effects present through \SI{500}{\meter}. Another phenomenon worth noting is the difference in $U$ profiles above \SI{2000}{\meter}; profiles of $U$ during extreme heat events are more consistent between sites and vertically than during normal days. This phenomenon may highlight the effect of synoptic meteorological conditions on $U$, as the UBL typically remains below \SI{2500}{\meter}. During extreme heat events, anticyclonic conditions produce more stable atmospheric conditions relative to normal days, resulting in less variability between heat events than during normal days.
+Vertical profiles of $U$ for normal and extreme heat events provide a more detailed view of the differences in UBL structure. Across all sites, $U$ is similar throughout the UBL overnight, afternoon, and evenings. During early morning hours, however, extreme heat event $U$ values decrease by 25 to 50\% throughout the entire UBL (see Figures \ref{fig:vertical_profiles-heat_wave-normal-U-bron}, \ref{fig:vertical_profiles-heat_wave-normal-U-quee}, \ref{fig:vertical_profiles-heat_wave-normal-U-stat}), although both event types present a classical logarithmic wind profile, with surface friction effects present through \SI{500}{\meter}. The reduction in $U$ during extreme heat events is likely due to the presence of an anticyclonic circulation that suppresses the nocturnal low-level jet over New York City \citep{chen1993}. Another phenomenon worth noting is the difference in $U$ profiles above \SI{2000}{\meter}; profiles of $U$ during extreme heat events are more consistent between sites and vertically than during normal days. This phenomenon is the effect of synoptic meteorological conditions on $U$, as the UBL typically remains below \SI{2500}{\meter}. During extreme heat events, anticyclonic conditions produce more consistent atmospheric conditions relative to normal days, resulting in less variability between heat events than during normal days.
 \\ \\
-Extreme heat events result in a southwesterly shift in $U$ throughout the UBL. This shift is present most evidently closer to the surface, as shown in Figures \ref{fig:wind_rose-bron}, \ref{fig:wind_rose-quee}, and \ref{fig:wind_rose-stat}, with winds at \SI{100}{\meter} coming primarily from the southwest quadrant. Figure \ref{fig:wind_rose-quee} shows that Queens also presents a secondary maximum with winds approaching from the south, which suggests effects from the Atlantic sea breeze (effects from the sea breeze will be further discussed in Section \ref{section:sea_breeze_effects}). At \SI{1000}{\meter}, the directionality of prevailing winds becomes more uniform between normal and extreme heat days, as winds primarily approach New York City from the west-southwest. The disparity in wind directions between 100 and \SI{1000}{\meter} suggests that localized wind fields play a major role in UBL dynamics at lower levels whereas synoptic-scale atmospheric conditions increasingly dominate with increasing height.
+Extreme heat events result in a southwesterly shift in $U$ throughout the UBL. This shift is present most evidently closer to the surface, as shown in Figures \ref{fig:wind_rose-bron}, \ref{fig:wind_rose-quee}, and \ref{fig:wind_rose-stat}, with winds at \SI{100}{\meter} coming primarily from the southwest quadrant. Figure \ref{fig:wind_rose-quee} shows that Queens also presents a secondary maximum with winds approaching from the south, which suggests effects from the Atlantic sea breeze (effects from the sea breeze will be further discussed in Section \ref{section:sea_breeze_effects}). At \SI{1000}{\meter}, the directionality of prevailing winds becomes more uniform between normal and extreme heat days, as winds primarily approach New York City from the west-southwest. The disparity in wind directions between 100 and \SI{1000}{\meter} suggests that localized wind fields play a more significant role in UBL dynamics at lower levels whereas synoptic-scale atmospheric conditions increasingly dominate with increasing height. Regardless, the uniformity of wind direction during extreme heat relative to normal days indicates that synoptic-scale effects can play a larger role at lower levels due to advection from the continent, especially with regards to thermal advection that leads to the transport of heated inland air masses over New York City \citep{ramamurthy2017b}.
 
 \subsubsection{Vertical motion}
 On average, extreme heat events do not appear to produce significant changes in vertical velocity ($w$). Figure \ref{fig:extreme-heat-normal-comparison-100m-w} shows average diurnal profiles of $w$ at all locations at \SI{100}{\meter} above ground level, with similar mean values throughout the day between normal days and extreme heat events. During extreme heat events, however, the variability of $w$ is less in the early morning hours and greater in the evening. This phenomenon is also observed in vertical profiles of $w$ at all locations as shown in Figures \ref{fig:extreme-heat-normal-vertical_profiles-w-bron},\ref{fig:extreme-heat-normal-vertical_profiles-w-quee}, and \ref{fig:extreme-heat-normal-vertical_profiles-w-stat}. At all locations, overnight and morning profiles of $w$ (0:00 and 6:00 LST) show significantly lower variability in $w$ throughout the UBL with similar magnitudes of mean $w$. Despite similar means and deviations in the early afternoon (12:00 LST), evening profiles (18:00 LST) show significantly higher variability in $w$ below \SI{500}{\meter} for all sites, with the Bronx showing this occurrence extend through the UBL.
@@ -233,63 +268,15 @@ For sites near Long Island Sound (the Bronx and Queens), northeasterly winds inc
 \section*{Acknowledgments}
 This research is made possible by the New York State (NYS) Mesonet. Original funding for the NYS Mesonet was provided by Federal Emergency Management Agency grant FEMA-4085-DR-NY, with the continued support of the NYS Division of Homeland Security \& Emergency Services; the state of New York; the Research Foundation for the State University of New York (SUNY); the University at Albany, SUNY; the Atmospheric Sciences Research Center (ASRC) at SUNY Albany; and the Department of Atmospheric and Environmental Sciences (DAES) at SUNY Albany.
 
+\printendnotes
+
+% Submissions are not required to reflect the precise reference formatting of the journal (use of italics, bold etc.), however it is important that all key elements of each reference are included.
 \printbibliography
-
-\section*{Appendix}
-
-\begin{equation*}\label{eqn:pressure}
-	p = p_0 \exp{\frac{-g z}{R T_0}}
-\end{equation*}
-
-\begin{equation*}\label{eqn:potential_temperature}
-	\theta = T \left(\frac{p_0}{p} \right)^{\frac{R}{c_p}}
-\end{equation*}
-
-\begin{equation*}\label{eqn:specific_humidity}
-	q = \frac{w}{1+w} = \frac{\frac{\varepsilon \rho_v' R_v T}{p - \rho_v' R_v T}}{1+\frac{\varepsilon \rho_v' R_v T}{p - \rho_v' R_v T}} 
-\end{equation*}
-
-\begin{equation*}
-	Ri_b = \frac{g \Delta \bar{\theta_v} \Delta z}{\bar{\theta_v} \left[ (\Delta \bar{U}^2) + (\Delta \bar{V}^2) \right] }
-\end{equation*}
-
-% Table displaying symbols used in the paper
-\captionof{table}{Symbols and abbreviations used in the paper.}
-\label{tab:symbols}
-\begin{center}
-	\begin{tabularx}{0.5\textwidth}{l X}
- 		\hline
- 		Symbol/Abbreviation & Definition \\
- 		\hline
- 		$\sigma$ & Standard deviation \\
- 		$\theta$ & Potential temperature \\
- 		$q$ & Specific humidity \\
- 		$U$ & Horizontal wind speed \\
- 		$w$ & Vertical velocity \\
- 		UBL & Urban boundary layer \\
- 		MLH & Mixed layer height \\
- 		\hline
-	\end{tabularx}
-\end{center}
-
-
 
 \section*{Figures}
 
 % Introduction figures 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/land_cover.png}
-	\caption{Observation sites overlaid on NLCD land cover types..}
-	\label{fig:land_cover}
-\end{figure}
- 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/building_heights.png}
-	\caption{Building heights in New York City. Taken from NYC DOB data.}
-	\label{fig:building_heights}
-\end{figure}
+
 
 
 % Temperature anomalies
@@ -359,15 +346,15 @@ This research is made possible by the New York State (NYS) Mesonet. Original fun
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-U-anomaly.png}
-	\caption{Anomalies of $U$ during extreme heat events relative to the climatology over the urban boundary layer.}
-	\label{fig:extreme-heat-normal-comparison-contours-U}
-\end{figure}
-\begin{figure}[ht]
-	\centering
 	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-U-anomaly-100m.png}
 	\caption{Anomalies of low-level $U$ during extreme heat events relative to the climatology.}
 	\label{fig:extreme-heat-normal-100m-comparison-U}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/heat_wave-normal-U-anomaly.png}
+	\caption{Anomalies of $U$ during extreme heat events relative to the climatology over the urban boundary layer.}
+	\label{fig:extreme-heat-normal-comparison-contours-U}
 \end{figure}
 \begin{figure}[ht]
 	\centering

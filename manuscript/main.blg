@@ -1,20 +1,19 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'main.blg'
-[65] biber-darwin:340> INFO - === Mon Feb 14, 2022, 16:20:55
-[79] Biber.pm:415> INFO - Reading 'main.bcf'
-[170] Biber.pm:952> INFO - Found 55 citekeys in bib section 0
-[187] Biber.pm:4340> INFO - Processing section 0
-[198] Biber.pm:4531> INFO - Looking for bibtex format file 'references.bib' for section 0
-[200] bibtex.pm:1689> INFO - LaTeX decoding ...
-[266] bibtex.pm:1494> INFO - Found BibTeX data source 'references.bib'
-[268] Utils.pm:395> WARN - Duplicate entry key: 'meir2013' in file 'references.bib', skipping ...
-[269] Utils.pm:395> WARN - Duplicate entry key: 'jiang2019' in file 'references.bib', skipping ...
-[269] Utils.pm:395> WARN - Duplicate entry key: 'ramamurthy2017' in file 'references.bib', skipping ...
-[523] Utils.pm:395> WARN - legacy month field 'May' in entry 'nws2018' is not an integer - this will probably not sort properly.
-[625] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[625] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[625] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[625] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
-[685] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[735] bbl.pm:757> INFO - Output to main.bbl
-[735] Biber.pm:128> INFO - WARNINGS: 4
+[67] biber-darwin:340> INFO - === Tue Feb 15, 2022, 08:34:58
+[81] Biber.pm:415> INFO - Reading 'main.bcf'
+[170] Biber.pm:952> INFO - Found 59 citekeys in bib section 0
+[183] Biber.pm:4340> INFO - Processing section 0
+[193] Biber.pm:4531> INFO - Looking for bibtex format file 'references.bib' for section 0
+[196] bibtex.pm:1689> INFO - LaTeX decoding ...
+[257] bibtex.pm:1494> INFO - Found BibTeX data source 'references.bib'
+[259] Utils.pm:395> WARN - Duplicate entry key: 'meir2013' in file 'references.bib', skipping ...
+[259] Utils.pm:395> WARN - Duplicate entry key: 'jiang2019' in file 'references.bib', skipping ...
+[510] Utils.pm:395> WARN - legacy month field 'May' in entry 'nws2018' is not an integer - this will probably not sort properly.
+[630] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[630] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[631] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[631] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[694] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[745] bbl.pm:757> INFO - Output to main.bbl
+[746] Biber.pm:128> INFO - WARNINGS: 3

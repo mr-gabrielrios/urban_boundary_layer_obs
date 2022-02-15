@@ -1,0 +1,19 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'main.blg'
+[65] biber-darwin:340> INFO - === Mon Feb 14, 2022, 17:40:32
+[79] Biber.pm:415> INFO - Reading 'main.bcf'
+[169] Biber.pm:952> INFO - Found 57 citekeys in bib section 0
+[181] Biber.pm:4340> INFO - Processing section 0
+[193] Biber.pm:4531> INFO - Looking for bibtex format file 'sample.bib' for section 0
+[196] bibtex.pm:1689> INFO - LaTeX decoding ...
+[252] bibtex.pm:1494> INFO - Found BibTeX data source 'sample.bib'
+[254] Utils.pm:395> WARN - Duplicate entry key: 'meir2013' in file 'sample.bib', skipping ...
+[255] Utils.pm:395> WARN - Duplicate entry key: 'jiang2019' in file 'sample.bib', skipping ...
+[510] Utils.pm:395> WARN - legacy month field 'May' in entry 'nws2018' is not an integer - this will probably not sort properly.
+[621] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[621] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[621] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[621] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[685] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[733] bbl.pm:757> INFO - Output to main.bbl
+[733] Biber.pm:128> INFO - WARNINGS: 3

@@ -1,0 +1,2960 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{anderson2011}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=be23b0605dbe42618eb5c78d1d238d45}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={G\bibnamedelima Brooke},
+           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a1461c48602baeb680b36f8bdf9b61a0}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={Michelle\bibnamedelima L},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {National Institute of Environmental Health Sciences}%
+      }
+      \strng{namehash}{6a204155525ca350cd9c2d70c64efbfb}
+      \strng{fullhash}{6a204155525ca350cd9c2d70c64efbfb}
+      \strng{bibnamehash}{6a204155525ca350cd9c2d70c64efbfb}
+      \strng{authorbibnamehash}{6a204155525ca350cd9c2d70c64efbfb}
+      \strng{authornamehash}{6a204155525ca350cd9c2d70c64efbfb}
+      \strng{authorfullhash}{6a204155525ca350cd9c2d70c64efbfb}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental health perspectives}
+      \field{number}{2}
+      \field{title}{Heat waves in the United States: mortality risk during heat waves and effect modification by heat wave characteristics in 43 US communities}
+      \field{volume}{119}
+      \field{year}{2011}
+      \field{pages}{210\bibrangedash 218}
+      \range{pages}{9}
+    \endentry
+    \entry{anurose2018}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cd3c1c51fc9efbbe32d273505dd0f589}{%
+           family={Anurose},
+           familyi={A\bibinitperiod},
+           given={TJ},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e2a7e9b2b5dc0d3f89afbfe2f6ed3025}{%
+           family={Subrahamanyam},
+           familyi={S\bibinitperiod},
+           given={D\bibnamedelima Bala},
+           giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a41ff7faf122465e8d5a58ef28f1327a}{%
+           family={Sunilkumar},
+           familyi={S\bibinitperiod},
+           given={SV},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \strng{fullhash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \strng{bibnamehash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \strng{authorbibnamehash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \strng{authornamehash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \strng{authorfullhash}{b7fde25bbc81f5b8559ad96f10f54837}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical and applied climatology}
+      \field{number}{1}
+      \field{title}{Two years observations on the diurnal evolution of coastal atmospheric boundary layer features over Thiruvananthapuram (8.5∘ N, 76.9∘ E), India}
+      \field{volume}{131}
+      \field{year}{2018}
+      \field{pages}{77\bibrangedash 90}
+      \range{pages}{14}
+    \endentry
+    \entry{dearrudamoreira2020}{article}{}
+      \name{author}{9}{}{%
+        {{un=0,uniquepart=base,hash=645b72fc15e522e6429233d04d4d7dd2}{%
+           family={Arruda\bibnamedelima Moreira},
+           familyi={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Gregori},
+           giveni={G\bibinitperiod},
+           givenun=0,
+           prefix={de},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=1b5909239e3934c16835998dc71cc8db}{%
+           family={Guerrero-Rascado},
+           familyi={G\bibinithyphendelim R\bibinitperiod},
+           given={Juan\bibnamedelima Luis},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a4d12aa03846e97dae220d8dc46244b7}{%
+           family={Bravo-Aranda},
+           familyi={B\bibinithyphendelim A\bibinitperiod},
+           given={Juan\bibnamedelima Antonio},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6d97fe724e8bfe8d55c1a428d27e2b7f}{%
+           family={Foyo-Moreno},
+           familyi={F\bibinithyphendelim M\bibinitperiod},
+           given={Inmaculada},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=84004f0936259ac63ee4e5fd9942a0f3}{%
+           family={Cazorla},
+           familyi={C\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1c4b68c16dac9b27f0c8bb85ed647c84}{%
+           family={Alados},
+           familyi={A\bibinitperiod},
+           given={Inmaculada},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4dfafbc8cfb39d0f82f408cf45a220e0}{%
+           family={Lyamani},
+           familyi={L\bibinitperiod},
+           given={Hassan},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12c9ac89a69833e823e01b76fd791d82}{%
+           family={Landulfo},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0d06d01e0e58c3d5a3e1e873d939e5da}{%
+           family={Alados-Arboledas},
+           familyi={A\bibinithyphendelim A\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{ebe780ad68534c12f7f48ffca2d28ba0}
+      \strng{fullhash}{feb7de2280e85e770f4c9333bd61c38e}
+      \strng{bibnamehash}{ebe780ad68534c12f7f48ffca2d28ba0}
+      \strng{authorbibnamehash}{ebe780ad68534c12f7f48ffca2d28ba0}
+      \strng{authornamehash}{ebe780ad68534c12f7f48ffca2d28ba0}
+      \strng{authorfullhash}{feb7de2280e85e770f4c9333bd61c38e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Research}
+      \field{title}{Study of the planetary boundary layer height in an urban environment using a combination of microwave radiometer and ceilometer}
+      \field{volume}{240}
+      \field{year}{2020}
+      \field{pages}{104932}
+      \range{pages}{1}
+    \endentry
+    \entry{banks2015}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e3d4c541f3cc45590822f9615bba5ad2}{%
+           family={Banks},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima F},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=45bb2b677001c43eb32e4f6cd7f742d8}{%
+           family={Tiana-Alsina},
+           familyi={T\bibinithyphendelim A\bibinitperiod},
+           given={Jordi},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5524b31ff45a5534c7cfe5bd74d97060}{%
+           family={Rocadenbosch},
+           familyi={R\bibinitperiod},
+           given={Francesc},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8eb1173e6cc43ca339c729e6cc8b30a}{%
+           family={Baldasano},
+           familyi={B\bibinitperiod},
+           given={José\bibnamedelima M},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{7918ceb8565988a5cd35d347514e1aad}
+      \strng{fullhash}{28eacd7e5a9e34a79e2325657b0c9cc9}
+      \strng{bibnamehash}{7918ceb8565988a5cd35d347514e1aad}
+      \strng{authorbibnamehash}{7918ceb8565988a5cd35d347514e1aad}
+      \strng{authornamehash}{7918ceb8565988a5cd35d347514e1aad}
+      \strng{authorfullhash}{28eacd7e5a9e34a79e2325657b0c9cc9}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Boundary-layer meteorology}
+      \field{number}{2}
+      \field{title}{Performance evaluation of the boundary-layer height from lidar and the Weather Research and Forecasting model at an urban coastal site in the north-east Iberian Peninsula}
+      \field{volume}{157}
+      \field{year}{2015}
+      \field{pages}{265\bibrangedash 292}
+      \range{pages}{28}
+    \endentry
+    \entry{barlow2011}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=aa3869c4bd32e85ced8273940b152b64}{%
+           family={Barlow},
+           familyi={B\bibinitperiod},
+           given={Janet\bibnamedelima F},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6fccc4c460deb1286152122ccb754d90}{%
+           family={Dunbar},
+           familyi={D\bibinitperiod},
+           given={TM},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82dbe917ff97b154cc2f0b149d687dc1}{%
+           family={Nemitz},
+           familyi={N\bibinitperiod},
+           given={EG},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=054fe12a08a67a7dde3d2c71c758b4bc}{%
+           family={Wood},
+           familyi={W\bibinitperiod},
+           given={Curtis\bibnamedelima R},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3aca09379d03188514342f1afac8a361}{%
+           family={Gallagher},
+           familyi={G\bibinitperiod},
+           given={MW},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=94aa7a615304013fe5d825126bc8ccf0}{%
+           family={Davies},
+           familyi={D\bibinitperiod},
+           given={F},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3476faa27d55751af81188d9a0c2a9b3}{%
+           family={O'Connor},
+           familyi={O\bibinitperiod},
+           given={Ewan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=97ee7a54c69b783db71c30cae8858600}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={RM},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Copernicus GmbH}%
+      }
+      \strng{namehash}{4dbc8aad8d73ec3ee89af8d287d879ba}
+      \strng{fullhash}{31f688f093febc813af7123ee04628df}
+      \strng{bibnamehash}{4dbc8aad8d73ec3ee89af8d287d879ba}
+      \strng{authorbibnamehash}{4dbc8aad8d73ec3ee89af8d287d879ba}
+      \strng{authornamehash}{4dbc8aad8d73ec3ee89af8d287d879ba}
+      \strng{authorfullhash}{31f688f093febc813af7123ee04628df}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Chemistry and Physics}
+      \field{number}{5}
+      \field{title}{Boundary layer dynamics over London, UK, as observed using Doppler lidar during REPARTEE-II}
+      \field{volume}{11}
+      \field{year}{2011}
+      \field{pages}{2111\bibrangedash 2125}
+      \range{pages}{15}
+    \endentry
+    \entry{black2004}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=0b11f6baa0c5c7d0c4c97634d60aed17}{%
+           family={Black},
+           familyi={B\bibinitperiod},
+           given={Emily},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4fc5bc64ac03363e31b0ee38d4657a7f}{%
+           family={Blackburn},
+           familyi={B\bibinitperiod},
+           given={Mike},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ce553fbd9a426ff7727099e22692aa5b}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={Giles},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a50586c0603f87ae3822550cef10061d}{%
+           family={Hoskins},
+           familyi={H\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=df956c4fcc1c93dc2504803f1599e564}{%
+           family={Methven},
+           familyi={M\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{c4a6137c42ddeb03eaabb1a7aba888e5}
+      \strng{fullhash}{e669b1cc60d2b427c5ae13955f45034c}
+      \strng{bibnamehash}{c4a6137c42ddeb03eaabb1a7aba888e5}
+      \strng{authorbibnamehash}{c4a6137c42ddeb03eaabb1a7aba888e5}
+      \strng{authornamehash}{c4a6137c42ddeb03eaabb1a7aba888e5}
+      \strng{authorfullhash}{e669b1cc60d2b427c5ae13955f45034c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Weather}
+      \field{number}{8}
+      \field{title}{Factors contributing to the summer 2003 European heatwave}
+      \field{volume}{59}
+      \field{year}{2004}
+      \field{pages}{217\bibrangedash 223}
+      \range{pages}{7}
+    \endentry
+    \entry{bornstein1981}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ecfd8e107e3125ca4d2bb8b5b1e9bb1b}{%
+           family={Bornstein},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima D},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7cc13f34df5976f8a595326d21a0823d}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={William\bibnamedelima T},
+           giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fcd9cae59efd137786b47610788f382a}
+      \strng{fullhash}{fcd9cae59efd137786b47610788f382a}
+      \strng{bibnamehash}{fcd9cae59efd137786b47610788f382a}
+      \strng{authorbibnamehash}{fcd9cae59efd137786b47610788f382a}
+      \strng{authornamehash}{fcd9cae59efd137786b47610788f382a}
+      \strng{authorfullhash}{fcd9cae59efd137786b47610788f382a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{8}
+      \field{title}{Effects of frictionally retarded sea breeze and synoptic frontal passages on sulfur dioxide concentrations in New York City}
+      \field{volume}{20}
+      \field{year}{1981}
+      \field{pages}{843\bibrangedash 858}
+      \range{pages}{16}
+    \endentry
+    \entry{brotzge2020}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{un=0,uniquepart=base,hash=b80144984ed5f6004e0e78662fa3783a}{%
+           family={Brotzge},
+           familyi={B\bibinitperiod},
+           given={Jerald\bibnamedelima A},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=a3097a7d569c158d398fdd2f77418478}{%
+           family={Thorncroft},
+           familyi={T\bibinitperiod},
+           given={CD},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c5f41f73e8ef70a86d1d006c0c8e0f6}{%
+           family={Joseph},
+           familyi={J\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=44bf9744b1a416b015eecb24a41e8e07}{%
+           family={Bain},
+           familyi={B\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=db91633cd24437800be86cfc022b29aa}{%
+           family={Bassill},
+           familyi={B\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96d9bd9b0e03bff943fdb49699436099}{%
+           family={Farruggio},
+           familyi={F\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e8ef459a8861bee7b7419eb389ccd9bf}{%
+           family={Freedman},
+           familyi={F\bibinitperiod},
+           given={JM},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4df78071f9740b4fcaa9a657206c797c}{%
+           family={Hemker},
+           familyi={H\bibinitperiod},
+           given={K},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e92745ac08515aac577188dcdd2d523c}{%
+           family={Johnston},
+           familyi={J\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Meteorological Society}%
+      }
+      \strng{namehash}{aa768600d84aaa39984e8537af2c3294}
+      \strng{fullhash}{5af80969905ac6fb60a4d1c6a11b375e}
+      \strng{bibnamehash}{aa768600d84aaa39984e8537af2c3294}
+      \strng{authorbibnamehash}{aa768600d84aaa39984e8537af2c3294}
+      \strng{authornamehash}{aa768600d84aaa39984e8537af2c3294}
+      \strng{authorfullhash}{5af80969905ac6fb60a4d1c6a11b375e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Atmospheric and Oceanic Technology}
+      \field{number}{10}
+      \field{title}{A technical overview of the new york state mesonet standard network}
+      \field{volume}{37}
+      \field{year}{2020}
+      \field{pages}{1827\bibrangedash 1845}
+      \range{pages}{19}
+    \endentry
+    \entry{burillo2019}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=0c8a4dc0fe2ee9abfb40694fb739f2d0}{%
+           family={Burillo},
+           familyi={B\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c3bba1b7e146d712d08df4eacf64750f}{%
+           family={Chester},
+           familyi={C\bibinitperiod},
+           given={Mikhail\bibnamedelima V},
+           giveni={M\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bea2c1a054f66d90f96a2728231b972b}{%
+           family={Pincetl},
+           familyi={P\bibinitperiod},
+           given={Stephanie},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=182ab035cf38ee28051154f40409e22f}{%
+           family={Fournier},
+           familyi={F\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{e825759c690e5a5ce4d2a638eabaed63}
+      \strng{fullhash}{452f7a1b832b2aec2084ea7dcca66c02}
+      \strng{bibnamehash}{e825759c690e5a5ce4d2a638eabaed63}
+      \strng{authorbibnamehash}{e825759c690e5a5ce4d2a638eabaed63}
+      \strng{authornamehash}{e825759c690e5a5ce4d2a638eabaed63}
+      \strng{authorfullhash}{452f7a1b832b2aec2084ea7dcca66c02}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Energy Policy}
+      \field{title}{Electricity infrastructure vulnerabilities due to long-term growth and extreme heat from climate change in Los Angeles County}
+      \field{volume}{128}
+      \field{year}{2019}
+      \field{pages}{943\bibrangedash 953}
+      \range{pages}{11}
+    \endentry
+    \entry{chen2014}{article}{}
+      \name{author}{3}{}{%
+        {{un=1,uniquepart=given,hash=76d2a0c3861b383bfabec56e48139137}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Feng},
+           giveni={F\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=4f75630884311c112588205dc81aaaa5}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Xuchao},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=42421d3c7312b667fb3403d04d6ca8d5}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Weiping},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{7a62cb166ab5059f97a1e71559251647}
+      \strng{fullhash}{7a62cb166ab5059f97a1e71559251647}
+      \strng{bibnamehash}{7a62cb166ab5059f97a1e71559251647}
+      \strng{authorbibnamehash}{7a62cb166ab5059f97a1e71559251647}
+      \strng{authornamehash}{7a62cb166ab5059f97a1e71559251647}
+      \strng{authorfullhash}{7a62cb166ab5059f97a1e71559251647}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric research}
+      \field{title}{WRF simulations of urban heat island under hot-weather synoptic conditions: The case study of Hangzhou City, China}
+      \field{volume}{138}
+      \field{year}{2014}
+      \field{pages}{364\bibrangedash 377}
+      \range{pages}{14}
+    \endentry
+    \entry{chen1993}{article}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=9c5aa87580ad091d602f830e6b0e2313}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={T\bibnamedelima C},
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=b0ef0a0b3df38d6e00d12b6a841380e3}{%
+           family={Kpaeyeh},
+           familyi={K\bibinitperiod},
+           given={J\bibnamedelima Alvin},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{fullhash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{bibnamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authorbibnamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authornamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authorfullhash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly weather review}
+      \field{number}{2}
+      \field{title}{The synoptic-scale environment associated with the low-level jet of the Great Plains}
+      \field{volume}{121}
+      \field{year}{1993}
+      \field{pages}{416\bibrangedash 420}
+      \range{pages}{5}
+    \endentry
+    \entry{childs2005}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b6345aa6341fb7da985b6b2a3cda2f00}{%
+           family={Childs},
+           familyi={C\bibinitperiod},
+           given={Peter\bibnamedelima P},
+           giveni={P\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5814efd53d797f94ff3155639ab24b6}{%
+           family={Raman},
+           familyi={R\bibinitperiod},
+           given={Sethu},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{7cb965a0b221ff8893c35f2174d3435a}
+      \strng{fullhash}{7cb965a0b221ff8893c35f2174d3435a}
+      \strng{bibnamehash}{7cb965a0b221ff8893c35f2174d3435a}
+      \strng{authorbibnamehash}{7cb965a0b221ff8893c35f2174d3435a}
+      \strng{authornamehash}{7cb965a0b221ff8893c35f2174d3435a}
+      \strng{authorfullhash}{7cb965a0b221ff8893c35f2174d3435a}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Pure and Applied Geophysics}
+      \field{number}{10}
+      \field{title}{Observations and numerical simulations of urban heat island and sea breeze circulations over New York City}
+      \field{volume}{162}
+      \field{year}{2005}
+      \field{pages}{1955\bibrangedash 1980}
+      \range{pages}{26}
+    \endentry
+    \entry{colle2010}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=10483c3f81eb9c46db334e6bb8e87eca}{%
+           family={Colle},
+           familyi={C\bibinitperiod},
+           given={Brian\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d9f1f4631df69dec38d2dee6720fbbb9}{%
+           family={Novak},
+           familyi={N\bibinitperiod},
+           given={David\bibnamedelima R},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{33a481238d2e3c1255628801f68a4209}
+      \strng{fullhash}{33a481238d2e3c1255628801f68a4209}
+      \strng{bibnamehash}{33a481238d2e3c1255628801f68a4209}
+      \strng{authorbibnamehash}{33a481238d2e3c1255628801f68a4209}
+      \strng{authornamehash}{33a481238d2e3c1255628801f68a4209}
+      \strng{authorfullhash}{33a481238d2e3c1255628801f68a4209}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly Weather Review}
+      \field{number}{6}
+      \field{title}{The New York Bight jet: climatology and dynamical evolution}
+      \field{volume}{138}
+      \field{year}{2010}
+      \field{pages}{2385\bibrangedash 2404}
+      \range{pages}{20}
+    \endentry
+    \entry{forzieri2018}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=47a10692e15a182e5696bdf53cb5af2d}{%
+           family={Forzieri},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2491328d698adb05ca409e84892da770}{%
+           family={Bianchi},
+           familyi={B\bibinitperiod},
+           given={Alessandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e971cccdeadf370f443ad632fda1df6c}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Filipe\bibnamedelima Batista},
+           giveni={F\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0,
+           prefix={e},
+           prefixi={e\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=d90aa1ca96e19e113014e8bef57621a8}{%
+           family={Herrera},
+           familyi={H\bibinitperiod},
+           given={Mario\bibnamedelimb A\bibnamedelima Marin},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c12166837f2fd300d99eff8c224907d6}{%
+           family={Leblois},
+           familyi={L\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e90ad651cdd7ad05ccfe190de6517d60}{%
+           family={Lavalle},
+           familyi={L\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=65cce4288db910287b239ed9c839f34d}{%
+           family={Aerts},
+           familyi={A\bibinitperiod},
+           given={Jeroen\bibnamedelima CJH},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=68ae415ad4f686776e98791a90014bfb}{%
+           family={Feyen},
+           familyi={F\bibinitperiod},
+           given={Luc},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{917ecf3275c45a9910ca66b28cae2f73}
+      \strng{fullhash}{9711f1c7b0cdce0373b27b5c7de33f9c}
+      \strng{bibnamehash}{917ecf3275c45a9910ca66b28cae2f73}
+      \strng{authorbibnamehash}{917ecf3275c45a9910ca66b28cae2f73}
+      \strng{authornamehash}{917ecf3275c45a9910ca66b28cae2f73}
+      \strng{authorfullhash}{9711f1c7b0cdce0373b27b5c7de33f9c}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Global environmental change}
+      \field{title}{Escalating impacts of climate extremes on critical infrastructures in Europe}
+      \field{volume}{48}
+      \field{year}{2018}
+      \field{pages}{97\bibrangedash 107}
+      \range{pages}{11}
+    \endentry
+    \entry{frizzola1963}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=19d9ba108ea6a7faf7ce9415e89a1f26}{%
+           family={Frizzola},
+           familyi={F\bibinitperiod},
+           given={John\bibnamedelima A},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f1457e3bfceec8998f27848cf9947c6f}{%
+           family={Fisher},
+           familyi={F\bibinitperiod},
+           given={Edwin\bibnamedelima L},
+           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \strng{fullhash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \strng{bibnamehash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \strng{authorbibnamehash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \strng{authornamehash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \strng{authorfullhash}{de7a946b8ba0b39ae7950218fb9a11a8}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{6}
+      \field{title}{A series of sea breeze observations in the New York City area}
+      \field{volume}{2}
+      \field{year}{1963}
+      \field{pages}{722\bibrangedash 739}
+      \range{pages}{18}
+    \endentry
+    \entry{frumkin2016}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fa25440bed81fe8f0d2ccbfbc1856c44}{%
+           family={Frumkin},
+           familyi={F\bibinitperiod},
+           given={Howard},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE PublicationsSage CA: Los Angeles, CA}%
+      }
+      \strng{namehash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \strng{fullhash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \strng{bibnamehash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \strng{authorbibnamehash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \strng{authornamehash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \strng{authorfullhash}{fa25440bed81fe8f0d2ccbfbc1856c44}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Public health reports}
+      \field{title}{Urban sprawl and public health}
+      \field{year}{2016}
+    \endentry
+    \entry{gedzelman2003}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=71ba35e312a1ad3ac404bce858a56ee8}{%
+           family={Gedzelman},
+           familyi={G\bibinitperiod},
+           given={SD},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=caa0d79bc9cc63bcd7e89918309639d2}{%
+           family={Austin},
+           familyi={A\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c6c9942f45dc0f5482b32402e3a5c36}{%
+           family={Cermak},
+           familyi={C\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4f97731cd8956107f9db9c3a4e255645}{%
+           family={Stefano},
+           familyi={S\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5bc4574d079bf5859b6f7eb4bec034f0}{%
+           family={Partridge},
+           familyi={P\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d0f610805d74e1913cb8c07dd73b4231}{%
+           family={Quesenberry},
+           familyi={Q\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=316855a0a499a25d621b76178e54621c}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={DA},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{9fbdd1e3ff8d028d4aba6258b04b80a3}
+      \strng{fullhash}{17b04df7a8129a2d8dae08f5d0c5b746}
+      \strng{bibnamehash}{9fbdd1e3ff8d028d4aba6258b04b80a3}
+      \strng{authorbibnamehash}{9fbdd1e3ff8d028d4aba6258b04b80a3}
+      \strng{authornamehash}{9fbdd1e3ff8d028d4aba6258b04b80a3}
+      \strng{authorfullhash}{17b04df7a8129a2d8dae08f5d0c5b746}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical and applied climatology}
+      \field{number}{1}
+      \field{title}{Mesoscale aspects of the urban heat island around New York City}
+      \field{volume}{75}
+      \field{year}{2003}
+      \field{pages}{29\bibrangedash 42}
+      \range{pages}{14}
+    \endentry
+    \entry{grund2001}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=8f3a31df262744be2e9df134bb8a9770}{%
+           family={Grund},
+           familyi={G\bibinitperiod},
+           given={Christian\bibnamedelima J},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d779d137184ec914384716a8033233e5}{%
+           family={Banta},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c41bf0f21e693fa2744337e4b7d0c19}{%
+           family={George},
+           familyi={G\bibinitperiod},
+           given={Joanne\bibnamedelima L},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bde8235cb669ada524c45d41dc8096cd}{%
+           family={Howell},
+           familyi={H\bibinitperiod},
+           given={James\bibnamedelima N},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca07792f5759c737c66820675fa0e588}{%
+           family={Post},
+           familyi={P\bibinitperiod},
+           given={Madison\bibnamedelima J},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3a9b627cd6819241cc5e0e5973c2e033}{%
+           family={Richter},
+           familyi={R\bibinitperiod},
+           given={Ronald\bibnamedelima A},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=517c327df47422a6fc85060554704570}{%
+           family={Weickmann},
+           familyi={W\bibinitperiod},
+           given={Ann\bibnamedelima M},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Meteorological Society}%
+      }
+      \strng{namehash}{1276b5c4346e8ff8e75bbb671f95cbb3}
+      \strng{fullhash}{0b8578351995629c7c13b3a507e07533}
+      \strng{bibnamehash}{1276b5c4346e8ff8e75bbb671f95cbb3}
+      \strng{authorbibnamehash}{1276b5c4346e8ff8e75bbb671f95cbb3}
+      \strng{authornamehash}{1276b5c4346e8ff8e75bbb671f95cbb3}
+      \strng{authorfullhash}{0b8578351995629c7c13b3a507e07533}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Atmospheric and Oceanic Technology}
+      \field{number}{3}
+      \field{title}{High-resolution Doppler lidar for boundary layer and cloud research}
+      \field{volume}{18}
+      \field{year}{2001}
+      \field{pages}{376\bibrangedash 393}
+      \range{pages}{18}
+    \endentry
+    \entry{guldner2001}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8eb344eec42fe4cffb6e7ccb30f87716}{%
+           family={Güldner},
+           familyi={G\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fa9072db084574bb2d8dafd9971a29ec}{%
+           family={Spänkuch},
+           familyi={S\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e2bae151fb5938d7e7c107415e552992}
+      \strng{fullhash}{e2bae151fb5938d7e7c107415e552992}
+      \strng{bibnamehash}{e2bae151fb5938d7e7c107415e552992}
+      \strng{authorbibnamehash}{e2bae151fb5938d7e7c107415e552992}
+      \strng{authornamehash}{e2bae151fb5938d7e7c107415e552992}
+      \strng{authorfullhash}{e2bae151fb5938d7e7c107415e552992}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Atmospheric and Oceanic Technology}
+      \field{number}{6}
+      \field{title}{Remote sensing of the thermodynamic state of the atmospheric boundary layer by ground-based microwave radiometry}
+      \field{volume}{18}
+      \field{year}{2001}
+      \field{pages}{925\bibrangedash 933}
+      \range{pages}{9}
+    \endentry
+    \entry{heaviside2017}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=564b551a067bd0c1e12434e4f26638fe}{%
+           family={Heaviside},
+           familyi={H\bibinitperiod},
+           given={Clare},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=58eae2215c01dc95993523229dc36e11}{%
+           family={Macintyre},
+           familyi={M\bibinitperiod},
+           given={Helen},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e6a1d6286dadfa4fcf1e1817d04f4aa}{%
+           family={Vardoulakis},
+           familyi={V\bibinitperiod},
+           given={Sotiris},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{ab08b57020a96201bf4a98c636850af4}
+      \strng{fullhash}{ab08b57020a96201bf4a98c636850af4}
+      \strng{bibnamehash}{ab08b57020a96201bf4a98c636850af4}
+      \strng{authorbibnamehash}{ab08b57020a96201bf4a98c636850af4}
+      \strng{authornamehash}{ab08b57020a96201bf4a98c636850af4}
+      \strng{authorfullhash}{ab08b57020a96201bf4a98c636850af4}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Current environmental health reports}
+      \field{number}{3}
+      \field{title}{The urban heat island: implications for health in a changing environment}
+      \field{volume}{4}
+      \field{year}{2017}
+      \field{pages}{296\bibrangedash 305}
+      \range{pages}{10}
+    \endentry
+    \entry{hewison2003}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ca40f71301fc926c154de6c00013bd28}{%
+           family={Hewison},
+           familyi={H\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4f700ac9080ca76a9292914fa01bd16}{%
+           family={Gaffard},
+           familyi={G\bibinitperiod},
+           given={Catherine},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \strng{fullhash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \strng{bibnamehash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \strng{authorbibnamehash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \strng{authornamehash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \strng{authorfullhash}{1d98cc5ad6f947f93eb19aeaf3d89f5e}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Obs. Development Technical Report TR29, Met Office, National Meteorological Library, Exeter, UK. Also available from http://tim. hewison. org/TR29. pdf}
+      \field{title}{Radiometrics MP3000 microwave radiometer performance assessment}
+      \field{year}{2003}
+    \endentry
+    \entry{hrisko2021}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=ef0c70a5b949a1bdcab28c61ad29d826}{%
+           family={Hrisko},
+           familyi={H\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=2,uniquepart=given,hash=6750aea62dc2909791e3f9aa99d3582a}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={Prathap},
+           giveni={P\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=5e06b9e2b4c5fae942f9c690847ac005}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Jorge\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \strng{fullhash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \strng{bibnamehash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \strng{authorbibnamehash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \strng{authornamehash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \strng{authorfullhash}{dc9fbbe3e87156b76f56807b89b321e0}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing of Environment}
+      \field{title}{Estimating heat storage in urban areas using multispectral satellite data and machine learning}
+      \field{volume}{252}
+      \field{year}{2021}
+      \field{pages}{112125}
+      \range{pages}{1}
+    \endentry
+    \entry{hu2016}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=084d7f5e5ce103fba388fb877eb11a5e}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Xiao-Ming},
+           giveni={X\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5a1668b15a8e6d9b7af3c2ab3bfef6eb}{%
+           family={Xue},
+           familyi={X\bibinitperiod},
+           given={Ming},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{877420a4811c511ce027ecaae4ff7c4c}
+      \strng{fullhash}{877420a4811c511ce027ecaae4ff7c4c}
+      \strng{bibnamehash}{877420a4811c511ce027ecaae4ff7c4c}
+      \strng{authorbibnamehash}{877420a4811c511ce027ecaae4ff7c4c}
+      \strng{authornamehash}{877420a4811c511ce027ecaae4ff7c4c}
+      \strng{authorfullhash}{877420a4811c511ce027ecaae4ff7c4c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly Weather Review}
+      \field{number}{4}
+      \field{title}{Influence of synoptic sea-breeze fronts on the urban heat island intensity in Dallas--Fort Worth, Texas}
+      \field{volume}{144}
+      \field{year}{2016}
+      \field{pages}{1487\bibrangedash 1507}
+      \range{pages}{21}
+    \endentry
+    \entry{ignatov2010}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=49d2fdc6895bcba43b225c6ccb236a1f}{%
+           family={Ignatov},
+           familyi={I\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6d33ca3f8ee86142f205ce99e47ec3aa}{%
+           family={Petrenko},
+           familyi={P\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0f6446ebc39f2ef661a2e6e0fb361fb8}{%
+           family={Shabanov},
+           familyi={S\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=66f067c1e3685340728b95580102ab1b}{%
+           family={Kihai},
+           familyi={K\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c16b4fc48c97366736c12da1cd25d736}{%
+           family={Dash},
+           familyi={D\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4b6ac7ff7f59805ae6d962e7ba7c8e1e}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={X},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3115ff6d22771b5be61a19db0f6e456c}
+      \strng{fullhash}{0dc8f86d7e84f9ceffb55d64f2d5bad7}
+      \strng{bibnamehash}{3115ff6d22771b5be61a19db0f6e456c}
+      \strng{authorbibnamehash}{3115ff6d22771b5be61a19db0f6e456c}
+      \strng{authornamehash}{3115ff6d22771b5be61a19db0f6e456c}
+      \strng{authorfullhash}{0dc8f86d7e84f9ceffb55d64f2d5bad7}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{NOAA NESDIS Center for Satellite Applications and Research}
+      \field{title}{GOES-R Advanced Baseline Imager (ABI) algorithm theoretical basis document for sea surface temperature}
+      \field{year}{2010}
+    \endentry
+    \entry{jiang2019}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=13fb443f014e40aefad8f14c965761a0}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Shaojing},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d7272634a24a13bbe9cb83eaaa6f4226}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Xuhui},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f434c57195c6c004845397b6373b0d48}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jiankai},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=45ce276d42ade5afcaa57047c4dc3afd}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Kaicun},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{55d723802336405291724e4c4a67a9a7}
+      \strng{fullhash}{1e332072b8f50803d70d3717d72988a1}
+      \strng{bibnamehash}{55d723802336405291724e4c4a67a9a7}
+      \strng{authorbibnamehash}{55d723802336405291724e4c4a67a9a7}
+      \strng{authornamehash}{55d723802336405291724e4c4a67a9a7}
+      \strng{authorfullhash}{1e332072b8f50803d70d3717d72988a1}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Geophysical Research: Atmospheres}
+      \field{number}{14}
+      \field{title}{Amplified urban heat islands during heat wave periods}
+      \field{volume}{124}
+      \field{year}{2019}
+      \field{pages}{7797\bibrangedash 7812}
+      \range{pages}{16}
+    \endentry
+    \entry{kumer2014}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=60715605a171b043289006ab6ea0c63e}{%
+           family={Kumer},
+           familyi={K\bibinitperiod},
+           given={Valerie-M},
+           giveni={V\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82a671179cf7ebd67dc1e46294f29aab}{%
+           family={Reuder},
+           familyi={R\bibinitperiod},
+           given={Joachim},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=937f717ac724fae38d5cff6f9c867664}{%
+           family={Furevik},
+           familyi={F\bibinitperiod},
+           given={Birgitte\bibnamedelima R},
+           giveni={B\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{942b849ce372d119f0bca0769da6dde4}
+      \strng{fullhash}{942b849ce372d119f0bca0769da6dde4}
+      \strng{bibnamehash}{942b849ce372d119f0bca0769da6dde4}
+      \strng{authorbibnamehash}{942b849ce372d119f0bca0769da6dde4}
+      \strng{authornamehash}{942b849ce372d119f0bca0769da6dde4}
+      \strng{authorfullhash}{942b849ce372d119f0bca0769da6dde4}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Energy Procedia}
+      \field{title}{A comparison of LiDAR and radiosonde wind measurements}
+      \field{volume}{53}
+      \field{year}{2014}
+      \field{pages}{214\bibrangedash 220}
+      \range{pages}{7}
+    \endentry
+    \entry{li2013}{article}{}
+      \name{author}{2}{}{%
+        {{un=2,uniquepart=given,hash=fc63986540b002fd74244549ce74082f}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod},
+           givenun=2}}%
+        {{un=2,uniquepart=given,hash=e8144f04730300d1f3a3d1e3ad5afd57}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={Elie},
+           giveni={E\bibinitperiod},
+           givenun=2}}%
+      }
+      \strng{namehash}{c616141941becede1f94336e3e73c8e8}
+      \strng{fullhash}{c616141941becede1f94336e3e73c8e8}
+      \strng{bibnamehash}{c616141941becede1f94336e3e73c8e8}
+      \strng{authorbibnamehash}{c616141941becede1f94336e3e73c8e8}
+      \strng{authornamehash}{c616141941becede1f94336e3e73c8e8}
+      \strng{authorfullhash}{c616141941becede1f94336e3e73c8e8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{9}
+      \field{title}{Synergistic interactions between urban heat islands and heat waves: The impact in cities is larger than the sum of its parts}
+      \field{volume}{52}
+      \field{year}{2013}
+      \field{pages}{2051\bibrangedash 2064}
+      \range{pages}{14}
+    \endentry
+    \entry{luo2021}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9db8f9b01978980df3616e0d75d98ba9}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Bingkun},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eb26b2402bd4cceaf48e55e7823ed69b}{%
+           family={Minnett},
+           familyi={M\bibinitperiod},
+           given={Peter\bibnamedelima J},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \strng{fullhash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \strng{bibnamehash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \strng{authorbibnamehash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \strng{authornamehash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \strng{authorfullhash}{8d6734fd73dd31a6d66a3e0ca58cea12}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Geoscience and Remote Sensing}
+      \field{number}{12}
+      \field{title}{Skin Sea Surface Temperatures From the GOES-16 ABI Validated With Those of the Shipborne M-AERI}
+      \field{volume}{59}
+      \field{year}{2021}
+      \field{pages}{9902\bibrangedash 9913}
+      \range{pages}{12}
+    \endentry
+    \entry{madrigano2015}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=c2da11a92255a5e9b1a6b1f805bcb4e9}{%
+           family={Madrigano},
+           familyi={M\bibinitperiod},
+           given={Jaime},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd510459c964e59a70aadf58227cec3f}{%
+           family={Ito},
+           familyi={I\bibinitperiod},
+           given={Kazuhiko},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=943cead477acaabed6b148dfae709815}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=56192d5fef2b851fd1a466e7553d6b2b}{%
+           family={Kinney},
+           familyi={K\bibinitperiod},
+           given={Patrick\bibnamedelima L},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=410591fa36306ce33cff1fb69f9a09ad}{%
+           family={Matte},
+           familyi={M\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {NLM-Export}%
+      }
+      \strng{namehash}{24a0170fac78212d6b741df83b64d48d}
+      \strng{fullhash}{3be99aea8d282a0b957aa78c8bbbcc0e}
+      \strng{bibnamehash}{24a0170fac78212d6b741df83b64d48d}
+      \strng{authorbibnamehash}{24a0170fac78212d6b741df83b64d48d}
+      \strng{authornamehash}{24a0170fac78212d6b741df83b64d48d}
+      \strng{authorfullhash}{3be99aea8d282a0b957aa78c8bbbcc0e}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental health perspectives}
+      \field{number}{7}
+      \field{title}{A case-only study of vulnerability to heat wave--related mortality in New York City (2000--2011)}
+      \field{volume}{123}
+      \field{year}{2015}
+      \field{pages}{672\bibrangedash 678}
+      \range{pages}{7}
+    \endentry
+    \entry{mcevoy2012}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=45ce8ef50c3e22c687439180a0f5d91d}{%
+           family={McEvoy},
+           familyi={M\bibinitperiod},
+           given={Darryn},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7991df34ab6f7cacecbbbffd7df908cf}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Iftekhar},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ee4fd72ed9bd3e16acf5d5fe38561298}{%
+           family={Mullett},
+           familyi={M\bibinitperiod},
+           given={Jane},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \strng{fullhash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \strng{bibnamehash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \strng{authorbibnamehash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \strng{authornamehash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \strng{authorfullhash}{4dbe18f216dad883d8436de3bf1dcf3a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Local Environment}
+      \field{number}{8}
+      \field{title}{The impact of the 2009 heat wave on Melbourne's critical infrastructure}
+      \field{volume}{17}
+      \field{year}{2012}
+      \field{pages}{783\bibrangedash 796}
+      \range{pages}{14}
+    \endentry
+    \entry{meir2013}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=52a4d7b68c7777a95913cab40af1ef91}{%
+           family={Meir},
+           familyi={M\bibinitperiod},
+           given={Talmor},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f051cc7dc3d682cb47aa05e3fcb6018c}{%
+           family={Orton},
+           familyi={O\bibinitperiod},
+           given={Philip\bibnamedelima M},
+           giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9ec11029adae8d4e46f492af710ed62a}{%
+           family={Pullen},
+           familyi={P\bibinitperiod},
+           given={Julie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=87dfee56732e25f7784f8454dbcebd84}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={Teddy},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7cc13f34df5976f8a595326d21a0823d}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={William\bibnamedelima T},
+           giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=25155feb660c3ae7073b2ffe1d905ddf}{%
+           family={Arend},
+           familyi={A\bibinitperiod},
+           given={Mark\bibnamedelima F},
+           giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{146350aee5b35a277e73cacbf375e028}
+      \strng{fullhash}{8292565b942c55ee91debeba9cef7205}
+      \strng{bibnamehash}{146350aee5b35a277e73cacbf375e028}
+      \strng{authorbibnamehash}{146350aee5b35a277e73cacbf375e028}
+      \strng{authornamehash}{146350aee5b35a277e73cacbf375e028}
+      \strng{authorfullhash}{8292565b942c55ee91debeba9cef7205}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Weather and Forecasting}
+      \field{number}{6}
+      \field{title}{Forecasting the New York City urban heat island and sea breeze during extreme heat events}
+      \field{volume}{28}
+      \field{year}{2013}
+      \field{pages}{1460\bibrangedash 1477}
+      \range{pages}{18}
+    \endentry
+    \entry{melecio2018}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=c9d18bc8ff06e4f4f796aac8968055f1}{%
+           family={Melecio-Vázquez},
+           familyi={M\bibinithyphendelim V\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6750aea62dc2909791e3f9aa99d3582a}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={Prathap},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=33abff37b00ff6534815fde3a03130b5}{%
+           family={Arend},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c3054d0333862e2d070575b3743d71d5}{%
+           family={González-Cruz},
+           familyi={G\bibinithyphendelim C\bibinitperiod},
+           given={Jorge\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Netherlands}%
+      }
+      \strng{namehash}{3d78d19c75362ac97d317ba4913d667e}
+      \strng{fullhash}{226c534aefe7f1bf96232add532c35a9}
+      \strng{bibnamehash}{3d78d19c75362ac97d317ba4913d667e}
+      \strng{authorbibnamehash}{3d78d19c75362ac97d317ba4913d667e}
+      \strng{authornamehash}{3d78d19c75362ac97d317ba4913d667e}
+      \strng{authorfullhash}{226c534aefe7f1bf96232add532c35a9}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{15731472}
+      \field{issue}{1}
+      \field{journaltitle}{Boundary-Layer Meteorology}
+      \field{title}{Thermal Structure of a Coastal–Urban Boundary Layer}
+      \field{volume}{169}
+      \field{year}{2018}
+      \field{pages}{151\bibrangedash 161}
+      \range{pages}{11}
+      \keyw{Coastal boundary layer,Microwave radiometer,Moisture boundary layer,Thermal boundary layer,Urban boundary layer}
+    \endentry
+    \entry{miller2003}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=750064472a3cb307efe18dded5fa196e}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={STK},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc3b898084024c2a72eac09602bbdbff}{%
+           family={Keim},
+           familyi={K\bibinitperiod},
+           given={BD},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=884176ac7380838bdc6bdce12131a3a6}{%
+           family={Talbot},
+           familyi={T\bibinitperiod},
+           given={RW},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2d04384a709b2b41406d4b238c04035a}{%
+           family={Mao},
+           familyi={M\bibinitperiod},
+           given={Huiting},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{4fc46699526c8933d6f4970e44abf735}
+      \strng{fullhash}{736b346d0c8ca01e651bca522b110d03}
+      \strng{bibnamehash}{4fc46699526c8933d6f4970e44abf735}
+      \strng{authorbibnamehash}{4fc46699526c8933d6f4970e44abf735}
+      \strng{authornamehash}{4fc46699526c8933d6f4970e44abf735}
+      \strng{authorfullhash}{736b346d0c8ca01e651bca522b110d03}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Reviews of geophysics}
+      \field{number}{3}
+      \field{title}{Sea breeze: Structure, forecasting, and impacts}
+      \field{volume}{41}
+      \field{year}{2003}
+    \endentry
+    \entry{miralles2014}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=807ac27a4281f6de1f8a801f0952e7e1}{%
+           family={Miralles},
+           familyi={M\bibinitperiod},
+           given={Diego\bibnamedelima G},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ba4fdcf77bc57de9b1ef19978797d9eb}{%
+           family={Teuling},
+           familyi={T\bibinitperiod},
+           given={Adriaan\bibnamedelima J},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9b2ccf81ba92d1dd79fa4f326e8317d}{%
+           family={Van\bibnamedelima Heerwaarden},
+           familyi={V\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Chiel\bibnamedelima C},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f747d3ad5a3ee5d60eb4e2a07a3d2b79}{%
+           family={De\bibnamedelima Arellano},
+           familyi={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Jordi\bibnamedelima Vila-Guerau},
+           giveni={J\bibinitperiod\bibinitdelim V\bibinithyphendelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{80686b4a38151a6c3a506fc13a316c3a}
+      \strng{fullhash}{f6823197c7bba8ffaf103d20818158eb}
+      \strng{bibnamehash}{80686b4a38151a6c3a506fc13a316c3a}
+      \strng{authorbibnamehash}{80686b4a38151a6c3a506fc13a316c3a}
+      \strng{authornamehash}{80686b4a38151a6c3a506fc13a316c3a}
+      \strng{authorfullhash}{f6823197c7bba8ffaf103d20818158eb}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature geoscience}
+      \field{number}{5}
+      \field{title}{Mega-heatwave temperatures due to combined soil desiccation and atmospheric heat accumulation}
+      \field{volume}{7}
+      \field{year}{2014}
+      \field{pages}{345\bibrangedash 349}
+      \range{pages}{5}
+    \endentry
+    \entry{nws2018}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ccc9c0ad4bcf3652007dbff6a35ba578}{%
+           family={National\bibnamedelimb Weather\bibnamedelima Service},
+           familyi={N\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={NOAA},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {NOAA's National Weather Service}%
+      }
+      \strng{namehash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \strng{fullhash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \strng{bibnamehash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \strng{authorbibnamehash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \strng{authornamehash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \strng{authorfullhash}{ccc9c0ad4bcf3652007dbff6a35ba578}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{National Weather Service}
+      \field{month}{5}
+      \field{title}{National Weather Service New York, NY excessive heat page}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.weather.gov/okx/excessiveheat
+      \endverb
+      \verb{url}
+      \verb https://www.weather.gov/okx/excessiveheat
+      \endverb
+    \endentry
+    \entry{asos1998}{misc}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=ccf4fedea4dc4f2f8d4b497515012150}{%
+           family={NOAA},
+           familyi={N\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=47a23abe9b25bbf2242431310e627271}{%
+           family={Defense},
+           familyi={D\bibinitperiod},
+           given={Department},
+           giveni={D\bibinitperiod},
+           givenun=0,
+           prefix={of},
+           prefixi={o\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=6f28e9c4d5b79fbeb5ee3e94d7f17a43}{%
+           family={Administration},
+           familyi={A\bibinitperiod},
+           given={Federal\bibnamedelima Aviation},
+           giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ff08a98996db19e14f07b08385276dce}{%
+           family={Navy},
+           familyi={N\bibinitperiod},
+           given={United\bibnamedelima States},
+           giveni={U\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {National Weather Service, NOAA}%
+      }
+      \strng{namehash}{4eaf29c1e4b78339e35d189325a76b39}
+      \strng{fullhash}{91b184bd585c17395f88976df163e16e}
+      \strng{bibnamehash}{4eaf29c1e4b78339e35d189325a76b39}
+      \strng{authorbibnamehash}{4eaf29c1e4b78339e35d189325a76b39}
+      \strng{authornamehash}{4eaf29c1e4b78339e35d189325a76b39}
+      \strng{authorfullhash}{91b184bd585c17395f88976df163e16e}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Automated Surface Observing System (ASOS) User's Guide}
+      \field{year}{1998}
+      \verb{urlraw}
+      \verb https://www.weather.gov/media/asos/aum-toc.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.weather.gov/media/asos/aum-toc.pdf
+      \endverb
+    \endentry
+    \entry{pelliccioni2012}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e71bbe23f9a9d9531e224dbc2564b00c}{%
+           family={Pelliccioni},
+           familyi={P\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=850502a43926f7b1985b13b76be31b5f}{%
+           family={Monti},
+           familyi={M\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5f3510ccc55c0c498e51602d0df0fa7}{%
+           family={Gariazzo},
+           familyi={G\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=14413b514b6654fdd37bf1703e040d78}{%
+           family={Leuzzi},
+           familyi={L\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{919e7f65c2db836c10f7dbeae1238afd}
+      \strng{fullhash}{c19dca6110f1f9d44bd74a84c9f20f44}
+      \strng{bibnamehash}{919e7f65c2db836c10f7dbeae1238afd}
+      \strng{authorbibnamehash}{919e7f65c2db836c10f7dbeae1238afd}
+      \strng{authornamehash}{919e7f65c2db836c10f7dbeae1238afd}
+      \strng{authorfullhash}{c19dca6110f1f9d44bd74a84c9f20f44}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental fluid mechanics}
+      \field{number}{5}
+      \field{title}{Some characteristics of the urban boundary layer above Rome, Italy, and applicability of Monin--Obukhov similarity}
+      \field{volume}{12}
+      \field{year}{2012}
+      \field{pages}{405\bibrangedash 428}
+      \range{pages}{24}
+    \endentry
+    \entry{peng2011}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=4c07f81b520ea14b34f1539e6f29d185}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Roger\bibnamedelima D},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6f871cfc1d9872874975c537969785e2}{%
+           family={Bobb},
+           familyi={B\bibinitperiod},
+           given={Jennifer\bibnamedelima F},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=25bd583cb4808949b4f72b32a1b82410}{%
+           family={Tebaldi},
+           familyi={T\bibinitperiod},
+           given={Claudia},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6d894f866507b090f5a96808bb484759}{%
+           family={McDaniel},
+           familyi={M\bibinitperiod},
+           given={Larry},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a1461c48602baeb680b36f8bdf9b61a0}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={Michelle\bibnamedelima L},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f3c8643c576bade6dbc125562e719399}{%
+           family={Dominici},
+           familyi={D\bibinitperiod},
+           given={Francesca},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {National Institute of Environmental Health Sciences}%
+      }
+      \strng{namehash}{1777d375bcae822ab8fb198954e2cf74}
+      \strng{fullhash}{1e8bdadd3bec1dcbeb421f9d66f1e004}
+      \strng{bibnamehash}{1777d375bcae822ab8fb198954e2cf74}
+      \strng{authorbibnamehash}{1777d375bcae822ab8fb198954e2cf74}
+      \strng{authornamehash}{1777d375bcae822ab8fb198954e2cf74}
+      \strng{authorfullhash}{1e8bdadd3bec1dcbeb421f9d66f1e004}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental health perspectives}
+      \field{number}{5}
+      \field{title}{Toward a quantitative estimate of future heat wave mortality under global climate change}
+      \field{volume}{119}
+      \field{year}{2011}
+      \field{pages}{701\bibrangedash 706}
+      \range{pages}{6}
+    \endentry
+    \entry{pullen2007}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=9ec11029adae8d4e46f492af710ed62a}{%
+           family={Pullen},
+           familyi={P\bibinitperiod},
+           given={Julie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=87dfee56732e25f7784f8454dbcebd84}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={Teddy},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e3ca165696f115b3e263c014eb91180}{%
+           family={Blumberg},
+           familyi={B\bibinitperiod},
+           given={Alan\bibnamedelima F},
+           giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ecfd8e107e3125ca4d2bb8b5b1e9bb1b}{%
+           family={Bornstein},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima D},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2820991678a8ee3b87cb3e7629658d04}
+      \strng{fullhash}{eed0366d7ca2950ec5810017fbf0f0be}
+      \strng{bibnamehash}{2820991678a8ee3b87cb3e7629658d04}
+      \strng{authorbibnamehash}{2820991678a8ee3b87cb3e7629658d04}
+      \strng{authornamehash}{2820991678a8ee3b87cb3e7629658d04}
+      \strng{authorfullhash}{eed0366d7ca2950ec5810017fbf0f0be}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of applied meteorology and climatology}
+      \field{number}{7}
+      \field{title}{Atmospheric response to local upwelling in the vicinity of New York--New Jersey harbor}
+      \field{volume}{46}
+      \field{year}{2007}
+      \field{pages}{1031\bibrangedash 1052}
+      \range{pages}{22}
+    \endentry
+    \entry{quan2013}{article}{}
+      \name{author}{9}{}{%
+        {{un=0,uniquepart=base,hash=083fe3a3c27edc8c2a65a50290fe9c05}{%
+           family={Quan},
+           familyi={Q\bibinitperiod},
+           given={Jiannong},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9c1ecb1f7c47cf02e9e994296746328c}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08c1e9a58399d68669c800dc1ee6607b}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Qiang},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0d1749f951c3a14934ce9349abd5b7c6}{%
+           family={Tie},
+           familyi={T\bibinitperiod},
+           given={Xuexi},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3a938683f07e00f945488bc32a15c402}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={Junji},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cc581c58cf0dbb8a74e7538ee1531205}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Suqin},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ccda2907a802e1d76b30d3a0c2f37813}{%
+           family={Meng},
+           familyi={M\bibinitperiod},
+           given={Junwang},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1aed76138e6489b714dda52bf5d71b40}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d0237fd54c83195578641d193478f5a9}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Delong},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{756f03f841114934fc710cdddadab660}
+      \strng{fullhash}{a5f25a705b15b2ee4bcd8d59f5d3e98e}
+      \strng{bibnamehash}{756f03f841114934fc710cdddadab660}
+      \strng{authorbibnamehash}{756f03f841114934fc710cdddadab660}
+      \strng{authornamehash}{756f03f841114934fc710cdddadab660}
+      \strng{authorfullhash}{a5f25a705b15b2ee4bcd8d59f5d3e98e}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Particuology}
+      \field{number}{1}
+      \field{title}{Evolution of planetary boundary layer under different weather conditions, and its impact on aerosol concentrations}
+      \field{volume}{11}
+      \field{year}{2013}
+      \field{pages}{34\bibrangedash 40}
+      \range{pages}{7}
+    \endentry
+    \entry{ramamurthy2017a}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2567344bafa619c5f241dca6c0fff85b}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8154c1daf396df33fc76412e7b60f01c}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{71f4c54cae62ad91a351ca77fadf6270}
+      \strng{fullhash}{71f4c54cae62ad91a351ca77fadf6270}
+      \strng{bibnamehash}{71f4c54cae62ad91a351ca77fadf6270}
+      \strng{authorbibnamehash}{71f4c54cae62ad91a351ca77fadf6270}
+      \strng{authornamehash}{71f4c54cae62ad91a351ca77fadf6270}
+      \strng{authorfullhash}{71f4c54cae62ad91a351ca77fadf6270}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Geophysical Research: Atmospheres}
+      \field{number}{1}
+      \field{title}{Heatwaves and urban heat islands: a comparative analysis of multiple cities}
+      \field{volume}{122}
+      \field{year}{2017}
+      \field{pages}{168\bibrangedash 178}
+      \range{pages}{11}
+    \endentry
+    \entry{ramamurthy2017b}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2567344bafa619c5f241dca6c0fff85b}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=71978c4b5986a507ef6d356436f8b574}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8154c1daf396df33fc76412e7b60f01c}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{fullhash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{bibnamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authorbibnamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authornamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authorfullhash}{1103f40cfa43d2e5111e6915088c9394}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical and applied climatology}
+      \field{number}{1}
+      \field{title}{High-resolution simulation of heatwave events in New York City}
+      \field{volume}{128}
+      \field{year}{2017}
+      \field{pages}{89\bibrangedash 102}
+      \range{pages}{14}
+    \endentry
+    \entry{ramamurthy2014}{article}{}
+      \name{author}{2}{}{%
+        {{un=2,uniquepart=given,hash=6750aea62dc2909791e3f9aa99d3582a}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={Prathap},
+           giveni={P\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=8154c1daf396df33fc76412e7b60f01c}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{afb5e5567750da5c91a4b0042aa82db2}
+      \strng{fullhash}{afb5e5567750da5c91a4b0042aa82db2}
+      \strng{bibnamehash}{afb5e5567750da5c91a4b0042aa82db2}
+      \strng{authorbibnamehash}{afb5e5567750da5c91a4b0042aa82db2}
+      \strng{authornamehash}{afb5e5567750da5c91a4b0042aa82db2}
+      \strng{authorfullhash}{afb5e5567750da5c91a4b0042aa82db2}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Water Resources Research}
+      \field{number}{4}
+      \field{title}{Contribution of impervious surfaces to urban evaporation}
+      \field{volume}{50}
+      \field{year}{2014}
+      \field{pages}{2889\bibrangedash 2902}
+      \range{pages}{14}
+    \endentry
+    \entry{robinson2001}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=91b78814e5cde52a0f8919f4dd6b92e8}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Peter\bibnamedelima J},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Meteorological Society}%
+      }
+      \strng{namehash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \strng{fullhash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \strng{bibnamehash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \strng{authorbibnamehash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \strng{authornamehash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \strng{authorfullhash}{91b78814e5cde52a0f8919f4dd6b92e8}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{4}
+      \field{title}{On the definition of a heat wave}
+      \field{volume}{40}
+      \field{year}{2001}
+      \field{pages}{762\bibrangedash 775}
+      \range{pages}{14}
+    \endentry
+    \entry{rose2005}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1ef824ea965e632a96b91fd72b82f897}{%
+           family={Rose},
+           familyi={R\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cf64a2a672948704e95401a22275d43b}{%
+           family={Crewell},
+           familyi={C\bibinitperiod},
+           given={Susanne},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eb223d81dcb9970c83087709272bacdb}{%
+           family={Löhnert},
+           familyi={L\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2d8aa3a0e7f9e0c3b577d60a3dfc2648}{%
+           family={Simmer},
+           familyi={S\bibinitperiod},
+           given={Clemens},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{bcdb20edb88c646cf3046ce33a1faab9}
+      \strng{fullhash}{347ffaabcf640d33dad20d0f8ee53883}
+      \strng{bibnamehash}{bcdb20edb88c646cf3046ce33a1faab9}
+      \strng{authorbibnamehash}{bcdb20edb88c646cf3046ce33a1faab9}
+      \strng{authornamehash}{bcdb20edb88c646cf3046ce33a1faab9}
+      \strng{authorfullhash}{347ffaabcf640d33dad20d0f8ee53883}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric research}
+      \field{number}{3}
+      \field{title}{A network suitable microwave radiometer for operational monitoring of the cloudy atmosphere}
+      \field{volume}{75}
+      \field{year}{2005}
+      \field{pages}{183\bibrangedash 200}
+      \range{pages}{18}
+    \endentry
+    \entry{sanchez2013}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=91b0b5884ac2da2ea90ed412c3eb214d}{%
+           family={Sánchez},
+           familyi={S\bibinitperiod},
+           given={JL},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fb12b5ff5a5fc2bfcafff9c99ad86b84}{%
+           family={Posada},
+           familyi={P\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=af14fbc756452184b9a5feaa511424b4}{%
+           family={Garcı́a-Ortega},
+           familyi={G\bibinithyphendelim O\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=185d4f14deae5d9174479d3f543a3397}{%
+           family={López},
+           familyi={L\bibinitperiod},
+           given={L},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3bcc7229cec01a52a707381c88bb35ac}{%
+           family={Marcos},
+           familyi={M\bibinitperiod},
+           given={JL},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{c7f9b931542e177d6d55be986565e0f0}
+      \strng{fullhash}{1a16cecb49dc861d5b36e42a533bbeb6}
+      \strng{bibnamehash}{c7f9b931542e177d6d55be986565e0f0}
+      \strng{authorbibnamehash}{c7f9b931542e177d6d55be986565e0f0}
+      \strng{authornamehash}{c7f9b931542e177d6d55be986565e0f0}
+      \strng{authorfullhash}{1a16cecb49dc861d5b36e42a533bbeb6}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Research}
+      \field{title}{A method to improve the accuracy of continuous measuring of vertical profiles of temperature and water vapor density by means of a ground-based microwave radiometer}
+      \field{volume}{122}
+      \field{year}{2013}
+      \field{pages}{43\bibrangedash 54}
+      \range{pages}{12}
+    \endentry
+    \entry{shrestha2021}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=7980f780ef361798e9476c1f2d285afc}{%
+           family={Shrestha},
+           familyi={S\bibinitperiod},
+           given={Bhupal},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=23dc9e4304bc80b29484e92c8aded469}{%
+           family={Brotzge},
+           familyi={B\bibinitperiod},
+           given={JA},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=44bf9744b1a416b015eecb24a41e8e07}{%
+           family={Bain},
+           familyi={B\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a3097a7d569c158d398fdd2f77418478}{%
+           family={Thorncroft},
+           familyi={T\bibinitperiod},
+           given={CD},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c5f41f73e8ef70a86d1d006c0c8e0f6}{%
+           family={Joseph},
+           familyi={J\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=52b7851be96ef230406de756a3956c47}{%
+           family={Freedman},
+           familyi={F\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ceea5e8a181c5561cfeeed9cc4d62ab5}{%
+           family={Perez},
+           familyi={P\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9c68103df2ae549f0b9985777444fdc2}
+      \strng{fullhash}{9d4c3609540e0fa2b9c075b3246fd0df}
+      \strng{bibnamehash}{9c68103df2ae549f0b9985777444fdc2}
+      \strng{authorbibnamehash}{9c68103df2ae549f0b9985777444fdc2}
+      \strng{authornamehash}{9c68103df2ae549f0b9985777444fdc2}
+      \strng{authorfullhash}{9d4c3609540e0fa2b9c075b3246fd0df}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{11}
+      \field{title}{Overview and Applications of the New York State Mesonet Profiler Network}
+      \field{volume}{60}
+      \field{year}{2021}
+      \field{pages}{1591\bibrangedash 1611}
+      \range{pages}{21}
+    \endentry
+    \entry{stefanon2014}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=15539d3fce7cc7b2cfd544c795f457e0}{%
+           family={Stéfanon},
+           familyi={S\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b66a9ddf2937806b94b378e667f4fed3}{%
+           family={Drobinski},
+           familyi={D\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3031fd094194d0857ffd153202cbda01}{%
+           family={D’Andrea},
+           familyi={D\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2162bf0a81283aa08ef96a33f369c066}{%
+           family={Lebeaupin-Brossier},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Cindy},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8b52a1cac43ae5ac7884bd96c59d3f2d}{%
+           family={Bastin},
+           familyi={B\bibinitperiod},
+           given={Sophie},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{7258a5296abfe033cb97f62d33f0e65c}
+      \strng{fullhash}{24436a9f6a0ccc316d7db222936a28ab}
+      \strng{bibnamehash}{7258a5296abfe033cb97f62d33f0e65c}
+      \strng{authorbibnamehash}{7258a5296abfe033cb97f62d33f0e65c}
+      \strng{authornamehash}{7258a5296abfe033cb97f62d33f0e65c}
+      \strng{authorfullhash}{24436a9f6a0ccc316d7db222936a28ab}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Climate dynamics}
+      \field{number}{5}
+      \field{title}{Soil moisture-temperature feedbacks at meso-scale during summer heat waves over Western Europe}
+      \field{volume}{42}
+      \field{year}{2014}
+      \field{pages}{1309\bibrangedash 1324}
+      \range{pages}{16}
+    \endentry
+    \entry{tewari2019}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=bd78cda60b786b80935ea5615cb75780}{%
+           family={Tewari},
+           familyi={T\bibinitperiod},
+           given={Mukul},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=974ce30823a60b752d8429e47605f834}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Jiachuan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9dfb1ee3060672b6da7f53168de2e0a3}{%
+           family={Kusaka},
+           familyi={K\bibinitperiod},
+           given={Hiroyuki},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1148f90a74ff2d03961afafc374c029d}{%
+           family={Salamanca},
+           familyi={S\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e9cfa33f25636f9cadda6d1fc5f259d3}{%
+           family={Watson},
+           familyi={W\bibinitperiod},
+           given={Campbell},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=75e295e2aaa5a908cd783f9e95f93880}{%
+           family={Treinish},
+           familyi={T\bibinitperiod},
+           given={Lloyd},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{1da5719107ab273a31383d6725f73e82}
+      \strng{fullhash}{f6e5021bf45af668611702c3f28c88de}
+      \strng{bibnamehash}{1da5719107ab273a31383d6725f73e82}
+      \strng{authorbibnamehash}{1da5719107ab273a31383d6725f73e82}
+      \strng{authornamehash}{1da5719107ab273a31383d6725f73e82}
+      \strng{authorfullhash}{f6e5021bf45af668611702c3f28c88de}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental Research Letters}
+      \field{number}{3}
+      \field{title}{Interaction of urban heat islands and heat waves under current and future climate conditions and their mitigation using green and cool roofs in New York City and Phoenix, Arizona}
+      \field{volume}{14}
+      \field{year}{2019}
+      \field{pages}{034002}
+      \range{pages}{1}
+    \endentry
+    \entry{thomas2020}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=37c2da111f24f2fc790f573253a54f0c}{%
+           family={Thomas},
+           familyi={T\bibinitperiod},
+           given={Natalie\bibnamedelima P},
+           giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=559eeadd771cdf4e43ee3bbbb9d7e4aa}{%
+           family={Bosilovich},
+           familyi={B\bibinitperiod},
+           given={Michael\bibnamedelima G},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7119138cedd1b4ab400ceb3398b0472b}{%
+           family={Marquardt\bibnamedelima Collow},
+           familyi={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Allison\bibnamedelima B},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7d5acbd8e9ce102e72171ba3a8780409}{%
+           family={Koster},
+           familyi={K\bibinitperiod},
+           given={Randal\bibnamedelima D},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1430e7311a97e93dd2047e85a65ad635}{%
+           family={Schubert},
+           familyi={S\bibinitperiod},
+           given={Siegfried\bibnamedelima D},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=28f97c4b0a07c42373d5dd920626abc2}{%
+           family={Dezfuli},
+           familyi={D\bibinitperiod},
+           given={Amin},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fb56c32ec2f7c9a0068a97455d00f744}{%
+           family={Mahanama},
+           familyi={M\bibinitperiod},
+           given={Sarith\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dabe60396738c618a0d0fd1d1d78defb}
+      \strng{fullhash}{24cb75c7915ce96f241be7549b89b703}
+      \strng{bibnamehash}{dabe60396738c618a0d0fd1d1d78defb}
+      \strng{authorbibnamehash}{dabe60396738c618a0d0fd1d1d78defb}
+      \strng{authornamehash}{dabe60396738c618a0d0fd1d1d78defb}
+      \strng{authorfullhash}{24cb75c7915ce96f241be7549b89b703}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Meteorology and Climatology}
+      \field{number}{11}
+      \field{title}{Mechanisms associated with daytime and nighttime heat waves over the contiguous united states}
+      \field{volume}{59}
+      \field{year}{2020}
+      \field{pages}{1865\bibrangedash 1882}
+      \range{pages}{18}
+    \endentry
+    \entry{thompson2007}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7cc13f34df5976f8a595326d21a0823d}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={William\bibnamedelima T},
+           giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=87dfee56732e25f7784f8454dbcebd84}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={Teddy},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9ec11029adae8d4e46f492af710ed62a}{%
+           family={Pullen},
+           familyi={P\bibinitperiod},
+           given={Julie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{211e1123074ab5c0d006496d7417ad85}
+      \strng{fullhash}{211e1123074ab5c0d006496d7417ad85}
+      \strng{bibnamehash}{211e1123074ab5c0d006496d7417ad85}
+      \strng{authorbibnamehash}{211e1123074ab5c0d006496d7417ad85}
+      \strng{authornamehash}{211e1123074ab5c0d006496d7417ad85}
+      \strng{authorfullhash}{211e1123074ab5c0d006496d7417ad85}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quarterly Journal of the Royal Meteorological Society: A journal of the atmospheric sciences, applied meteorology and physical oceanography}
+      \field{number}{624}
+      \field{title}{Investigation of a sea breeze front in an urban environment}
+      \field{volume}{133}
+      \field{year}{2007}
+      \field{pages}{579\bibrangedash 594}
+      \range{pages}{16}
+    \endentry
+    \entry{wang2012}{article}{}
+      \name{author}{7}{}{%
+        {{un=1,uniquepart=given,hash=cc4aadc875d7abdbaf96dfa4a83d8b77}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Z},
+           giveni={Z\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=02bf1528889bd5dcf953ee5d6cf31a6b}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={X},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6d96d6fbd106e2ffd88ad23ce0119654}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={L},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1d8e367055a2bccc4474a07ec21755a3}{%
+           family={Notholt},
+           familyi={N\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4c178bbd5267e4fefacd4e0234a0688a}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47fa1cfa42f039e59f4e014c1941c712}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=14fd6c4762d5113df9a2a4c45d09c456}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Copernicus GmbH}%
+      }
+      \strng{namehash}{3deddfd5334afe8de95e47549d6b5a86}
+      \strng{fullhash}{1f8165696fc187568287c5c75d56a5a5}
+      \strng{bibnamehash}{3deddfd5334afe8de95e47549d6b5a86}
+      \strng{authorbibnamehash}{3deddfd5334afe8de95e47549d6b5a86}
+      \strng{authornamehash}{3deddfd5334afe8de95e47549d6b5a86}
+      \strng{authorfullhash}{1f8165696fc187568287c5c75d56a5a5}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Measurement Techniques}
+      \field{number}{8}
+      \field{title}{Lidar measurement of planetary boundary layer height and comparison with microwave profiling radiometer observation}
+      \field{volume}{5}
+      \field{year}{2012}
+      \field{pages}{1965\bibrangedash 1972}
+      \range{pages}{8}
+    \endentry
+    \entry{wu2019}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=241623e80ee301bbff361461d4839c54}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Yonghua},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4c3b212dc24c7a7284ae3c5d2fb41a79}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Kaihui},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=295fa8f87f4f82a842c2fd6f3819483e}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jianping},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=33abff37b00ff6534815fde3a03130b5}{%
+           family={Arend},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=456346a9f9a808ea5507b877996d127b}{%
+           family={Gross},
+           familyi={G\bibinitperiod},
+           given={Barry},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1b843ca35e2ea592bc7e8cf915f5ec74}{%
+           family={Moshary},
+           familyi={M\bibinitperiod},
+           given={Fred},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{4000287fc6f0efc8335c96f5a9a510ea}
+      \strng{fullhash}{6667be4f33b7c0345a83944685153832}
+      \strng{bibnamehash}{4000287fc6f0efc8335c96f5a9a510ea}
+      \strng{authorbibnamehash}{4000287fc6f0efc8335c96f5a9a510ea}
+      \strng{authornamehash}{4000287fc6f0efc8335c96f5a9a510ea}
+      \strng{authorfullhash}{6667be4f33b7c0345a83944685153832}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Environment}
+      \field{title}{Observation of heat wave effects on the urban air quality and PBL in New York City area}
+      \field{volume}{218}
+      \field{year}{2019}
+      \field{pages}{117024}
+      \range{pages}{1}
+    \endentry
+    \entry{yu2008}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=5df53c7f13aafee3bf3725c380accfc2}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Yunyue},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c73e1334d8c4ac7ad75d3e0d9cea4337}{%
+           family={Tarpley},
+           familyi={T\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e2ee7f070fda0a710ca893bbe5cf7233}{%
+           family={Privette},
+           familyi={P\bibinitperiod},
+           given={Jeffrey\bibnamedelima L},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=adb137964494922a51fbed4ce92cc4c0}{%
+           family={Goldberg},
+           familyi={G\bibinitperiod},
+           given={Mitchell\bibnamedelima D},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5efddd71582a9b71736e7f1adb0051d8}{%
+           family={Raja},
+           familyi={R\bibinitperiod},
+           given={MK\bibnamedelima Rama\bibnamedelima Varma},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d9544466488e209c2f66e42fb6ebbc1c}{%
+           family={Vinnikov},
+           familyi={V\bibinitperiod},
+           given={Konstantin\bibnamedelima Y},
+           giveni={K\bibinitperiod\bibinitdelim Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c731d48072111518a7ebbe2327e4e7c}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{34f43f8ac0320358366370d57ac79b77}
+      \strng{fullhash}{92bd92a89faea586bc23d77fc6906318}
+      \strng{bibnamehash}{34f43f8ac0320358366370d57ac79b77}
+      \strng{authorbibnamehash}{34f43f8ac0320358366370d57ac79b77}
+      \strng{authornamehash}{34f43f8ac0320358366370d57ac79b77}
+      \strng{authorfullhash}{92bd92a89faea586bc23d77fc6906318}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Geoscience and Remote Sensing}
+      \field{number}{3}
+      \field{title}{Developing algorithm for operational GOES-R land surface temperature product}
+      \field{volume}{47}
+      \field{year}{2008}
+      \field{pages}{936\bibrangedash 951}
+      \range{pages}{16}
+    \endentry
+    \entry{zhang2020}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=3eb54648dd5ef37f1f33c65c80837d9a}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yuanjie},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cce05cab2c437e9c128f853684ee3137}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Liang},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=44b6e34e3a7657bb31aa953413e3f7b0}{%
+           family={Santanello\bibnamedelima Jr},
+           familyi={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           given={Joseph\bibnamedelima A},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=76414536b6a81b346beff298f577b6fb}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={Zaitao},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b3d7dc9f79a96c98910aca716824e5c}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Zhiqiu},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fc63986540b002fd74244549ce74082f}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{8b995eb508fec31081cbbba06bc7037f}
+      \strng{fullhash}{c3a2a30f25528b1880dbdfc5290c9c8d}
+      \strng{bibnamehash}{8b995eb508fec31081cbbba06bc7037f}
+      \strng{authorbibnamehash}{8b995eb508fec31081cbbba06bc7037f}
+      \strng{authornamehash}{8b995eb508fec31081cbbba06bc7037f}
+      \strng{authorfullhash}{c3a2a30f25528b1880dbdfc5290c9c8d}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Research}
+      \field{title}{Aircraft observed diurnal variations of the planetary boundary layer under heat waves}
+      \field{volume}{235}
+      \field{year}{2020}
+      \field{pages}{104801}
+      \range{pages}{1}
+    \endentry
+    \entry{zhao2018}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=83ab589fc1432ce949cb31441d689991}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=93cac4b18f9d1069eb399d1a371b1234}{%
+           family={Oppenheimer},
+           familyi={O\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a555a6bf35aaa4676d6e351fdfa51a1}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=044bac041bb1a7f76452e5f408b71d31}{%
+           family={Baldwin},
+           familyi={B\bibinitperiod},
+           given={Jane\bibnamedelima W},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31e780c72a92abe373deb1ef69e7dc20}{%
+           family={Ebi},
+           familyi={E\bibinitperiod},
+           given={Kristie\bibnamedelima L},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e8144f04730300d1f3a3d1e3ad5afd57}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={Elie},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bb7de3a231c32c45aee4b805e9c84f64}{%
+           family={Guan},
+           familyi={G\bibinitperiod},
+           given={Kaiyu},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0acb094e371db85d102e7a7366a7fcd5}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Xu},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{9a870310bce06d1689071317cfbe0d25}
+      \strng{fullhash}{6ce12bf58337bd4569ee89b56c97b879}
+      \strng{bibnamehash}{9a870310bce06d1689071317cfbe0d25}
+      \strng{authorbibnamehash}{9a870310bce06d1689071317cfbe0d25}
+      \strng{authornamehash}{9a870310bce06d1689071317cfbe0d25}
+      \strng{authorfullhash}{6ce12bf58337bd4569ee89b56c97b879}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental research letters}
+      \field{number}{3}
+      \field{title}{Interactions between urban heat islands and heat waves}
+      \field{volume}{13}
+      \field{year}{2018}
+      \field{pages}{034003}
+      \range{pages}{1}
+    \endentry
+    \entry{zuo2015}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=fd73a45e3bc20615f8ac93ff834124ce}{%
+           family={Zuo},
+           familyi={Z\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9c680f4478939ba2c116aef1dc5c44b3}{%
+           family={Pullen},
+           familyi={P\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ae8566f6ea62e44528c4de467da5e29a}{%
+           family={Palmer},
+           familyi={P\bibinitperiod},
+           given={Jasmine},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a8971e6d157d5bc4bd9e585b509e77ee}{%
+           family={Bennetts},
+           familyi={B\bibinitperiod},
+           given={Helen},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=94a3b86bd9b4205b5d5849187c877858}{%
+           family={Chileshe},
+           familyi={C\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50451bb4e5c45e6408bd4e1b3cd9d57a}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Tony},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{3eb8acbe45ed00621aa5821524b8de15}
+      \strng{fullhash}{a17c0894c5b80918e916407d65ab6eee}
+      \strng{bibnamehash}{3eb8acbe45ed00621aa5821524b8de15}
+      \strng{authorbibnamehash}{3eb8acbe45ed00621aa5821524b8de15}
+      \strng{authornamehash}{3eb8acbe45ed00621aa5821524b8de15}
+      \strng{authorfullhash}{a17c0894c5b80918e916407d65ab6eee}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Cleaner Production}
+      \field{title}{Impacts of heat waves and corresponding measures: a review}
+      \field{volume}{92}
+      \field{year}{2015}
+      \field{pages}{1\bibrangedash 12}
+      \range{pages}{12}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -537,12 +537,12 @@
     \endentry
     \entry{chen2014}{article}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=76d2a0c3861b383bfabec56e48139137}{%
+        {{un=1,uniquepart=given,hash=76d2a0c3861b383bfabec56e48139137}{%
            family={Chen},
            familyi={C\bibinitperiod},
            given={Feng},
            giveni={F\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=4f75630884311c112588205dc81aaaa5}{%
            family={Yang},
            familyi={Y\bibinitperiod},
@@ -577,6 +577,41 @@
       \field{year}{2014}
       \field{pages}{364\bibrangedash 377}
       \range{pages}{14}
+    \endentry
+    \entry{chen1993}{article}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=9c5aa87580ad091d602f830e6b0e2313}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={T\bibnamedelima C},
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=b0ef0a0b3df38d6e00d12b6a841380e3}{%
+           family={Kpaeyeh},
+           familyi={K\bibinitperiod},
+           given={J\bibnamedelima Alvin},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{fullhash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{bibnamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authorbibnamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authornamehash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \strng{authorfullhash}{de5d73ee59c11dcfca2cb081fa81fd68}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly weather review}
+      \field{number}{2}
+      \field{title}{The synoptic-scale environment associated with the low-level jet of the Great Plains}
+      \field{volume}{121}
+      \field{year}{1993}
+      \field{pages}{416\bibrangedash 420}
+      \range{pages}{5}
     \endentry
     \entry{childs2005}{article}{}
       \name{author}{2}{}{%
@@ -650,6 +685,56 @@
       \field{year}{2010}
       \field{pages}{2385\bibrangedash 2404}
       \range{pages}{20}
+    \endentry
+    \entry{dong2018}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d3349e5c2b2661f3b497e9f014ffcf7d}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fae4776def491e4e1e0a753c56be664d}{%
+           family={Mitra},
+           familyi={M\bibinitperiod},
+           given={Chandana},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e488f01fc2fe9d5e27957cf63050dc9}{%
+           family={Greer},
+           familyi={G\bibinitperiod},
+           given={Seth},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=517d9943df5925df714c2eadf575607a}{%
+           family={Burt},
+           familyi={B\bibinitperiod},
+           given={Ethan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Multidisciplinary Digital Publishing Institute}%
+      }
+      \strng{namehash}{291d1365bc34bea7b11076a308040aa5}
+      \strng{fullhash}{44648f562e01b54e261ab88323bd0407}
+      \strng{bibnamehash}{291d1365bc34bea7b11076a308040aa5}
+      \strng{authorbibnamehash}{291d1365bc34bea7b11076a308040aa5}
+      \strng{authornamehash}{291d1365bc34bea7b11076a308040aa5}
+      \strng{authorfullhash}{44648f562e01b54e261ab88323bd0407}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmosphere}
+      \field{number}{1}
+      \field{title}{The dynamical linkage of atmospheric blocking to drought, heatwave and urban heat island in southeastern US: A multi-scale case study}
+      \field{volume}{9}
+      \field{year}{2018}
+      \field{pages}{33}
+      \range{pages}{1}
     \endentry
     \entry{forzieri2018}{article}{}
       \name{author}{8}{}{%
@@ -1266,12 +1351,12 @@
     \endentry
     \entry{li2013}{article}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=fc63986540b002fd74244549ce74082f}{%
+        {{un=2,uniquepart=given,hash=fc63986540b002fd74244549ce74082f}{%
            family={Li},
            familyi={L\bibinitperiod},
            given={Dan},
            giveni={D\bibinitperiod},
-           givenun=0}}%
+           givenun=2}}%
         {{un=2,uniquepart=given,hash=e8144f04730300d1f3a3d1e3ad5afd57}{%
            family={Bou-Zeid},
            familyi={B\bibinithyphendelim Z\bibinitperiod},
@@ -1971,7 +2056,7 @@
       \field{pages}{34\bibrangedash 40}
       \range{pages}{7}
     \endentry
-    \entry{ramamurthy2017}{article}{}
+    \entry{ramamurthy2017a}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=2567344bafa619c5f241dca6c0fff85b}{%
            family={Ramamurthy},
@@ -2008,6 +2093,50 @@
       \field{year}{2017}
       \field{pages}{168\bibrangedash 178}
       \range{pages}{11}
+    \endentry
+    \entry{ramamurthy2017b}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2567344bafa619c5f241dca6c0fff85b}{%
+           family={Ramamurthy},
+           familyi={R\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=71978c4b5986a507ef6d356436f8b574}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8154c1daf396df33fc76412e7b60f01c}{%
+           family={Bou-Zeid},
+           familyi={B\bibinithyphendelim Z\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{fullhash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{bibnamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authorbibnamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authornamehash}{1103f40cfa43d2e5111e6915088c9394}
+      \strng{authorfullhash}{1103f40cfa43d2e5111e6915088c9394}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical and applied climatology}
+      \field{number}{1}
+      \field{title}{High-resolution simulation of heatwave events in New York City}
+      \field{volume}{128}
+      \field{year}{2017}
+      \field{pages}{89\bibrangedash 102}
+      \range{pages}{14}
     \endentry
     \entry{ramamurthy2014}{article}{}
       \name{author}{2}{}{%
@@ -2679,14 +2808,56 @@
       \field{pages}{936\bibrangedash 951}
       \range{pages}{16}
     \endentry
+    \entry{zhang2009}{article}{}
+      \name{author}{3}{}{%
+        {{un=1,uniquepart=given,hash=9cf4a6e96715eddcf1a3bec536c43ce3}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Da-Lin},
+           giveni={D\bibinithyphendelim L\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=29eff471f95ee488217e755e8aa93fe5}{%
+           family={Shou},
+           familyi={S\bibinitperiod},
+           given={Yi-Xuan},
+           giveni={Y\bibinithyphendelim X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8ba59500cc3435952889ebadf3e3e958}{%
+           family={Dickerson},
+           familyi={D\bibinitperiod},
+           given={Russell\bibnamedelima R},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{7b7f691c917015c7a70a7573e325019c}
+      \strng{fullhash}{7b7f691c917015c7a70a7573e325019c}
+      \strng{bibnamehash}{7b7f691c917015c7a70a7573e325019c}
+      \strng{authorbibnamehash}{7b7f691c917015c7a70a7573e325019c}
+      \strng{authornamehash}{7b7f691c917015c7a70a7573e325019c}
+      \strng{authorfullhash}{7b7f691c917015c7a70a7573e325019c}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Geophysical Research Letters}
+      \field{number}{24}
+      \field{title}{Upstream urbanization exacerbates urban heat island effects}
+      \field{volume}{36}
+      \field{year}{2009}
+    \endentry
     \entry{zhang2020}{article}{}
       \name{author}{6}{}{%
-        {{un=0,uniquepart=base,hash=3eb54648dd5ef37f1f33c65c80837d9a}{%
+        {{un=1,uniquepart=given,hash=3eb54648dd5ef37f1f33c65c80837d9a}{%
            family={Zhang},
            familyi={Z\bibinitperiod},
            given={Yuanjie},
            giveni={Y\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=cce05cab2c437e9c128f853684ee3137}{%
            family={Wang},
            familyi={W\bibinitperiod},

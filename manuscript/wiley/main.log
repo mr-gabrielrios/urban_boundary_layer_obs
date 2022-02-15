@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  14 FEB 2022 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  14 FEB 2022 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1082,31 +1082,24 @@ Package: translations 2021/01/17 v1.10a internationalization of LaTeX2e package
 s (CN)
 ))
 \enitdp@enotezlist=\count341
- (/usr/local/texlive/2021/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip162
-\bibsep=\skip163
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count342
-)
-(/usr/local/texlive/2021/texmf-dist/tex/latex/lettrine/lettrine.sty
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/lettrine/lettrine.sty
 File: lettrine.sty 2020-03-14 v2.23 (Daniel Flipo)
 
 (/usr/local/texlive/2021/texmf-dist/tex/generic/minifp/minifp.sty
 Package: minifp 2013/12/30 v0.96. Macros for real number operations and a stack
 -based programing language.
-\MFP@loopctr=\count343
+\MFP@loopctr=\count342
 )
-\c@DefaultLines=\count344
-\c@DefaultDepth=\count345
+\c@DefaultLines=\count343
+\c@DefaultDepth=\count344
 \DefaultFindent=\dimen303
 \DefaultNindent=\dimen304
 \DefaultSlope=\dimen305
 \DiscardVskip=\dimen306
 \L@lbox=\box72
 \L@tbox=\box73
-\c@L@lines=\count346
-\c@L@depth=\count347
+\c@L@lines=\count345
+\c@L@depth=\count346
 \L@Pindent=\dimen307
 \L@Findent=\dimen308
 \L@Nindent=\dimen309
@@ -1126,6 +1119,18 @@ Package: minifp 2013/12/30 v0.96. Macros for real number operations and a stack
 
 Loading lettrine.cfg
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lettrine/lettrine.cfg)))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box74
+\UL@hyphenbox=\box75
+\UL@skip=\skip162
+\UL@hook=\toks59
+\UL@height=\dimen322
+\UL@pe=\count347
+\UL@pixel=\dimen323
+\ULC@box=\box76
+Package: ulem 2019/11/18
+\ULdepth=\dimen324
+)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2020/12/31 v3.16 programmable bibliographies (PK/MW)
 
@@ -1139,17 +1144,6 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-
-! Package biblatex Error: Incompatible package 'natbib'.
-
-See the biblatex package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.202 \blx@packageincompatibility
-                                 
-The 'natbib' package and biblatex are incompatible.
-
 \c@tabx@nest=\count349
 \c@listtotal=\count350
 \c@listcount=\count351
@@ -1192,27 +1186,14 @@ The 'natbib' package and biblatex are incompatible.
 \blx@sectionciteorder@0=\count388
 \blx@entrysetcounter=\count389
 \blx@biblioinstance=\count390
-\labelnumberwidth=\skip164
-\labelalphawidth=\skip165
-\biblabelsep=\skip166
-\bibitemsep=\skip167
-\bibnamesep=\skip168
-\bibinitsep=\skip169
-\bibparsep=\skip170
-
-! LaTeX Error: Command \bibhang already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.869 \newlength{\bibhang}
-                          
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
+\labelnumberwidth=\skip163
+\labelalphawidth=\skip164
+\biblabelsep=\skip165
+\bibitemsep=\skip166
+\bibnamesep=\skip167
+\bibinitsep=\skip168
+\bibparsep=\skip169
+\bibhang=\skip170
 \blx@bcfin=\read3
 \blx@bcfout=\write4
 \blx@langwohyphens=\language87
@@ -1221,6 +1202,7 @@ or  <return>  to continue without it.
 \c@mincompwidth=\count393
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
+
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
@@ -1310,23 +1292,9 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \localshorttitlewidth=\skip182
 \localshortauthorwidth=\skip183
 \localshorteditorwidth=\skip184
-
-
-! LaTeX Error: Command \citename already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12112 ...*{\citename}{\blx@citexpunct{citename}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
+
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-compat.def
 File: blx-compat.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 )
@@ -1347,217 +1315,20 @@ File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 \biburlnumskip=\muskip20
 \biburlucskip=\muskip21
 \biburllcskip=\muskip22
-
-
-! LaTeX Error: Command \bibfont already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.334 ...ommand*{\bibfont}{\normalfont\normalsize}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 \c@smartand=\count470
-
-Package biblatex Warning: Redefining '\citeauthor'.
-
-
-Package biblatex Warning: Redefining '\citeyear'.
-
-
-! LaTeX Error: Command \Citeauthor already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2291 ...e\citeauthor*}{\bibsentence\citeauthor}}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 )
 Package biblatex Info: Trying to load natbib compatibility...
 Package biblatex Info: ... file 'blx-natbib.def' found.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-natbib.def
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-natbib.def
 File: blx-natbib.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
  overwriting.
-
-
-! LaTeX Error: Command \citet already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.10     {\textcite}}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \citep already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.16     {\parencite}}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \citealt already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.23     {\cite}}
-                 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \citealp already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.29     {\cite}}
-                 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Package biblatex Warning: Redefining '\citeyearpar'.
-
-
-! LaTeX Error: Command \Citet already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.49 \newrobustcmd*{\Citet}{\bibsentence\citet}
-                                               
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \Citep already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.50 \newrobustcmd*{\Citep}{\bibsentence\citep}
-                                               
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \Citealt already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.51 ...robustcmd*{\Citealt}{\bibsentence\citealt}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \Citealp already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.52 ...robustcmd*{\Citealp}{\bibsentence\citealp}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \citefullauthor already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.53 \newrobustcmd*{\citefullauthor}{\citeauthor*}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \citetext already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.55 \newrobustcmd*{\citetext}{\parentext}
-                                          
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Command \defcitealias already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.62   \csgdef{abx@alias@\detokenize{#1}}{#2}}
-                                              
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Package biblatex Warning: Redefining '\citetalias'.
-
-
-Package biblatex Warning: Redefining '\citepalias'.
-
 )
 Package biblatex Info: Trying to load bibliography style 'authoryear'...
 Package biblatex Info: ... file 'authoryear.bbx' found.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
 File: authoryear.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
@@ -1586,27 +1357,52 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 ))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
+\l__siunitx_tmp_box=\box77
+\l__siunitx_tmp_dim=\dimen325
+\l__siunitx_tmp_int=\count473
+\l__siunitx_number_mantissa_length_int=\count474
+\l__siunitx_number_uncert_length_int=\count475
+\l__siunitx_round_int=\count476
+\l__siunitx_process_decimal_int=\count477
+\l__siunitx_process_uncertainty_int=\count478
+\l__siunitx_process_fixed_int=\count479
+\l__siunitx_process_integer_min_int=\count480
+\l__siunitx_process_precision_int=\count481
+\l__siunitx_group_min_int=\count482
+\l__siunitx_angle_marker_box=\box78
+\l__siunitx_angle_unit_box=\box79
+\l__siunitx_angle_marker_dim=\dimen326
+\l__siunitx_angle_unit_dim=\dimen327
+\l__siunitx_unit_int=\count483
+\l__siunitx_unit_denominator_int=\count484
+\l__siunitx_unit_numerator_int=\count485
+\l__siunitx_unit_prefix_int=\count486
+\l__siunitx_unit_prefix_base_int=\count487
+\l__siunitx_unit_prefix_gram_int=\count488
+\l__siunitx_number_product_int=\count489
+\c__siunitx_one_fill_skip=\skip185
+\l__siunitx_table_unit_align_skip=\skip186
+\l__siunitx_table_exponent_dim=\dimen328
+\l__siunitx_table_integer_dim=\dimen329
+\l__siunitx_table_mantissa_dim=\dimen330
+\l__siunitx_table_marker_dim=\dimen331
+\l__siunitx_table_result_dim=\dimen332
+\l__siunitx_table_uncert_dim=\dimen333
+\l__siunitx_table_fill_pre_dim=\dimen334
+\l__siunitx_table_fill_post_dim=\dimen335
+\l__siunitx_table_fill_mid_dim=\dimen336
+\l__siunitx_table_pre_box=\box80
+\l__siunitx_table_post_box=\box81
+\l__siunitx_table_mantissa_box=\box82
+\l__siunitx_table_result_box=\box83
+\l__siunitx_table_number_align_skip=\skip187
+\l__siunitx_table_text_align_skip=\skip188
 
-! LaTeX Error: Option clash for package geometry.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.22 \usepackage
-                [colorlinks=true, allcolors=blue]{hyperref}
-The package geometry has already been loaded with options:
-  [paperwidth=171mm,paperheight=246mm,left=14.3mm,textwidth=142.4mm,lines=47,he
-adsep=\baselineskip ,headheight=16\p@ ,footskip=23\p@ ]
-There has now been an attempt to load it with options
-  [margin=1in,footskip=0.25in]
-Adding the global options:
-  paperwidth=171mm,paperheight=246mm,left=14.3mm,textwidth=142.4mm,lines=47,hea
-dsep=\baselineskip ,headheight=16\p@ ,footskip=23\p@ ,margin=1in,footskip=0.25i
-n
-to your \documentclass declaration may fix this.
-Try typing  <return>  to proceed.
-
+(/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+))
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
 
@@ -1619,9 +1415,9 @@ Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-\@linkdim=\dimen322
-\Hy@linkcounter=\count473
-\Hy@pagecounter=\count474
+\@linkdim=\dimen337
+\Hy@linkcounter=\count490
+\Hy@pagecounter=\count491
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
@@ -1632,7 +1428,7 @@ Now handling font encoding PD1 ...
 File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
 nguages
 )
-\Hy@SavedSpaceFactor=\count475
+\Hy@SavedSpaceFactor=\count492
  (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1646,9 +1442,9 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count476
+\c@Hy@tempcnt=\count493
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen323
+\XeTeXLinkMargin=\dimen338
 
 (/usr/local/texlive/2021/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -1657,9 +1453,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count477
-\Field@Width=\dimen324
-\Fld@charsize=\dimen325
+\Fld@menulength=\count494
+\Field@Width=\dimen339
+\Fld@charsize=\dimen340
 Package hyperref Info: Hyper figures OFF on input line 6075.
 Package hyperref Info: Link nesting OFF on input line 6080.
 Package hyperref Info: Hyper index ON on input line 6083.
@@ -1669,9 +1465,9 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6100.
 Package hyperref Info: PDF/A mode OFF on input line 6105.
 LaTeX Info: Redefining \ref on input line 6145.
 LaTeX Info: Redefining \pageref on input line 6149.
-\Hy@abspage=\count478
-\c@Item=\count479
-\c@Hfootnote=\count480
+\Hy@abspage=\count495
+\c@Item=\count496
+\c@Hfootnote=\count497
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -1683,9 +1479,9 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\HyAnn@Count=\count481
-\Fld@listcount=\count482
-\c@bookmark@seq@number=\count483
+\HyAnn@Count=\count498
+\Fld@listcount=\count499
+\c@bookmark@seq@number=\count500
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -1696,157 +1492,190 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip185
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/parskip/parskip.sty
+\Hy@SectionHShift=\skip189
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip190
+\subfigcapskip=\skip191
+\subfigcaptopadj=\dimen341
+\subfigbottomskip=\skip192
+\subfigcapmargin=\dimen342
+\subfiglabelskip=\skip193
+\c@subfigure=\count501
+\c@lofdepth=\count502
+\c@subtable=\count503
+\c@lotdepth=\count504
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2021/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip194
+\subfig@bottom=\skip195
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 )
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count484
-\output=\toks59
-\linenoprevgraf=\count485
-\linenumbersep=\dimen326
-\linenumberwidth=\dimen327
-\c@linenumber=\count486
-\c@pagewiselinenumber=\count487
-\c@LN@truepage=\count488
-\c@internallinenumber=\count489
-\c@internallinenumbers=\count490
-\quotelinenumbersep=\dimen328
-\bframerule=\dimen329
-\bframesep=\dimen330
-\bframebox=\box74
+\linenopenalty=\count505
+\output=\toks60
+\linenoprevgraf=\count506
+\linenumbersep=\dimen343
+\linenumberwidth=\dimen344
+\c@linenumber=\count507
+\c@pagewiselinenumber=\count508
+\c@LN@truepage=\count509
+\c@internallinenumber=\count510
+\c@internallinenumbers=\count511
+\quotelinenumbersep=\dimen345
+\bframerule=\dimen346
+\bframesep=\dimen347
+\bframebox=\box84
 LaTeX Info: Redefining \\ on input line 3056.
 )
-(/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx.sty
-Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
-\l__siunitx_tmp_box=\box75
-\l__siunitx_tmp_dim=\dimen331
-\l__siunitx_tmp_int=\count491
-\l__siunitx_number_mantissa_length_int=\count492
-\l__siunitx_number_uncert_length_int=\count493
-\l__siunitx_round_int=\count494
-\l__siunitx_process_decimal_int=\count495
-\l__siunitx_process_uncertainty_int=\count496
-\l__siunitx_process_fixed_int=\count497
-\l__siunitx_process_integer_min_int=\count498
-\l__siunitx_process_precision_int=\count499
-\l__siunitx_group_min_int=\count500
-\l__siunitx_angle_marker_box=\box76
-\l__siunitx_angle_unit_box=\box77
-\l__siunitx_angle_marker_dim=\dimen332
-\l__siunitx_angle_unit_dim=\dimen333
-\l__siunitx_unit_int=\count501
-\l__siunitx_unit_denominator_int=\count502
-\l__siunitx_unit_numerator_int=\count503
-\l__siunitx_unit_prefix_int=\count504
-\l__siunitx_unit_prefix_base_int=\count505
-\l__siunitx_unit_prefix_gram_int=\count506
-\l__siunitx_number_product_int=\count507
-\c__siunitx_one_fill_skip=\skip186
-\l__siunitx_table_unit_align_skip=\skip187
-\l__siunitx_table_exponent_dim=\dimen334
-\l__siunitx_table_integer_dim=\dimen335
-\l__siunitx_table_mantissa_dim=\dimen336
-\l__siunitx_table_marker_dim=\dimen337
-\l__siunitx_table_result_dim=\dimen338
-\l__siunitx_table_uncert_dim=\dimen339
-\l__siunitx_table_fill_pre_dim=\dimen340
-\l__siunitx_table_fill_post_dim=\dimen341
-\l__siunitx_table_fill_mid_dim=\dimen342
-\l__siunitx_table_pre_box=\box78
-\l__siunitx_table_post_box=\box79
-\l__siunitx_table_mantissa_box=\box80
-\l__siunitx_table_result_box=\box81
-\l__siunitx_table_number_align_skip=\skip188
-\l__siunitx_table_text_align_skip=\skip189
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator.sty
-Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
-))
    defining Unicode char U+2218 (decimal 8728)
-
-(/usr/local/texlive/2021/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box82
-\UL@hyphenbox=\box83
-\UL@skip=\skip190
-\UL@hook=\toks60
-\UL@height=\dimen343
-\UL@pe=\count508
-\UL@pixel=\dimen344
-\ULC@box=\box84
-Package: ulem 2019/11/18
-\ULdepth=\dimen345
-)
-Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 104.
-\@quotelevel=\count509
-\@quotereset=\count510
+   defining Unicode char U+2218 (decimal 8728)
 LaTeX Font Info:    Trying to load font information for T1+lato-TLF on input li
-ne 104.
+ne 100.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lato/T1lato-TLF.fd
 File: T1lato-TLF.fd 2019/06/24 Font definitions for T1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 104.
-
-No file main.aux.
-\openout1 = `main.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 104.
+(Font)              scaled to size 8.0pt on input line 100.
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 6.66675pt on input line 100.
+LaTeX Font Info:    Calculating math sizes for size <6.66675> on input line 100
+.
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 4.86668pt on input line 100.
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 3.66672pt on input line 100.
 LaTeX Font Info:    Trying to load font information for OML+ntxsfmi on input li
-ne 104.
+ne 100.
+
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtxsf/omlntxsfmi.fd
 File: omlntxsfmi.fd 2014/11/16 Fontinst v1.933 font definitions for OML/ntxsfmi
 .
 )
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 104.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-104.
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxexa.fd
-File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
-)
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 104.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 104.
+ 100.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
 
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.66672> not available
+(Font)              size <5> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.66672> not available
+(Font)              size <5> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.66672> not available
+(Font)              size <5> substituted on input line 100.
+
+LaTeX Font Info:    Trying to load font information for U+ntxsfmia on input lin
+e 100.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/newtxsf/untxsfmia.fd
+File: untxsfmia.fd 2014/11/16 Fontinst v1.933 font definitions for U/ntxsfmia.
+)
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
+100.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxsym.fd
+File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
+100.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxexa.fd
+File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
+)
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 100.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 100.
+
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 6.5pt on input line 100.
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 100.
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
+(Font)              size <6> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.5> not available
+(Font)              size <5> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 100.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 100.
+
+LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
+ine 100.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lato/TS1lato-TLF.fd
+File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
+)
+LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 100.
+Package translations Info: No language package found. I am going to use `englis
+h' as default language. on input line 114.
+\@quotelevel=\count512
+\@quotereset=\count513
+ (./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count511
-\scratchdimen=\dimen346
+\scratchcounter=\count514
+\scratchdimen=\dimen348
 \scratchbox=\box85
-\nofMPsegments=\count512
-\nofMParguments=\count513
+\nofMPsegments=\count515
+\nofMParguments=\count516
 \everyMPshowfont=\toks61
-\MPscratchCnt=\count514
-\MPscratchDim=\dimen347
-\MPnumerator=\count515
-\makeMPintoPDFobject=\count516
+\MPscratchCnt=\count517
+\MPscratchDim=\dimen349
+\MPnumerator=\count518
+\makeMPintoPDFobject=\count519
 \everyMPtoPDFconversion=\toks62
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1858,15 +1687,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 104.
-LaTeX Info: Redefining \microtypecontext on input line 104.
+LaTeX Info: Redefining \selectfont on input line 114.
+LaTeX Info: Redefining \microtypecontext on input line 114.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 104.
+LaTeX Info: Redefining \showhyphens on input line 114.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1874,8 +1703,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lato-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c@mv@tabular=\count517
-\c@mv@boldtabular=\count518
+\c@mv@tabular=\count520
+\c@mv@boldtabular=\count521
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1914,6 +1743,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
 Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
@@ -1923,7 +1753,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 104.
+or `english'. on input line 114.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1945,12 +1775,21 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 \openout4 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' not found.
+Package biblatex Info: ... file 'main.bbl' found.
 
-No file main.bbl.
-Package biblatex Info: Reference section=0 on input line 104.
-Package biblatex Info: Reference segment=0 on input line 104.
-Package hyperref Info: Link coloring ON on input line 104.
+(./main.bbl)
+Package biblatex Info: Reference section=0 on input line 114.
+Package biblatex Info: Reference segment=0 on input line 114.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
+File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator-basic-dicti
+onary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+Package hyperref Info: Link coloring ON on input line 114.
+
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1961,56 +1800,24 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count519
+\c@section@level=\count522
 )
-LaTeX Info: Redefining \ref on input line 104.
-LaTeX Info: Redefining \pageref on input line 104.
-LaTeX Info: Redefining \nameref on input line 104.
+LaTeX Info: Redefining \ref on input line 114.
+LaTeX Info: Redefining \pageref on input line 114.
+LaTeX Info: Redefining \nameref on input line 114.
+ (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
-File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
-)
-(/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator-basic-dicti
-onary-English.dict
-Dictionary: translator-basic-dictionary, Language: English 
-)
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 104.
-LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 104.
+(Font)              scaled to size 6.2pt on input line 114.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 104.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 104.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 104.
-
-LaTeX Font Info:    Trying to load font information for U+ntxsfmia on input lin
-e 104.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/newtxsf/untxsfmia.fd
-File: untxsfmia.fd 2014/11/16 Fontinst v1.933 font definitions for U/ntxsfmia.
-)
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-104.
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxsym.fd
-File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
-)
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-04.
+14.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
@@ -2022,10 +1829,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 104.
+(Font)              size <5> substituted on input line 114.
 
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-04.
+14.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -2036,64 +1843,45 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 104.
+(Font)              size <5> substituted on input line 114.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 8.0pt on input line 107.
+(Font)              scaled to size 8.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 107.
+(Font)              scaled to size 7.3pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 18.0pt on input line 107.
-
-! LaTeX Error: No \title given.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.107 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+(Font)              scaled to size 18.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 107.
+(Font)              scaled to size 12.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 107.
+(Font)              scaled to size 12.0pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 107.
+(Font)              scaled to size 8.8pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 117.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 107.
-LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
-ine 107.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/lato/TS1lato-TLF.fd
-File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
-)
+(Font)              scaled to size 8.8pt on input line 117.
 LaTeX Font Info:    Font shape `TS1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 107.
+(Font)              scaled to size 8.8pt on input line 117.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lato-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 113.
+(Font)              scaled to size 7.0pt on input line 120.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 113.
-LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 113.
+(Font)              scaled to size 7.0pt on input line 120.
 \wiley@abstractbox=\box86
-Package mdframed Info: mdframed works in twoside mode on input line 113.
+Package mdframed Info: mdframed works in twoside mode on input line 120.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 113.
-Package mdframed Info: mdframed works in twoside mode on input line 113.
+ mdframed uses option nobreak mdframed on input line 120.
+Package mdframed Info: mdframed works in twoside mode on input line 120.
 
-Overfull \hbox (7.90791pt too wide) in paragraph at lines 113--113
+Overfull \hbox (7.90791pt too wide) in paragraph at lines 120--120
 \T1/lato-TLF/m/n/9 ex-treme heat events unify hor-i-zon-tal wind di-rec-tions t
 hrough-
  []
@@ -2107,631 +1895,173 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 115.
+(Font)              scaled to size 10.0pt on input line 125.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 115.
-LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 117.
+(Font)              scaled to size 10.0pt on input line 125.
 
-
-Package natbib Warning: Citation `anderson2011' on page 2 undefined on input li
-ne 117.
-
-
-Package natbib Warning: Citation `frumkin2016' on page 2 undefined on input lin
-e 117.
-
-
-Package natbib Warning: Citation `heaviside2017' on page 2 undefined on input l
-ine 117.
-
-
-Package natbib Warning: Citation `madrigano2015' on page 2 undefined on input l
-ine 117.
-
-
-Package natbib Warning: Citation `mcevoy2012' on page 2 undefined on input line
- 117.
-
-
-Package natbib Warning: Citation `zuo2015' on page 2 undefined on input line 11
-7.
-
-
-Package natbib Warning: Citation `burillo2019' on page 2 undefined on input lin
-e 117.
-
-
-Package natbib Warning: Citation `forzieri2018' on page 2 undefined on input li
-ne 117.
-
-
-Package natbib Warning: Citation `peng2011' on page 2 undefined on input line 1
-17.
-
-
-Package natbib Warning: Citation `black2004' on page 2 undefined on input line 
-120.
-
-
-Package natbib Warning: Citation `miralles2014' on page 2 undefined on input li
-ne 120.
-
-
-Package natbib Warning: Citation `chen2014' on page 2 undefined on input line 1
-20.
-
-
-Package natbib Warning: Citation `li2013' on page 2 undefined on input line 120
-.
-
-
-Package natbib Warning: Citation `ramamurthy2017' on page 2 undefined on input 
-line 120.
-
-
-Package natbib Warning: Citation `zhao2018' on page 2 undefined on input line 1
-20.
-
-
-Package natbib Warning: Citation `hu2016' on page 2 undefined on input line 120
-.
-
-
-Package natbib Warning: Citation `jiang2019' on page 2 undefined on input line 
-120.
-
-
-Package natbib Warning: Citation `stefanon2014' on page 2 undefined on input li
-ne 120.
-
-
-Package natbib Warning: Citation `rose2005' on page 2 undefined on input line 1
-22.
-
-
-Package natbib Warning: Citation `wang2012' on page 2 undefined on input line 1
-22.
-
-
-Package natbib Warning: Citation `grund2001' on page 2 undefined on input line 
-122.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2]
-
-Package natbib Warning: Citation `barlow2011' on page 3 undefined on input line
- 124.
-
-
-Package natbib Warning: Citation `pelliccioni2012' on page 3 undefined on input
- line 124.
-
-
-Package natbib Warning: Citation `dearrudamoreira2020' on page 3 undefined on i
-nput line 124.
-
-
-Package natbib Warning: Citation `banks2015' on page 3 undefined on input line 
-124.
-
-
-Package natbib Warning: Citation `quan2013' on page 3 undefined on input line 1
-24.
-
-
-Package natbib Warning: Citation `wang2012' on page 3 undefined on input line 1
-24.
-
-
-Package natbib Warning: Citation `anurose2018' on page 3 undefined on input lin
-e 124.
-
-
-Package natbib Warning: Citation `ramamurthy2017' on page 3 undefined on input 
-line 126.
-
-
-Package natbib Warning: Citation `jiang2019' on page 3 undefined on input line 
-126.
-
-
-Package natbib Warning: Citation `wu2019' on page 3 undefined on input line 126
-.
-
-
-Package natbib Warning: Citation `zhang2020' on page 3 undefined on input line 
-126.
-
-
-Package natbib Warning: Citation `hrisko2021' on page 3 undefined on input line
- 130.
-
-
-Package natbib Warning: Citation `ramamurthy2014' on page 3 undefined on input 
-line 130.
-
-
-Package natbib Warning: Citation `tewari2019' on page 3 undefined on input line
- 130.
-
-
-Package natbib Warning: Citation `childs2005' on page 3 undefined on input line
- 130.
-
-
-Package natbib Warning: Citation `colle2010' on page 3 undefined on input line 
-130.
-
-
-Package natbib Warning: Citation `frizzola1963' on page 3 undefined on input li
-ne 130.
-
-
-Package natbib Warning: Citation `gedzelman2003' on page 3 undefined on input l
-ine 130.
-
-
-Package natbib Warning: Citation `melecio2018' on page 3 undefined on input lin
-e 130.
-
-
-Package natbib Warning: Citation `thompson2007' on page 3 undefined on input li
-ne 130.
-
-
+[2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
 
 Package enumitem Warning: Negative labelwidth. This does not make much
-(enumitem)                sense, on input line 135.
-
-
-LaTeX Warning: Reference `tab:observation_sites' on page 4 undefined on input l
-ine 145.
-
-
-Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 148.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 148.
-See the caption package documentation for explanation.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--160
-[]|\T1/lato-TLF/m/n/8 40.87248\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--160
-[]|\T1/lato-TLF/m/n/8 40.73433\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--160
-[]|\T1/lato-TLF/m/n/8 40.60401\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
- []
-
-
-Package natbib Warning: Citation `hewison2003' on page 4 undefined on input lin
-e 166.
-
-
-Package natbib Warning: Citation `brotzge2020' on page 4 undefined on input lin
-e 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.52597> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48927> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.8755> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 166.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 166.
-
-
-Package natbib Warning: Citation `guldner2001' on page 4 undefined on input lin
-e 166.
-
-
-Package natbib Warning: Citation `sanchez2013' on page 4 undefined on input lin
-e 166.
-
-
-Package natbib Warning: Citation `brotzge2020' on page 4 undefined on input lin
-e 168.
-
-
-Package natbib Warning: Citation `shrestha2021' on page 4 undefined on input li
-ne 168.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 168.
-
-
-LaTeX Font Warning: Font shape `TS1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 168.
-
-
-Package natbib Warning: Citation `kumer2014' on page 4 undefined on input line 
-168.
-
-
-Package natbib Warning: Citation `ignatov2010' on page 4 undefined on input lin
-e 170.
-
-
-Package natbib Warning: Citation `yu2008' on page 4 undefined on input line 170
-.
-
-LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 170.
-
-Package natbib Warning: Citation `luo2021' on page 4 undefined on input line 17
-0.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--171
-
- []
-
+(enumitem)                sense, on input line 145.
+
+LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 145.
+<figs/building_heights.png, id=158, 271.4943pt x 252.945pt>
+File: figs/building_heights.png Graphic file (type png)
+<use figs/building_heights.png>
+Package pdftex.def Info: figs/building_heights.png  used on input line 161.
+(pdftex.def)             Requested size: 202.5836pt x 188.74724pt.
+<figs/land_cover.png, id=160, 271.4943pt x 252.945pt>
+File: figs/land_cover.png Graphic file (type png)
+<use figs/land_cover.png>
+Package pdftex.def Info: figs/land_cover.png  used on input line 164.
+(pdftex.def)             Requested size: 202.5836pt x 188.74724pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-
-Package natbib Warning: Citation `robinson2001' on page 5 undefined on input li
-ne 173.
-
-
-Package natbib Warning: Citation `nws2018' on page 5 undefined on input line 17
-3.
+File: figs/building_heights.png Graphic file (type png)
+<use figs/building_heights.png>
+Package pdftex.def Info: figs/building_heights.png  used on input line 171.
+(pdftex.def)             Requested size: 303.87541pt x 283.13821pt.
 
 
-Package natbib Warning: Citation `stefanon2014' on page 5 undefined on input li
-ne 173.
+Package caption Warning: \captionsetup{type*=...} or \captionof
+(caption)                outside box or environment on input line 177.
+See the caption package documentation for explanation.
 
 
-Package natbib Warning: Citation `thomas2020' on page 5 undefined on input line
- 173.
-
-
-Package natbib Warning: Citation `asos1998' on page 5 undefined on input line 1
-73.
-
-
-LaTeX Warning: Reference `fig:extreme_heat_normal_0m_comparison_T' on page 5 un
-defined on input line 182.
-
-
-LaTeX Warning: Reference `fig:extreme-heat-normal-comparison-contours-theta' on
- page 5 undefined on input line 184.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-theta-bron' on
- page 5 undefined on input line 184.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-theta-quee' on
- page 5 undefined on input line 184.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-theta-stat' on
- page 5 undefined on input line 184.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-theta-bron' on
- page 5 undefined on input line 186.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--187
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--187
-
- []
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 177.
+See the caption package documentation for explanation.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
+ [5 <./figs/building_heights.png> <./figs/land_cover.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[]|\T1/lato-TLF/m/n/8 40.87248\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
+ []
 
-LaTeX Warning: Reference `fig:extreme-heat-normal-0m-comparison-q' on page 6 un
-defined on input line 189.
 
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[]|\T1/lato-TLF/m/n/8 40.73433\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
+ []
 
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 189.
 
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[]|\T1/lato-TLF/m/n/8 40.60401\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
+ []
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.30392> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.52597> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <3.41> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.8755> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.8755> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.8755> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81717> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48927> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.36911> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.8755> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.8755> not available
+(Font)              size <5> substituted on input line 195.
 
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 197.
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 189.
 
+LaTeX Font Warning: Font shape `TS1/cmr/m/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 197.
 
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 199.
 
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81715> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.99942> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.753> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 189.
-
-
-LaTeX Warning: Reference `fig:extreme-heat-normal-comparison-contours-q' on pag
-e 6 undefined on input line 191.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-q-bron' on pag
-e 6 undefined on input line 193.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-q-quee' on pag
-e 6 undefined on input line 193.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-q-stat' on pag
-e 6 undefined on input line 193.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--194
+Underfull \hbox (badness 10000) in paragraph at lines 193--200
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--194
+Underfull \hbox (badness 10000) in paragraph at lines 193--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--200
 
  []
 
@@ -2739,450 +2069,611 @@ Underfull \hbox (badness 10000) in paragraph at lines 189--194
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-
-LaTeX Warning: Reference `fig:extreme-heat-normal-comparison-contours-U' on pag
-e 7 undefined on input line 198.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-U-bron' on pag
-e 7 undefined on input line 200.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-U-quee' on pag
-e 7 undefined on input line 200.
-
-
-LaTeX Warning: Reference `fig:vertical_profiles-heat_wave-normal-U-stat' on pag
-e 7 undefined on input line 200.
-
-
-LaTeX Warning: Reference `fig:wind_rose-bron' on page 7 undefined on input line
- 202.
-
-
-LaTeX Warning: Reference `fig:wind_rose-quee' on page 7 undefined on input line
- 202.
-
-
-LaTeX Warning: Reference `fig:wind_rose-stat' on page 7 undefined on input line
- 202.
-
-
-LaTeX Warning: Reference `fig:wind_rose-quee' on page 7 undefined on input line
- 202.
-
-
-LaTeX Warning: Reference `section:sea_breeze_effects' on page 7 undefined on in
-put line 202.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--203
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--203
-
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
+Underfull \hbox (badness 10000) in paragraph at lines 217--222
 
-LaTeX Warning: Reference `fig:extreme-heat-normal-comparison-100m-w' on page 8 
-undefined on input line 205.
-
-
-LaTeX Warning: Reference `fig:extreme-heat-normal-vertical_profiles-w-bron' on 
-page 8 undefined on input line 205.
+ []
 
 
-LaTeX Warning: Reference `fig:extreme-heat-normal-vertical_profiles-w-quee' on 
-page 8 undefined on input line 205.
+Underfull \hbox (badness 10000) in paragraph at lines 217--222
 
-
-LaTeX Warning: Reference `fig:extreme-heat-normal-vertical_profiles-w-stat' on 
-page 8 undefined on input line 205.
-
-
-Package natbib Warning: Citation `bornstein1981' on page 8 undefined on input l
-ine 209.
-
-
-Package natbib Warning: Citation `childs2005' on page 8 undefined on input line
- 209.
-
-
-Package natbib Warning: Citation `frizzola1963' on page 8 undefined on input li
-ne 209.
-
-
-Package natbib Warning: Citation `gedzelman2003' on page 8 undefined on input l
-ine 209.
-
-
-Package natbib Warning: Citation `gedzelman2003' on page 8 undefined on input l
-ine 211.
-
-
-LaTeX Warning: Reference `fig:sea_breeze-lst_sst-diff' on page 8 undefined on i
-nput line 211.
-
-
-Package natbib Warning: Citation `miller2003' on page 8 undefined on input line
- 211.
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
 
-LaTeX Warning: Reference `fig:sea_breeze_normal-normal-anomaly-theta' on page 9
- undefined on input line 214.
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 224.
 
 
-LaTeX Warning: Reference `fig:sea_breeze_heat_wave_anomaly-T' on page 9 undefin
-ed on input line 216.
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 224.
 
 
-Package natbib Warning: Citation `bornstein1981' on page 9 undefined on input l
-ine 216.
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
 
 
-LaTeX Warning: Reference `fig:sea_breeze_heat_wave_anomaly-q' on page 9 undefin
-ed on input line 216.
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 224.
 
 
-Package natbib Warning: Citation `frizzola1963' on page 9 undefined on input li
-ne 216.
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--217
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.30392> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81717> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.36911> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81715> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.99942> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.753> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 224.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 224.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--229
 
  []
 
 
-Package natbib Warning: Citation `pullen2007' on page 9 undefined on input line
- 219.
+Underfull \hbox (badness 10000) in paragraph at lines 224--229
+
+ []
 
 
-LaTeX Warning: Reference `fig:sea_breeze-lst_sst-diff' on page 9 undefined on i
-nput line 219.
+Underfull \hbox (badness 10000) in paragraph at lines 233--238
+
+ []
 
 
-LaTeX Warning: Reference `fig:sea_breeze_heat_wave_anomaly-w' on page 9 undefin
-ed on input line 219.
+Underfull \hbox (badness 10000) in paragraph at lines 233--238
+
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Reference `fig:wind_direction-heat_wave-sea_breeze-histogram-bro
-n' on page 10 undefined on input line 221.
+ [10]
+Underfull \hbox (badness 10000) in paragraph at lines 249--252
 
-
-LaTeX Warning: Reference `fig:wind_direction-heat_wave-sea_breeze-histogram-que
-e' on page 10 undefined on input line 221.
-
-
-LaTeX Warning: Reference `fig:wind_direction-heat_wave-sea_breeze-histogram-sta
-t' on page 10 undefined on input line 221.
-
-
-Package natbib Warning: Citation `frizzola1963' on page 10 undefined on input l
-ine 223.
-
-
-Package natbib Warning: Citation `meir2013' on page 10 undefined on input line 
-223.
-
-
-Package enumitem Warning: Negative labelwidth. This does not make much
-(enumitem)                sense, on input line 228.
-
-LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 233.
-
-LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
-(Font)              using `T1/lato-TLF/b/n' instead on input line 233.
-
-LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
-(Font)              scaled to size 10.0pt on input line 233.
-
-LaTeX Warning: Empty bibliography on input line 236.
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]
+ [11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 257.
-See the caption package documentation for explanation.
+ [12]
 
-<figs/land_cover.png, id=80, 271.4943pt x 252.945pt>
-File: figs/land_cover.png Graphic file (type png)
-<use figs/land_cover.png>
-Package pdftex.def Info: figs/land_cover.png  used on input line 282.
-(pdftex.def)             Requested size: 303.87541pt x 283.13821pt.
-<figs/building_heights.png, id=82, 271.4943pt x 252.945pt>
-File: figs/building_heights.png Graphic file (type png)
-<use figs/building_heights.png>
-Package pdftex.def Info: figs/building_heights.png  used on input line 289.
-(pdftex.def)             Requested size: 303.87541pt x 283.13821pt.
-<figs/heat_wave-normal-theta-anomaly.png, id=83, 540.5796pt x 179.2296pt>
+Package enumitem Warning: Negative labelwidth. This does not make much
+(enumitem)                sense, on input line 263.
+
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 268.
+
+LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
+(Font)              using `T1/lato-TLF/b/n' instead on input line 268.
+
+LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
+(Font)              scaled to size 10.0pt on input line 268.
+LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
+(Font)              scaled to size 6.66675pt on input line 274.
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/n/6.66675 Brotzge, Jer-ald A et al. (2020). ``A tech-ni-cal 
+overview of the new york state mesonet stan-dard net-work''. In:
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/n/6.66675 Frizzola, John A and Ed-win L Fisher (1963). ``A s
+e-ries of sea breeze ob-ser-va-tions in the New York City area''. In:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/n/6.66675 Grund, Chris-tian J et al. (2001). ``High-resoluti
+on Doppler li-dar for bound-ary layer and cloud re-search''. In:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/n/6.66675 Hewison, Tim and Cather-ine Gaf-fard (2003). ``Ra-
+dio-met-rics MP3000 mi-crowave ra-diome-ter per-for-mance as-sess-ment''. In:
+ []
+
+
+Overfull \hbox (57.5103pt too wide) in paragraph at lines 275--275
+|   []\T1/lato-TLF/m/n/6.66675 . 
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/n/6.66675 Meir, Tal-mor et al. (2013). ``Fore-cast-ing the N
+ew York City ur-ban heat is-land and sea breeze dur-ing ex-treme heat events''.
+ In:
+ []
+
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
+(Font)              scaled to size 6.66675pt on input line 274.
+[14]
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.66672> not available
+(Font)              size <5> substituted on input line 274.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.66672> not available
+(Font)              size <5> substituted on input line 274.
+
+
+Underfull \hbox (badness 2753) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Peng, Roger D et al. (2011). ``To-ward a quan-ti-
+ta-tive es-ti-mate of fu-ture heat wave mor-tal-ity un-der global cli-mate chan
+ge''. In:
+ []
+
+
+Underfull \hbox (badness 6380) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Pullen, Julie et al. (2007). ``At-mo-spheric re-s
+ponse to lo-cal up-welling in the vicin-ity of New York--New Jer-sey har-bor''.
+ In:
+ []
+
+
+Underfull \hbox (badness 6220) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Ramamurthy, P and E Bou-Zeid (2017). ``Heat-waves
+ and ur-ban heat is-lands: a com-par-a-tive anal-y-sis of mul-ti-ple cities''. 
+In:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Ramamurthy, P, D Li, and E Bou-Zeid (2017). ``Hig
+h-resolution sim-u-la-tion of heat-wave events in New York City''. In:
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Rose, Thomas et al. (2005). ``A net-work suit-abl
+e mi-crowave ra-diome-ter for op-er-a-tional mon-i-tor-ing of the cloudy at-mo-
+sphere''. In:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Shrestha, Bhu-pal et al. (2021). ``Overview and A
+p-pli-ca-tions of the New York State Mesonet Pro-filer Net-work''. In:
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Thompson, William T, Teddy Holt, and Julie Pullen
+ (2007). ``In-ves-ti-ga-tion of a sea breeze front in an ur-ban en-vi-ron-ment'
+'. In:
+ []
+
+
+Overfull \hbox (22.18999pt too wide) in paragraph at lines 275--275
+|   []
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Wu, Yonghua et al. (2019). ``Ob-ser-va-tion of he
+at wave ef-fects on the ur-ban air qual-ity and PBL in New York City area''. In
+:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[][]\T1/lato-TLF/m/sc/6.66675 Yu, Yun-yue et al. (2008). ``De-vel-op-ing al-go-
+rithm for op-er-a-tional GOES-R land sur-face tem-per-a-ture prod-uct''. In:
+ []
+
+[15]
+<figs/heat_wave-normal-theta-anomaly.png, id=356, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-theta-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-theta-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-theta-anomaly.png  used on input
- line 298.
+ line 285.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/heat_wave-normal-T-anomaly-0m.png, id=84, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-T-anomaly-0m.png, id=357, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-T-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-T-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-T-anomaly-0m.png  used on input 
-line 304.
+line 291.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=85, 449.2785pt x 25
-3.1859pt>
+<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=358, 449.2785pt x 2
+53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-bron.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-bron.png
-  used on input line 310.
+  used on input line 297.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=86, 449.2785pt x 25
-3.1859pt>
+<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=359, 449.2785pt x 2
+53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-quee.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-quee.png
-  used on input line 316.
+  used on input line 303.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=87, 449.2785pt x 25
-3.1859pt>
+<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=360, 449.2785pt x 2
+53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-stat.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-stat.png
-  used on input line 322.
+  used on input line 309.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/heat_wave-normal-q-anomaly.png, id=88, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-q-anomaly.png, id=361, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-q-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly.png  used on input lin
-e 330.
+e 317.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/heat_wave-normal-q-anomaly-0m.png, id=89, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-q-anomaly-0m.png, id=362, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-q-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly-0m.png  used on input 
-line 336.
+line 323.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=90, 450.9648pt x 253.18
-59pt>
+<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=363, 450.9648pt x 253.1
+859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-bron.png  us
-ed on input line 342.
+ed on input line 329.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=91, 450.9648pt x 253.18
-59pt>
+<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=364, 450.9648pt x 253.1
+859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-quee.png  us
-ed on input line 348.
+ed on input line 335.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=92, 450.9648pt x 253.18
-59pt>
+<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=365, 450.9648pt x 253.1
+859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-stat.png  us
-ed on input line 354.
+ed on input line 341.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/heat_wave-normal-U-anomaly.png, id=93, 540.5796pt x 179.2296pt>
-File: figs/heat_wave-normal-U-anomaly.png Graphic file (type png)
-<use figs/heat_wave-normal-U-anomaly.png>
-Package pdftex.def Info: figs/heat_wave-normal-U-anomaly.png  used on input lin
-e 362.
-(pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/heat_wave-normal-U-anomaly-100m.png, id=94, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-U-anomaly-100m.png, id=366, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-U-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-U-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-U-anomaly-100m.png  used on inpu
-t line 368.
+t line 349.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=95, 453.8556pt x 252.94
-5pt>
+<figs/heat_wave-normal-U-anomaly.png, id=367, 540.5796pt x 179.2296pt>
+File: figs/heat_wave-normal-U-anomaly.png Graphic file (type png)
+<use figs/heat_wave-normal-U-anomaly.png>
+Package pdftex.def Info: figs/heat_wave-normal-U-anomaly.png  used on input lin
+e 355.
+(pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
+<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=368, 453.8556pt x 252.9
+45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-bron.png  us
-ed on input line 374.
+ed on input line 361.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=96, 453.8556pt x 252.94
-5pt>
+<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=369, 453.8556pt x 252.9
+45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-quee.png  us
-ed on input line 380.
+ed on input line 367.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=97, 453.8556pt x 252.94
-5pt>
+<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=370, 453.8556pt x 252.9
+45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-stat.png  us
-ed on input line 386.
+ed on input line 373.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/wind_rose-bron.png, id=98, 423.5022pt x 500.3493pt>
+<figs/wind_rose-bron.png, id=371, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-bron.png Graphic file (type png)
 <use figs/wind_rose-bron.png>
-Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 394.
+Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 381.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/wind_rose-quee.png, id=99, 423.5022pt x 500.3493pt>
+<figs/wind_rose-quee.png, id=372, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-quee.png Graphic file (type png)
 <use figs/wind_rose-quee.png>
-Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 400.
+Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 387.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/wind_rose-stat.png, id=100, 423.5022pt x 500.3493pt>
+<figs/wind_rose-stat.png, id=373, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-stat.png Graphic file (type png)
 <use figs/wind_rose-stat.png>
-Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 406.
+Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 393.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/heat_wave-normal-w-anomaly-100m.png, id=101, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-w-anomaly-100m.png, id=374, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-w-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly-100m.png  used on inpu
-t line 414.
+t line 401.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/heat_wave-normal-w-anomaly.png, id=102, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-w-anomaly.png, id=375, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-w-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly.png  used on input lin
-e 420.
+e 407.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=103, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=376, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-bron.png  us
-ed on input line 426.
+ed on input line 413.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=104, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=377, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-quee.png  us
-ed on input line 432.
+ed on input line 419.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=105, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=378, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-stat.png  us
-ed on input line 439.
+ed on input line 426.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/sea_breeze-lst_sst-diff.png, id=106, 281.853pt x 281.853pt>
+<figs/sea_breeze-lst_sst-diff.png, id=379, 281.853pt x 281.853pt>
 File: figs/sea_breeze-lst_sst-diff.png Graphic file (type png)
 <use figs/sea_breeze-lst_sst-diff.png>
 Package pdftex.def Info: figs/sea_breeze-lst_sst-diff.png  used on input line 4
-47.
+34.
 (pdftex.def)             Requested size: 303.87541pt x 303.88062pt.
-<figs/sea_breeze_normal-normal-anomaly-theta.png, id=107, 540.5796pt x 179.2296
+<figs/sea_breeze_normal-normal-anomaly-theta.png, id=380, 540.5796pt x 179.2296
 pt>
 File: figs/sea_breeze_normal-normal-anomaly-theta.png Graphic file (type png)
 <use figs/sea_breeze_normal-normal-anomaly-theta.png>
 Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-theta.png  used 
-on input line 454.
+on input line 441.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_normal-normal-anomaly-q.png, id=108, 540.5796pt x 179.2296pt>
+<figs/sea_breeze_normal-normal-anomaly-q.png, id=381, 540.5796pt x 179.2296pt>
 File: figs/sea_breeze_normal-normal-anomaly-q.png Graphic file (type png)
 <use figs/sea_breeze_normal-normal-anomaly-q.png>
 Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-q.png  used on i
-nput line 460.
+nput line 447.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=109, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=382, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png  use
-d on input line 467.
+d on input line 454.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=110, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=383, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png  use
-d on input line 473.
+d on input line 460.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png, id=111, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png, id=384, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png  use
-d on input line 479.
+d on input line 466.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png, id=112, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png, id=385, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.
-png  used on input line 487.
+png  used on input line 474.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
-<figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png, id=113, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png, id=386, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.
-png  used on input line 493.
+png  used on input line 480.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
-<figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png, id=114, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png, id=387, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.
-png  used on input line 499.
+png  used on input line 486.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
-
-Package natbib Warning: There were undefined citations.
-
-[11] [12 <./figs/land_cover.png>] [13 <./figs/building_heights.png> <./figs/hea
-t_wave-normal-theta-anomaly.png>] [14 <./figs/heat_wave-normal-T-anomaly-0m.png
-> <./figs/vertical_profiles-heat_wave-normal-theta-bron.png>] [15 <./figs/verti
-cal_profiles-heat_wave-normal-theta-quee.png> <./figs/vertical_profiles-heat_wa
-ve-normal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.png>] [16 <./figs/
-heat_wave-normal-q-anomaly-0m.png> <./figs/vertical_profiles-heat_wave-normal-q
--bron.png>] [17 <./figs/vertical_profiles-heat_wave-normal-q-quee.png> <./figs/
-vertical_profiles-heat_wave-normal-q-stat.png> <./figs/heat_wave-normal-U-anoma
-ly.png>] [18 <./figs/heat_wave-normal-U-anomaly-100m.png> <./figs/vertical_prof
-iles-heat_wave-normal-U-bron.png>] [19 <./figs/vertical_profiles-heat_wave-norm
-al-U-quee.png> <./figs/vertical_profiles-heat_wave-normal-U-stat.png>] [20 <./f
-igs/wind_rose-bron.png>] [21 <./figs/wind_rose-quee.png>] [22 <./figs/wind_rose
--stat.png>] [23 <./figs/heat_wave-normal-w-anomaly-100m.png> <./figs/heat_wave-
-normal-w-anomaly.png> <./figs/vertical_profiles-heat_wave-normal-w-bron.png>]
-[24 <./figs/vertical_profiles-heat_wave-normal-w-quee.png> <./figs/vertical_pro
-files-heat_wave-normal-w-stat.png>] [25 <./figs/sea_breeze-lst_sst-diff.png> <.
-/figs/sea_breeze_normal-normal-anomaly-theta.png>] [26 <./figs/sea_breeze_norma
-l-normal-anomaly-q.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png> <
-./figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png> <./figs/sea_breeze_heat_wa
-ve-heat_wave_anomaly-w.png>] [27 <./figs/histogram-wind_direction-hw-sea_breeze
--bron-100m.png> <./figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png>]
-[28 <./figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png>] (./main.aux)
+ [16 <./figs/heat_wave-normal-theta-anomaly.png> <./figs/heat_wave-normal-T-ano
+maly-0m.png>] [17 <./figs/vertical_profiles-heat_wave-normal-theta-bron.png> <.
+/figs/vertical_profiles-heat_wave-normal-theta-quee.png>] [18 <./figs/vertical_
+profiles-heat_wave-normal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.pn
+g> <./figs/heat_wave-normal-q-anomaly-0m.png>] [19 <./figs/vertical_profiles-he
+at_wave-normal-q-bron.png> <./figs/vertical_profiles-heat_wave-normal-q-quee.pn
+g>] [20 <./figs/vertical_profiles-heat_wave-normal-q-stat.png> <./figs/heat_wav
+e-normal-U-anomaly-100m.png> <./figs/heat_wave-normal-U-anomaly.png>]
+[21 <./figs/vertical_profiles-heat_wave-normal-U-bron.png> <./figs/vertical_pro
+files-heat_wave-normal-U-quee.png>] [22 <./figs/vertical_profiles-heat_wave-nor
+mal-U-stat.png>] [23 <./figs/wind_rose-bron.png>] [24 <./figs/wind_rose-quee.pn
+g>] [25 <./figs/wind_rose-stat.png>] [26 <./figs/heat_wave-normal-w-anomaly-100
+m.png> <./figs/heat_wave-normal-w-anomaly.png> <./figs/vertical_profiles-heat_w
+ave-normal-w-bron.png>] [27 <./figs/vertical_profiles-heat_wave-normal-w-quee.p
+ng> <./figs/vertical_profiles-heat_wave-normal-w-stat.png>] [28 <./figs/sea_bre
+eze-lst_sst-diff.png> <./figs/sea_breeze_normal-normal-anomaly-theta.png>]
+[29 <./figs/sea_breeze_normal-normal-anomaly-q.png> <./figs/sea_breeze_heat_wav
+e-heat_wave_anomaly-T.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png
+> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png>] [30 <./figs/histogram-
+wind_direction-hw-sea_breeze-bron-100m.png> <./figs/histogram-wind_direction-hw
+-sea_breeze-quee-100m.png>] [31 <./figs/histogram-wind_direction-hw-sea_breeze-
+stat-100m.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.247pt have occurred.
@@ -3193,51 +2684,38 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  7EA4F5E73B0AD794F1AF0EFCF010FC5C;2756.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 7EA4F5E73B0AD794F1AF0EFCF010FC5C;2756.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41471 strings out of 478994
- 802762 string characters out of 5858185
- 1531667 words of memory out of 5000000
- 57989 multiletter control sequences out of 15000+600000
- 1292608 words of font info for 352 fonts, out of 8000000 for 9000
+ 41928 strings out of 478994
+ 815067 string characters out of 5858185
+ 1534229 words of memory out of 5000000
+ 58376 multiletter control sequences out of 15000+600000
+ 1414121 words of font info for 384 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 126i,21n,131p,1713b,1112s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lato/a_cl4kdn.enc}{/usr/l
-ocal/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/lo
-cal/texlive/2021/texmf-dist/fonts/enc/dvips/lato/a_rt66h3.enc}</usr/local/texli
-ve/2021/texmf-dist/fonts/type1/typoland/lato/Lato-Bold.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/typoland/lato/Lato-Heavy.pfb></usr/local/texlive/20
-21/texmf-dist/fonts/type1/typoland/lato/Lato-Italic.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/typoland/lato/Lato-Regular.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-
-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/newtx/txsys.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
-/public/newtxsf/zsfmi-reg.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
-ublic/newtxsf/zsfmia-reg.pfb>
-Output written on main.pdf (28 pages, 6558665 bytes).
+ 126i,20n,131p,1755b,1928s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lato/a_cl4kdn.enc}{/usr/loc
+al/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/loca
+l/texlive/2021/texmf-dist/fonts/enc/dvips/lato/a_rt66h3.enc}</usr/local/texlive
+/2021/texmf-dist/fonts/type1/typoland/lato/Lato-Bold.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/typoland/lato/Lato-Heavy.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/typoland/lato/Lato-Italic.pfb></usr/local/texlive/2021/
+texmf-dist/fonts/type1/typoland/lato/Lato-Regular.pfb></usr/local/texlive/2021/
+texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2021/texmf-
+dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-di
+st/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2021/texmf-dist
+/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2021/texmf-dist/fonts/t
+ype1/public/newtxsf/zsfmi-reg.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
+e1/public/newtxsf/zsfmia-reg.pfb>
+Output written on main.pdf (31 pages, 6605246 bytes).
 PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 84 named destinations out of 1000 (max. 500000)
- 133815 words of extra memory for PDF output out of 154059 (max. 10000000)
+ 563 PDF objects out of 1000 (max. 8388607)
+ 447 compressed objects within 5 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 141623 words of extra memory for PDF output out of 154059 (max. 10000000)
 

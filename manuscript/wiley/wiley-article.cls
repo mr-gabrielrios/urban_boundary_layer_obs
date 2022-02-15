@@ -600,36 +600,6 @@
   number = \textsuperscript{#1}
 }
 
-% References
-\if@numrefs
-  \RequirePackage[numbers]{natbib}
-  \bibliographystyle{vancouver-authoryear}
-\fi
-\if@alpharefs
-    \RequirePackage{natbib}
-    \bibliographystyle{rss}
-\fi
-\if@amsrefs
-  \RequirePackage{amsrefs}
-  \let\citep\cite
-  \let\citet\ocite
-  \renewcommand{\biblistfont}{\fontsize{7.5\p@}{10.5\p@}\selectfont}
-\fi
-
-\AtBeginDocument{
-  \@ifpackageloaded{natbib}{
-    \setlength{\bibhang}{1.5em}
-    \renewcommand{\bibfont}{\fontsize{7.5\p@}{10.5\p@}\selectfont}
-    \renewcommand{\refname}{references}
-    \renewcommand{\bibname}{references}
-  }{}
-
-  \@ifpackageloaded{amsrefs}{
-    \renewcommand{\biblistfont}{\fontsize{7.5\p@}{10.5\p@}\selectfont}
-	\renewcommand{\refname}{references}
-	\renewcommand{\bibname}{references}
-  }{}
-}
 
 % Author biography
 \RequirePackage{lettrine}
