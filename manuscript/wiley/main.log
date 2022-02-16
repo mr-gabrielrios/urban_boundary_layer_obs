@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  14 FEB 2022 17:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.4)  15 FEB 2022 09:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1537,133 +1537,133 @@ LaTeX Info: Redefining \\ on input line 3056.
    defining Unicode char U+2218 (decimal 8728)
    defining Unicode char U+2218 (decimal 8728)
 LaTeX Font Info:    Trying to load font information for T1+lato-TLF on input li
-ne 100.
+ne 98.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lato/T1lato-TLF.fd
 File: T1lato-TLF.fd 2019/06/24 Font definitions for T1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 100.
+(Font)              scaled to size 8.0pt on input line 98.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.66675pt on input line 100.
-LaTeX Font Info:    Calculating math sizes for size <6.66675> on input line 100
-.
+(Font)              scaled to size 6.66675pt on input line 98.
+LaTeX Font Info:    Calculating math sizes for size <6.66675> on input line 98.
+
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 4.86668pt on input line 100.
+(Font)              scaled to size 4.86668pt on input line 98.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 3.66672pt on input line 100.
+(Font)              scaled to size 3.66672pt on input line 98.
 LaTeX Font Info:    Trying to load font information for OML+ntxsfmi on input li
-ne 100.
+ne 98.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtxsf/omlntxsfmi.fd
 File: omlntxsfmi.fd 2014/11/16 Fontinst v1.933 font definitions for OML/ntxsfmi
 .
 )
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 100.
+ 98.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.66672> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 LaTeX Font Info:    Trying to load font information for U+ntxsfmia on input lin
-e 100.
+e 98.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtxsf/untxsfmia.fd
 File: untxsfmia.fd 2014/11/16 Fontinst v1.933 font definitions for U/ntxsfmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-100.
+98.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-100.
+98.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 100.
+(Font)              scaled to size 6.0pt on input line 98.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 100.
+Package hyperref Warning: Ignoring empty anchor on input line 98.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.5pt on input line 100.
+(Font)              scaled to size 6.5pt on input line 98.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 100.
+(Font)              scaled to size 5.5pt on input line 98.
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 98.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 98.
 
 LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
-ine 100.
+ine 98.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lato/TS1lato-TLF.fd
 File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 100.
+(Font)              scaled to size 5.5pt on input line 98.
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 114.
+h' as default language. on input line 112.
 \@quotelevel=\count512
 \@quotereset=\count513
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count514
@@ -1687,15 +1687,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 114.
-LaTeX Info: Redefining \microtypecontext on input line 114.
+LaTeX Info: Redefining \selectfont on input line 112.
+LaTeX Info: Redefining \microtypecontext on input line 112.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 114.
+LaTeX Info: Redefining \showhyphens on input line 112.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1753,7 +1753,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 114.
+or `english'. on input line 112.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1778,8 +1778,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 114.
-Package biblatex Info: Reference segment=0 on input line 114.
+Package biblatex Info: Reference section=0 on input line 112.
+Package biblatex Info: Reference segment=0 on input line 112.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
@@ -1788,7 +1788,7 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 onary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-Package hyperref Info: Link coloring ON on input line 114.
+Package hyperref Info: Link coloring ON on input line 112.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1802,22 +1802,22 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count522
 )
-LaTeX Info: Redefining \ref on input line 114.
-LaTeX Info: Redefining \pageref on input line 114.
-LaTeX Info: Redefining \nameref on input line 114.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 114.
+(Font)              scaled to size 6.2pt on input line 112.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-14.
+12.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
@@ -1829,10 +1829,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 114.
+(Font)              size <5> substituted on input line 112.
 
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-14.
+12.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -1843,45 +1843,45 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 114.
+(Font)              size <5> substituted on input line 112.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 8.0pt on input line 117.
+(Font)              scaled to size 8.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 9.0pt on input line 117.
+(Font)              scaled to size 9.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 117.
+(Font)              scaled to size 9.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 117.
+(Font)              scaled to size 7.3pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 18.0pt on input line 117.
+(Font)              scaled to size 18.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 117.
+(Font)              scaled to size 12.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 117.
+(Font)              scaled to size 12.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 117.
+(Font)              scaled to size 8.8pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 117.
+(Font)              scaled to size 6.6pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 117.
+(Font)              scaled to size 8.8pt on input line 115.
 LaTeX Font Info:    Font shape `TS1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 117.
+(Font)              scaled to size 8.8pt on input line 115.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lato-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 120.
+(Font)              scaled to size 7.0pt on input line 118.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 120.
+(Font)              scaled to size 7.0pt on input line 118.
 \wiley@abstractbox=\box86
-Package mdframed Info: mdframed works in twoside mode on input line 120.
+Package mdframed Info: mdframed works in twoside mode on input line 118.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 120.
-Package mdframed Info: mdframed works in twoside mode on input line 120.
+ mdframed uses option nobreak mdframed on input line 118.
+Package mdframed Info: mdframed works in twoside mode on input line 118.
 
-Overfull \hbox (7.90791pt too wide) in paragraph at lines 120--120
+Overfull \hbox (7.90791pt too wide) in paragraph at lines 118--118
 \T1/lato-TLF/m/n/9 ex-treme heat events unify hor-i-zon-tal wind di-rec-tions t
 hrough-
  []
@@ -1895,9 +1895,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 125.
+(Font)              scaled to size 10.0pt on input line 123.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 125.
+(Font)              scaled to size 10.0pt on input line 123.
 
 [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1905,179 +1905,366 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [3]
 
 Package enumitem Warning: Negative labelwidth. This does not make much
-(enumitem)                sense, on input line 145.
+(enumitem)                sense, on input line 143.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 145.
+(Font)              scaled to size 8.0pt on input line 143.
 <figs/building_heights.png, id=158, 271.4943pt x 252.945pt>
 File: figs/building_heights.png Graphic file (type png)
 <use figs/building_heights.png>
-Package pdftex.def Info: figs/building_heights.png  used on input line 161.
-(pdftex.def)             Requested size: 202.5836pt x 188.74724pt.
+Package pdftex.def Info: figs/building_heights.png  used on input line 159.
+(pdftex.def)             Requested size: 182.324pt x 169.86981pt.
 <figs/land_cover.png, id=160, 271.4943pt x 252.945pt>
 File: figs/land_cover.png Graphic file (type png)
 <use figs/land_cover.png>
-Package pdftex.def Info: figs/land_cover.png  used on input line 164.
-(pdftex.def)             Requested size: 202.5836pt x 188.74724pt.
+Package pdftex.def Info: figs/land_cover.png  used on input line 162.
+(pdftex.def)             Requested size: 182.324pt x 169.86981pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
 File: figs/building_heights.png Graphic file (type png)
 <use figs/building_heights.png>
-Package pdftex.def Info: figs/building_heights.png  used on input line 171.
+Package pdftex.def Info: figs/building_heights.png  used on input line 169.
 (pdftex.def)             Requested size: 303.87541pt x 283.13821pt.
 
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 177.
+(caption)                outside box or environment on input line 175.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 177.
+(caption)                particular \caption on input line 175.
 See the caption package documentation for explanation.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <./figs/building_heights.png> <./figs/land_cover.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
 []|\T1/lato-TLF/m/n/8 40.87248\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
 []|\T1/lato-TLF/m/n/8 40.73433\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
 []|\T1/lato-TLF/m/n/8 40.60401\TS1/lato-TLF/m/n/8 °\T1/lato-TLF/m/n/8 N, -
  []
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.52597> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <3.41> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48927> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.8755> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.8755> not available
-(Font)              size <5> substituted on input line 195.
+(Font)              size <5> substituted on input line 193.
 
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 197.
+(Font)              size <5> substituted on input line 195.
 
 
 LaTeX Font Warning: Font shape `TS1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 197.
+(Font)              size <5> substituted on input line 195.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 199.
+(Font)              scaled to size 8.0pt on input line 197.
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--200
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--200
+Underfull \hbox (badness 10000) in paragraph at lines 191--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--200
+Underfull \hbox (badness 10000) in paragraph at lines 191--198
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 191--198
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./figs/building_heights.png> <./figs/land_cover.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
-Underfull \hbox (badness 10000) in paragraph at lines 217--222
+Underfull \hbox (badness 10000) in paragraph at lines 215--220
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 217--222
+Underfull \hbox (badness 10000) in paragraph at lines 215--220
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <4.52597> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.30392> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.30392> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48929> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81717> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.36911> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81717> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.36911> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48927> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81715> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81715> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <1.3691> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.99942> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.753> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.99942> not available
+(Font)              size <5> substituted on input line 222.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.753> not available
+(Font)              size <5> substituted on input line 222.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--227
 
  []
 
@@ -2085,199 +2272,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--222
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <4.52597> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.30392> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.30392> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48929> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81717> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.36911> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81717> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.36911> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <2.48927> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.81715> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.81715> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <1.3691> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.99942> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <0.753> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.99942> not available
-(Font)              size <5> substituted on input line 224.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <0.753> not available
-(Font)              size <5> substituted on input line 224.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--229
+Underfull \hbox (badness 10000) in paragraph at lines 231--236
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--229
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--238
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--238
+Underfull \hbox (badness 10000) in paragraph at lines 231--236
 
  []
 
@@ -2288,7 +2288,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
-Underfull \hbox (badness 10000) in paragraph at lines 249--252
+Underfull \hbox (badness 10000) in paragraph at lines 247--250
 
  []
 
@@ -2296,384 +2296,380 @@ Underfull \hbox (badness 10000) in paragraph at lines 249--252
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
 
 Package enumitem Warning: Negative labelwidth. This does not make much
-(enumitem)                sense, on input line 263.
+(enumitem)                sense, on input line 261.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 268.
+(Font)              scaled to size 10.0pt on input line 266.
 
 LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
-(Font)              using `T1/lato-TLF/b/n' instead on input line 268.
+(Font)              using `T1/lato-TLF/b/n' instead on input line 266.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
-(Font)              scaled to size 10.0pt on input line 268.
+(Font)              scaled to size 10.0pt on input line 266.
+[12]
 LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.66675pt on input line 274.
+(Font)              scaled to size 6.66675pt on input line 272.
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/n/6.66675 Brotzge, Jer-ald A et al. (2020). ``A tech-ni-cal 
 overview of the new york state mesonet stan-dard net-work''. In:
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/n/6.66675 Frizzola, John A and Ed-win L Fisher (1963). ``A s
 e-ries of sea breeze ob-ser-va-tions in the New York City area''. In:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/n/6.66675 Grund, Chris-tian J et al. (2001). ``High-resoluti
 on Doppler li-dar for bound-ary layer and cloud re-search''. In:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/n/6.66675 Hewison, Tim and Cather-ine Gaf-fard (2003). ``Ra-
 dio-met-rics MP3000 mi-crowave ra-diome-ter per-for-mance as-sess-ment''. In:
  []
 
 
-Overfull \hbox (57.5103pt too wide) in paragraph at lines 275--275
+Overfull \hbox (57.5103pt too wide) in paragraph at lines 273--273
 |   []\T1/lato-TLF/m/n/6.66675 . 
  []
 
-
-Underfull \hbox (badness 2119) in paragraph at lines 275--275
+[13]
+Underfull \hbox (badness 2119) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/n/6.66675 Meir, Tal-mor et al. (2013). ``Fore-cast-ing the N
 ew York City ur-ban heat is-land and sea breeze dur-ing ex-treme heat events''.
  In:
  []
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 6.66675pt on input line 274.
-[14]
+(Font)              scaled to size 6.66675pt on input line 272.
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 274.
+(Font)              size <5> substituted on input line 272.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 274.
+(Font)              size <5> substituted on input line 272.
 
 
-Underfull \hbox (badness 2753) in paragraph at lines 275--275
+Underfull \hbox (badness 2753) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Peng, Roger D et al. (2011). ``To-ward a quan-ti-
 ta-tive es-ti-mate of fu-ture heat wave mor-tal-ity un-der global cli-mate chan
 ge''. In:
  []
 
 
-Underfull \hbox (badness 6380) in paragraph at lines 275--275
+Underfull \hbox (badness 6380) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Pullen, Julie et al. (2007). ``At-mo-spheric re-s
 ponse to lo-cal up-welling in the vicin-ity of New York--New Jer-sey har-bor''.
  In:
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 275--275
+Underfull \hbox (badness 6220) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Ramamurthy, P and E Bou-Zeid (2017). ``Heat-waves
  and ur-ban heat is-lands: a com-par-a-tive anal-y-sis of mul-ti-ple cities''. 
 In:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Ramamurthy, P, D Li, and E Bou-Zeid (2017). ``Hig
 h-resolution sim-u-la-tion of heat-wave events in New York City''. In:
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 275--275
+Underfull \hbox (badness 1205) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Rose, Thomas et al. (2005). ``A net-work suit-abl
 e mi-crowave ra-diome-ter for op-er-a-tional mon-i-tor-ing of the cloudy at-mo-
 sphere''. In:
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Shrestha, Bhu-pal et al. (2021). ``Overview and A
 p-pli-ca-tions of the New York State Mesonet Pro-filer Net-work''. In:
  []
 
 
-Underfull \hbox (badness 2698) in paragraph at lines 275--275
+Underfull \hbox (badness 2698) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Thompson, William T, Teddy Holt, and Julie Pullen
  (2007). ``In-ves-ti-ga-tion of a sea breeze front in an ur-ban en-vi-ron-ment'
 '. In:
  []
 
 
-Overfull \hbox (22.18999pt too wide) in paragraph at lines 275--275
+Overfull \hbox (22.18999pt too wide) in paragraph at lines 273--273
 |   []
  []
 
 
-Underfull \hbox (badness 2478) in paragraph at lines 275--275
+Underfull \hbox (badness 2478) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Wu, Yonghua et al. (2019). ``Ob-ser-va-tion of he
 at wave ef-fects on the ur-ban air qual-ity and PBL in New York City area''. In
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 [][]\T1/lato-TLF/m/sc/6.66675 Yu, Yun-yue et al. (2008). ``De-vel-op-ing al-go-
 rithm for op-er-a-tional GOES-R land sur-face tem-per-a-ture prod-uct''. In:
  []
 
-[15]
-<figs/heat_wave-normal-theta-anomaly.png, id=356, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-theta-anomaly.png, id=352, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-theta-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-theta-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-theta-anomaly.png  used on input
- line 285.
+ line 283.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/heat_wave-normal-T-anomaly-0m.png, id=357, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-T-anomaly-0m.png, id=353, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-T-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-T-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-T-anomaly-0m.png  used on input 
-line 291.
+line 289.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=358, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-bron.png, id=354, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-bron.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-bron.png
-  used on input line 297.
+  used on input line 295.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=359, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-quee.png, id=355, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-quee.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-quee.png
-  used on input line 303.
+  used on input line 301.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=360, 449.2785pt x 2
+<figs/vertical_profiles-heat_wave-normal-theta-stat.png, id=356, 449.2785pt x 2
 53.1859pt>
 File: figs/vertical_profiles-heat_wave-normal-theta-stat.png Graphic file (type
  png)
 <use figs/vertical_profiles-heat_wave-normal-theta-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-theta-stat.png
-  used on input line 309.
+  used on input line 307.
 (pdftex.def)             Requested size: 303.87541pt x 171.25238pt.
-<figs/heat_wave-normal-q-anomaly.png, id=361, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-q-anomaly.png, id=357, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-q-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly.png  used on input lin
-e 317.
+e 315.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/heat_wave-normal-q-anomaly-0m.png, id=362, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-q-anomaly-0m.png, id=358, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-q-anomaly-0m.png Graphic file (type png)
 <use figs/heat_wave-normal-q-anomaly-0m.png>
 Package pdftex.def Info: figs/heat_wave-normal-q-anomaly-0m.png  used on input 
-line 323.
+line 321.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=363, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-bron.png, id=359, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-bron.png  us
-ed on input line 329.
+ed on input line 327.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=364, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-quee.png, id=360, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-quee.png  us
-ed on input line 335.
+ed on input line 333.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=365, 450.9648pt x 253.1
+<figs/vertical_profiles-heat_wave-normal-q-stat.png, id=361, 450.9648pt x 253.1
 859pt>
 File: figs/vertical_profiles-heat_wave-normal-q-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-q-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-q-stat.png  us
-ed on input line 341.
+ed on input line 339.
 (pdftex.def)             Requested size: 303.87541pt x 170.61494pt.
-<figs/heat_wave-normal-U-anomaly-100m.png, id=366, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-U-anomaly-100m.png, id=362, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-U-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-U-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-U-anomaly-100m.png  used on inpu
-t line 349.
+t line 347.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/heat_wave-normal-U-anomaly.png, id=367, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-U-anomaly.png, id=363, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-U-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-U-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-U-anomaly.png  used on input lin
-e 355.
+e 353.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=368, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-bron.png, id=364, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-bron.png  us
-ed on input line 361.
+ed on input line 359.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=369, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-quee.png, id=365, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-quee.png  us
-ed on input line 367.
+ed on input line 365.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=370, 453.8556pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-U-stat.png, id=366, 453.8556pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-U-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-U-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-U-stat.png  us
-ed on input line 373.
+ed on input line 371.
 (pdftex.def)             Requested size: 303.87541pt x 169.36034pt.
-<figs/wind_rose-bron.png, id=371, 423.5022pt x 500.3493pt>
+<figs/wind_rose-bron.png, id=367, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-bron.png Graphic file (type png)
 <use figs/wind_rose-bron.png>
-Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 381.
+Package pdftex.def Info: figs/wind_rose-bron.png  used on input line 379.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/wind_rose-quee.png, id=372, 423.5022pt x 500.3493pt>
+<figs/wind_rose-quee.png, id=368, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-quee.png Graphic file (type png)
 <use figs/wind_rose-quee.png>
-Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 387.
+Package pdftex.def Info: figs/wind_rose-quee.png  used on input line 385.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/wind_rose-stat.png, id=373, 423.5022pt x 500.3493pt>
+<figs/wind_rose-stat.png, id=369, 423.5022pt x 500.3493pt>
 File: figs/wind_rose-stat.png Graphic file (type png)
 <use figs/wind_rose-stat.png>
-Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 393.
+Package pdftex.def Info: figs/wind_rose-stat.png  used on input line 391.
 (pdftex.def)             Requested size: 303.87541pt x 359.0144pt.
-<figs/heat_wave-normal-w-anomaly-100m.png, id=374, 426.393pt x 205.2468pt>
+<figs/heat_wave-normal-w-anomaly-100m.png, id=370, 426.393pt x 205.2468pt>
 File: figs/heat_wave-normal-w-anomaly-100m.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly-100m.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly-100m.png  used on inpu
-t line 401.
+t line 399.
 (pdftex.def)             Requested size: 303.87541pt x 146.27742pt.
-<figs/heat_wave-normal-w-anomaly.png, id=375, 540.5796pt x 179.2296pt>
+<figs/heat_wave-normal-w-anomaly.png, id=371, 540.5796pt x 179.2296pt>
 File: figs/heat_wave-normal-w-anomaly.png Graphic file (type png)
 <use figs/heat_wave-normal-w-anomaly.png>
 Package pdftex.def Info: figs/heat_wave-normal-w-anomaly.png  used on input lin
-e 407.
+e 405.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=376, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-bron.png, id=372, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-bron.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-bron.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-bron.png  us
-ed on input line 413.
+ed on input line 411.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=377, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-quee.png, id=373, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-quee.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-quee.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-quee.png  us
-ed on input line 419.
+ed on input line 417.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=378, 449.2785pt x 252.9
+<figs/vertical_profiles-heat_wave-normal-w-stat.png, id=374, 449.2785pt x 252.9
 45pt>
 File: figs/vertical_profiles-heat_wave-normal-w-stat.png Graphic file (type png
 )
 <use figs/vertical_profiles-heat_wave-normal-w-stat.png>
 Package pdftex.def Info: figs/vertical_profiles-heat_wave-normal-w-stat.png  us
-ed on input line 426.
+ed on input line 424.
 (pdftex.def)             Requested size: 303.87541pt x 171.08945pt.
-<figs/sea_breeze-lst_sst-diff.png, id=379, 281.853pt x 281.853pt>
+<figs/sea_breeze-lst_sst-diff.png, id=375, 281.853pt x 281.853pt>
 File: figs/sea_breeze-lst_sst-diff.png Graphic file (type png)
 <use figs/sea_breeze-lst_sst-diff.png>
 Package pdftex.def Info: figs/sea_breeze-lst_sst-diff.png  used on input line 4
-34.
+32.
 (pdftex.def)             Requested size: 303.87541pt x 303.88062pt.
-<figs/sea_breeze_normal-normal-anomaly-theta.png, id=380, 540.5796pt x 179.2296
+<figs/sea_breeze_normal-normal-anomaly-theta.png, id=376, 540.5796pt x 179.2296
 pt>
 File: figs/sea_breeze_normal-normal-anomaly-theta.png Graphic file (type png)
 <use figs/sea_breeze_normal-normal-anomaly-theta.png>
 Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-theta.png  used 
-on input line 441.
+on input line 439.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_normal-normal-anomaly-q.png, id=381, 540.5796pt x 179.2296pt>
+<figs/sea_breeze_normal-normal-anomaly-q.png, id=377, 540.5796pt x 179.2296pt>
 File: figs/sea_breeze_normal-normal-anomaly-q.png Graphic file (type png)
 <use figs/sea_breeze_normal-normal-anomaly-q.png>
 Package pdftex.def Info: figs/sea_breeze_normal-normal-anomaly-q.png  used on i
-nput line 447.
+nput line 445.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=382, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png, id=378, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-T.png  use
-d on input line 454.
+d on input line 452.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=383, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png, id=379, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png  use
-d on input line 460.
+d on input line 458.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png, id=384, 540.5796pt x 179.22
+<figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png, id=380, 540.5796pt x 179.22
 96pt>
 File: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png Graphic file (type png)
 
 <use figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png>
 Package pdftex.def Info: figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png  use
-d on input line 466.
+d on input line 464.
 (pdftex.def)             Requested size: 303.87541pt x 100.75075pt.
-<figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png, id=385, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png, id=381, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-bron-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-bron-100m.
-png  used on input line 474.
+png  used on input line 472.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
-<figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png, id=386, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png, id=382, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-quee-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-quee-100m.
-png  used on input line 480.
+png  used on input line 478.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
-<figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png, id=387, 440.3652pt 
+<figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png, id=383, 440.3652pt 
 x 233.4321pt>
 File: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png Graphic file (t
 ype png)
 <use figs/histogram-wind_direction-hw-sea_breeze-stat-100m.png>
 Package pdftex.def Info: figs/histogram-wind_direction-hw-sea_breeze-stat-100m.
-png  used on input line 486.
+png  used on input line 484.
 (pdftex.def)             Requested size: 303.87541pt x 161.08612pt.
- [16 <./figs/heat_wave-normal-theta-anomaly.png> <./figs/heat_wave-normal-T-ano
-maly-0m.png>] [17 <./figs/vertical_profiles-heat_wave-normal-theta-bron.png> <.
-/figs/vertical_profiles-heat_wave-normal-theta-quee.png>] [18 <./figs/vertical_
-profiles-heat_wave-normal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.pn
-g> <./figs/heat_wave-normal-q-anomaly-0m.png>] [19 <./figs/vertical_profiles-he
-at_wave-normal-q-bron.png> <./figs/vertical_profiles-heat_wave-normal-q-quee.pn
-g>] [20 <./figs/vertical_profiles-heat_wave-normal-q-stat.png> <./figs/heat_wav
-e-normal-U-anomaly-100m.png> <./figs/heat_wave-normal-U-anomaly.png>]
-[21 <./figs/vertical_profiles-heat_wave-normal-U-bron.png> <./figs/vertical_pro
-files-heat_wave-normal-U-quee.png>] [22 <./figs/vertical_profiles-heat_wave-nor
-mal-U-stat.png>] [23 <./figs/wind_rose-bron.png>] [24 <./figs/wind_rose-quee.pn
-g>] [25 <./figs/wind_rose-stat.png>] [26 <./figs/heat_wave-normal-w-anomaly-100
-m.png> <./figs/heat_wave-normal-w-anomaly.png> <./figs/vertical_profiles-heat_w
-ave-normal-w-bron.png>] [27 <./figs/vertical_profiles-heat_wave-normal-w-quee.p
-ng> <./figs/vertical_profiles-heat_wave-normal-w-stat.png>] [28 <./figs/sea_bre
-eze-lst_sst-diff.png> <./figs/sea_breeze_normal-normal-anomaly-theta.png>]
-[29 <./figs/sea_breeze_normal-normal-anomaly-q.png> <./figs/sea_breeze_heat_wav
-e-heat_wave_anomaly-T.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png
-> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-w.png>] [30 <./figs/histogram-
-wind_direction-hw-sea_breeze-bron-100m.png> <./figs/histogram-wind_direction-hw
--sea_breeze-quee-100m.png>] [31 <./figs/histogram-wind_direction-hw-sea_breeze-
-stat-100m.png>] (./main.aux)
+[15 <./figs/heat_wave-normal-theta-anomaly.png>] [16 <./figs/heat_wave-normal-T
+-anomaly-0m.png> <./figs/vertical_profiles-heat_wave-normal-theta-bron.png>]
+[17 <./figs/vertical_profiles-heat_wave-normal-theta-quee.png> <./figs/vertical
+_profiles-heat_wave-normal-theta-stat.png> <./figs/heat_wave-normal-q-anomaly.p
+ng>] [18 <./figs/heat_wave-normal-q-anomaly-0m.png> <./figs/vertical_profiles-h
+eat_wave-normal-q-bron.png>] [19 <./figs/vertical_profiles-heat_wave-normal-q-q
+uee.png> <./figs/vertical_profiles-heat_wave-normal-q-stat.png>] [20 <./figs/he
+at_wave-normal-U-anomaly-100m.png> <./figs/heat_wave-normal-U-anomaly.png> <./f
+igs/vertical_profiles-heat_wave-normal-U-bron.png>] [21 <./figs/vertical_profil
+es-heat_wave-normal-U-quee.png> <./figs/vertical_profiles-heat_wave-normal-U-st
+at.png>] [22 <./figs/wind_rose-bron.png>] [23 <./figs/wind_rose-quee.png>]
+[24 <./figs/wind_rose-stat.png>] [25 <./figs/heat_wave-normal-w-anomaly-100m.pn
+g> <./figs/heat_wave-normal-w-anomaly.png> <./figs/vertical_profiles-heat_wave-
+normal-w-bron.png>] [26 <./figs/vertical_profiles-heat_wave-normal-w-quee.png> 
+<./figs/vertical_profiles-heat_wave-normal-w-stat.png>] [27 <./figs/sea_breeze-
+lst_sst-diff.png> <./figs/sea_breeze_normal-normal-anomaly-theta.png>] [28 <./f
+igs/sea_breeze_normal-normal-anomaly-q.png> <./figs/sea_breeze_heat_wave-heat_w
+ave_anomaly-T.png> <./figs/sea_breeze_heat_wave-heat_wave_anomaly-q.png> <./fig
+s/sea_breeze_heat_wave-heat_wave_anomaly-w.png>] [29 <./figs/histogram-wind_dir
+ection-hw-sea_breeze-bron-100m.png> <./figs/histogram-wind_direction-hw-sea_bre
+eze-quee-100m.png>] [30 <./figs/histogram-wind_direction-hw-sea_breeze-stat-100
+m.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.247pt have occurred.
@@ -2691,9 +2687,9 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41928 strings out of 478994
- 815067 string characters out of 5858185
- 1534229 words of memory out of 5000000
+ 41927 strings out of 478994
+ 815060 string characters out of 5858185
+ 1541228 words of memory out of 5000000
  58376 multiletter control sequences out of 15000+600000
  1414121 words of font info for 384 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2712,10 +2708,10 @@ st/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2021/texmf-dist
 /fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2021/texmf-dist/fonts/t
 ype1/public/newtxsf/zsfmi-reg.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/newtxsf/zsfmia-reg.pfb>
-Output written on main.pdf (31 pages, 6605246 bytes).
+Output written on main.pdf (30 pages, 6604768 bytes).
 PDF statistics:
- 563 PDF objects out of 1000 (max. 8388607)
- 447 compressed objects within 5 object streams
- 145 named destinations out of 1000 (max. 500000)
+ 556 PDF objects out of 1000 (max. 8388607)
+ 441 compressed objects within 5 object streams
+ 144 named destinations out of 1000 (max. 500000)
  141623 words of extra memory for PDF output out of 154059 (max. 10000000)
 
