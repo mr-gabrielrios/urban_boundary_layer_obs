@@ -29,7 +29,7 @@ def csv_reader(date_range, data_dir, site):
     
     # Define CSV columns to extract data from
     # Datetime, sensible heat flux, friction velocity, air temperature (deg C)
-    cols = ['datetime', 'H', 'LE', 'USTAR', 'ZL', 'Tc']
+    cols = ['datetime', 'H', 'LE', 'USTAR', 'ZL', 'Tc', 'WS', 'WD']
     
     # Initialize empty DataFrame with predefined columns
     data = pd.DataFrame(columns=cols)
@@ -79,13 +79,17 @@ def csv_reader(date_range, data_dir, site):
     data['USTAR'] = data['USTAR'].astype(float)
     data['ZL'] = data['ZL'].astype(float)
     data['Tc'] = data['Tc'].astype(float)
+    data['WS'] = data['WS'].astype(float)
+    data['WD'] = data['WD'].astype(float)
     data['Tc'] = [i + 273.15 for i in data['Tc']]
     # Match parameter names to model parameter names
     data.rename(columns = {'H': 'QH',
                            'LE': 'QE',
                            'USTAR': 'u_star',
                            'ZL': 'zeta',
-                           'Tc': 'T_air'}, inplace=True) 
+                           'Tc': 'T_air',
+                           'WS': 'U',
+                           'WD': 'wind_direction'}, inplace=True) 
     # data = data.iloc[::2].reset_index(drop=True)
     data['site'] = site
     
@@ -121,8 +125,12 @@ def xr_merge(data, param):
         # Else, skip this site
         except:
             continue
-    # Assign container array data to the xArray Dataset as a data variable
-    data = data.assign({param : (('site', 'height', 'time'), arr)})
+    # Assign container array data to the xArray Dataset as a data variable if the variable doesn't exist
+    if param not in data.data_vars:
+        data = data.assign({param : (('site', 'height', 'time'), arr)})
+    # If it is a variable, assign it as a surface value.
+    else:
+        data.wind_direction.loc[{'height': 0}] = arr[:, 0, :].T
     
     return data
 

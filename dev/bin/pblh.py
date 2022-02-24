@@ -14,6 +14,7 @@ def parcel(data):
     '''
     Parcel method for estimating mixed layer height, see Section 2.2.1.
     Objective: find height at which theta-v = theta-v at surface
+    See Seibert et al. (2000) for more information on this method and its justification.
 
     Parameters
     ----------

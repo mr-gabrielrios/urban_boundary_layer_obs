@@ -11,7 +11,7 @@ import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, xarray as xr
 # Data files 
 # Reconstructed lidar data comes in at 2 or 4 s intervals (see Leosphere WindCube Scan Software Suite User Manual, Version 20.a, Section 6.6)
 
-def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE', 'STAT']):
+def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE', 'STAT'], scan_type='FXD'):
     '''
     Processes raw lidar data and returns an aggregate xArray over the dates and locations provided.
 
@@ -44,6 +44,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 temp = []
                 # Iterate through files for each location
                 for file in os.listdir(os.path.join(root, directory)):
+                    print(file)
                     # Only select netCDF files
                     if file.split('.')[-1] == 'nc':
                         filename = file.split('.')[0]
@@ -64,6 +65,13 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
     
     # Aggregate lidar data into single xArray by iterating through the dictionary of files
     ds_list = []
+    if scan_type == 'DBS' and 'MANH' in sites:
+        file_dict['MANH'] = [os.path.join('/Volumes/UBL Data/data/lidar/MANH/PROF_MANH', file) for file in os.listdir('/Volumes/UBL Data/data/lidar/MANH/PROF_MANH') if 'dbs' in file]
+        
+        file_dict['MANH'] = [file for file in file_dict['MANH'] 
+                             if (date_range[0] <= 
+                                 datetime.datetime.strptime(file.split('/')[-1].split('_')[1], '%Y-%m-%d') < 
+                                 date_range[-1])]
     for key in file_dict.keys():
         if key == 'MANH':
             # Initialize dictionary to hold sweep names that correspond to each file
@@ -74,27 +82,54 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 sweeps[file] = list(nc.Dataset(file).groups.keys())[1]
             for file in file_dict['MANH']:
                 temp = xr.open_dataset(file, group=sweeps[file], decode_times=False)
-                # Quality mask using confidence interval > 99%
-                mask = temp['radial_wind_speed_ci'].data > 99
-                # Obtain masked array of vertical velocity
-                w = np.ma.array(temp['radial_wind_speed'].data, mask=~mask)
-                # Create time vector from 'seconds since Unix time' array
-                times = [datetime.datetime.utcfromtimestamp(float(t)) for t in temp.time]
-                print(times)
-                # Create custom xArray
-                temp = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
-                                             'ci': (['time', 'height'], temp['radial_wind_speed_ci'].data)}, 
-                                  coords={'time': times, 
-                                          'height': temp.range.values})
+                # Ensure fixed scan data (FXD) is being handled
+                if scan_type == 'FXD':
+                    print('Processing FXD: ', file)
+                    # Quality mask using confidence interval > 99%
+                    mask = temp['radial_wind_speed_ci'].data > 99
+                    # Obtain masked array of vertical velocity
+                    w = np.ma.array(temp['radial_wind_speed'].data, mask=~mask)
+                    # Create time vector from 'seconds since Unix time' array
+                    times = [datetime.datetime.utcfromtimestamp(float(t)) for t in temp.time]
+                    # Create custom xArray
+                    temp = xr.Dataset(data_vars={'w': (['time', 'height'], w), 
+                                                 'ci': (['time', 'height'], temp['radial_wind_speed_ci'].data)}, 
+                                      coords={'time': times, 
+                                              'height': temp.range.values})
+                # Handle Doppler beam swinging (DBS) data
+                elif scan_type == 'DBS':
+                    print('Processing DBS: ', file)
+                    # Ensure that DBS data is being handled.
+                    if 'dbs' not in file:
+                        continue
+                    # Open the file and convert to xArray Dataset
+                    temp = xr.open_dataset(file, group=sweeps[file], decode_times=False)
+                    # Obtain quality filtering for wind data
+                    mask = temp['wind_speed_ci'].data > 99
+                    # Get zonal wind component from horizontal wind speed
+                    u = np.ma.array(temp['horizontal_wind_speed'].values * np.cos(temp['wind_direction'] * np.pi/180), mask=~mask)
+                    # Get meridional wind component from horizontal wind speed
+                    v = np.ma.array(temp['horizontal_wind_speed'].values * np.sin(temp['wind_direction'] * np.pi/180), mask=~mask)
+                    # Get vertical wind component
+                    w = np.ma.array(temp['vertical_wind_speed'].values)
+                    # Get datetime values for scan times
+                    times = [datetime.datetime.utcfromtimestamp(float(t)) for t in temp.time]
+                    # Get height array (all values equivalent over axis = 1)
+                    heights = temp['measurement_height'].values[0]
+                    # Construct the new Dataset
+                    temp = xr.Dataset(data_vars={'u': (['time', 'height'], u), 
+                                                 'v': (['time', 'height'], v), 
+                                                 'w': (['time', 'height'], w), 
+                                                 'wind_direction': (['time', 'height'], temp['wind_direction'].data),
+                                                 'ci': (['time', 'height'], temp['wind_speed_ci'].data)},
+                                      coords={'time': times, 
+                                              'height': heights})
                 # Assign the current file location to the xArray Dataset
                 temp = temp.assign_coords(site=key).expand_dims('site')
                 # Resample data to lower frequencies if not being used for spectral analysis
                 if not spectral_analysis:
                     temp = temp.resample(time='30T').mean()
                     temp_std = temp.resample(time='30T').std()
-                    # Assign standard deviation for resampling operation (average 1-s sampling rate)
-                    for var in temp.data_vars:
-                        temp = temp.assign({'{0}_std'.format(var): temp_std[var]})
                 # Masked data
                 data_list.append(temp)
             # Concatenate data and sort by time, if data found
@@ -106,6 +141,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 
         else:
             for file in file_dict[key]:
+                print(file)
                 # Open netCDF file
                 temp = nc.Dataset(file)
                 # Get group name where data is stored. Skip file if there's nothing in there.
@@ -133,7 +169,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
                 times = [(datetime.timedelta(milliseconds=float(t)) + date) for t in temp['radial'][group]['time'][:].data]
-                print(times)
+                # print(times)
                 
                 # Get height vector from array in the netCDF 'height' variable
                 heights = [float(i) for i in temp['radial'][group]['range'][:].data]
@@ -160,6 +196,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 ds_list.append(temp)
                 
     # Concatenate data and sort by time. This for loop cuts off the last lidar data entry of the day to prevent time axis conflicts when merging.
+    print('Checkpoint')
     for i, ds in enumerate(ds_list):
         ds_list[i] = ds_list[i].drop_isel(time=-1)
     data = xr.merge(ds_list, fill_value=np.nan)
@@ -232,20 +269,22 @@ def quality_filter(data):
 
 if __name__ == '__main__':
     # Boolean control to handle if spectral analysis is generated
-    spectral = False
+    spectral = True
     if spectral:
-        dates = pd.date_range(start='2021-07-31', end='2021-09-01', freq='M', closed='left')
+        dates = pd.date_range(start='2021-07-31', end='2021-09-01', freq='D', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
             print('Processing: ', date_range)
-            data = processor(date_range, spectral_analysis=True, sites=['MANH'])
+            scan_type = 'DBS'
+            data = processor(date_range, spectral_analysis=True, sites=['STAT'], scan_type=scan_type)
             if len(data) != 0:
                 data = quality_filter(data)
-                filename = 'lidar_data_{0}-{1:02d}_spectral.nc'.format(date_range[-1].date().year, date_range[-1].date().month)
+                print(data)
+                filename = 'lidar_data_{0}-{1:02d}-{2:02d}_spectral_STAT_{3}.nc'.format(date_range[-1].date().year, date_range[-1].date().month, date_range[-1].date().day, scan_type)
                 data.to_netcdf(os.path.join(directory, filename))
     else:
-        dates = pd.date_range(start='2021-06-01', end='2021-08-01', freq='M', closed='left')
+        dates = pd.date_range(start='2021-07-31', end='2021-09-01', freq='M', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      

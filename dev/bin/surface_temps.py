@@ -238,12 +238,16 @@ def temperature_profiles(lst_sst_temperatures, land_coords=[18, 28], sea_coords=
     ssts_im_ = ax[0].fill_between(ssts_mean.hour, 
                                   ssts_mean - ssts_std, ssts_mean + ssts_std, alpha=0.2, color=sst_color)
     
+    ax[0].annotate('a', (0, 0), (0.93, 0.83), xycoords='axes fraction', fontsize=16)
+    
     # Plot temperature differences
     diff_color = 'tab:purple'
     ax[1].plot([0, 24], [0, 0], color=(0, 0, 0, 0.5), linewidth=1, linestyle=':')
     im_mean = ax[1].plot(mean_diff.hour, mean_diff, color=diff_color)
     im_std = ax[1].fill_between(mean_diff.hour, 
                                 mean_diff - std_diff, mean_diff + std_diff, alpha=0.2, color=diff_color)
+    
+    ax[1].annotate('b', (0, 0), (0.93, 0.85), xycoords='axes fraction', fontsize=16)
     
     ax[0].legend(frameon=False, loc='upper left')
     ax[1].set_xlim([0, 23])

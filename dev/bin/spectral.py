@@ -495,6 +495,8 @@ def turbulence_stats(data):
             subdata['w_std'] = subdata['w_prime'].std()
             # Generate turbulent intensity, per Stull (1988)
             subdata['I_w'] = subdata['w_std'] / np.nanmean(subdata['U'])
+            # Generate turbulent kinetic energy, per Stull (1988)
+            subdata['tke'] = 0.5 * (np.nanmean(subdata['u_prime'])**2 + np.nanmean(subdata['v_prime'])**2 + np.nanmean(subdata['w_prime'])**2)
             # Append to list
             dfs.append(subdata)
     # Concatenate all the groups
@@ -632,10 +634,10 @@ def main(site='MANH', heights=[200, 400, 600, 800], plot_spectra=False):
     for component in ['u', 'v', 'w']:
         turbulent_intensity_plotter([turbulence_normal], component=component)
     
-    return data
+    return data, turbulence_normal, turbulence_hw
 
 if __name__ == '__main__':
 
     # Generate data for a given site and heights
-    data = main(site='MANH', heights=[200, 300, 400, 500, 700, 900, 1100, 1500], plot_spectra=False)
+    data, normal, heatwave = main(site='MANH', heights=[200], plot_spectra=False)
     

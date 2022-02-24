@@ -128,7 +128,6 @@ def processor(date_range, data_type='flux', data_access='online', height=np.nan,
         if not data_list:
             # Supplement the missing dates with consolidated flux data
             try:
-                directory = '/Users/gabriel/Downloads/converted'
                 header = ['TIMESTAMP', 'RECORD', 'Ux', 'Uy', 
                           'Uz', 'Ts', 'diag_sonic', 'CO2', 
                           'H2O', 'diag_irga', 'amb_tmpr', 'amb_press', 
@@ -136,7 +135,8 @@ def processor(date_range, data_type='flux', data_access='online', height=np.nan,
                 # Get all files in the directory
                 data_list = [os.path.join(directory, file) 
                              for file in os.listdir(directory)
-                             if file.split('.')[-1] == 'dat']
+                             if file.split('.')[-1] == 'dat' and
+                             'ts_data' in file.split('.')[-2]]
                 # Filter by date
                 data_list = [pd.read_csv(file, 
                                          names=header, 
