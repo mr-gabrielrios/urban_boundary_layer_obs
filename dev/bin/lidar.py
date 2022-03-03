@@ -5,7 +5,7 @@ Path:           ~/bin/lidar.py
 Description:    Process and analyze data from the Leosphere WindCube lidar on top of Steinman Hall.
 """
 
-import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, xarray as xr
+import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
 # Notes:
 # Data files 
@@ -44,7 +44,6 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 temp = []
                 # Iterate through files for each location
                 for file in os.listdir(os.path.join(root, directory)):
-                    print(file)
                     # Only select netCDF files
                     if file.split('.')[-1] == 'nc':
                         filename = file.split('.')[0]
@@ -169,7 +168,6 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
                 times = [(datetime.timedelta(milliseconds=float(t)) + date) for t in temp['radial'][group]['time'][:].data]
-                # print(times)
                 
                 # Get height vector from array in the netCDF 'height' variable
                 heights = [float(i) for i in temp['radial'][group]['range'][:].data]
@@ -186,17 +184,11 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 # Resample data to lower frequencies if not being used for spectral analysis
                 if not spectral_analysis:
                     temp = temp.resample(time='5T').mean()
-                # Get standard deviation using the population standard deviation
-                temp_std = temp.resample(time='30T').std(ddof=0)
-                # Assign standard deviation for resampling operation (average 1-s sampling rate)
-                for var in temp.data_vars:
-                    temp = temp.assign({'{0}_std'.format(var): temp_std[var]})
                 _, index = np.unique(temp.time, return_index=True)
                 temp = temp.isel(time=index)
                 ds_list.append(temp)
                 
     # Concatenate data and sort by time. This for loop cuts off the last lidar data entry of the day to prevent time axis conflicts when merging.
-    print('Checkpoint')
     for i, ds in enumerate(ds_list):
         ds_list[i] = ds_list[i].drop_isel(time=-1)
     data = xr.merge(ds_list, fill_value=np.nan)
@@ -207,6 +199,81 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
         data = quality_filter(data)
     
     return data
+
+def detrend(data, site, averaging_period='30T', detrend_period='5T'):
+    import time
+    '''
+    De-trend raw lidar data to obtain velocity fluctuations and average for a given period.
+
+    Parameters
+    ----------
+    data : xArray Dataset
+        xArray Dataset with a < 5 sec temporal resolution.
+    period : str, optional
+        De-trending period in minutes. The default is '5T'.
+
+    Returns
+    -------
+    data : xArray Dataset
+        xArray Dataset with averaged data along with primary turbulent derived characteristics.
+    '''
+    
+    benchmark = time.time()
+    # Initialize temporary container list
+    dfs, dfs_ = [], []
+    for height in data.height.values:
+        working_data = data.sel(site=site, height=height).to_dataframe().reset_index()
+        # Iterate over every de-trending period
+        for group, period_data in working_data.groupby(pd.Grouper(key='time', freq=detrend_period)):
+            # Calculate mean velocity quantity per period
+            period_data['w_mean'] = period_data['w'].mean()
+            
+            # Calculate fluctuating velocity quantity
+            period_data['w_prime'] = period_data['w'] - period_data['w_mean']
+            # If u is in the DataFrame, get the mean and fluctuating quantities
+            if 'u' in period_data.columns:
+                period_data['u_mean'] = period_data['u'].mean()
+                # Calculate fluctuating velocity quantity
+                period_data['u_prime'] = period_data['u'] - period_data['u_mean']
+            # If u is in the DataFrame, get the mean and fluctuating quantities
+            if 'v' in period_data.columns:
+                period_data['v_mean'] = period_data['v'].mean()
+                # Calculate fluctuating velocity quantity
+                period_data['v_prime'] = period_data['v'] - period_data['v_mean']
+            dfs.append(period_data)
+            
+    print('1. {0:.3f} s'.format(time.time() - benchmark))
+    
+    df = pd.concat(dfs).sort_values('time')
+    for group, height in df.groupby('height'):
+        for subgroup, subdata in height.groupby(pd.Grouper(key='time', freq='30T')):
+            # Turbulent kinetic energy
+            e = (subdata['u_prime']**2 + subdata['v_prime']**2 + subdata['w_prime']**2)/2
+            # Variances
+            var_u = subdata['u_prime']**2
+            var_v = subdata['v_prime']**2
+            var_w = subdata['w_prime']**2
+            # Covariances
+            cov_u_w = (subdata['u_prime']**2)*(subdata['w_prime']**2)
+            cov_u_e = subdata['u_prime']*e
+            cov_w_e = subdata['w_prime']*e
+            
+            # Append to the DataFrame
+            subdata['e'] = e
+            subdata['var_u'], subdata['var_v'], subdata['var_w'] = var_u, var_v, var_w
+            subdata['cov_u_w'], subdata['cov_u_e'], subdata['cov_w_e'] = cov_u_w, cov_u_e, cov_w_e
+            
+            mean = subdata.mean().to_frame().T
+            mean['time'], mean['height'] = subgroup, group
+            dfs_.append(mean)
+            
+    print('2. {0:.3f} s'.format(time.time() - benchmark))
+    
+    df = pd.concat(dfs_)
+    df = df.assign(site=site)
+    df = df.set_index(['time', 'height', 'site'])
+    
+    return df.to_xarray() 
 
 def quality_filter(data):
     '''
@@ -264,6 +331,8 @@ def quality_filter(data):
     data = data.assign(ci=(["time", "site", "height"], arrs))
     data = data.where(~np.isnan(data['ci']))
     data = data.where(data['ci'] != 0)
+    # Filter data below 3000m to reduce outgoing file size
+    data = data.where(data['height'] <= 3000, drop=True)
     
     return data
 
@@ -271,25 +340,30 @@ if __name__ == '__main__':
     # Boolean control to handle if spectral analysis is generated
     spectral = True
     if spectral:
-        dates = pd.date_range(start='2021-07-31', end='2021-09-01', freq='D', closed='left')
+        dates = pd.date_range(start='2021-08-10', end='2021-08-16', freq='1D', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
             print('Processing: ', date_range)
             scan_type = 'DBS'
-            data = processor(date_range, spectral_analysis=True, sites=['STAT'], scan_type=scan_type)
-            if len(data) != 0:
-                data = quality_filter(data)
-                print(data)
-                filename = 'lidar_data_{0}-{1:02d}-{2:02d}_spectral_STAT_{3}.nc'.format(date_range[-1].date().year, date_range[-1].date().month, date_range[-1].date().day, scan_type)
-                data.to_netcdf(os.path.join(directory, filename))
+            sites = ['QUEE']
+            for site in sites:
+                start = time.time()
+                data = processor(date_range, spectral_analysis=True, sites=site, scan_type=scan_type)
+                start = time.time()
+                if len(data) != 0:
+                    data = quality_filter(data)
+                    data = detrend(data, site)
+                    filename = 'lidar_data_{0:02d}-{1:02d}-{2:02d}_spectral_{3}_turb.nc'.format(date_range[-1].date().year, date_range[-1].date().month, date_range[-1].date().day, site)
+                    data.to_netcdf(os.path.join(directory, filename))
+                    print(time.time()-start)
     else:
-        dates = pd.date_range(start='2021-07-31', end='2021-09-01', freq='M', closed='left')
+        dates = pd.date_range(start='2021-05-31', end='2021-07-01', freq='M', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
             print('Processing: ', date_range)
-            data = processor(date_range, spectral_analysis=False, sites=['BRON', 'QUEE', 'STAT'])
+            data = processor(date_range, spectral_analysis=False, sites=['BRON'])
             if len(data) != 0:
                 data = quality_filter(data)
                 filename = 'lidar_data_{0}-{1:02d}.nc'.format(date_range[-1].date().year, date_range[-1].date().month)
