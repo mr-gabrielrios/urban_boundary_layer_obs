@@ -46,7 +46,7 @@ def rolling_mean(arr, n=10):
     return arr
 
 
-def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='MANH', dbs=False, ):
+def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='MANH', dbs=False, event='normal', stability_method='alt'):
     '''
     Perform spectral analysis for a given set of lidar and flux tower data.
     Note that data is pre-selected (lidar data from 2021-07-31 to 08-31, flux tower data from 2021-07-31 to 08-10)
@@ -135,33 +135,62 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
         # List files containing Queens data
         date_range = [datetime.datetime.strptime(start_date, '%Y-%m-%d'),
                       datetime.datetime.strptime(end_date, '%Y-%m-%d')]
-        file_dir = '{0}/data/flux/{1}'.format(storage_dir, site)
-        files = [file for file in os.listdir(file_dir) 
-                 if file.split('.')[-1] == 'csv']
-        files = [file for file in files if '._' not in file]
-        files = [os.path.join(file_dir, file) for file in files 
-                 if (date_range[0] <= 
-                     datetime.datetime.strptime(file[0:8], '%Y%m%d') <= 
-                     date_range[-1])]
-        # Initialize list to hold DataFrames that will later be concatenated
-        ts_data = []
-        # Iterate through files to read the .dat files
-        for file in files: 
-            # Read in the .dat file. Keep 2nd row for column headings, skip the following rows (unnecessary metadata), replace all bad values with np.nan
-            temp = pd.read_table(file, sep=',', header=[0], na_values='NAN')
-            ts_data.append(temp)
-        # Concatenate the .dat file DataFrames
-        ts_data = pd.concat(ts_data)
-        # Adjust time index for daylight savings time (UTC-4)
-        # ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['datetime']) - datetime.timedelta(hours=4)
-        # Note: DST matching removed during investigation of spectral analysis
-        ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['datetime'])
-        # Define Queens building height.
-        ts_data['z'] = 44.6
-        # Drop zonal wind speed column
-        ts_data = ts_data.drop(columns='U')
-        # Rename wind direction column
-        ts_data = ts_data.rename(columns={'WD': 'wnd_dir_compass', 'USTAR': 'u_star', 'ZL': 'zeta', 'WS': 'U'})
+        if stability_method == 'surface':
+            
+            file_dir = '{0}/data/flux/{1}'.format(storage_dir, site)
+            files = [file for file in os.listdir(file_dir) 
+                     if file.split('.')[-1] == 'csv']
+            files = [file for file in files if '._' not in file]
+            files = [os.path.join(file_dir, file) for file in files 
+                     if (date_range[0] <= 
+                         datetime.datetime.strptime(file[0:8], '%Y%m%d') <= 
+                         date_range[-1])]
+            # Initialize list to hold DataFrames that will later be concatenated
+            ts_data = []
+            # Iterate through files to read the .dat files
+            for file in files: 
+                # Read in the .dat file. Keep 2nd row for column headings, skip the following rows (unnecessary metadata), replace all bad values with np.nan
+                temp = pd.read_table(file, sep=',', header=[0], na_values='NAN')
+                ts_data.append(temp)
+            # Concatenate the .dat file DataFrames
+            ts_data = pd.concat(ts_data)
+            # Adjust time index for daylight savings time (UTC-4)
+            # ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['datetime']) - datetime.timedelta(hours=4)
+            # Note: DST matching removed during investigation of spectral analysis
+            ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['datetime'])
+            # Define Queens building height.
+            ts_data['z'] = 44.6
+            # Drop zonal wind speed column
+            ts_data = ts_data.drop(columns='U')
+            # Rename wind direction column
+            ts_data = ts_data.rename(columns={'WD': 'wnd_dir_compass', 'USTAR': 'u_star', 'ZL': 'zeta', 'WS': 'U', 'MO_LENGTH': 'L'})
+        
+        else:
+            ''' Pull stability data for custom grouping. '''
+            stability_path = '/Users/gabriel/Documents/urban_boundary_layer_obs/dev/bin/assets'
+            # Get .dat files
+            zeta_files = [file for file in os.listdir(stability_path) if (file.split('.')[-1] == 'dat')]
+            # Format current input dates to allow for direct comparison with .dat filenames
+            # start, end = start_date.replace('-', ''), end_date.replace('-', '')
+            # zeta_files = [file for file in zeta_files 
+            #               if pd.to_datetime(file.split('_')[1][1:9]) >= pd.to_datetime(start) 
+            #               and pd.to_datetime(file.split('_')[2][1:9]) < pd.to_datetime(end)]
+            # Combine data by classifying into normal and extreme heat (or 'hw') events
+            zeta_data = []
+            for file in zeta_files:
+                if event in file:
+                    temp = pd.read_csv(os.path.join(stability_path, file))
+                    temp['event'] = event
+                zeta_data.append(temp)
+            zeta_data = pd.concat(zeta_data)
+            # Filter by site
+            zeta_data = zeta_data[zeta_data['site'] == site]
+            # Filter by height
+            zeta_data = zeta_data[zeta_data['height'] == height]
+            # Convert time values to datetime data type
+            zeta_data['time'] = pd.to_datetime(zeta_data['time'])
+            # Drop duplicates
+            zeta_data = zeta_data.drop_duplicates('time')
         
         ''' Pull lidar data. '''
         # Get lidar files dedicated for turbulence analysis
@@ -175,7 +204,9 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
         df = lidar_data.sel(time=slice(start_date, end_date)).to_dataframe()
         # Remove MultiIndex to allow for time and height indices to become columns
         df = df.reset_index()
-    
+        
+        
+        
     # Group DataFrame into 30-minute intervals. This allows for matching with 30-minute-averaged ts_data
     df_grouped = df.groupby(pd.Grouper(key='time', freq='30T'))
     
@@ -184,34 +215,83 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
     dfs = []
     # For the 30-minute binned DataFrames, add columns with data from the flux tower data.
     for label, data in df_grouped:
-        # Match lidar and flux tower data by timestamp
-        match = ts_data.loc[ts_data['TIMESTAMP'] == label].drop_duplicates()
-        # Filter out necessary columns for spectra normalization
-        match = match[['z', 'U', 'u_star', 'zeta', 'wnd_dir_compass']]
-        # If the matched DataFrame column is empty, fill with np.nan
-        for col in match.columns:
-            if match[col].empty:
-                match[col] = [np.nan]
-        # Append the matching value to the DataFrame as a column for each parameter needed for normalization.
-        data['z'] = np.repeat(match['z'].values, len(data))
-        # data['U'] = np.repeat(match['U'].values, len(data))
-        data['U'] = np.sqrt(data['u']**2 + data['v']**2)
-        data['u_star'] = np.repeat(match['u_star'].values, len(data))
-        data['zeta'] = np.repeat(match['zeta'].values, len(data))
-        data['wind_direction_surface'] = np.repeat(match['wnd_dir_compass'].values, len(data))
+        if stability_method == 'surface':
+            # Match lidar and flux tower data by timestamp
+            match = ts_data.loc[ts_data['TIMESTAMP'] == label].drop_duplicates()
+            # Filter out necessary columns for spectra normalization
+            match = match[['z', 'U', 'u_star', 'zeta', 'wnd_dir_compass', 'L']]
+            # If the matched DataFrame column is empty, fill with np.nan
+            for col in match.columns:
+                if match[col].empty:
+                    match[col] = [np.nan]
+            # Append the matching value to the DataFrame as a column for each parameter needed for normalization.
+            data['z'] = np.repeat(match['z'].values, len(data))
+            data['U'] = np.sqrt(data['u']**2 + data['v']**2)
+            data['u_star'] = np.repeat(match['u_star'].values, len(data))
+            data['zeta'] = np.repeat(match['zeta'].values, len(data))
+            data['L'] = np.repeat(match['L'].values, len(data))
+            data['wind_direction_surface'] = np.repeat(match['wnd_dir_compass'].values, len(data))
+        else:
+            # Match stability grouping to timestamp
+            stability_match = zeta_data.loc[zeta_data['time'] == label].drop_duplicates()
+            # Custom z value for Bronx
+            try:
+                
+                # Match lidar and flux tower data by timestamp
+                match = ts_data.loc[ts_data['TIMESTAMP'] == label].drop_duplicates()
+                # Filter out necessary columns for spectra normalization
+                match = match[['z', 'U', 'u_star', 'zeta', 'wnd_dir_compass', 'L']]
+                # If the matched DataFrame column is empty, fill with np.nan
+                for col in match.columns:
+                    if match[col].empty:
+                        match[col] = [np.nan]
+                data['z'] = np.repeat(match['z'].values, len(data))
+            except:
+                data['z'] = np.repeat(50, len(data))
+            data['U'] = np.sqrt(data['u']**2 + data['v']**2)
+            data['zeta'] = np.repeat(stability_match['ri_stability'].values, len(data))
+            data['MH'] = np.repeat(stability_match['pblh'].values, len(data))
+            
         # Append the matched DataFrame to the list of DataFrames
         dfs.append(data)
     # Concatenate the matched DataFrames
     dfs = pd.concat(dfs).sort_values('time')
-    
     # Filter out by wind direction - northerlies filtered out
-    if site == 'MANH':
-        dfs = dfs.where((dfs['wind_direction_surface'] >= 90) & (dfs['wind_direction_surface'] <= 270))
-    elif site == 'QUEE':
-        dfs = dfs.where((dfs['wind_direction_surface'] >= 180) & (dfs['wind_direction_surface'] < 360))
+    if stability_method == 'surface':
+        if site == 'MANH':
+            dfs = dfs.where((dfs['wind_direction_surface'] >= 90) & (dfs['wind_direction_surface'] <= 270))
+        elif site == 'QUEE':
+            dfs = dfs.where((dfs['wind_direction_surface'] >= 180) & (dfs['wind_direction_surface'] < 360))
     # Remove null times to save data
     dfs = dfs.dropna(subset=['time'])
-        
+    
+    ''' Assign alternate stability groups. '''
+    
+    if stability_method == 'alt':
+        # Define bins
+        bins = [-np.inf, 0, 0.2, np.inf]
+        # Define MH/L critical ratio
+        mhl = 1.5
+        # Define the convection ratio column (free vs forced). 
+        # Commented out due to lack of L data at Bronx.
+        # dfs['MHL'] = dfs['MH'] / dfs['L']
+        # Group the matched DataFrames by stability classification
+        dfs_grouped_zeta = dfs.groupby(pd.cut(dfs['zeta'], bins))
+        dfs_ = []
+        # Iterate through data to define groups
+        for group, subdata in dfs_grouped_zeta:
+            if group.left == 0.2:
+                subdata['stability'] = 'stable_lt'
+            elif group.left == 0:
+                subdata['stability'] = 'stable_dt'
+            elif group.left == -np.inf:
+                # Commented out due to lack of L data at Bronx.
+                # subdata['stability'] = np.where(subdata['MHL'] < 1.5, 'unstable_forced', 'unstable_free')
+                subdata['stability'] = 'unstable_forced'
+            dfs_.append(subdata)
+    
+        dfs = pd.concat(dfs_)
+    
     return dfs
 
 def spectral_analysis(dfs, param='w', sonic_anemometer=False):
@@ -241,9 +321,9 @@ def spectral_analysis(dfs, param='w', sonic_anemometer=False):
         dt = 1
     
     # Define stability groups
-    bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
+    bins = [-np.inf, 0, 0.2, np.inf]
     # Group the matched DataFrames by stability classification
-    dfs_grouped_zeta = dfs.groupby(pd.cut(dfs['zeta'], bins))
+    dfs_grouped_zeta = dfs.groupby('stability')
     
     ''' Perform spectral analysis for each stability grouping. '''
     # Initialize dictionary to hold all grouped spectra
@@ -472,7 +552,7 @@ def turbulence_stats(data):
     
     return data_
 
-def stability_plots(datasets, param='I_u', norm=None, std_plot=True):
+def stability_plots(datasets, stability_method='surface', param='I_u', norm=None, std_plot=True):
     '''
     Function to plot data from a DataFrame as grouped by stability.
 
@@ -490,28 +570,41 @@ def stability_plots(datasets, param='I_u', norm=None, std_plot=True):
     # Convert the input data to list form if it's not in it already
     if type(datasets) is not list:
         datasets = [datasets]
+        
+    # Determine exponent for normalization
+    # If normalization isn't performed, exponent to 0 so the normalization value is 1
+    # Else, set to 3 for TKE normalization and 2 for all else
+    if norm is None:
+        exp = 0
+    else:
+        exp = 3 if '_e' in param else 2
     
-    # Define stability group bins
-    bins = [-np.inf, -2, -1, -0.1, 0.1, 1, np.inf]
+    if stability_method == 'surface':
+        # Define stability group bins
+        bins = [-np.inf, -0.1, 0.1, np.inf]
+    else:
+        # Define alternate stability groups
+        bins = [-np.inf, 0, 0.2, np.inf]
     # Define colors and markers for plotting
     colors = ['blue', 'red']
     markers = ['o', 's']
     # Initialize figures
-    fig, axs = plt.subplots(ncols=len(bins)-1, sharey=True)
+    fig, axs = plt.subplots(ncols=len(bins), sharey=True)
     
     # Initialize plot x-limits
     vmin, vmax = 0, 0
     
     for i, data in enumerate(datasets):
-    
-        ''' Calculate turbulent intensities. '''
         # Initialize dictionaries for intensity mean, standard deviation values, and stability group names
         means, stds, groups = {}, {}, None
         # Group by height and iterate over each height
         for height, height_data in data.groupby('height'):
             # Group by zeta
             # Group the matched DataFrames by stability classification
-            stability_groups = height_data.groupby(pd.cut(height_data['zeta'], bins))
+            if stability_method == 'surface':
+                stability_groups = height_data.groupby(pd.cut(height_data['zeta'], bins))
+            else:
+                stability_groups = height_data.groupby('stability')
             # Save group labels for stability groupings
             groups = list(stability_groups.groups.keys())
             # Collect means and standard deviations at each height
@@ -521,11 +614,11 @@ def stability_plots(datasets, param='I_u', norm=None, std_plot=True):
                 # Append mean and standard deviation to respective dictionaries
                 # If normalization is enabled, do so here. Else, use the non-normalized data.
                 if norm:
-                    mean.append((subdata[param]/subdata[norm]).mean())
-                    std.append((subdata[param]/subdata[norm]).std())
+                    mean.append((subdata[param]/subdata[norm]**exp).mean())
+                    std.append((subdata[param]/subdata[norm]**exp).std())
                 else:
-                    mean.append(subdata[param].mean())
-                    std.append(subdata[param].std())
+                    mean.append((subdata[param]).mean())
+                    std.append((subdata[param]).std())
             # Append to dict
             means[height], stds[height] = mean, std
         # Generate DataFrame for mean and standard deviations
@@ -577,19 +670,67 @@ def stability_plots(datasets, param='I_u', norm=None, std_plot=True):
     fig.tight_layout()
     return means, stds
 
-def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], plot_spectra=False):
+def stability_distribution(dataset, height=100):
+    '''
+    Plot the stability count per hour to show the distribution of the dataset when future data is grouped by stability bins.
+
+    Parameters
+    ----------
+    dataset : Pandas DataFrame
+        DataFrame containing basic output data from the processor function.
+    height : int, optional
+        Height at which stability data is being counted. The default is 100.
+    '''    
+    
+    # Get hour number and append to corresponding entries
+    dataset['hour'] = dataset['time'].dt.hour
+    # Filter data for specific height to prevent duplicates
+    dataset = dataset[dataset['height'] == height]
+    
+    # Initialize list of dictionaries that will be concatenated into a DataFrame
+    counts = []
+    # Define stability bins
+    bins = [-np.inf, -0.1, 0.1, np.inf]
+    # Get stability bin interval names
+    bin_names = pd.cut(dataset['zeta'], bins=bins).unique()
+    # Iterate through the stability groupings
+    for group, group_data in dataset.groupby(pd.cut(dataset['stability'])):
+        # Iterate over the hours in each stability group dataset
+        # Note that value counts are used to count the number of stability grouping occurences for each given hour
+        for hour, count in enumerate(group_data['hour'].value_counts()):
+            # Initialize dictionary that will be used for DataFrame conversion later
+            temp = {}
+            # Add hour to dictionary
+            temp['hour'] = group_data['hour'].value_counts().index[hour]
+            # Iterate through the bins to append data where valid. Zero otherwise.
+            for bin_ in bin_names:
+                if bin_ == group:
+                    temp[bin_] = count
+                else:
+                    temp[bin_] = 0
+            counts.append(temp)
+    # Convert the list of dictionaries to a DataFrame and compress it by summing hour counts and ordering the axes by increasing stability.
+    counts = pd.DataFrame(counts).groupby('hour').sum().sort_index(axis=1)
+    # Remove the unnecessary 'nan' column
+    counts = counts.loc[:, (counts != 0).any(axis=0)]
+    # Plot
+    counts.plot(kind='bar', stacked=True, cmap='RdYlBu')
+
+def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], event='normal',  stability_method='normal', plot_spectra=False):
     
     # Initialize list of DataFrames that will be concatenated
     data, spectra = [], {}
     # Iterate over list of heights
     for height in heights:
         # Load lidar and/or anemometer data
-        df = processor(start_date, end_date, height=height, site=site)
+        df = processor(start_date, end_date, height=height, site=site, event=event, stability_method=stability_method)
         data.append(df)
-        spectra[height] = spectral_analysis(df)
+        # spectra[height] = spectral_analysis(df)
     
     # Concatenate data
     data = pd.concat(data)
+    # Adjust for local time (UTC-4)
+    data['time'] = data['time'] - datetime.timedelta(hours=4)
     # Plot spectra
     if plot_spectra:
         spectral_plotter(list(spectra.values()), list(spectra.keys()))
@@ -603,7 +744,7 @@ def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], plot_s
     
     # Plot turbulent intensities
     for component in ['u', 'v', 'w']:
-        stability_plots([turbulence_normal], param='I_{0}'.format(component))
+        stability_plots([turbulence_normal], param='I_{0}'.format(component), stability_method=stability_method)
     
     return data, turbulence_normal
 
@@ -611,9 +752,16 @@ def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], plot_s
 if __name__ == '__main__':
 
     # Define date range
-    start_date, end_date = ['2021-08-01', '2021-08-16']
+    start_date, end_date = ['2021-08-12', '2021-08-15']
     # Define height range
-    heights, step = [100, 1000], 100
-    # Generate data for a given site and heights
-    output, turbulence_data = main(start_date, end_date, site='STAT', heights=np.arange(heights[0], heights[1]+step, step), plot_spectra=False)
-    
+    heights, step = [100, 1000], 300
+    # Collection list to be concatenated later
+    turbulence_data = []
+    for day_ in clear_sky_days_2021[0:2]:
+        print(day_)
+        start, end = [day_.strftime('%Y-%m-%d'), 
+                      (day_ + datetime.timedelta(days=1)).strftime('%Y-%m-%d')]
+        # Generate data for a given site and heights
+        output, turbulence_data_ = main(start, end, site='STAT', heights=np.arange(heights[0], heights[1]+step, step), event='normal', stability_method='surface', plot_spectra=False)
+        turbulence_data.append(turbulence_data_)
+    turbulence_data = pd.concat(turbulence_data)
