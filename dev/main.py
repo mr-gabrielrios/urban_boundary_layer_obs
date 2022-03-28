@@ -85,8 +85,6 @@ def unify(dates, storage_dir=None):
         mwr_data = mwr.accessor(dates, data_access='local')
     print('Microwave radiometer data accessed.')
     
-    
-    
     # Ignore ts_data when not performing spectral analysis or Manhattan-based analysis
     '''
     ts_data = flux_tower.processor(date_range, data_type='ts_data', data_access='local', height=mwr_data.height.values, spectral_analysis=False)
@@ -100,6 +98,7 @@ def unify(dates, storage_dir=None):
                         set(ts_data.time.values)))
         data = xr.merge([lidar_data, mwr_data, ts_data], fill_value=np.nan)
     else:
+        print(lidar_data, mwr_data)
         times = list(sorted(set(lidar_data.time.values) & 
                         set(mwr_data.time.values)))  
         data = xr.merge([lidar_data, mwr_data], fill_value=np.nan)
@@ -207,7 +206,7 @@ def ts_data(data):
     df_['time'] = times_
     df_['zeta'] = zetas_
     # Repeat values along the height axis
-    values = np.tile(df_['zeta'].to_numpy(), (len(normal_data.height.values), 1))
+    values = np.tile(df_['zeta'].to_numpy(), (len(data.height.values), 1))
     # Create DataArray
     data['zeta'].loc[{'site': 'MANH'}] = xr.DataArray(data = values,
                                                       dims = times.dims)
@@ -247,7 +246,7 @@ def sea_breeze(data):
     
     return sea_breeze_data
 
-def main(dates):
+def consolidate(dates):
     storage_dir = '/Volumes/UBL Data/data/storage'
     
     data = unify(dates, storage_dir=storage_dir)
@@ -316,105 +315,64 @@ def dst_filter(dates):
     
     return dates
 
-if __name__ == '__main__':
+def ri_stability_export(data, data_type='normal'):
+    '''
+    This method exports bulk Richardson method stability data to a .dat file for turbulence grouping.
+    '''
     
-    print('Running...')
+    # Get DataFrame with bulk Richardson stability data
+    out = data[['pblh', 'ri_stability']].to_dataframe().reset_index()
+    # Get time bounds
+    min_time = datetime.datetime.strftime(pd.to_datetime(min(data['ri_stability'].time.values)), '%Y%m%d')
+    max_time = datetime.datetime.strftime(pd.to_datetime(max(data['ri_stability'].time.values)), '%Y%m%d')
+    # Generate file name
+    fname = '{0}_s{1}_e{2}.dat'.format(data_type, min_time, max_time)
+    # Generate file path
+    fpath = os.path.join('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/bin/assets', fname)
+    # Save to local directory
+    out.to_csv(fpath)
+
+def main(dates, mode='auxiliary', date_selection='all', data=None):
+    '''
+    Manage the execution of scripts for integrated data management.
+
+    Parameters
+    ----------
+    dates : list
+        List of 2 strings with dates of format yyyy-mm-dd.
+    mode : str, optional
+        Mode of operation of the script. The default is 'auxiliary'.
+        Modes are 'run' (full execution of script, long runtime) and 'auxiliary' (execution of supplementary scripts)
+    date_selection: str, optional
+        Mode of date selection of the script. The default is 'all'.
+        Modes are 'all' (all days within the range are computed for) and 'select' only some days are chosen for analysis.
+    '''
     
-    # Define boolean for loading data if needed. Should be False assuming pickle data is loaded.
-    load_data = 'aux'
-    
-    dates = ['2018-06-01', '2021-08-31']
-    # Obtain days pertaining to heat wave events
-    date_range = pd.date_range(start=dates[0], end=dates[-1], freq='D')
-    
-    if load_data == 'run':
-        # Obtain days pertaining to heat wave events
-        date_range = pd.date_range(start=dates[0], end=dates[-1], freq='D')
-        heat_wave_dates = [date.to_pydatetime() for date in list(sorted(set(asos.main(date_range))))]
-        
-        ''' Pick 75% clear sky days, 25% days with precipitation. '''
-        
-        number_of_days = 36
-        # Share of clear sky days
-        share = 1
-        
-        # Get clear sky and precipitation days.
-        # Skip if these are loaded into memory already
-        if 'clear_sky_days' not in globals():
-            clear_sky_days_raw, precip_days_raw = asos.sky_props_finder(date_range, locs=[(0, 0)])
-            # Filter out DST dates
-            clear_sky_days_raw = dst_filter(clear_sky_days_raw)
-            # Pick random dates
-            clear_sky_days = [clear_sky_days_raw[i] for i in 
-                              random.sample(range(0, len(clear_sky_days_raw)),
-                                            int(len(clear_sky_days_raw) * share))]
-            # Filter out DST dates
-            precip_days_raw = dst_filter(precip_days_raw)
-            # Pick random dates
-            precip_days = [precip_days_raw[i] for i in 
-                              random.sample(range(0, len(precip_days_raw)),
-                                            int(len(precip_days_raw) * (1-share)))]
-        
-        # Initialize final list of normal dates
-        normal_dates = []
-        # Populate preliminary list with set of these days
-        normal_dates_ = pd.to_datetime(list(sorted(set(clear_sky_days).union(set(precip_days)))))
-        # Ensure days from each month are presented
-        years, months, samples = range(2018, 2022), range(5, 10), number_of_days // 12
-        # List of dates with low data quality
-        low_quality_dates = [datetime.date(2018, 2, 15),
-                              datetime.date(2018, 7, 22),
-                              datetime.date(2018, 7, 7),
-                              datetime.date(2018, 8, 1),
-                              datetime.date(2018, 8, 2),
-                              datetime.date(2018, 8, 3),
-                              datetime.date(2019, 2, 13),
-                              datetime.date(2019, 3, 3),
-                              datetime.date(2019, 6, 4),
-                              datetime.date(2020, 6, 9),
-                              datetime.date(2021, 2, 4),
-                              datetime.date(2021, 3, 2),
-                              datetime.date(2021, 5, 29),
-                              datetime.date(2021, 5, 30),
-                              datetime.date(2021, 6, 15),
-                              datetime.date(2021, 7, 7)]
-        # Iterate over each year and each month and grab a date from each
-        for year in years:
-            for month in months:
-                # Get dates specific to the current iterand month and year
-                dates = normal_dates_.drop(normal_dates_.where(
-                        ~((normal_dates_.year == year) & 
-                          (normal_dates_.month == month))))
-                # If the list of dates isn't empty, pick 2 random dates
-                if list(dates):
-                    dates_ = random.sample(list(dates), samples)
-                    # Remove low quality dates
-                    [normal_dates.append(date) for date in dates_ if date not in low_quality_dates]
-                else:
-                    continue 
-                
-        heat_wave_data = main(heat_wave_dates)
-        normal_data = main(normal_dates)
-        # Assign zeta values for Manhattan data
-        normal_data = ts_data(normal_data)
-        heat_wave_data = ts_data(heat_wave_data)
-        
-    
-    elif load_data == 'aux':
+    ''' Run auxiliary functions to pre-existing data. '''
+    if mode == 'auxiliary':
+        normal_data, heat_wave_data = data
+        # Add PBLH data variable to Datasets
+        normal_data = functions.virtual_potential_temperature(normal_data)
+        heat_wave_data = functions.virtual_potential_temperature(heat_wave_data)
         # Add PBLH data variable to Datasets
         normal_data = pblh.gradient(normal_data)
         heat_wave_data = pblh.gradient(heat_wave_data)
+        # Add PBLH data variable to Datasets
+        normal_data = functions.bulk_richardson_number(normal_data, mode='surface')
+        heat_wave_data = functions.bulk_richardson_number(heat_wave_data, mode='surface')
         # Assign units to data
         normal_data = attrs(normal_data)
         heat_wave_data = attrs(heat_wave_data)
+        # Assign stability classification
+        normal_data = functions.bulk_richardson_number_stability(normal_data)
+        heat_wave_data = functions.bulk_richardson_number_stability(heat_wave_data)
         
         ''' Filter out stability data by surface wind direction due to flow obstructions. '''
         # Only filter out Queens data
         normal_data['zeta'] = normal_data['zeta'].where((normal_data['wind_direction'].sel(site='QUEE', height=0) >= 180) & (normal_data['wind_direction'].sel(site='QUEE', height=0) < 360))
         heat_wave_data['zeta'] = heat_wave_data['zeta'].where((heat_wave_data['wind_direction'].sel(site='QUEE', height=0) >= 180) & (heat_wave_data['wind_direction'].sel(site='QUEE', height=0) < 360))
         
-        # Remove standard deviations from selected fields. Only enable for unfiltered data.
-
+        # Remove standard deviations from selected fields. Only enable for unfiltered data
         sigma = 4
         for var in ['U']:
             normal_data[var] = normal_data[var].where(
@@ -450,7 +408,113 @@ if __name__ == '__main__':
                            '2021-08-24',
                            '2021-08-25']
         
-        del dates, date_range, times, bools
+        # Organize sea breeze data
+        sea_breeze_datasets = [sea_breeze_data_normal, sea_breeze_data_hw, heat_wave_data_no_sb]
         
+        return normal_data, heat_wave_data, sea_breeze_datasets
+
+    # Run scripts to generate data
+    elif mode == 'run':
+        date_range = pd.date_range(start=dates[0], end=dates[-1], freq='D')
+        # Obtain days pertaining to heat wave events
+        heat_wave_dates = [date.to_pydatetime() for date in list(sorted(set(asos.main(date_range))))]
+        
+        ''' Define clear sky/precipitation day distribution. '''
+        # Number of days
+        number_of_days = 36
+        # Share of clear sky days
+        share = 1
+        
+        # Get clear sky and precipitation days.
+        # Skip if these are loaded into memory already.
+        if 'clear_sky_days' not in globals():
+            clear_sky_days_raw, precip_days_raw = asos.sky_props_finder(date_range, locs=[(0, 0)])
+            # Filter out DST dates
+            clear_sky_days_raw = dst_filter(clear_sky_days_raw)
+            # Pick random dates
+            clear_sky_days = [clear_sky_days_raw[i] for i in 
+                              random.sample(range(0, len(clear_sky_days_raw)),
+                                            int(len(clear_sky_days_raw) * share))]
+            # Filter out DST dates
+            precip_days_raw = dst_filter(precip_days_raw)
+            # Pick random dates
+            precip_days = [precip_days_raw[i] for i in 
+                              random.sample(range(0, len(precip_days_raw)),
+                                            int(len(precip_days_raw) * (1-share)))]
+        
+        # Initialize final list of normal dates
+        normal_dates = []
+        # Populate preliminary list with set of these days
+        if date_selection == 'select':
+            normal_dates_ = pd.to_datetime(list(sorted(set(clear_sky_days).union(set(precip_days)))))
+        else:
+            normal_dates_ = date_range
+        
+        # Ensure days from selected months are presented
+        years, months, samples = [[min(date_range).year, max(date_range).year], 
+                                  [min(date_range).month, max(date_range).month+1],
+                                  number_of_days // 12]
+        months = range(5, 10) if (min(months) < 5 or max(months) > 10) else months
+        
+        # List of dates with low data quality
+        low_quality_dates = [datetime.date(2018, 2, 15),
+                              datetime.date(2018, 7, 22),
+                              datetime.date(2018, 7, 7),
+                              datetime.date(2018, 8, 1),
+                              datetime.date(2018, 8, 2),
+                              datetime.date(2018, 8, 3),
+                              datetime.date(2019, 2, 13),
+                              datetime.date(2019, 3, 3),
+                              datetime.date(2019, 6, 4),
+                              datetime.date(2020, 6, 9),
+                              datetime.date(2021, 2, 4),
+                              datetime.date(2021, 3, 2),
+                              datetime.date(2021, 5, 29),
+                              datetime.date(2021, 5, 30),
+                              datetime.date(2021, 6, 15),
+                              datetime.date(2021, 7, 7)]
+            
+        # Iterate over each year and each month and grab a date from each
+        for year in years:
+            for month in months:
+                # Get dates specific to the current iterand month and year
+                filter_ = normal_dates_.where(~((normal_dates_.year == year) & 
+                                                (normal_dates_.month == month)))
+                # Create boolean for dates that don't fit the criteri
+                filter_bool = pd.isnull(filter_)
+                dates = normal_dates_[~filter_bool]
+                # If the list of dates isn't empty, pick random dates
+                if list(dates):
+                    if date_selection == 'all':
+                        dates_ = list(dates)
+                    else:
+                        dates_ = random.sample(list(dates), samples)
+                    # Remove low quality dates
+                    [normal_dates.append(date) for date in dates_ if date not in low_quality_dates]
+                else:
+                    continue 
+        
+        normal_data = consolidate(normal_dates)
+        heat_wave_data = consolidate(heat_wave_dates)
+        # Assign zeta values for Manhattan data
+        normal_data = ts_data(normal_data)
+        heat_wave_data = ts_data(heat_wave_data)
+        
+    return normal_data, heat_wave_data, None
+        
+
+if __name__ == '__main__':
+    
+    dates = ['2021-08-01', '2021-08-31']
+    
+    if 'normal_data' in globals() and 'heat_wave_data' in globals():
+        normal_data = normal_data
+        heat_wave_data = heat_wave_data
+        # Grab data
+        normal_data, heat_wave_data, sea_breeze_datasets = main(dates, mode='auxiliary', data=[normal_data, heat_wave_data])
+        # Export stability data
+        ri_stability_export(normal_data, data_type='normal')
+        ri_stability_export(heat_wave_data, data_type='hw')
     else:
-        pass
+        normal_data, heat_wave_data, sea_breeze_datasets = main(dates, mode='run', data=None)
+        normal_data, heat_wave_data, sea_breeze_datasets = main(dates, mode='auxiliary', data=[normal_data, heat_wave_data])
