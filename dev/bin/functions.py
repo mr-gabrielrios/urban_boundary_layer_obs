@@ -8,7 +8,7 @@ Description:    This script contains functions to derive certain meteorological 
 # Imports
 import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
-import bin.spectral
+import bin.turbulence
 
 def mean_horizontal_wind(data):
     '''
@@ -192,7 +192,7 @@ def specific_humidity(data):
     return data
     
     
-def bulk_richardson_number(data, mode='surface'):
+def bulk_richardson_number(data, mode='surface', heights=[100, 200]):
     
     g = 9.81
     if mode == 'surface':
@@ -210,6 +210,24 @@ def bulk_richardson_number(data, mode='surface'):
         ri = buoyancy_param * num/den
         
     data['ri'] = ri
+    
+    return data
+
+def bulk_richardson_number_stability(data, heights=[100, 150]):
+    
+    ''' Mode to calculate UBL stability based on a differential Ri number in the lower-level of the UBL. '''
+    
+    g = 9.81
+    h_max, h_min = max(heights), min(heights)
+    buoyancy_param = 2*g/(data['virtual_potential_temperature'].sel(height=h_max) + data['virtual_potential_temperature'].sel(height=h_min))
+    num = data['virtual_potential_temperature'].sel(height=200) - data['virtual_potential_temperature'].sel(height=h_min)
+    du = data['u'].sel(height=h_max) - data['u'].sel(height=h_max)
+    dv = data['v'].sel(height=h_max) - data['v'].sel(height=h_min)
+    den = du**2 + dv**2
+    ri = buoyancy_param * (h_max-h_min) * num/den
+    ri = np.dstack([ri]*len(data.height))
+        
+    data['ri_stability'] = (['time', 'site', 'height'], ri)
     
     return data
 

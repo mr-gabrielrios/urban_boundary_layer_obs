@@ -252,10 +252,17 @@ def temperature_profiles(lst_sst_temperatures, land_coords=[18, 28], sea_coords=
     ax[0].legend(frameon=False, loc='upper left')
     ax[1].set_xlim([0, 23])
     
+    # Define x-tick labels
+    for ax_ in fig.axes:
+        ax_.set_xticks(np.arange(0, 24, 3))
+        n = 2  # Keeps every nth label
+        [l.set_visible(False) for (i,l) in 
+         enumerate(ax_.xaxis.get_ticklabels()) if i % n != 0]
+    
     # Plot metadata
-    ax[0].set_ylabel('Temperature [K]')
-    ax[1].set_ylabel('$T_{LST} - T_{SST}$ [K]')
-    ax[1].set_xlabel('Hour [LST]')
+    ax[0].set_ylabel('Temperature [K]', labelpad=10)
+    ax[1].set_ylabel('$T_{LST} - T_{SST}$ [K]', labelpad=10)
+    ax[1].set_xlabel('Hour [LST]', labelpad=10)
     fig.tight_layout()
 
 if __name__ == '__main__':

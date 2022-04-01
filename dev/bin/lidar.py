@@ -5,6 +5,10 @@ Path:           ~/bin/lidar.py
 Description:    Process and analyze data from the Leosphere WindCube lidar on top of Steinman Hall.
 """
 
+# Suppress warnings
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.filterwarnings("ignore")
 import datetime, netCDF4 as nc, numpy as np, os, pandas as pd, time, xarray as xr
 
 # Notes:
@@ -141,6 +145,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
         else:
             for file in file_dict[key]:
                 print(file)
+                benchmark = time.time()
                 # Open netCDF file
                 temp = nc.Dataset(file)
                 # Get group name where data is stored. Skip file if there's nothing in there.
@@ -168,6 +173,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 date = datetime.datetime.strptime(file.split('/')[-1].split('.')[0], '%Y%m%d')
                 # Create time vector from milliseconds array in the netCDF 'time' variable
                 times = [(datetime.timedelta(milliseconds=float(t)) + date) for t in temp['radial'][group]['time'][:].data]
+                print('Checkpoint 1: {0:.4f}s'.format(time.time() - benchmark))
                 
                 # Get height vector from array in the netCDF 'height' variable
                 heights = [float(i) for i in temp['radial'][group]['range'][:].data]
@@ -182,11 +188,14 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 # Assign the current file location to the xArray Dataset
                 temp = temp.assign_coords(site=key).expand_dims('site')
                 # Resample data to lower frequencies if not being used for spectral analysis
+                print('Checkpoint 2: {0:.4f}s'.format(time.time() - benchmark))
                 if not spectral_analysis:
                     temp = temp.resample(time='5T').mean()
                 _, index = np.unique(temp.time, return_index=True)
                 temp = temp.isel(time=index)
                 ds_list.append(temp)
+                
+                print('Checkpoint 3: {0:.4f}s'.format(time.time() - benchmark))
                 
     # Concatenate data and sort by time. This for loop cuts off the last lidar data entry of the day to prevent time axis conflicts when merging.
     for i, ds in enumerate(ds_list):
@@ -197,6 +206,8 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
         if 'time' in data.dims:
             data = data.sortby('time')
         data = quality_filter(data)
+    
+    print('Checkpoint 4: {0:.4f}s'.format(time.time() - benchmark))
     
     return data
 
@@ -218,11 +229,64 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
         xArray Dataset with averaged data along with primary turbulent derived characteristics.
     '''
     
+    # Try parallelizing
+    from joblib import Parallel, delayed
+    import multiprocessing 
+    
+    def turb_vars_primary(period_data, period_name):
+        # Calculate mean velocity quantity per period
+        period_data['w_mean'] = period_data['w'].mean()
+        
+        # Calculate fluctuating velocity quantity
+        period_data['w_prime'] = period_data['w'] - period_data['w_mean']
+        # If u is in the DataFrame, get the mean and fluctuating quantities
+        if 'u' in period_data.columns:
+            period_data['u_mean'] = period_data['u'].mean()
+            # Calculate fluctuating velocity quantity
+            period_data['u_prime'] = period_data['u'] - period_data['u_mean']
+        # If u is in the DataFrame, get the mean and fluctuating quantities
+        if 'v' in period_data.columns:
+            period_data['v_mean'] = period_data['v'].mean()
+            # Calculate fluctuating velocity quantity
+            period_data['v_prime'] = period_data['v'] - period_data['v_mean']
+        return period_data
+    
+    def turb_vars_secondary(subdata, subgroup):
+         # Turbulent kinetic energy
+        e = (subdata['u_prime']**2 + subdata['v_prime']**2 + subdata['w_prime']**2)/2
+        # Variances
+        var_u = subdata['u_prime']**2
+        var_v = subdata['v_prime']**2
+        var_w = subdata['w_prime']**2
+        # Covariances
+        cov_u_w = (subdata['u_prime']**2)*(subdata['w_prime']**2)
+        cov_u_e = subdata['u_prime']*e
+        cov_w_e = subdata['w_prime']*e
+        # Append to the DataFrame
+        subdata['e'] = e
+        subdata['var_u'], subdata['var_v'], subdata['var_w'] = var_u, var_v, var_w
+        subdata['cov_u_w'], subdata['cov_u_e'], subdata['cov_w_e'] = cov_u_w, cov_u_e, cov_w_e
+        
+        mean = subdata.mean().to_frame().T
+        mean['time'] = subgroup
+        
+        return mean
+    
+    
+    def applyParallel(dfGrouped, func):
+        ''' Parallel function to be applied to grouped Pandas operations. '''
+        retLst = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(func)(group, name) for name, group in dfGrouped)
+        return pd.concat(retLst)
+    
     benchmark = time.time()
     # Initialize temporary container list
-    dfs, dfs_ = [], []
+    dfs = []
+    
     for height in data.height.values:
         working_data = data.sel(site=site, height=height).to_dataframe().reset_index()
+        working_data_grouped = working_data.groupby(pd.Grouper(key='time', freq=detrend_period))
+        
+        '''
         # Iterate over every de-trending period
         for group, period_data in working_data.groupby(pd.Grouper(key='time', freq=detrend_period)):
             # Calculate mean velocity quantity per period
@@ -241,11 +305,17 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
                 # Calculate fluctuating velocity quantity
                 period_data['v_prime'] = period_data['v'] - period_data['v_mean']
             dfs.append(period_data)
-            
-    print('1. {0:.3f} s'.format(time.time() - benchmark))
-    
+        '''
+        # Apply parallel processing (about 30x speedup)
+        dfs_ = applyParallel(working_data_grouped, turb_vars_primary)
+        dfs.append(dfs_)
+        
     df = pd.concat(dfs).sort_values('time')
+    dfs_ = []
+    print('Checkpoint 5a. {0:.4f} s'.format(time.time() - benchmark))
+    
     for group, height in df.groupby('height'):
+        '''
         for subgroup, subdata in height.groupby(pd.Grouper(key='time', freq='30T')):
             # Turbulent kinetic energy
             e = (subdata['u_prime']**2 + subdata['v_prime']**2 + subdata['w_prime']**2)/2
@@ -265,9 +335,15 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
             
             mean = subdata.mean().to_frame().T
             mean['time'], mean['height'] = subgroup, group
-            dfs_.append(mean)
+        '''
+        
+        # Apply parallel processing (about 7x speedup)
+        height_grouped = height.groupby(pd.Grouper(key='time', freq='30T'))
+        mean = applyParallel(height_grouped, turb_vars_secondary)
+        mean['height'] = group
             
-    print('2. {0:.3f} s'.format(time.time() - benchmark))
+        dfs_.append(mean)
+    print('Checkpoint 5b. {0:.4f} s'.format(time.time() - benchmark))
     
     df = pd.concat(dfs_)
     df = df.assign(site=site)
@@ -336,17 +412,33 @@ def quality_filter(data):
     
     return data
 
+def parallel_check(site, date):
+    ''' Method to inspect differences between datasets processed using serial and parallel methods. Date must be in YYYY-mm-dd format. '''
+    directory = '/Volumes/UBL Data/data/storage/lidar'
+    # Define file paths. Assume only one match per file type.
+    path_serial = [os.path.join(directory, file) for file in os.listdir(directory) if (site in file) and (date in file) and ('parallel' not in file) and ('DBS' not in file)][0]
+    path_parallel = [os.path.join(directory, file) for file in os.listdir(directory) if (site in file) and (date in file) and ('parallel' in file) and ('DBS' not in file)][0]
+    # Load serial dataset
+    serial = xr.open_dataset(path_serial)
+    # Load parallel dataset
+    parallel = xr.open_dataset(path_parallel)
+    # Check differences. Note that np.inf or -np.inf may be possible for smaller values.
+    for var_ in list(serial.data_vars):
+        max_err_mag = np.nanmax(np.abs((serial[var_].sel(site=site) - parallel[var_].sel(site=site))))
+        max_err_pct = 100*np.nanmax((serial[var_].sel(site=site) - parallel[var_].sel(site=site))/serial[var_].sel(site=site))
+        print("Variable '{0}' had a maximum error of {1:.3f} and {2:.2f}%".format(var_, max_err_mag, max_err_pct))
+
 if __name__ == '__main__':
     # Boolean control to handle if spectral analysis is generated
     spectral = True
     if spectral:
-        dates = pd.date_range(start='2021-08-10', end='2021-08-16', freq='1D', closed='left')
+        dates = pd.date_range(start='2021-08-03', end='2021-08-31', freq='1D', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
             print('Processing: ', date_range)
             scan_type = 'DBS'
-            sites = ['QUEE']
+            sites = ['BRON']
             for site in sites:
                 start = time.time()
                 data = processor(date_range, spectral_analysis=True, sites=site, scan_type=scan_type)

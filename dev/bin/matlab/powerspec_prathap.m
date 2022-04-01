@@ -14,4 +14,4 @@ Pxx = abs(fft(x, nfft)).^2/length(x)/Fs;
 % Truncate to the appropriate length
 Pxx = 2.*Pxx(1:length(f));
 % Get the running mean
-% Pxx = runmean(Pxx, 21);
+Pxx = runmean(Pxx, 21);

@@ -23,7 +23,7 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 logging.captureWarnings(True)
 
-def processor(date_range, data_type='flux', data_access='online', height=np.nan, spectral_analysis=False):
+def processor(date_range, data_type='flux', data_access='online', height=np.nan, spectral_analysis=False, directory=None):
     '''
     Reads raw data from flux or ts_data files from the ORSL Loggernet or from the data folder.
 
@@ -109,7 +109,8 @@ def processor(date_range, data_type='flux', data_access='online', height=np.nan,
             return data
     # Only Manhattan data can be accessed
     else:
-        directory = '/Volumes/UBL Data/data/flux/MANH'
+        if not directory:
+            directory = '/Volumes/UBL Data/data/flux/MANH'
         # Ignore flux data and just use ts_data.
         # 30-min 'flux' data is somewhat useless, since relevant parameters can be calculated from 1 Hz meteorological data.
         # Build header from pre-defined CSV
@@ -217,7 +218,10 @@ def plotter(data, param='H', date_range=None):
 
 
 if __name__ == '__main__':
-    ts_data = processor(['20210731', '20210811'], data_type='ts_data', data_access='local', height=0)
+    # USER INPUT. Define directory where CCNY flux data is kept.
+    directory = None
+    # USER INPUT. Start date and end dates must be input in the YYYYMMDD format. Saves data to the 'ts_data' variable.
+    ts_data = processor(['20210731', '20210811'], data_type='flux', data_access='local', height=0, directory=directory)
     
     # Boolean to trigger file saving line. 
     # Normally used for the period between 2021-07-31 to 2021-08-10

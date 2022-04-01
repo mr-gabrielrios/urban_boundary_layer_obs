@@ -2,7 +2,7 @@
 Urban Boundary Layer Observation Data Processing
 Script name:    Mesonet Data Reader
 Path:           ~/bin/mesonet.py
-Description:    Process and analyze data from New York State Mesonet stations.
+Description:    Process and analyze data from New York State Mesonet stations - only Brooklyn (BKLN), Queens (QUEE), and Staten Island (STAT)
 """
 
 # Library imports
@@ -185,10 +185,14 @@ if __name__ == "__main__":
     convert(raw_path, save_path)
     '''
     
-    '''
-    date_range = [datetime.datetime(year=2019, month=7, day=28, hour=5),
-                  datetime.datetime(year=2019, month=7, day=29, hour=5)-datetime.timedelta(hours=1)]
+    # USER INPUT. Define date range desired. Note that flux data is UTC+0.
+    date_range = [datetime.datetime(year=2018, month=7, day=1, hour=5),
+                  datetime.datetime(year=2019, month=7, day=31, hour=5)-datetime.timedelta(hours=1)]
+    # Creates Pandas date range from input dates.
     date_range = pd.date_range(start=date_range[0], end=date_range[1], freq='H') 
-    data_dir = os.path.join(os.path.dirname(__file__), '/Volumes/UBL Data/data/flux/BKLN')
+    # USER INPUT. Define site. Options are 'BKLN', 'QUEE', and 'STAT'.
+    site = 'BKLN'
+    # Defines the directory where flux data is located.
+    data_dir = os.path.join(os.path.dirname(__file__), '/Volumes/UBL Data/data/flux/{0}'.format(site))
+    # Saves flux data to the 'data' variable.
     data = csv_reader(date_range, data_dir)
-    '''
