@@ -188,14 +188,14 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
                 # Assign the current file location to the xArray Dataset
                 temp = temp.assign_coords(site=key).expand_dims('site')
                 # Resample data to lower frequencies if not being used for spectral analysis
-                print('Checkpoint 2: {0:.4f}s'.format(time.time() - benchmark))
+                # print('Checkpoint 2: {0:.4f}s'.format(time.time() - benchmark))
                 if not spectral_analysis:
                     temp = temp.resample(time='5T').mean()
                 _, index = np.unique(temp.time, return_index=True)
                 temp = temp.isel(time=index)
                 ds_list.append(temp)
                 
-                print('Checkpoint 3: {0:.4f}s'.format(time.time() - benchmark))
+                # print('Checkpoint 3: {0:.4f}s'.format(time.time() - benchmark))
                 
     # Concatenate data and sort by time. This for loop cuts off the last lidar data entry of the day to prevent time axis conflicts when merging.
     for i, ds in enumerate(ds_list):
@@ -207,7 +207,7 @@ def processor(date_range, spectral_analysis=False, sites=['BRON', 'MANH', 'QUEE'
             data = data.sortby('time')
         data = quality_filter(data)
     
-    print('Checkpoint 4: {0:.4f}s'.format(time.time() - benchmark))
+    # print('Checkpoint 4: {0:.4f}s'.format(time.time() - benchmark))
     
     return data
 
@@ -278,7 +278,7 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
         retLst = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(func)(group, name) for name, group in dfGrouped)
         return pd.concat(retLst)
     
-    benchmark = time.time()
+    # benchmark = time.time()
     # Initialize temporary container list
     dfs = []
     
@@ -312,7 +312,7 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
         
     df = pd.concat(dfs).sort_values('time')
     dfs_ = []
-    print('Checkpoint 5a. {0:.4f} s'.format(time.time() - benchmark))
+    # print('Checkpoint 5a. {0:.4f} s'.format(time.time() - benchmark))
     
     for group, height in df.groupby('height'):
         '''
@@ -343,7 +343,7 @@ def detrend(data, site, averaging_period='30T', detrend_period='5T'):
         mean['height'] = group
             
         dfs_.append(mean)
-    print('Checkpoint 5b. {0:.4f} s'.format(time.time() - benchmark))
+    # print('Checkpoint 5b. {0:.4f} s'.format(time.time() - benchmark))
     
     df = pd.concat(dfs_)
     df = df.assign(site=site)
@@ -432,13 +432,13 @@ if __name__ == '__main__':
     # Boolean control to handle if spectral analysis is generated
     spectral = True
     if spectral:
-        dates = pd.date_range(start='2021-08-03', end='2021-08-31', freq='1D', closed='left')
+        dates = pd.date_range(start='2018-06-01', end='2018-09-30', freq='1D', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
             print('Processing: ', date_range)
             scan_type = 'DBS'
-            sites = ['BRON']
+            sites = ['BRON', 'QUEE', 'STAT']
             for site in sites:
                 start = time.time()
                 data = processor(date_range, spectral_analysis=True, sites=site, scan_type=scan_type)
@@ -450,7 +450,7 @@ if __name__ == '__main__':
                     data.to_netcdf(os.path.join(directory, filename))
                     print(time.time()-start)
     else:
-        dates = pd.date_range(start='2021-05-31', end='2021-07-01', freq='M', closed='left')
+        dates = pd.date_range(start='2021-05-31', end='2021-09-30', freq='M', closed='left')
         directory = '/Volumes/UBL Data/data/storage/lidar'
         for i in range(0, len(dates)-1):
             date_range = [dates[i], dates[i+1]]      
