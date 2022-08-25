@@ -5,9 +5,9 @@ Path:           ~/bin/turbulence.py
 Description:    Perform turbulence analysis on CCNY and NYS Mesonet sites.
 """
 
-import datetime, math, matplotlib as mpl, matplotlib.pyplot as plt, numpy as np, os, pandas as pd, xarray as xr, scipy, seaborn as sns
+import datetime, math, matplotlib as mpl, matplotlib, matplotlib.pyplot as plt, numpy as np, os, pandas as pd, xarray as xr, scipy, seaborn as sns
 
-import bin.functions, bin.lidar
+import bin.functions, bin.lidar, bin.aux
 from scipy.fft import fft, fftfreq
 from scipy.optimize import curve_fit
 from cycler import cycler
@@ -16,15 +16,15 @@ from cycler import cycler
 import warnings
 warnings.filterwarnings("ignore")
 # Change font
-mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica Neue']})
 
 # Define storage path for data
-storage_dir = '/Volumes/UBL Data'
+# storage_dir = '/Volumes/UBL Data'
+storage_dir = '/Users/gabriel/Documents/urban_boundary_layer_obs/dev'
 
 def rolling_mean(arr, n=10):
     '''
-    Function to provide a rolling mean for lidar data.
-
+    Function to provide a rolling mean for lidar 
     Parameters
     ----------
     arr : NumPy array, 1D
@@ -45,6 +45,14 @@ def rolling_mean(arr, n=10):
     
     return arr
 
+def quality_filter(data, param, sigma=2):
+    ''' Adjust turbulence data distribution to adjust for outliers. '''
+    
+    mean, std = data[param].mean(), data[param].std()
+    data = data.where((data[param] >= (mean - sigma*std)) & 
+                      (data[param] <= (mean + sigma*std)), np.nan)
+    
+    return data
 
 def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='MANH', dbs=False, event='normal', stability_method='alt'):
     '''
@@ -92,14 +100,13 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
         ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['TIMESTAMP'])
         # Define Marshak building height.
         # See https://data.cityofnewyork.us/Housing-Development/Building-Footprints/nqwf-w8eh for building height data
-        ts_data['z'] = 50.6
+        ts_data['z'] = bin.aux.site_info()[site]['height_agl']
         # Calculate Obukhov length. See Stull, 1988, Eq. 5.7c.
         ts_data['L'] = -ts_data['Ts_Avg'].to_numpy().flatten()*ts_data['u_star'].to_numpy().flatten()/(0.4*9.81*ts_data['Ts_Uz_cov'].to_numpy().flatten())
         # Calculate atmospheric stability parameter.
         ts_data['zeta'] = ts_data['z']/ts_data['L']
         # Calculate mean horizontal wind velocity. To be used for normalization.
         ts_data['U'] = np.sqrt(ts_data['Ux_Avg']**2 + ts_data['Uy_Avg']**2)
-        
         ''' Pull high-frequency data - lidar or sonic anemometer. '''
         if sonic_anemometer:
             # Access pre-saved netCDF file containing an xArray of the sonic anemometer data
@@ -111,26 +118,28 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
             # Remove MultiIndex to allow for time and height indices to become columns
             df = df.reset_index()
         else:    
-            # Get lidar data from the August lidar file dedicated for spectral analysis
-            lidar_data_fixed = xr.open_mfdataset(['{0}/data/storage/lidar/lidar_data_2021-08_spectral.nc'.format(storage_dir)]).sel(site='MANH', height=height)
-            # Select lidar data for dates of interest and convert to DataFrame
-            df = lidar_data_fixed.sel(time=slice('2021-08-01', '2021-08-10')).to_dataframe()
-            
             # Get Doppler-beam swinging data from the lidar files dedicated for turbulence analysis
             if dbs:
                 dbs_dir_ = '{0}/data/storage/lidar'.format(storage_dir)
                 # Get file list corresponding to DBS lidar data
-                dbs_files = [os.path.join(dbs_dir_, file) for file in os.listdir(dbs_dir_) if 'MANH_DBS' in file]
+                dbs_files = [os.path.join(dbs_dir_, file) for file in os.listdir(dbs_dir_) if 'MANH_turb_DBS' in file]
                 # Get DBS lidar data
                 df_dbs = xr.open_mfdataset(dbs_files).sel(site=site,
                                                           height=height).drop_vars(['ci']).to_dataframe()
                 
                 # Concatenate DataFrames
-                df = pd.concat([df, df_dbs])
-                
+                df = df_dbs
+            else:
+                # Get lidar data from the August lidar file dedicated for spectral analysis
+                lidar_data_fixed = xr.open_mfdataset(['{0}/data/storage/lidar/lidar_data_2021-08_spectral.nc'.format(storage_dir)]).sel(site='MANH', height=height)
+                # Select lidar data for dates of interest and convert to DataFrame
+                df = lidar_data_fixed.sel(time=slice('2021-08-01', '2021-08-10')).to_dataframe()
             # Remove MultiIndex to allow for time and height indices to become columns
             df = df.reset_index().sort_values('time')
-            
+        
+        for col in df.columns:
+            if col not in ['time', 'height', 'site', 'cov_u_w']:
+                df = quality_filter(df, col)
     else:
         # List files containing Queens data
         date_range = [datetime.datetime.strptime(start_date, '%Y-%m-%d'),
@@ -158,7 +167,8 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
         # Note: DST matching removed during investigation of spectral analysis
         ts_data['TIMESTAMP'] = pd.to_datetime(ts_data['datetime'])
         # Define Queens building height.
-        ts_data['z'] = 44.6
+        
+        ts_data['z'] = bin.aux.site_info(site)['height_agl']
         # Drop zonal wind speed column
         ts_data = ts_data.drop(columns='U')
         # Rename wind direction column
@@ -176,12 +186,13 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
         df = lidar_data.sel(time=slice(start_date, end_date)).to_dataframe()
         # Remove MultiIndex to allow for time and height indices to become columns
         df = df.reset_index()
-        
-        
+        # Perform distribution check
+        for col in df.columns:
+            if col not in ['time', 'height', 'site']:
+                df = quality_filter(df, col)
         
     # Group DataFrame into 30-minute intervals. This allows for matching with 30-minute-averaged ts_data
     df_grouped = df.groupby(pd.Grouper(key='time', freq='30T'))
-    
     ''' Match the lidar and flux tower data to permit grouping by stability. '''
     # Initialize list of modified DataFrames to be concatenated.
     dfs = []
@@ -197,12 +208,17 @@ def processor(start_date='2021-05-31', end_date='2021-06-01', height=200, site='
                 match[col] = [np.nan]
         # Append the matching value to the DataFrame as a column for each parameter needed for normalization.
         data['z'] = np.repeat(match['z'].values, len(data))
-        data['U'] = np.sqrt(data['u']**2 + data['v']**2)
+        try:
+            # For non-CCNY sites that have all 3 wind components
+            data['U'] = np.sqrt(data['u']**2 + data['v']**2)
+        except:
+            # For CCNY
+            data['U'] = np.repeat(match['U'].values, len(data))
         data['u_star'] = np.repeat(match['u_star'].values, len(data))
         data['zeta'] = np.repeat(match['zeta'].values, len(data))
         data['L'] = np.repeat(match['L'].values, len(data))
         data['wind_direction_surface'] = np.repeat(match['wnd_dir_compass'].values, len(data))
-    
+        data['w_prime'] = data['w'] - data['w'].mean()
         # Append the matched DataFrame to the list of DataFrames
         dfs.append(data)
     # Concatenate the matched DataFrames
@@ -243,10 +259,12 @@ def spectral_analysis(dfs, param='w', sonic_anemometer=False):
     else:
         dt = 1
     
+    norm = 'u_star'
+    
     # Define stability groups
-    bins = [-np.inf, 0, 0.2, np.inf]
+    bins = [-np.inf, -0.5, -0.1, 0.1, 0.5, np.inf]
     # Group the matched DataFrames by stability classification
-    dfs_grouped_zeta = dfs.groupby('stability')
+    dfs_grouped_zeta = dfs.groupby(pd.cut(dfs['zeta'], bins))
     
     ''' Perform spectral analysis for each stability grouping. '''
     # Initialize dictionary to hold all grouped spectra
@@ -268,16 +286,23 @@ def spectral_analysis(dfs, param='w', sonic_anemometer=False):
         # Get normalized frequencies. 
         # Indexing changes based on whether N is even or odd, see https://docs.scipy.org/doc/scipy/reference/tutorial/fft.html
         if N % 2 == 0:
-            # x_norm = (x * data['z'] / data['U'])[:N//2]
             # Incorporate zero-plane displacement for comparison with Feigenwinter et al. (1999)
             x_norm = (x * data['z'] / data['U'])[:N//2]
         else:
             x_norm = (x * data['z'] / data['U'])[:(N-1)//2]
         # Perform fast Fourier transform with normalized data
         try:
-            y_norm = np.abs(x * y / (data['U']).values**2)[:N//2]
+            y_norm = np.abs(x * y / (data[norm]).values**2)[:N//2]
         except:
             y_norm = np.full(x_norm.shape, fill_value=np.nan)
+        
+        ''' Get timescale from normalized frequency peak. '''
+        # Get index of peak normalized frequency
+        index = np.argmax(y_norm)
+        umax = data['U'][:N//2].values[index] if N % 2 == 0 else data['U'][:(N-1)//2].values[index]
+        # Get timescale of peak normalized frequency
+        timescale = data['height'].unique()[0]/(umax * x_norm.values[index])
+        print('Stability group: {0} at height {1} m has a dominant mixing timescale of {2:.2f} s.'.format(label, data['height'].unique()[0], timescale))
         
         ''' Frequency band averaging. '''
         # Define number of frequency bands
@@ -313,7 +338,8 @@ def spectral_analysis(dfs, param='w', sonic_anemometer=False):
             freq_avgd = np.full(y_norm.shape, fill_value=32)
             arr_avgd = np.full(y_norm.shape, fill_value=32)
             arr_std = np.full(y_norm.shape, fill_value=32)
-    
+            
+        
         spectra[label] = [x_norm, y_norm, freq_avgd, arr_avgd, arr_std, x, y]
         
         n += 1
@@ -342,8 +368,9 @@ def spectral_plotter(data, heights):
         return polyfit
     
     # Curve fitting - Kaimal spectrum per Larsen (2016) as written in Cheynet (2017)
-    def func(x, a, b, c, d):
-        return a*x/((1+b*x)**(5/3)) + c*x/(1+d*x**(5/3))
+    # def func(x, a, b, c, d):
+    #     return a*x/((1+b*x)**(5/3)) + c*x/(1+d*x**(5/3))
+    
     
     # Curve fitting - implementation
     def kaimal_spectrum(x, y):
@@ -351,51 +378,65 @@ def spectral_plotter(data, heights):
         x_ = x[~np.isnan(x) & ~np.isnan(y)]
         y_ = y[~np.isnan(x) & ~np.isnan(y)]
         # Get curve fitting metadata
-        popt, pcov = curve_fit(func, x_, y_, maxfev=100000)
+        popt, pcov = curve_fit(func, x_, y_, maxfev=10000)
         return x_, y_, popt, pcov
     
     # Define figure parameters
-    ncols = 3
-    nrows = len(data[0]) // ncols
+    ncols = 5
+    # nrows = len(data[0]) // ncols
+    nrows = 1
     # Initialize figure
-    fig, ax = plt.subplots(figsize=(7, 5), dpi=300, nrows=nrows, ncols=ncols, sharex=True, sharey=True)
+    fig, axs = plt.subplots(figsize=(8, 3), dpi=300, nrows=nrows, ncols=ncols, sharex=True, sharey=True)
     # Iterate over subplot to plot.
     # Outer loop iterates over stability groups.
-    for i, ax in enumerate(ax.reshape(-1)):
+    for i, ax in enumerate(axs.reshape(-1)):
         # Obtain name of stability group
         key = list(data[0].keys())[i]
         # Iterate over heights
         for j in range(0, len(data)):
+        
             # Obtain frequency-averaged frequency bins and spectra
             x, y, s, f = data[j][key][2], data[j][key][3], data[j][key][4], data[j][key][-2]
             # Plot the data
-            im = ax.loglog(x, y, lw=3, label='{0} m'.format(heights[j]))
-            std = ax.fill_between(x, np.array(y)-0.75*np.array(s), np.array(y)+0.75*np.array(s), alpha=0.1)
-            # Plot spectral reference data for lowest level
-            if ((i+1) != nrows*ncols) and j == 0:
-                # Inertial subrange frequency range
-                x_is = np.linspace(10e-1, 10e0, 2)
-                y_is = 0.6*(x_is ** (-5/3))
-                im_is = ax.loglog(x_is, y_is, 
-                                  color='k', linestyle='--', lw=2, 
-                                  zorder=10, label='_nolegend_')
+            im = ax.loglog(x[:-1], y[:-1], lw=3, label='{0} m'.format(heights[j]))
+            std = ax.fill_between(x, np.array(y)-0.75*np.array(s), np.array(y)+0.75*np.array(s), alpha=0.1, label='_nolegend_')
             
-            xlim, ylim = [10e-4, 10e1], [10e-7, 10e1]
+            # Plot spectral reference data for lowest level
+            # x_, y_, popt, _ = kaimal_spectrum(x, y)
+            # x_is, y_is = x_, func(x, popt[0], popt[1], key)
+            # ax.loglog(x_is, y_is, color='k', linestyle='--', lw=2, 
+            #           zorder=10, label='_nolegend_')
+            
+            xlim, ylim = [10e-4, 10e1], [10e-5, 10e0]
             ax.set_xlim(xlim)
             ax.set_ylim(ylim)
-            ax.grid(which='both', linestyle=':')
             
-            ax.set_title('$\zeta$ = {0}'.format(key))
+            locmaj = matplotlib.ticker.LogLocator(base=10.0, numticks=6) 
+            locmin = matplotlib.ticker.LogLocator(base=10.0, subs=np.arange(0, 1, 0.1), numticks=12)
+            ax.xaxis.set_minor_locator(locmin)
+            ax.xaxis.set_major_locator(locmaj)
+            
+            ax.tick_params(axis='both', which='major', labelsize=10)
+            ax.grid(which='major', linestyle=':')
+            
+            ax.set_title('$\zeta$ = {0}'.format(key), fontsize=10)
             # Control where y-label is set
             if i % ncols == 0:
-                ax.set_ylabel('$f S_w / \overline{U}^2$')
-            if i // ncols > 0:
-                ax.set_xlabel('$f z / \overline{U}$')
+                ax.set_ylabel('f S$_w$ / $\overline{U}^2$', labelpad=15, fontsize=10)
     
     hand, labl = ax.get_legend_handles_labels()
-    fig.legend(labels=labl, loc='upper center', ncol=len(heights), bbox_to_anchor=(0.5, 1.1), fontsize=12, frameon=False)
+    fig.legend(labels=labl, loc='upper center', ncol=len(heights), bbox_to_anchor=(0.54, 1.15), fontsize=10, frameon=False)
+    fig.supxlabel('f z / $\overline{U}$', fontsize=10, y=0.05)
         
     fig.tight_layout()
+    plt.subplots_adjust(wspace=0.1)
+    
+    # Post-script log-label removal
+    for i, ax in enumerate(axs.reshape(-1)):
+        n = 2
+        [l.set_visible(False) for (i,l) in enumerate(ax.xaxis.get_ticklabels()) if i % n != 0]
+
+    print([item.get_text() for item in ax.get_xticklabels()])
 
 def stats(df, spectra):
     
@@ -462,12 +503,17 @@ def turbulence_stats(data):
         time_groups = height_data.groupby(pd.Grouper(key='time', freq=interval))
         # Iterate through each time interval
         for group, subdata in time_groups:
-            # Generate turbulent intensity for u, per Stull (1988)
-            subdata['I_u'] = np.sqrt(subdata['var_u']) / np.nanmean(subdata['U'])
-            # Generate turbulent intensity for v, per Stull (1988)
-            subdata['I_v'] = np.sqrt(subdata['var_v']) / np.nanmean(subdata['U'])
-            # Generate turbulent intensity for w, per Stull (1988)
-            subdata['I_w'] = np.sqrt(subdata['var_w']) / np.nanmean(subdata['U'])
+            # Try/except used to accommodate fixed-stare lidar data
+            try:
+                # Generate turbulent intensity for u, per Stull (1988)
+                subdata['I_u'] = np.sqrt(subdata['var_u']) / np.nanmean(subdata['U'])
+                # Generate turbulent intensity for v, per Stull (1988)
+                subdata['I_v'] = np.sqrt(subdata['var_v']) / np.nanmean(subdata['U'])
+                # Generate turbulent intensity for w, per Stull (1988)
+                subdata['I_w'] = np.sqrt(subdata['var_w']) / np.nanmean(subdata['U'])
+            except:
+                # Generate turbulent intensity for w, per Stull (1988)
+                subdata['I_w'] = np.sqrt(subdata['var_w']) / np.nanmean(subdata['U'])
             # Append to list
             dfs.append(subdata)
     # Concatenate all the groups
@@ -475,7 +521,7 @@ def turbulence_stats(data):
     
     return data_
 
-def stability_plots(datasets, stability_method='surface', param='I_u', norm=None, std_plot=True):
+def stability_plots(datasets, sites=['QUEE', 'STAT'], stability_method='surface', param='I_u', norm=None, std_plot=True, exp=None, height_norm=True, comp=False):
     '''
     Function to plot data from a DataFrame as grouped by stability.
 
@@ -490,146 +536,398 @@ def stability_plots(datasets, stability_method='surface', param='I_u', norm=None
         
     '''
     
-    # Convert the input data to list form if it's not in it already
-    if type(datasets) is not list:
-        datasets = [datasets]
+    param_dict = {'u': {'long_name': 'Wind velocity, zonal',
+                        'symbol': 'u'},
+                  'v': {'long_name': 'Wind velocity, meridional',
+                        'symbol': 'v'},
+                  'w': {'long_name': 'Wind velocity, vertical',
+                        'symbol': 'w'},
+                  'I_u': {'long_name': 'Turbulent intensity, zonal',
+                          'symbol': 'I$_u$'},
+                  'I_v': {'long_name': 'Turbulent intensity, meridional',
+                          'symbol': 'I$_v$'},
+                  'I_w': {'long_name': 'Turbulent intensity, vertical',
+                          'symbol': 'I$_w$'},
+                  'var_u': {'long_name': 'Velocity variance, zonal',
+                            'symbol': '$\sigma_u^2$'},
+                  'var_v': {'long_name': 'Velocity variance, meridional',
+                            'symbol': '$\sigma_v^2$'},
+                  'var_w': {'long_name': 'Velocity variance, vertical',
+                            'symbol': '$\sigma_w^2$'},
+                  'w_star': {'long_name': 'Convective velocity scale',
+                            'symbol': 'w*'},
+                  'w_star_surf': {'long_name': 'Convective velocity scale',
+                            'symbol': 'w$_s$*'},
+                  'e': {'long_name': 'Turbulent kinetic energy',
+                            'symbol': 'TKE'}}
         
-    # Determine exponent for normalization
-    # If normalization isn't performed, exponent to 0 so the normalization value is 1
-    # Else, set to 3 for TKE normalization and 2 for all else
-    if norm is None:
-        exp = 0
-    else:
-        exp = 3 if '_e' in param else 2
+    # Convert the site data to list form if it's not already
+    if type(sites) is not list:
+        sites = [sites]
     
     # Define stability group bins
-    bins = [-np.inf, -0.1, 0.1, np.inf]
+    bins = [-np.inf, -0.5, -0.1, 0.1, 0.5, np.inf]
     # Define colors and markers for plotting
-    colors = ['blue', 'red']
-    markers = ['o', 's']
+    colors = ['blue', 'red', 'green']
+    markers = ['o', 's', 'x']
     # Initialize figures
-    fig, axs = plt.subplots(ncols=len(bins), sharey=True)
+    fig, axs = plt.subplots(ncols=len(bins)-1, sharey=True, dpi=300)
     
     # Initialize plot x-limits
     vmin, vmax = 0, 0
-    
-    for i, data in enumerate(datasets):
-        # Initialize dictionaries for intensity mean, standard deviation values, and stability group names
-        means, stds, groups = {}, {}, None
-        # Group by height and iterate over each height
-        for height, height_data in data.groupby('height'):
-            # Group by zeta
-            stability_groups = height_data.groupby(pd.cut(height_data['zeta'], bins))
-            # Save group labels for stability groupings
-            groups = list(stability_groups.groups.keys())
-            # Collect means and standard deviations at each height
-            mean, std = [], []
-            # Iterate over the stability groups
-            for stability, subdata in stability_groups:
-                # Append mean and standard deviation to respective dictionaries
-                # If normalization is enabled, do so here. Else, use the non-normalized data.
-                if norm:
-                    mean.append((subdata[param]/subdata[norm]**exp).mean())
-                    std.append((subdata[param]/subdata[norm]**exp).std())
-                else:
-                    mean.append((subdata[param]).mean())
-                    std.append((subdata[param]).std())
-            # Append to dict
-            means[height], stds[height] = mean, std
-        # Generate DataFrame for mean and standard deviations
-        means = pd.DataFrame.from_dict(means, 
-                                       orient='index', 
-                                       columns=groups)
-        stds = pd.DataFrame.from_dict(stds,
-                                      orient='index', 
-                                      columns=groups)
-        
-        # Get x-axis extrema
-        if std_plot:
-            if (np.nanmin(means + stds)) < vmin:
-                vmin = np.nanmin(means) + np.nanmin(stds)
-            if (np.nanmax(means + stds)) > vmax:
-                vmax = np.nanmax(means) + np.nanmax(stds)
-        else:
-            if np.nanmin(means) < vmin:
-                vmin = np.nanmin(means)
-            if np.nanmax(means) > vmax:
-                vmax = np.nanmax(means)
-            
-        # Plot the turbulent intensities by stability group
-        for j, group in enumerate(groups):
-            # Plot the intensity mean values
-            axs[j].plot(means[group], means.index, 
-                        marker=markers[i], color=colors[i])
-            if std_plot:
-                # Plot the intensity standard deviations
-                axs[j].errorbar(means[group], 
-                                stds.index, 
-                                xerr=stds[group],
-                                fmt='none',
-                                capsize=3, 
-                                ecolor=colors[i])
-            axs[j].set_xlim([vmin, vmax])
-            axs[j].set_title(group)
-            axs[j].set_ylim([0, data.height.max() + 100])
-            # Set the x-label
-            if norm:
-                axs[j].set_xlabel(r'{0} / {1}$^2$'.format(param, norm))
-            else:
-                axs[j].set_xlabel(r'{0}'.format(param))
-            # Only print the y-label on the first subplot
-            if j == 0:
-                axs[j].set_ylabel('Height [m]')
-    
-    fig.suptitle(data['site'].unique()[0])
-    fig.tight_layout()
-    return means, stds
 
-def stability_distribution(dataset, height=100):
+    site_num = 0
+    
+    for site, site_data in datasets.groupby('site'):
+        # Ensure data is only shown for the chosen sites
+        if site not in sites:
+            continue
+        
+        site_data = [site_data]
+        for i, data in enumerate(site_data):
+            # Initialize dictionaries for intensity mean, standard deviation values, and stability group names
+            means, stds, groups = {}, {}, None
+            
+            # Initialize bins for normalized heights
+            height_bins = []
+            # Normalize heights either by (a) mixed layer height or (b) roughness height for comparison with Roth (2000)
+            if height_norm:
+                if comp and param in ['I_u', 'I_v', 'I_w']:
+                    # Normalize height by area-averaged roughness height
+                    zH = bin.aux.area_averaged_height(site)
+                    data['height'] = data['height']/zH
+                else:
+                    data['height'] = data['height']/data['mixing_height']
+                    
+            # Group by height and iterate over each height.
+            # Conditional statement handles binned normalized heights.
+            if height_norm and not comp:
+                height_groups = data.groupby('height')
+            else:
+                height_bins = np.linspace(0, 1, 21)
+                height_groups = data.groupby(pd.cut(data['height'], height_bins))
+                # height_groups = data.groupby('height')
+                
+            # Iterate over each height group.
+            for height, height_data in height_groups:
+                # Group by zeta
+                stability_groups = height_data.groupby(pd.cut(height_data['zeta'], bins))
+                # Save group labels for stability groupings
+                groups = list(stability_groups.groups.keys())
+                # Collect means and standard deviations at each height
+                mean, std = [], []
+                # Iterate over the stability groups
+                for stability, subdata in stability_groups:
+                    # Append mean and standard deviation to respective dictionaries
+                    # If normalization is enabled, do so here. Else, use the non-normalized data.
+                    if norm:
+                        mean.append((subdata[param]/subdata[norm]**exp).mean())
+                        # std.append((subdata[param]/subdata[norm]**exp).std())
+                        std.append((subdata[param]/subdata[norm]**exp).quantile(q=0.25))
+                    else:
+                        mean.append((subdata[param]).mean())
+                        # std.append((subdata[param]).std())
+                        std.append((subdata[param]).quantile(q=0.25))
+                # Append to dict
+                if height_norm and comp:
+                    means[height.right], stds[height.right] = mean, std
+                else:
+                    means[height], stds[height] = mean, std
+            # Generate DataFrame for mean and standard deviations
+            means = pd.DataFrame.from_dict(means, 
+                                           orient='index', 
+                                           columns=groups)
+            stds = pd.DataFrame.from_dict(stds,
+                                          orient='index', 
+                                          columns=groups)
+            
+            # Get x-axis extrema
+            if std_plot:
+                if (np.nanmin(means - stds)) < vmin:
+                    vmin = np.nanmin(means) - np.nanmin(stds)
+                if (np.nanmax(means + stds)) > vmax:
+                    vmax = np.nanmax(means) + np.nanmax(stds)
+            else:
+                if np.nanmin(means) < vmin:
+                    vmin = np.nanmin(means)
+                if np.nanmax(means) > vmax:
+                    vmax = np.nanmax(means)
+                
+            # Plot the turbulent intensities by stability group
+            for j, group in enumerate(groups):
+                label = site if j == 0 else None
+                # Plot the intensity mean values
+                axs[j].scatter(means[group], means.index, 
+                               color=colors[site_num], marker=markers[site_num], label=label)
+                if std_plot:
+                    # Plot the intensity standard deviations
+                    axs[j].errorbar(means[group], 
+                                    stds.index, 
+                                    xerr=stds[group],
+                                    color=colors[site_num],
+                                    fmt='none',
+                                    capsize=3)
+                axs[j].set_xlim([vmin, vmax])
+                axs[j].set_xscale('log')
+                axs[j].set_title(group)
+                if comp:
+                    if param in ['I_u', 'I_v', 'I_w']:
+                        y = np.arange(0, 200, 0.1)
+                        if param == 'I_u':
+                            x = 0.259 + 0.582*np.exp(-0.943*y)
+                        elif param == 'I_v':
+                            x = 0.163 + 0.391*np.exp(-0.563*y)
+                        elif param == 'I_w':
+                            x = 0.114 + 0.226*np.exp(-0.634*y)
+                        axs[j].plot(x, y, c='k', lw=2)
+                        # print(x, y)
+                        axs[j].set_ylim([0, 25])
+                    elif param in ['var_u', 'var_v', 'var_w']:
+                        y = np.arange(0.05, 1, 0.01)
+                        if param == 'var_u':
+                            x = [(0.74**2)*(0.5*(2-np.sqrt(y)) + 0.3*np.sqrt(y))]
+                        if param == 'var_w':
+                            x = [1.17*(y*(1-y))**(2/3), 
+                                 1.8*(y**(2/3))*(1 - 0.8*y)**2]
+                            labels = ['Lenschow et al. (1980)', 'Sorbjan (1989)']
+                            axs[j].set_xlim([1e-3, 1])
+                            axs[j].set_xticks(np.logspace(-2, 0, 3))
+                        for k, x_ in enumerate(x):
+                            axs[j].plot(x[k], y, lw=2, ls='--', alpha=0.5)
+                        # axs[j].set_xticks(np.linspace(0.1, 1, 10))
+                        axs[j].grid(which='both', alpha=0.25, zorder=0)
+                axs[j].set_ylim([0, 1])
+                label_size = 12
+                # Set the x-label
+                if norm:
+                    if j == 2:
+                        axs[j].set_xlabel(r'{0} / {1}$^{2}$'.format(param_dict[param]['symbol'], param_dict[norm]['symbol'], exp), fontsize=label_size)
+                else:
+                    if j == 2:
+                        axs[j].set_xlabel(r'{0}'.format(param_dict[param]['symbol']), labelpad=20, fontsize=label_size)
+                # Only print the y-label on the first subplot
+                if j == 0:
+                    if height_norm:
+                        if comp and param in ['I_u', 'I_v', 'I_w']:
+                            axs[j].set_ylabel('z / z$_H$', labelpad=15, fontsize=label_size)
+                        else:
+                            axs[j].set_ylabel('z / z$_i$', labelpad=15, fontsize=label_size)
+                    else:
+                        axs[j].set_ylabel('Height [m]', labelpad=15, fontsize=label_size)
+                        
+        site_num += 1 
+
+    if param_dict[param]:
+        fig.suptitle(param_dict[param]['long_name'], y=1.05)
+    else:
+        fig.suptitle(param, y=1.05)
+        
+    fig.legend(ncol=len(sites), frameon=False, loc='upper center', bbox_to_anchor=(0.5, 1))
+        
+    fig.tight_layout()
+  
+def data_merge(site='QUEE', heights=None, param='w'):
+    ''' Generates fit and plots comparing normalized standard deviations versus stability. '''
+    
+    import scipy.optimize, scipy.stats, matplotlib
+    
+    # Get turbulence data
+    dirname = '/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/storage'
+    ds = pd.concat([pd.read_csv(os.path.join(dirname, file)) for file in os.listdir(dirname) if 'turbulence_data_{0}'.format(site.lower()) in file])
+    
+    # Get flux data
+    dirname = '/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/flux/{0}'.format(site)
+    if site in ['BRON', 'QUEE', 'STAT']:
+        files = [os.path.join(dirname, file) for file in os.listdir(dirname) 
+                 if 'csv' in file]
+        fluxes = []
+        for file in files:
+            df = pd.read_csv(file)
+            fluxes.append(df)
+        fluxes = pd.concat(fluxes).sort_values('datetime').rename(columns={'datetime': 'time'})
+        fluxes['Ts'] = fluxes['Tc'] + 273.15
+        fluxes['cov_w_T'] = fluxes['H']/1004
+        #fluxes['w_star'] = ((9.81/fluxes['Ts'])*(fluxes['cov_w_T'])*44.6)**(1/3)
+        fluxes = fluxes.loc[(fluxes['time'] >= '2020-09-01') & (fluxes['time'] < '2021-09-01')]
+    else:
+        files = [os.path.join(dirname, file) for file in os.listdir(dirname) 
+                 if file.split('.')[-1] == 'dat']
+        fluxes = []
+        for file in files:
+           temp = pd.read_csv(file, header=1, skiprows=[2, 3], na_values='NAN')
+           fluxes.append(temp)
+        fluxes = pd.concat(fluxes)[['TIMESTAMP', 'Ts_Avg', 'Ts_Uz_cov', 'wnd_dir_compass', 'u_star']] 
+        fluxes['TIMESTAMP'] = pd.to_datetime(fluxes['TIMESTAMP'])
+        fluxes['z'] = bin.aux.site_info()['MANH']['height_agl']
+        fluxes['L'] = -fluxes['Ts_Avg'].to_numpy().flatten()*fluxes['u_star'].to_numpy().flatten()/(0.4*9.81*fluxes['Ts_Uz_cov'].to_numpy().flatten())
+        fluxes['zeta'] = fluxes['z']/fluxes['L']
+        fluxes = fluxes.rename(columns={'TIMESTAMP': 'time', 'Ts_Uz_cov': 'cov_w_T', 'Ts_Avg': 'Ts'})
+    
+    # Get mixing heights
+    if site in ['BRON', 'QUEE', 'STAT']:
+        mixing_height = pd.read_csv('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/storage/mixing_heights_{0}_s20190901_e20210901.csv'.format(site.lower()))
+        merged = ds.merge(fluxes, on=['time'], suffixes=('', '_flux')).merge(mixing_height, on=['time'], suffixes=('', '_mh'))
+    else:
+        # Average over all sites - MUST BE JUSTIFIED WITH LITERATURE REVIEW
+        mixing_heights = []
+        for profiler_site in ['BRON', 'QUEE', 'STAT']:
+            mixing_height = pd.read_csv('/Users/gabriel/Documents/urban_boundary_layer_obs/dev/data/storage/mixing_heights_{0}_s20190901_e20210901.csv'.format(profiler_site.lower()))
+            mixing_heights.append(mixing_height)
+        # Perform the site-averaging for each timestamp
+        mhs = []
+        for group, group_data in pd.concat(mixing_heights).groupby('time'):
+            mh = pd.DataFrame(columns=group_data.columns).drop(columns={'Unnamed: 0'})
+            mh['mixing_height'] = [group_data['mixing_height'].mean()]
+            mh['site'] = 'MANH'
+            mh['time'] = group
+            mhs.append(mh)
+        mixing_height = pd.concat(mhs)
+    
+    # Convert time column to datetime
+    ds['time'] = pd.to_datetime(ds['time'])
+    fluxes['time'] = pd.to_datetime(fluxes['time'])
+    mixing_height['time'] = pd.to_datetime(mixing_height['time'])
+    
+    # Drop the stability values in the original dataset, re-pull to accommodate sonic data
+    if site == 'MANH':
+        ds = ds.drop(columns=['zeta'])
+    merged = ds.merge(fluxes, on=['time'], how='outer', suffixes=('', '_flux'))
+    merged['time'] = pd.to_datetime(merged['time'])
+    merged = merged.merge(mixing_height, on=['time'], suffixes=('', '_mh'))
+    merged['time'] = pd.to_datetime(merged['time'])
+    
+    # Calculate normalized height relative to area-averaged roughness height
+    merged['z_zh'] = merged['height']/bin.aux.site_info()[site]['height_agl']
+    
+    # Calculate convective velocity scale
+    merged['w_star'] = ((9.81/merged['Ts'])*(merged['cov_w_T'])*merged['mixing_height'])**(1/3)
+    # Calculate height-adjusted convective scale
+    merged['cov_w_T_surface'] = merged['cov_w_T']/(1-1.2*merged['height']/merged['mixing_height'])
+    merged['w_star_surf'] = ((9.81/merged['Ts'])*(merged['cov_w_T_surface'])*merged['mixing_height'])**(1/3)
+    
+    # Prevent irrational values during normalization
+    merged['w_star'] = merged['w_star'].where(~np.isnan(merged['w_star']) &
+                                          (merged['w_star'].abs() > 0), np.nan)
+    merged['w_star_surf'] = merged['w_star_surf'].where(~np.isnan(merged['w_star_surf']) &
+                                          (merged['w_star_surf'].abs() > 0), np.nan)
+        
+    return merged
+      
+def var_zeta(merged, site='QUEE', param='w', stability='unstable'):
+    
+    # Comparison dictionary
+    # Holds coefficients for stability functions from various publications
+    coeffs = pd.read_csv('bin/assets/similarity_coefficients.csv')
+    
+    # Narrow DataFrame to site-specific data
+    merged = merged.loc[merged['site'] == site]
+    
+    # Define roughness-height normalized heights - arbitrary bounds
+    heights = merged.groupby(pd.cut(merged['z_zh'], 
+                                    bins=np.arange(merged['z_zh'].min(), merged['z_zh'].max(), 5), include_lowest=True))
+        
+    for height, data in heights:
+        # Choose stability regime
+        if stability == 'unstable':
+            mask = np.where((data['zeta'] <= -0.2), True, False)
+        else:
+            mask = np.where((data['zeta'] > 0.1), True, False)
+        
+        # Get data
+        x = data[mask]['zeta'].values
+        y = np.sqrt(data[mask]['var_{0}'.format(param)].values)/data[mask]['u_star'].values
+        
+        ''' Prep curve fit. '''
+        # Filter out nan values
+        vector_mask = np.where(np.isnan(x) | np.isnan(y), False, True)
+        x = x[vector_mask]
+        y = y[vector_mask]
+        
+        if len(x) == 0:
+            continue
+        
+        # Actual data
+        fig, ax = plt.subplots(figsize=(5, 3))
+        
+        p = ax.scatter(x, y, s=5, c='lightgrey', marker='x')
+        
+        try:
+            # Define function
+            def func(x, a, b):
+                return a*(1-b*x)**(1/3)
+            # Curve fit
+            popt, pcov = scipy.optimize.curve_fit(func, x, y, bounds=((-10, -10), (10, 100)))
+            y_fit = popt[0]*(1-popt[1]*x)**(1/3)
+            _, _, r, _, _ = scipy.stats.linregress(y, y_fit)
+            # # Actual curve fit
+            fit = ax.scatter(x, y_fit, c='k', s=5, 
+                              label='Fit [a = {0:.2f}, b = {1:.2f}]'.format(*popt))
+        except:
+            continue
+        
+        ''' Load reference plots. '''
+        # Load coefficients and filter by input arguments
+        coeffs = coeffs.loc[(coeffs['z_zh'] >= height.left) &
+                            (coeffs['z_zh'] <= height.right) &
+                            (coeffs['param'] == param) &
+                            (coeffs['stability'] == stability)]
+        
+        print(coeffs)
+        
+        for _, values in coeffs.iterrows():
+            comp = ax.plot(np.sort(x), values['a']*(1-values['b']*np.sort(x))**(values['c']), lw=2, label=values['reference'])
+        
+        ax.set_xscale('symlog')
+        ax.legend(frameon=False, loc='upper right')
+        ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        ax.set_ylabel('$\sigma_{0} \  / \ u_*$'.format(param), labelpad=15)
+        ax.set_xlabel('$\zeta$', labelpad=10)
+        ax.set_ylim([0, 5])
+        ax.set_title('{0}, z/z$_H$ = {1}'.format(site, height))
+        plt.gca()
+
+def stability_distribution(ds, height=100):
     '''
     Plot the stability count per hour to show the distribution of the dataset when future data is grouped by stability bins.
 
     Parameters
     ----------
-    dataset : Pandas DataFrame
-        DataFrame containing basic output data from the processor function.
+    ds : Pandas DataFrame
+        List of DataFrames containing basic output data from the processor function.
     height : int, optional
         Height at which stability data is being counted. The default is 100.
     '''    
     
-    # Get hour number and append to corresponding entries
-    dataset['hour'] = dataset['time'].dt.hour
-    # Filter data for specific height to prevent duplicates
-    dataset = dataset[dataset['height'] == height]
+    if type(ds) is not list:
+        ds = [ds]
     
-    # Initialize list of dictionaries that will be concatenated into a DataFrame
-    counts = []
-    # Define stability bins
+    counts = {key: {} for key in ds.site.unique()}
     bins = [-np.inf, -0.1, 0.1, np.inf]
-    # Get stability bin interval names
-    bin_names = pd.cut(dataset['zeta'], bins=bins).unique()
-    # Iterate through the stability groupings
-    for group, group_data in dataset.groupby(pd.cut(dataset['stability'])):
-        # Iterate over the hours in each stability group dataset
-        # Note that value counts are used to count the number of stability grouping occurences for each given hour
-        for hour, count in enumerate(group_data['hour'].value_counts()):
-            # Initialize dictionary that will be used for DataFrame conversion later
-            temp = {}
-            # Add hour to dictionary
-            temp['hour'] = group_data['hour'].value_counts().index[hour]
-            # Iterate through the bins to append data where valid. Zero otherwise.
-            for bin_ in bin_names:
-                if bin_ == group:
-                    temp[bin_] = count
-                else:
-                    temp[bin_] = 0
-            counts.append(temp)
-    # Convert the list of dictionaries to a DataFrame and compress it by summing hour counts and ordering the axes by increasing stability.
-    counts = pd.DataFrame(counts).groupby('hour').sum().sort_index(axis=1)
-    # Remove the unnecessary 'nan' column
-    counts = counts.loc[:, (counts != 0).any(axis=0)]
-    # Plot
-    counts.plot(kind='bar', stacked=True, cmap='RdYlBu')
+    for site_key, site in ds.groupby('site'):
+        for hour_key, hour in site.groupby(site['time'].dt.hour):
+            counts[site_key][hour_key] = {}
+            for key, group in hour.groupby(pd.cut(hour['zeta'], bins=bins)):
+                print(site_key, hour_key, key)
+                counts[site_key][hour_key][str(key)] = group['zeta'].count()/hour['zeta'].count()
+    cdfs = {key: pd.DataFrame.from_dict(counts[key], orient='index') for key in counts.keys()}
+    
+    ''' Plotting. '''
+    fig, axs = plt.subplots(figsize=(4, 5), dpi=300, nrows=3, sharex=True)
+    sites = sorted(ds.site.unique())
+    hatches = ['//', 'xx', 'oo', '**']
+    for i, ax in enumerate(fig.axes):
+        im = cdfs[sites[i]].plot(kind='bar', ax=ax, stacked=True, cmap='coolwarm_r', legend=legend, edgecolor=(0, 0, 0, 0.5))
+        bars = [bar for bar in im.containers]
+        [patch.set_hatch(hatches[j]) for j, bar in enumerate(bars) for patch in bar]
+        ax.set_title(sites[i], pad=10)
+        ax.set_ylim([0, 1])
+        ax.xaxis.set_tick_params(rotation=0)
+        [l.set_visible(False) for (i, l) in enumerate(ax.xaxis.get_ticklabels()) if i % 3 != 0]
+    fig.supxlabel('Hour of day (UTC)', x=0.575)
+    fig.supylabel('Occurrence fraction')
+    fig.tight_layout()
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles[0:len(cdfs)], labels[0:len(cdfs)], frameon=False, bbox_to_anchor=(1.3, 0.94))
 
 def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], event='normal', plot_spectra=False):
     
@@ -640,7 +938,8 @@ def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], event=
         # Load lidar and/or anemometer data
         df = processor(start_date, end_date, height=height, site=site, event=event)
         data.append(df)
-        # spectra[height] = spectral_analysis(df)
+        if plot_spectra:
+            spectra[height] = spectral_analysis(df)
     
     # Concatenate data
     data = pd.concat(data)
@@ -654,29 +953,24 @@ def main(start_date, end_date, site='MANH', heights=[200, 400, 600, 800], event=
     normal_dates = pd.date_range(start_date, end_date, freq='D')
     
     # Generate turbulence data for the whole time range given
-    turbulence_normal = turbulence_stats(data[(data['time'] >= normal_dates[0]) & 
-                                              (data['time'] <= normal_dates[-1])])
+    # turbulence_normal = turbulence_stats(data[(data['time'] >= normal_dates[0]) & 
+    #                                           (data['time'] <= normal_dates[-1])])
     
-    # Plot turbulent intensities
-    for component in ['u', 'v', 'w']:
-        stability_plots([turbulence_normal], param='I_{0}'.format(component))
-    
-    return data, turbulence_normal
+    return data, spectra
 
 
 if __name__ == '__main__':
-
-    # Define date range
-    start_date, end_date = ['2021-08-12', '2021-08-15']
-    # Define height range
-    heights, step = [100, 1000], 300
-    # Collection list to be concatenated later
-    turbulence_data = []
-    for day_ in clear_sky_days_2021[0:2]:
-        print(day_)
-        start, end = [day_.strftime('%Y-%m-%d'), 
-                      (day_ + datetime.timedelta(days=1)).strftime('%Y-%m-%d')]
+    print('Running...')
+    
+    # Boolean to determine whether data will be computed or not when script run
+    compute = False
+    
+    if compute:
+        # Define date rangebint
+        start_date, end_date = ['2021-07-15', '2021-08-10']
+        # Define height range
+        heights, step = [200, 1500], 300
+        height_arr = np.arange(heights[0], heights[-1]+step, step)
+        # Collection list to be concatenated later
         # Generate data for a given site and heights
-        output, turbulence_data_ = main(start, end, site='STAT', heights=np.arange(heights[0], heights[1]+step, step), event='normal', plot_spectra=False)
-        turbulence_data.append(turbulence_data_)
-    turbulence_data = pd.concat(turbulence_data)
+        output, turbulence_data = main(start_date, end_date, site='MANH', heights=[200, 300, 500, 1000, 1500], event='normal', plot_spectra=True)
